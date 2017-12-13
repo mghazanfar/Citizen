@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
+import Typography from 'material-ui/Typography';
 import logo from '../logo.svg';
+import Grid from './Grid';
 import '../App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="selectShop">
+        <div className="selectShopGradient text-center">
+        <Typography type="display2" gutterBottom style={{color:'white', paddingTop:'10rem'}}>
+            SELECT SHOP
+          </Typography>
+          <Grid />
+        </div>
       </div>
     );
   }

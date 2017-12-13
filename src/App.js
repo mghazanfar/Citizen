@@ -5,6 +5,10 @@ import Button from 'material-ui/Button';
 import Owner from './login/Owner';
 import Loginn from './login/login';
 import Employee from './login/Employee';
+import Shop from './inventory/Shop';
+import Inventory from './inventory/Inventory';
+import './App.css';
+
 import {
  Route,
  NavLink,
@@ -66,7 +70,14 @@ const ModalGallery = () => (
           <Route path='/Employee' component={Employee} />
           <Route path='/Owner' component={Owner} />
           <Route path='/Login'  component={Loginn}/>
-        </Switch>
+          <Route path='/Shop'  component={Shop}/>
+          <Route path='/ManageShop' component={Shop}/>
+          <Route path='/Inventory'  component={Inventory}/>
+          <Route path='/HandleProfit'  component={Shop}/>
+          <Route path='/HandleExpenses'  component={Shop}/>
+          <Route path='/ManageClaimStock'  component={Shop}/>
+          <Route path='/ManageCompaniesBills'  component={Shop}/>
+    </Switch>
   </Router>
 )
 

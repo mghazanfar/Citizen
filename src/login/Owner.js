@@ -30,6 +30,9 @@ const styles = {
       alignItems: 'center',
       height: 'inherit',
       flexDirection: 'column',
+    },
+    noUnderline: {
+      textDecoration: 'none',
     }
 }
 
@@ -85,7 +88,7 @@ handleClickShowPasssword = () => {
             }
           />
         </FormControl>
-        <Link to='/Login'>
+        <Link to='/Login' style={styles.noUnderline}>
         <Button raised component="span" style={{backgroundColor:'rgba(0,150,136,1)', marginTop: '3rem', color: 'white'}}>
         LOGIN
         </Button>
