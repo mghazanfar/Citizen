@@ -8,6 +8,7 @@ import Employee from './login/Employee';
 import Shop from './inventory/Shop';
 import Inventory from './inventory/Inventory';
 import Categories from './inventory/Categories';
+import AddCategory from './inventory/AddCategory';
 import './App.css';
 
 import {
@@ -83,6 +84,7 @@ const ModalGallery = () => (
       <Route path='/AddProducts'  component={Shop}/>
       <Route path='/CreateBills'  component={Shop}/>
       <Route path='/ManageOrders'  component={Shop}/>
+      <Route path='/AddCategory'  component={AddCategory}/>
     </Switch>
   </Router>
 )
