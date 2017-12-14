@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
-import Background from '../img/ipad.jpg';
+import Background from '../img/zimp.jpg';
 import Categories from '../img/books.svg';
 import Products from '../img/registered.svg';
 import Add from '../img/plus-circle.svg';
@@ -19,9 +19,11 @@ const styles = {
       alignItems:'center',
       justifyContent:'center',
   },
-  right: {
-  backgroundImage: `url(${Background})`,
+  container: {
+    backgroundImage: `url(${Background})`,
     backgroundSize: 'cover',
+},
+  right: {
   },
   rightInner: {
     height: '100vh',
@@ -47,7 +49,17 @@ function FullWidthGrid(props) {
 
   return (
     <div>
-      <Grid container spacing={0}>
+      <Grid container spacing={0} style={styles.container}>
+        <Grid item xs={8} style={styles.right}>
+        <div style={styles.rightInner}>
+        <div style={{ marginTop:'4rem', marginLeft:'4rem' }}>
+        <Typography type="display4" gutterBottom style={{color:'white'}}>
+         CATEGORIES
+        </Typography>
+        <Typography type="display1" paragraph style={{color:'white', width:'45%'}}>Here, you can see all the categories of your furniture. You can also add/remove/modify a category from here.</Typography>
+          </div>
+            </div>
+        </Grid>
         <Grid item xs={4} style={styles.left}>
             <div>
             <Typography type="display3" gutterBottom style={{color:'white'}}>
@@ -68,17 +80,6 @@ function FullWidthGrid(props) {
             <Typography type="headline" gutterBottom style={{color:'white'}}>
             <Link to='/ManageOrders' style={styles.headline}><img src={Orders} style={styles.svg} />Manage Orders</Link>
           </Typography>
-            </div>
-        </Grid>
-        <Grid item xs={8} style={styles.right}>
-        <div style={styles.rightInner}>
-        <div style={{ marginTop:'4rem', marginLeft:'4rem' }}>
-        <Typography type="display4" gutterBottom style={{color:'white'}}>
-         Inventory
-        </Typography>
-        <Typography type="display1" paragraph style={{color:'white', width:'45%'}}>This inventory section lets you manage categories & orders of 
-            your furniture, add/remove/modify products, see products, and create bill for payments.</Typography>
-          </div>
             </div>
         </Grid>
       </Grid>

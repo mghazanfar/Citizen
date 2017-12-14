@@ -7,6 +7,7 @@ import Loginn from './login/login';
 import Employee from './login/Employee';
 import Shop from './inventory/Shop';
 import Inventory from './inventory/Inventory';
+import Categories from './inventory/Categories';
 import './App.css';
 
 import {
@@ -66,17 +67,22 @@ const Home = () => (
 const ModalGallery = () => (
   <Router>
     <Switch>
-          <Route exact path='/' component={Home} />
-          <Route path='/Employee' component={Employee} />
-          <Route path='/Owner' component={Owner} />
-          <Route path='/Login'  component={Loginn}/>
-          <Route path='/Shop'  component={Shop}/>
-          <Route path='/ManageShop' component={Shop}/>
-          <Route path='/Inventory'  component={Inventory}/>
-          <Route path='/HandleProfit'  component={Shop}/>
-          <Route path='/HandleExpenses'  component={Shop}/>
-          <Route path='/ManageClaimStock'  component={Shop}/>
-          <Route path='/ManageCompaniesBills'  component={Shop}/>
+      <Route exact path='/' component={Home} />
+      <Route path='/Employee' component={Employee} />
+      <Route path='/Owner' component={Owner} />
+      <Route path='/Login'  component={Loginn}/>
+      <Route path='/Shop'  component={Shop}/>
+      <Route path='/ManageShop' component={Shop}/>
+      <Route path='/Inventory'  component={Inventory}/>
+      <Route path='/HandleProfit'  component={Shop}/>
+      <Route path='/HandleExpenses'  component={Shop}/>
+      <Route path='/ManageClaimStock'  component={Shop}/>
+      <Route path='/ManageCompaniesBills'  component={Shop}/>
+      <Route path='/Categories'  component={Categories}/>
+      <Route path='/Products'  component={Shop}/>
+      <Route path='/AddProducts'  component={Shop}/>
+      <Route path='/CreateBills'  component={Shop}/>
+      <Route path='/ManageOrders'  component={Shop}/>
     </Switch>
   </Router>
 )
