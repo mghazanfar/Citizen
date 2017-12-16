@@ -10,6 +10,7 @@ import Bills from '../img/credit-card.svg';
 import Orders from '../img/list-numbered.svg';
 import Grid from 'material-ui/Grid';
 import { Link } from 'react-router-dom';
+import Button from 'material-ui/Button';
 
 const styles = {
   left: {
@@ -40,7 +41,15 @@ svg: {
 headline: {
   textDecoration: 'none',
   color: 'white',
-}
+},
+noUnderline: {
+  textDecoration:'none',
+},
+button: {
+  color:'white',
+  backgroundColor:'black',
+  marginTop:'4rem',
+},
 };
 
 function FullWidthGrid(props) {
@@ -68,6 +77,13 @@ function FullWidthGrid(props) {
             <Typography type="headline" gutterBottom style={{color:'white'}}>
             <Link to='/ManageOrders' style={styles.headline}><img src={Orders} style={styles.svg} />Manage Orders</Link>
           </Typography>
+          <div style={{display:'flex', justifyContent:'center', marginTop:'3rem'}}>
+          <Link to='/Shop' style={styles.noUnderline}>
+            <Button raised style={styles.button}>
+            BACK
+            </Button>
+            </Link>
+          </div>
             </div>
         </Grid>
         <Grid item xs={8} style={styles.right}>

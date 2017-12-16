@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
-import Background from '../img/zimp.jpg';
+import Background from '../img/round.jpg';
 import Categories from '../img/books.svg';
 import Products from '../img/registered.svg';
 import Add from '../img/plus-circle.svg';
@@ -16,6 +16,7 @@ import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
 import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
 import Table from '../img/table2.JPG';
+import Menu from './Menu';
 
 const styles = {
   left: {
@@ -31,11 +32,11 @@ const styles = {
 },
   container: {
     height:'inherit',
-    background: 'rgba(228, 11, 11, 0.9)',
+    background: 'rgba(47, 11, 228, 0.9)',
 },
 root: {
   backgroundImage: `url(${Background})`,
-  backgroundSize: 'cover',
+  backgroundSize: 'contain',
   height: '100vh',
 },
   rightInner: {
@@ -72,49 +73,49 @@ function FullWidthGrid(props) {
   return (
   <div style={styles.root}>
     <Grid container spacing={0} style={styles.container}>
+        <Grid item xs={12} lg={4} style={styles.left}>
+            <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', }}>
+                <Typography type="display3" gutterBottom style={{color:'white'}}>
+                PRODUCTS
+                </Typography>
+                <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all thethe products of all/specific categories.</Typography>
+                <Link to='/Inventory' style={styles.noUnderline}>
+                <Button raised style={styles.button}>
+                GO TO INVENTORY
+                </Button>
+                </Link>
+            </div>
+            </Grid>
       <Hidden mdDown>
         <Grid item xs={12} lg={8} style={styles.right}>
-        <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
-          <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit'}}>
-          <List>
-            {[0, 1, 2, 3,4,5,6,7,8].map(value => (
-              <Link to='/Products' style={styles.noUnderline}><ListItem key={value} dense button style={styles.listItem} divider>
-                <Avatar src={Table} style={styles.avatar}/>
-                <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>Table {value + 1}</Typography>} secondary={"Tables for home, beautiful and durable."}/>
-                <ListItemSecondaryAction />
-                <Button color="primary">
-                  MODIFY
+            <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
+                <Menu />
+                <Paper elevation={24} style={{maxHeight:700, overflow:'auto', width:'inherit'}}>
+                    <List>
+                        {[0, 1, 2, 3,4,5,6,7,8].map(value => (
+                        <ListItem key={value} dense button style={styles.listItem} divider>
+                            <Avatar src={Table} style={styles.avatar}/>
+                            <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>Table {value + 1}</Typography>} secondary={"Tables for home, beautiful and durable."}/>
+                            <ListItemSecondaryAction />
+                            <Button color="primary">
+                            MODIFY
+                            </Button>
+                            <Button color="accent">
+                            DELETE
+                            </Button>
+                        </ListItem>
+                        ))}
+                    </List>
+                </Paper>
+                <Link to='/AddCategory' style={styles.noUnderline}>
+                <Button raised style={styles.button}>
+                    ADD PRODUCT
                 </Button>
-                <Button color="accent">
-                  DELETE
-                </Button>
-              </ListItem>
-              </Link>
-            ))}
-          </List>
-          </Paper>
-         <Link to='/AddCategory' style={styles.noUnderline}>
-         <Button raised style={styles.button}>
-          ADD CATEGORY
-          </Button>
-          </Link>
-        </div>
-      </Grid>
-    </Hidden>
-      
-        <Grid item xs={12} lg={4} style={styles.left}>
-          <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', }}>
-            <Typography type="display3" gutterBottom style={{color:'white'}}>
-            CATEGORIES
-            </Typography>
-            <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the categories of your furniture. You can also add/remove/modify a category from here.</Typography>
-            <Link to='/Inventory' style={styles.noUnderline}>
-            <Button raised style={styles.button}>
-            GO TO INVENTORY
-            </Button>
-            </Link>
-          </div>
+                </Link>
+            </div>
         </Grid>
+        </Hidden>
+      
 
         <Hidden lgUp>
           <Grid item xs={12} lg={8} style={styles.right}>
