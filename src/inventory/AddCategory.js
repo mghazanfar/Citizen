@@ -18,7 +18,7 @@ import Divider from 'material-ui/Divider';
 import Hidden from 'material-ui/Hidden';
 import Sofa from '../img/sofa.png';
 import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
-import Modal from './Modal';
+import ModalCategory from './ModalCategory';
 
 const styles = {
   left: {
@@ -41,13 +41,13 @@ root: {
   backgroundSize: 'cover',
   height: '100vh',
 },
-  rightInner: {
-    height: '100vh',
-    background: '-webkit-linear-gradient(-125deg, rgba(208,0,240,0.45), rgba(230,0,128,0.45), rgba(255,0,0,0.45))',
-    display: 'flex',
-    alignItems:'center',
-    flexDirection:'column',
-    textAlign:'left',
+rightInner: {
+  height: '100vh',
+  background: '-webkit-linear-gradient(-125deg, rgba(208,0,240,0.45), rgba(230,0,128,0.45), rgba(255,0,0,0.45))',
+  display: 'flex',
+  alignItems:'center',
+  flexDirection:'column',
+  textAlign:'left',
 },
 button: {
   color:'white',
@@ -125,7 +125,7 @@ function FullWidthGrid(props) {
             </label>
             <Divider inset/>
             </div>
-            <Modal />
+            <ModalCategory />
             </Paper>
           </div>
         </Grid>
@@ -185,7 +185,7 @@ function FullWidthGrid(props) {
             </label>
             <Divider inset/>
             </div>
-            <Modal />
+            <ModalCategory />
             </Paper>
           </div>
         </Grid>
