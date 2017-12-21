@@ -257,7 +257,7 @@ class EnhancedTable extends React.Component {
     }
 
     this.setState({ selected: newSelected });
-    console.log('Selected are', selected);
+    console.log('Selected are', newSelected.id);
   };
 
   handleChangePage = (event, page) => {
