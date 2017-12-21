@@ -62,19 +62,19 @@ function FullWidthGrid(props) {
             Go to:
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/Categories' style={styles.headline}><img src={Categories} style={styles.svg} />Categories</Link>
+            <Link to='/Categories' style={styles.headline}><img src={Categories} alt="" style={styles.svg} />Categories</Link>
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/Products' style={styles.headline}><img src={Products} style={styles.svg} />Products</Link>
+            <Link to='/Products' style={styles.headline}><img src={Products} alt="" style={styles.svg} />Products</Link>
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/AddProducts' style={styles.headline}><img src={Add} style={styles.svg} />Add Products</Link>
+            <Link to='/AddProducts' style={styles.headline}><img src={Add} alt="" style={styles.svg} />Add Products</Link>
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/CreateBills' style={styles.headline}><img src={Bills} style={styles.svg} />Create Bills</Link>
+            <Link to='/CreateBills' style={styles.headline}><img src={Bills} alt="" style={styles.svg} />Create Bills</Link>
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/ManageOrders' style={styles.headline}><img src={Orders} style={styles.svg} />Manage Orders</Link>
+            <Link to='/ManageOrders' style={styles.headline}><img src={Orders} alt="" style={styles.svg} />Manage Orders</Link>
           </Typography>
           <div style={{display:'flex', justifyContent:'center', marginTop:'3rem'}}>
           <Link to='/Shop' style={styles.noUnderline}>

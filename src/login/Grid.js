@@ -2,9 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { GridList, GridListTile, GridListTileBar } from 'material-ui/GridList';
-import Subheader from 'material-ui/List/ListSubheader';
-import IconButton from 'material-ui/IconButton';
-import InfoIcon from 'material-ui-icons/Info';
 import tileData from './tileData';
 import { Link } from 'react-router-dom';
 
@@ -23,8 +20,6 @@ const styles = theme => ({
 });
 
 function TitlebarGridList(props) {
-  const { classes } = props;
-
   return (
     <div>
       <GridList cellHeight={180} cols={6} spacing={100} style={{margin:0, justifyContent:'center'}}>

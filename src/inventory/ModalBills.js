@@ -5,7 +5,6 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import Dialog, {
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   withMobileDialog,
 } from 'material-ui/Dialog';

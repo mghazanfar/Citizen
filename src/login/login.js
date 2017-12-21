@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Typography from 'material-ui/Typography';
-import logo from '../logo.svg';
 import Grid from './Grid';
 import '../App.css';
 
