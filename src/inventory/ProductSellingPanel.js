@@ -1,9 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import Background from '../img/541.jpg';
+import Avatar from 'material-ui/Avatar';
 import { withStyles } from 'material-ui/styles';
 import keycode from 'keycode';
-import Filter from './IconMenu';
 import Table, {
   TableBody,
   TableCell,
@@ -19,23 +20,24 @@ import Paper from 'material-ui/Paper';
 import Checkbox from 'material-ui/Checkbox';
 import IconButton from 'material-ui/IconButton';
 import Tooltip from 'material-ui/Tooltip';
-import Avatar from 'material-ui/Avatar';
 import DeleteIcon from 'material-ui-icons/Delete';
 import FilterListIcon from 'material-ui-icons/FilterList';
-import Background from '../img/541.jpg';
 
-let id = 0;
-function createData(price, brand, model, name, color, picture, category, quantity) {
-  id += 1;
-  return { id,price, brand, model, name, color, picture, category, quantity };
+let counter = 0;
+function createData( price, brand, model, name, color, picture, category, quantity) {
+  counter += 1;
+  return { id: counter, price, brand, model, name, color, picture, category, quantity };
 }
 
 const columnData = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
-  { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
-  { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
-  { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
-  { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
+  { id: 'price', numeric: false, disablePadding: true, label: 'Price' },
+  { id: 'brand', numeric: false, disablePadding: true, label: 'Brand' },
+  { id: 'model', numeric: true, disablePadding: false, label: 'Model' },
+  { id: 'name', numeric: true, disablePadding: false, label: 'Name' },
+  { id: 'color', numeric: true, disablePadding: false, label: 'Color' },
+  { id: 'picture', numeric: true, disablePadding: false, label: 'Picture' },
+  { id: 'category', numeric: true, disablePadding: false, label: 'Category' },
+  { id: 'quantity', numeric: true, disablePadding: false, label: 'Quantity' },
 ];
 
 class EnhancedTableHead extends React.Component {
@@ -71,6 +73,7 @@ class EnhancedTableHead extends React.Component {
                 key={column.id}
                 numeric={column.numeric}
                 padding={column.disablePadding ? 'none' : 'default'}
+                sortDirection={orderBy === column.id ? order : false}
               >
                 <Tooltip
                   title="Sort"
@@ -142,7 +145,6 @@ let EnhancedTableToolbar = props => {
             <IconButton aria-label="Delete">
               <DeleteIcon />
             </IconButton>
-            <Filter />
           </Tooltip>
         ) : (
           <Tooltip title="Filter list">
@@ -182,9 +184,9 @@ class EnhancedTable extends React.Component {
 
     this.state = {
       order: 'asc',
-      orderBy: 'quantity',
+      orderBy: 'calories',
       selected: [],
-      data: [
+      data : [
         createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
         createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
         createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
@@ -299,17 +301,17 @@ class EnhancedTable extends React.Component {
                     key={n.id}
                     selected={isSelected}
                   >
-                    <TableCell padding="checkbox">
-                      <Checkbox checked={isSelected} />
-                    </TableCell>
-                    <TableCell padding="none">{n.price}</TableCell>
-                    <TableCell numeric>{n.brand}</TableCell>
-                    <TableCell numeric>{n.model}</TableCell>
-                    <TableCell numeric>{n.name}</TableCell>
-                    <TableCell numeric>{n.color}</TableCell>
-                    <TableCell><Avatar src={n.picture} style={{width:70, height:70}} /></TableCell>
-                    <TableCell numeric>{n.category}</TableCell>
-                    <TableCell numeric>{n.quantity}</TableCell>
+                  <TableCell padding="checkbox">
+                    <Checkbox checked={isSelected} />
+                  </TableCell>
+                  <TableCell padding="none">{n.price}</TableCell>
+                  <TableCell numeric>{n.brand}</TableCell>
+                  <TableCell numeric>{n.model}</TableCell>
+                  <TableCell numeric>{n.name}</TableCell>
+                  <TableCell numeric>{n.color}</TableCell>
+                  <TableCell numeric><Avatar style={{width:72, height:72}} src={n.picture}/></TableCell>
+                  <TableCell numeric>{n.category}</TableCell>
+                  <TableCell numeric>{n.quantity}</TableCell>
                   </TableRow>
                 );
               })}
