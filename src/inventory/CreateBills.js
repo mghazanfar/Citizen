@@ -18,6 +18,7 @@ import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-
 import Table from '../img/table2.JPG';
 import TextField from 'material-ui/TextField';
 import ModalBills from './ModalBills';
+import Menu from './Menu';
 
 const styles = {
   left: {
@@ -76,46 +77,54 @@ function FullWidthGrid(props) {
     <Grid container spacing={0} style={styles.container}>
       <Hidden mdDown>
         <Grid item xs={12} lg={8} style={styles.right}>
-        <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
-          <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit', padding:20}}>
+        <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%', height:'inherit' }}>
+          <Paper elevation={24} style={{maxHeight:700, overflow:'auto', width:'inherit', padding:20, height:'inherit'}}>
           <TextField
           id="search"
-          label="Category"
+          label="Customer name"
           type="search"
           margin="normal"
           style={{width:'100%'}}
           />
           <TextField
           id="search"
-          label="Category"
+          label="Phone number"
           type="search"
           margin="normal"
           style={{width:'100%'}}
           />
-          <ModalBills/>
+          <ModalBills />
           <TextField
           id="search"
-          label="Category"
+          label="Add discounts"
           type="search"
           margin="normal"
           style={{width:'100%'}}
           />
           <TextField
           id="search"
-          label="Category"
+          label="Total Payment"
           type="search"
           margin="normal"
           style={{width:'100%'}}
           />
+          <Menu />
           </Paper>
-         <Link to='/AddCategory' style={styles.noUnderline}>
-         <Button raised style={styles.button}>
-          ADD CATEGORY
-          </Button>
-          </Link>
+          <div style={{display:'flex', justifyContent:'space-around', width:'inherit'}}>
+            <Link to='/AddCategory' style={styles.noUnderline}>
+            <Button raised style={styles.button}>
+            Create Bill
+            </Button>
+            </Link>
+            <Link to='/AddCategory' style={styles.noUnderline}>
+            <Button raised style={styles.button}>
+            Cancel
+            </Button>
+            </Link>
         </div>
-      </Grid>
-    </Hidden>
+    </div>
+ </Grid>
+</Hidden>
       
         <Grid item xs={12} lg={4} style={styles.left}>
           <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', }}>

@@ -16,7 +16,7 @@ import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
 import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
 import Table from '../img/table2.JPG';
-import Menu from './CategoryMenu';
+import Menu from './Menu';
 import ProductPanel from './ProductPanel';
 
 const styles = {
@@ -89,8 +89,8 @@ function FullWidthGrid(props) {
             </Grid>
       <Hidden mdDown>
         <Grid item xs={12} lg={8} style={styles.right}>
-            <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
-                <Menu />
+            <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'99%' }}>
+                <Menu category/>
                 <Paper elevation={24} style={{maxHeight:700, overflow:'auto', width:'inherit'}}>
                   <ProductPanel/>
                 </Paper>

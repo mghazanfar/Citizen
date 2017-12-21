@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import Dialog, {
   DialogActions,
   DialogContent,
@@ -9,6 +10,19 @@ import Dialog, {
   withMobileDialog,
 } from 'material-ui/Dialog';
 import { Link } from 'react-router-dom';
+import ProductSellingPanel from './ProductSellingPanel';
+
+const theme = createMuiTheme({
+  overrides: {
+    MuiDialog: {
+      // Name of the styleSheet
+      paperWidthSm: {
+        // Name of the rule
+        maxWidth: 'max-content',
+      },
+    },
+  },
+});
 
 class ResponsiveDialog extends React.Component {
   state = {
@@ -27,21 +41,21 @@ class ResponsiveDialog extends React.Component {
     const { fullScreen } = this.props;
 
     return (
-      <div style={{display:'flex'}}>
+      <div style={{display:'flex', marginTop:'1rem'}}>
         <Button raised style={{ color:'white', backgroundColor:'black'}} onClick={this.handleClickOpen}>
         ADD ITEMS
         </Button>
+        
+    <MuiThemeProvider theme={theme}>
         <Dialog
           fullScreen={fullScreen}
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
         >
         <div style={{backgroundColor:'#424242'}}>
-          <DialogTitle><span  style={{color:'white'}}>Confirmation!</span></DialogTitle>
+          <DialogTitle><span  style={{color:'white'}}>Add Items!</span></DialogTitle>
           <DialogContent>
-            <DialogContentText style={{color:'white'}}>
-            Your Category with name "Sofar" has been added.
-            </DialogContentText>
+            <ProductSellingPanel />
           </DialogContent>
           <DialogActions>
           <Link to="/Categories" style={{ textDecoration: 'none' }}>
@@ -52,6 +66,7 @@ class ResponsiveDialog extends React.Component {
           </DialogActions>
           </div>
         </Dialog>
+    </MuiThemeProvider>
       </div>
     );
   }

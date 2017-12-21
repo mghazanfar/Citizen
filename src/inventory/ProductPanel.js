@@ -43,19 +43,18 @@ function BasicTable(props) {
   const { classes } = props;
 
   return (
-    <Paper style={{padding:20}}>
       <Table className={classes.table}>
         <TableHead>
-          <TableRow>
-            <TableCell>Price</TableCell>
-            <TableCell numeric>Brand</TableCell>
-            <TableCell numeric>Model</TableCell>
-            <TableCell numeric>Name</TableCell>
-            <TableCell numeric>Color</TableCell>
-            <TableCell numeric>Picture</TableCell>
-            <TableCell numeric>Category</TableCell>
-            <TableCell numeric>Quantity</TableCell>
-            <TableCell numeric>Edit</TableCell>
+          <TableRow style={{fontSize:'1rem', fontWeight:700, color:'black'}}>
+            <TableCell style={{fontWeight:700}}>Price</TableCell>
+            <TableCell numeric style={{fontWeight:700}}>Brand</TableCell>
+            <TableCell numeric style={{fontWeight:700}}>Model</TableCell>
+            <TableCell numeric style={{fontWeight:700}}>Name</TableCell>
+            <TableCell numeric style={{fontWeight:700}}>Color</TableCell>
+            <TableCell numeric style={{fontWeight:700}}>Picture</TableCell>
+            <TableCell numeric style={{fontWeight:700}}>Category</TableCell>
+            <TableCell numeric style={{fontWeight:700}}>Quantity</TableCell>
+            <TableCell style={{textAlign:'center', fontWeight:700}}>Edit</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -76,7 +75,6 @@ function BasicTable(props) {
           })}
         </TableBody>
       </Table>
-    </Paper>
   );
 }
 
