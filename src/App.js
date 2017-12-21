@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Login from './img/slide3.jpg';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
@@ -17,7 +17,6 @@ import './App.css';
 
 import {
  Route,
- NavLink,
  Link,
  Switch,
  BrowserRouter as Router

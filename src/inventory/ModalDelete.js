@@ -8,7 +8,6 @@ import Dialog, {
   DialogTitle,
   withMobileDialog,
 } from 'material-ui/Dialog';
-import { Link } from 'react-router-dom';
 
 class ResponsiveDialog extends React.Component {
   state = {

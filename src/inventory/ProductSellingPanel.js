@@ -135,7 +135,7 @@ let EnhancedTableToolbar = props => {
         {numSelected > 0 ? (
           <Typography type="subheading">{numSelected} selected</Typography>
         ) : (
-          <Typography type="title">Nutrition</Typography>
+          <Typography type="title">Items Table</Typography>
         )}
       </div>
       <div className={classes.spacer} />
@@ -257,6 +257,7 @@ class EnhancedTable extends React.Component {
     }
 
     this.setState({ selected: newSelected });
+    console.log('Selected are', selected);
   };
 
   handleChangePage = (event, page) => {

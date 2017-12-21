@@ -1,13 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import Background from '../img/zimp.jpg';
-import Categories from '../img/books.svg';
-import Products from '../img/registered.svg';
-import Add from '../img/plus-circle.svg';
-import Bills from '../img/credit-card.svg';
-import Orders from '../img/list-numbered.svg';
 import Grid from 'material-ui/Grid';
 import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
@@ -17,7 +11,6 @@ import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
 import Hidden from 'material-ui/Hidden';
 import Sofa from '../img/sofa.png';
-import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
 import ModalCategory from './ModalCategory';
 
 const styles = {
