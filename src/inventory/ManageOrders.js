@@ -12,6 +12,7 @@ import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-
 import Table from '../img/table2.JPG';
 import TextField from 'material-ui/TextField';
 import ModalBills from './ModalBills';
+import Modal from './ModalBillDetail';
 import Menu from './Menu';
 
 const styles = {
@@ -74,25 +75,24 @@ function FullWidthGrid(props) {
     <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
       <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit'}}>
       <List>
-        {[0, 1, 2, 3,4,5,6,7,8].map(value => (
-          <Link to='/Products' style={styles.noUnderline}><ListItem key={value} dense button style={styles.listItem} divider>
-            <Avatar src={Table} style={styles.avatar}/>
-            <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>Table {value + 1}</Typography>} secondary={"Tables for home, beautiful and durable."}/>
+        {[0, 1, 2, 3, 4, 5, 6, 7, 8].map(value => (
+          <ListItem key={value} dense button style={styles.listItem} divider button={false} >
+          <Typography type="title" gutterBottom>
+            102.
+          </Typography>
+            <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>Usman</Typography>} secondary={"0333-4928475"}/>
             <ListItemSecondaryAction />
-            <Button color="primary">
-              MODIFY
-            </Button>
+            <Modal />
             <Button color="accent">
               DELETE
             </Button>
           </ListItem>
-          </Link>
         ))}
       </List>
       </Paper>
-     <Link to='/AddCategory' style={styles.noUnderline}>
+     <Link to='/CreateBills' style={styles.noUnderline}>
      <Button raised style={styles.button}>
-      ADD CATEGORY
+      Create a bill
       </Button>
       </Link>
     </div>
