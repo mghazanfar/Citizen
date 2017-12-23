@@ -17,11 +17,13 @@ const styles = {
       display: 'flex',
       alignItems:'center',
       justifyContent:'center',
+      minHeight:'100vh',
   },
   right: {
     display: 'flex',
     alignItems:'center',
     justifyContent:'center',
+    minHeight:'100vh',
 },
   container: {
     height:'inherit',
@@ -30,10 +32,10 @@ const styles = {
 root: {
   backgroundImage: `url(${Background})`,
   backgroundSize: 'cover',
-  height: '100vh',
+  minHeight: '100vh',
 },
   rightInner: {
-    height: '100vh',
+    minHeight: '100vh',
     background: '-webkit-linear-gradient(-125deg, rgba(208,0,240,0.45), rgba(230,0,128,0.45), rgba(255,0,0,0.45))',
     display: 'flex',
     alignItems:'center',
@@ -50,7 +52,7 @@ headline: {
   color: 'white',
 },
 listItem: {
-  height:100,
+  minHeight:100,
 },
 avatar: {
   width:70,
@@ -66,7 +68,7 @@ function FullWidthGrid(props) {
   return (
   <div style={styles.root}>
     <Grid container spacing={0} style={styles.container}>
-      <Hidden mdDown>
+      <Hidden lgDown>
         <Grid item xs={12} lg={8} style={styles.right}>
         <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
           <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit'}}>
@@ -95,8 +97,8 @@ function FullWidthGrid(props) {
         </div>
       </Grid>
     </Hidden>
-      
-        <Grid item xs={12} lg={4} style={styles.left}>
+    
+    <Grid item xs={12} lg={4} style={styles.left}>
           <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', }}>
             <Typography type="display3" gutterBottom style={{color:'white'}}>
             CATEGORIES

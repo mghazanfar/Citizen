@@ -10,6 +10,7 @@ import Orders from '../img/list-numbered.svg';
 import Grid from 'material-ui/Grid';
 import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
+import Hidden from 'material-ui/Hidden';
 
 const styles = {
   left: {
@@ -88,11 +89,20 @@ function FullWidthGrid(props) {
         <Grid item xs={12} md={6} lg={8} style={styles.right}>
         <div style={styles.rightInner}>
         <div style={{ marginTop:'4rem', marginLeft:'3rem' }}>
-        <Typography type="display4" gutterBottom style={{color:'white'}}>
-         Inventory
-        </Typography>
-        <Typography type="display2" paragraph style={{color:'white', width:'45%'}}>This inventory section lets you manage categories & orders of 
-            your furniture, add/remove/modify products, see products, and create bill for payments.</Typography>
+          <Hidden smDown>
+            <Typography type="display4" gutterBottom style={{color:'white'}}>
+            Inventory
+            </Typography>
+            <Typography type="display2" paragraph style={{color:'white', width:'45%'}}>This inventory section lets you manage categories & orders of 
+                your furniture, add/remove/modify products, see products, and create bill for payments.</Typography>
+            </Hidden>
+          <Hidden smUp>
+            <Typography type="display3" gutterBottom style={{color:'white'}}>
+            Inventory
+            </Typography>
+            <Typography type="headline" paragraph style={{color:'white', width:'45%'}}>This inventory section lets you manage categories & orders of 
+                your furniture, add/remove/modify products, see products, and create bill for payments.</Typography>
+            </Hidden>
           </div>
             </div>
         </Grid>

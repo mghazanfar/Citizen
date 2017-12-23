@@ -5,11 +5,8 @@ import Background from '../img/round.jpg';
 import Grid from 'material-ui/Grid';
 import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
-import Avatar from 'material-ui/Avatar';
 import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
-import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
-import Table from '../img/table2.JPG';
 import Menu from './Menu';
 import ProductPanel from './ProductPanel';
 
@@ -19,11 +16,13 @@ const styles = {
       display: 'flex',
       alignItems:'center',
       justifyContent:'center',
+      minHeight:'100vh',
   },
   right: {
     display: 'flex',
     alignItems:'center',
     justifyContent:'center',
+    minHeight:'100vh',
 },
   container: {
     height:'inherit',
@@ -32,7 +31,7 @@ const styles = {
 root: {
   backgroundImage: `url(${Background})`,
   backgroundSize: 'contain',
-  height: '100vh',
+  minHeight:'100vh',
 },
   rightInner: {
     height: '100vh',
@@ -68,8 +67,20 @@ function FullWidthGrid(props) {
   return (
   <div style={styles.root}>
     <Grid container spacing={0} style={styles.container}>
-        <Grid item xs={12} lg={4} style={styles.left}>
+        <Grid item xs={12} lg={2} style={styles.left}>
             <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', }}>
+              <Hidden lgDown>
+                <Typography type="display1" gutterBottom style={{color:'white'}}>
+                PRODUCTS
+                </Typography>
+                <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all thethe products of all/specific categories.</Typography>
+                <Link to='/Inventory' style={styles.noUnderline}>
+                <Button raised style={styles.button}>
+                GO TO INVENTORY
+                </Button>
+                </Link>
+              </Hidden>
+              <Hidden lgUp>
                 <Typography type="display3" gutterBottom style={{color:'white'}}>
                 PRODUCTS
                 </Typography>
@@ -79,13 +90,14 @@ function FullWidthGrid(props) {
                 GO TO INVENTORY
                 </Button>
                 </Link>
+              </Hidden>
             </div>
             </Grid>
       <Hidden mdDown>
-        <Grid item xs={12} lg={8} style={styles.right}>
+        <Grid item xs={12} lg={10} style={styles.right}>
             <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'99%' }}>
                 <Menu category/>
-                <Paper elevation={24} style={{maxHeight:700, overflow:'auto', width:'inherit'}}>
+                <Paper elevation={24} style={{maxHeight:600, overflow:'auto', width:'inherit'}}>
                   <ProductPanel/>
                 </Paper>
                 <Link to='/AddProducts' style={styles.noUnderline}>
@@ -97,34 +109,20 @@ function FullWidthGrid(props) {
         </Grid>
         </Hidden>
       
-
-        <Hidden lgUp>
-          <Grid item xs={12} lg={8} style={styles.right}>
-          <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
-            <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit', marginTop:'4rem'}}>
-            <List>
-              {[0, 1, 2, 3,4,5,6,7,8].map(value => (
-                <ListItem key={value} dense button style={styles.listItem} divider>
-                  <Avatar src={Table} style={styles.avatar}/>
-                  <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>Table {value + 1}</Typography>} secondary={"Tables for home, beautiful and durable."}/>
-                  <ListItemSecondaryAction />
-                  <Button color="primary">
-                    MODIFY
+        <Hidden mdUp>
+          <Grid item xs={12} lg={10} style={styles.right}>
+              <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'99%' }}>
+                  <Menu category/>
+                  <Paper elevation={24} style={{maxHeight:600, overflow:'auto', width:'inherit'}}>
+                    <ProductPanel/>
+                  </Paper>
+                  <Link to='/AddProducts' style={styles.noUnderline}>
+                  <Button raised style={styles.button}>
+                      ADD PRODUCT
                   </Button>
-                  <Button color="accent">
-                    DELETE
-                  </Button>
-                </ListItem>
-              ))}
-            </List>
-            </Paper>
-          <Link to='/AddCategory' style={styles.noUnderline}>
-          <Button raised style={styles.button}>
-            ADD CATEGORY
-            </Button>
-            </Link>
-          </div>
-        </Grid>
+                  </Link>
+              </div>
+          </Grid>
         </Hidden>
       </Grid>
     </div>

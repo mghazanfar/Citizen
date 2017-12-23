@@ -19,45 +19,43 @@ const styles = {
       display: 'flex',
       alignItems:'center',
       justifyContent:'center',
+      minHeight:'100vh',
   },
   right: {
     display: 'flex',
     alignItems:'center',
     justifyContent:'center',
+    minHeight:'100vh',
 },
   container: {
     height:'inherit',
     background: 'rgba(228, 11, 11, 0.9)',
+    overflow:'auto',
 },
 root: {
   backgroundImage: `url(${Background})`,
   backgroundSize: 'cover',
-  height: '100vh',
+  minHeight: '100vh',
 },
-rightInner: {
-  height: '100vh',
-  background: '-webkit-linear-gradient(-125deg, rgba(208,0,240,0.45), rgba(230,0,128,0.45), rgba(255,0,0,0.45))',
-  display: 'flex',
-  alignItems:'center',
-  flexDirection:'column',
-  textAlign:'left',
+  rightInner: {
+    minHeight: '100vh',
+    background: '-webkit-linear-gradient(-125deg, rgba(208,0,240,0.45), rgba(230,0,128,0.45), rgba(255,0,0,0.45))',
+    display: 'flex',
+    alignItems:'center',
+    flexDirection:'column',
+    textAlign:'left',
 },
 button: {
   color:'white',
   backgroundColor:'black',
   marginTop:'4rem',
 },
-buttonUpload: {
-  color:'white',
-  backgroundColor:'black',
-  marginLeft:'1rem',
-},
 headline: {
   textDecoration: 'none',
   color: 'white',
 },
 listItem: {
-  height:100,
+  minHeight:100,
 },
 avatar: {
   width:70,
@@ -67,9 +65,8 @@ noUnderline: {
   textDecoration: 'none',
 },
 labelUpload: {
-  display:'flex',
-  flexDirection:'column',
-  justifyContent:'center',
+  alignSelf: 'center',
+  marginLeft: '1rem',
 }
 };
 
@@ -77,9 +74,9 @@ function FullWidthGrid(props) {
 
   return (
     <div style={styles.root}>
-      <Grid container spacing={0} style={styles.container}>
-        <Hidden mdDown>
-          <Grid item xs={12} lg={8} style={styles.right}>
+      <Grid container spacing={0} style={styles.container} justify='center'>
+        <Hidden lgDown>
+          <Grid item xs={10} lg={8} style={styles.right}>
           <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
             <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit', marginTop:'4rem', padding:30, display:'flex', flexDirection:'column'}}>
             <TextField
@@ -139,7 +136,7 @@ function FullWidthGrid(props) {
         </Grid>
 
         <Hidden lgUp>
-         <Grid item xs={12} lg={8} style={styles.right}>
+         <Grid item xs={10} lg={8} style={styles.right}>
           <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
             <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit', marginTop:'4rem', padding:30, display:'flex', flexDirection:'column'}}>
             <TextField
