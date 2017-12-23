@@ -19,7 +19,7 @@ class SimpleMenu extends React.Component {
 
   render() {
     return (
-      <Paper elevation={12} style={{marginBottom:'1rem', alignSelf:'flex-end'}} >
+      <Paper elevation={12} style={{marginBottom:'1rem', alignSelf:'flex-end', width:'fit-content'}} >
         <Button
           aria-owns={this.state.open ? 'simple-menu' : null}
           aria-haspopup="true"

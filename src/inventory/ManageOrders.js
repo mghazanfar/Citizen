@@ -10,10 +10,7 @@ import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
 import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
 import Table from '../img/table2.JPG';
-import TextField from 'material-ui/TextField';
-import ModalBills from './ModalBills';
-import Modal from './ModalBillDetail';
-import Menu from './Menu';
+import ManageDates from './ManageDates';
 
 const styles = {
   left: {
@@ -70,34 +67,15 @@ function FullWidthGrid(props) {
   return (
   <div style={styles.root}>
     <Grid container spacing={0} style={styles.container}>
-    <Hidden mdDown>
-    <Grid item xs={12} lg={8} style={styles.right}>
-    <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
-      <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit'}}>
-      <List>
-        {[0, 1, 2, 3, 4, 5, 6, 7, 8].map(value => (
-          <ListItem key={value} dense button style={styles.listItem} divider button={false} >
-          <Typography type="title" gutterBottom>
-            102.
-          </Typography>
-            <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>Usman</Typography>} secondary={"0333-4928475"}/>
-            <ListItemSecondaryAction />
-            <Modal />
-            <Button color="accent">
-              DELETE
-            </Button>
-          </ListItem>
-        ))}
-      </List>
-      </Paper>
-     <Link to='/CreateBills' style={styles.noUnderline}>
-     <Button raised style={styles.button}>
-      Create a bill
-      </Button>
-      </Link>
-    </div>
-  </Grid>
-</Hidden>
+      <Hidden mdDown>
+        <Grid item xs={12} lg={8} style={styles.right}>
+          <div style={{maxHeight:800, overflow:'auto'}}>
+        {[0, 1, 2, 3, 4].map(value => (
+              <ManageDates key={value} />
+            ))}
+          </div>
+        </Grid>
+      </Hidden>
       
         <Grid item xs={12} lg={4} style={styles.left}>
           <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', }}>
@@ -108,6 +86,11 @@ function FullWidthGrid(props) {
             <Link to='/Inventory' style={styles.noUnderline}>
             <Button raised style={styles.button}>
             GO TO INVENTORY
+            </Button>
+            </Link>
+            <Link to='/CreateBills' style={styles.noUnderline}>
+            <Button raised style={styles.button}>
+              Create a bill
             </Button>
             </Link>
           </div>

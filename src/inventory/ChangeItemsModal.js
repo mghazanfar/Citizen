@@ -52,7 +52,7 @@ class ResponsiveDialog extends React.Component {
           onRequestClose={this.handleRequestClose}
         >
         <div style={{backgroundColor:'#424242'}}>
-          <DialogTitle><span  style={{color:'white'}}>Add Items!</span></DialogTitle>
+          <DialogTitle><span style={{color:'white'}}>Change Items!</span></DialogTitle>
           <DialogContent>
             <ProductSellingPanel />
           </DialogContent>
