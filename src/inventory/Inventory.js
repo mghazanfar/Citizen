@@ -13,7 +13,7 @@ import Button from 'material-ui/Button';
 
 const styles = {
   left: {
-      height: '100vh',
+      minHeight: '100vh',
       background: '-webkit-linear-gradient(-125deg, #D000F0, #E60080, #FF0000)',
       display: 'flex',
       alignItems:'center',
@@ -24,7 +24,7 @@ const styles = {
     backgroundSize: 'cover',
   },
   rightInner: {
-    height: '100vh',
+    minHeight: '100vh',
     background: '-webkit-linear-gradient(-125deg, rgba(208,0,240,0.45), rgba(230,0,128,0.45), rgba(255,0,0,0.45))',
     display: 'flex',
     alignItems:'center',
@@ -56,7 +56,7 @@ function FullWidthGrid(props) {
   return (
     <div>
       <Grid container spacing={0}>
-        <Grid item xs={4} style={styles.left}>
+        <Grid item xs={12} md={6} lg={4} style={styles.left}>
             <div>
             <Typography type="display3" gutterBottom style={{color:'white'}}>
             Go to:
@@ -85,13 +85,13 @@ function FullWidthGrid(props) {
           </div>
             </div>
         </Grid>
-        <Grid item xs={8} style={styles.right}>
+        <Grid item xs={12} md={6} lg={8} style={styles.right}>
         <div style={styles.rightInner}>
-        <div style={{ marginTop:'4rem', marginLeft:'4rem' }}>
+        <div style={{ marginTop:'4rem', marginLeft:'3rem' }}>
         <Typography type="display4" gutterBottom style={{color:'white'}}>
          Inventory
         </Typography>
-        <Typography type="display1" paragraph style={{color:'white', width:'45%'}}>This inventory section lets you manage categories & orders of 
+        <Typography type="display2" paragraph style={{color:'white', width:'45%'}}>This inventory section lets you manage categories & orders of 
             your furniture, add/remove/modify products, see products, and create bill for payments.</Typography>
           </div>
             </div>

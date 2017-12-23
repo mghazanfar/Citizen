@@ -37,7 +37,7 @@ function FullWidthGrid(props) {
   return (
     <div>
       <Grid container spacing={0}>
-        <Grid item xs={4} style={styles.left}>
+        <Grid item xs={12} md={6} lg={4} style={styles.left}>
             <div>
             <Typography type="display3" gutterBottom style={{color:'white'}}>
             Let's Start!
@@ -63,7 +63,7 @@ function FullWidthGrid(props) {
             </div>
         </Grid>
 
-        <Grid item xs={8} style={styles.right}>
+        <Grid item xs={12} md={6} lg={8} style={styles.right}>
         <div style={styles.rightInner}>
           <div style={{ marginTop:'4rem', marginLeft:'4rem' }}>
           <Typography type="display4" gutterBottom style={{color:'white'}}>
