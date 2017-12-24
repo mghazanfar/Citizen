@@ -19,11 +19,13 @@ const styles = {
       display: 'flex',
       alignItems:'center',
       justifyContent:'center',
+      minHeight: '100vh',
   },
   right: {
     display: 'flex',
     alignItems:'center',
     justifyContent:'center',
+    minHeight: '100vh',
 },
   container: {
     height:'inherit',
@@ -32,7 +34,7 @@ const styles = {
 root: {
   backgroundImage: `url(${Background})`,
   backgroundSize: 'contain',
-  height: '100vh',
+  minHeight: '100vh',
 },
 buttonUpload: {
   color:'white',
@@ -45,7 +47,7 @@ labelUpload: {
   justifyContent:'center',
 },
   rightInner: {
-    height: '100vh',
+    minHeight: '100vh',
     background: '-webkit-linear-gradient(-125deg, rgba(208,0,240,0.45), rgba(230,0,128,0.45), rgba(255,0,0,0.45))',
     display: 'flex',
     alignItems:'center',
@@ -62,7 +64,7 @@ headline: {
   color: 'white',
 },
 listItem: {
-  height:100,
+  minHeight:100,
 },
 avatar: {
   width:70,
@@ -78,20 +80,33 @@ function FullWidthGrid(props) {
   return (
   <div style={styles.root}>
     <Grid container spacing={0} style={styles.container}>
-        <Grid item xs={12} lg={4} style={styles.left}>
+        <Grid item xs={12} lg={4} style={styles.left} justify='center'>
             <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', }}>
-                <Typography type="display3" gutterBottom style={{color:'white', width:'60%', textAlign:'center'}}>
-                MODIFY PRODUCTS
-                </Typography>
-                <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can modify your product.</Typography>
-                <Link to='/Inventory' style={styles.noUnderline}>
-                <Button raised style={styles.button}>
-                GO TO INVENTORY
-                </Button>
-                </Link>
+                <Hidden smDown>
+                    <Typography type="display3" gutterBottom style={{color:'white', width:'65%', textAlign:'center'}}>
+                    MODIFY PRODUCTS
+                    </Typography>
+                    <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'80%',}}>Here, you can modify your product.</Typography>
+                    <Link to='/Inventory' style={styles.noUnderline}>
+                    <Button raised style={styles.button}>
+                    GO TO INVENTORY
+                    </Button>
+                    </Link>
+                </Hidden>
+                <Hidden smUp>
+                    <Typography type="display1" gutterBottom style={{color:'white', width:'60%', textAlign:'center'}}>
+                    MODIFY PRODUCTS
+                    </Typography>
+                    <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can modify your product.</Typography>
+                    <Link to='/Inventory' style={styles.noUnderline}>
+                    <Button raised style={styles.button}>
+                    GO TO INVENTORY
+                    </Button>
+                    </Link>
+                </Hidden>
             </div>
             </Grid>
-      <Hidden mdDown>
+      <Hidden lgDown>
         <Grid item xs={12} lg={8} style={styles.right}>
             <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
                 <Paper elevation={24} style={{maxHeight:800, overflow:'auto', width:'inherit', padding: 20}}>
@@ -99,56 +114,56 @@ function FullWidthGrid(props) {
                     id="search"
                     label="Category"
                     type="search"
-                    margin="normal"
+                    margin="none"
                     style={{width:'100%'}}
                     />
                     <TextField
                     id="search"
                     label="Product Name"
                     type="search"
-                    margin="normal"
+                    margin="none"
                     style={{width:'100%'}}
                     />
                     <TextField
                     id="search"
                     label="Model Number"
                     type="search"
-                    margin="normal"
+                    margin="none"
                     style={{width:'100%'}}
                     />
                     <TextField
                     id="search"
                     label="Brand Name"
                     type="search"
-                    margin="normal"
+                    margin="none"
                     style={{width:'100%'}}
                     />
                     <TextField
                     id="search"
                     label="Color"
                     type="search"
-                    margin="normal"
+                    margin="none"
                     style={{width:'100%'}}
                     />
                     <TextField
                     id="search"
                     label="Base Price"
                     type="search"
-                    margin="normal"
+                    margin="none"
                     style={{width:'100%'}}
                     />
                     <TextField
                     id="search"
                     label="Sale Price"
                     type="search"
-                    margin="normal"
+                    margin="none"
                     style={{width:'100%'}}
                     />
                     <TextField
                     id="search"
                     label="Quantity"
                     type="search"
-                    margin="normal"
+                    margin="none"
                     style={{width:'100%'}}
                     />
                     <div style={{display:'flex'}}>
@@ -184,61 +199,61 @@ function FullWidthGrid(props) {
         <Hidden lgUp>
         <Grid item xs={12} lg={8} style={styles.right}>
         <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%', marginTop:'2rem' }}>
-            <Paper elevation={24} style={{maxHeight:800, overflow:'auto', width:'inherit', padding: 20}}>
+            <Paper elevation={24} style={{maxHeight:800, overflow:'auto', width:'inherit', padding: 10}}>
                 <TextField
                 id="search"
                 label="Category"
                 type="search"
-                margin="normal"
+                margin="none"
                 style={{width:'100%'}}
                 />
                 <TextField
                 id="search"
                 label="Product Name"
                 type="search"
-                margin="normal"
+                margin="none"
                 style={{width:'100%'}}
                 />
                 <TextField
                 id="search"
                 label="Model Number"
                 type="search"
-                margin="normal"
+                margin="none"
                 style={{width:'100%'}}
                 />
                 <TextField
                 id="search"
                 label="Brand Name"
                 type="search"
-                margin="normal"
+                margin="none"
                 style={{width:'100%'}}
                 />
                 <TextField
                 id="search"
                 label="Color"
                 type="search"
-                margin="normal"
+                margin="none"
                 style={{width:'100%'}}
                 />
                 <TextField
                 id="search"
                 label="Base Price"
                 type="search"
-                margin="normal"
+                margin="none"
                 style={{width:'100%'}}
                 />
                 <TextField
                 id="search"
                 label="Sale Price"
                 type="search"
-                margin="normal"
+                margin="none"
                 style={{width:'100%'}}
                 />
                 <TextField
                 id="search"
                 label="Quantity"
                 type="search"
-                margin="normal"
+                margin="none"
                 style={{width:'100%'}}
                 />
                 <div style={{display:'flex'}}>

@@ -78,9 +78,11 @@ function FullWidthGrid(props) {
                 <Avatar src={Table} style={styles.avatar}/>
                 <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>Table {value + 1}</Typography>} secondary={"Tables for home, beautiful and durable."}/>
                 <ListItemSecondaryAction />
-                <Button color="primary">
-                  MODIFY
-                </Button>
+                <Link to='/ModifyCategory' style={styles.noUnderline}>
+                  <Button color="primary">
+                    MODIFY
+                  </Button>
+                </Link>
                 <Button color="accent">
                   DELETE
                 </Button>
@@ -122,9 +124,11 @@ function FullWidthGrid(props) {
                   <Avatar src={Table} style={styles.avatar}/>
                   <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>Table {value + 1}</Typography>} secondary={"Tables for home, beautiful and durable."}/>
                   <ListItemSecondaryAction />
-                  <Button color="primary">
-                    MODIFY
-                  </Button>
+                  <Link to='/ModifyCategory' style={styles.noUnderline}>
+                    <Button color="primary">
+                      MODIFY
+                    </Button>
+                  </Link>
                   <Button color="accent">
                     DELETE
                   </Button>

@@ -69,7 +69,7 @@ function FullWidthGrid(props) {
     <Grid container spacing={0} style={styles.container}>
       <Hidden mdDown>
         <Grid item xs={12} lg={8} style={styles.right}>
-          <div style={{maxHeight:800, overflow:'auto'}}>
+          <div style={{maxHeight:700, overflow:'auto'}}>
         {[0, 1, 2, 3, 4].map(value => (
               <ManageDates key={value} />
             ))}

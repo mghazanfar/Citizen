@@ -24,8 +24,38 @@ class ResponsiveDialog extends React.Component {
   };
 
   render() {
-    const { fullScreen } = this.props;
+    const { fullScreen, category } = this.props;
 
+    if(category==='modify'){
+      return (
+        <div style={{display:'flex', justifyContent:'center'}}>
+          <Button raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
+          MODIFY CATEGORY
+          </Button>
+          <Dialog
+            fullScreen={fullScreen}
+            open={this.state.open}
+            onRequestClose={this.handleRequestClose}
+          >
+          <div style={{backgroundColor:'#424242'}}>
+            <DialogTitle><span  style={{color:'white'}}>Confirmation!</span></DialogTitle>
+            <DialogContent>
+              <DialogContentText style={{color:'white'}}>
+              Your Category with name "Sofa" has been modified.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+            <Link to="/Categories" style={{ textDecoration: 'none' }}>
+            <Button onClick={this.handleRequestClose} color="primary">
+                OK
+          </Button>
+          </Link>
+            </DialogActions>
+            </div>
+          </Dialog>
+        </div>
+      );
+    }
     return (
       <div style={{display:'flex', justifyContent:'center'}}>
         <Button raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
@@ -40,7 +70,7 @@ class ResponsiveDialog extends React.Component {
           <DialogTitle><span  style={{color:'white'}}>Confirmation!</span></DialogTitle>
           <DialogContent>
             <DialogContentText style={{color:'white'}}>
-            Your Category with name "Sofar" has been added.
+            Your Category with name "Sofa" has been added.
             </DialogContentText>
           </DialogContent>
           <DialogActions>

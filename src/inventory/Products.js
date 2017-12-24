@@ -70,10 +70,12 @@ function FullWidthGrid(props) {
         <Grid item xs={12} lg={2} style={styles.left}>
             <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', }}>
               <Hidden lgDown>
-                <Typography type="display1" gutterBottom style={{color:'white'}}>
-                PRODUCTS
-                </Typography>
-                <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all thethe products of all/specific categories.</Typography>
+                <Hidden smDown>
+                  <Typography type="display1" gutterBottom style={{color:'white'}}>
+                  PRODUCTS
+                  </Typography>
+                  <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all thethe products of all/specific categories.</Typography>
+                </Hidden>
                 <Link to='/Inventory' style={styles.noUnderline}>
                 <Button raised style={styles.button}>
                 GO TO INVENTORY
@@ -81,10 +83,18 @@ function FullWidthGrid(props) {
                 </Link>
               </Hidden>
               <Hidden lgUp>
+                <Hidden smUp>
+                  <Typography type="display2" gutterBottom style={{color:'white'}}>
+                  PRODUCTS
+                  </Typography>
+                  <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all thethe products of all/specific categories.</Typography>
+                </Hidden>
+                <Hidden smDown>
                 <Typography type="display3" gutterBottom style={{color:'white'}}>
                 PRODUCTS
                 </Typography>
                 <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all thethe products of all/specific categories.</Typography>
+                </Hidden>
                 <Link to='/Inventory' style={styles.noUnderline}>
                 <Button raised style={styles.button}>
                 GO TO INVENTORY

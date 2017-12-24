@@ -115,7 +115,7 @@ function FullWidthGrid(props) {
             </label>
             <Divider inset/>
             </div>
-            <ModalCategory />
+            <ModalCategory category="modify" />
             </Paper>
           </div>
         </Grid>
@@ -125,7 +125,7 @@ function FullWidthGrid(props) {
           <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', textAlign:'center' }}>
             <Hidden smDown>
             <Typography type="display3" gutterBottom style={{color:'white'}}>
-            ADD CATEGORIES
+            MODIFY CATEGORIES
             </Typography>
             <Typography type="headline" paragraph style={{color:'white', width:'60%',}} align="center" >Here, You can add a category from here.</Typography>
             <Link to="/Inventory" style={styles.noUnderline}>
@@ -136,7 +136,7 @@ function FullWidthGrid(props) {
             </Hidden>
             <Hidden smUp>
             <Typography type="display1" gutterBottom style={{color:'white'}}>
-            ADD CATEGORIES
+            MODIFY CATEGORIES
             </Typography>
             <Typography type="headline" paragraph style={{color:'white', width:'60%',}} align="center" >Here, You can add a category from here.</Typography>
             <Link to="/Inventory" style={styles.noUnderline}>
@@ -188,7 +188,7 @@ function FullWidthGrid(props) {
             </label>
             <Divider inset/>
             </div>
-            <ModalCategory />
+            <ModalCategory category="modify" />
             </Paper>
           </div>
         </Grid>

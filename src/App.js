@@ -13,6 +13,7 @@ import Categories from './inventory/Categories';
 import AddCategory from './inventory/AddCategory';
 import AddProducts from './inventory/AddProducts';
 import ModifyProduct from './inventory/ModifyProduct';
+import ModifyCategory from './inventory/ModifyCategory';
 import CreateBills from './inventory/CreateBills';
 import './App.css';
 
@@ -90,6 +91,7 @@ const ModalGallery = () => (
       <Route path='/CreateBills'  component={CreateBills}/>
       <Route path='/ManageOrders'  component={ManageOrders}/>
       <Route path='/AddCategory'  component={AddCategory}/>
+      <Route path='/ModifyCategory'  component={ModifyCategory}/>
     </Switch>
   </Router>
 )
