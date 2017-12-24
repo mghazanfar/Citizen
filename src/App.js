@@ -15,6 +15,7 @@ import AddProducts from './inventory/AddProducts';
 import ModifyProduct from './inventory/ModifyProduct';
 import ModifyCategory from './inventory/ModifyCategory';
 import CreateBills from './inventory/CreateBills';
+import ManageShop from './ShopManagement/ShopManagement';
 import './App.css';
 
 import {
@@ -78,7 +79,6 @@ const ModalGallery = () => (
       <Route path='/Owner' component={Owner} />
       <Route path='/Login'  component={Loginn}/>
       <Route path='/Shop'  component={Shop}/>
-      <Route path='/ManageShop' component={Shop}/>
       <Route path='/Inventory'  component={Inventory}/>
       <Route path='/HandleProfit'  component={Shop}/>
       <Route path='/HandleExpenses'  component={Shop}/>
@@ -92,6 +92,7 @@ const ModalGallery = () => (
       <Route path='/ManageOrders'  component={ManageOrders}/>
       <Route path='/AddCategory'  component={AddCategory}/>
       <Route path='/ModifyCategory'  component={ModifyCategory}/>
+      <Route path='/ManageShop'  component={ManageShop}/>
     </Switch>
   </Router>
 )
