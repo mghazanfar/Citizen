@@ -8,7 +8,6 @@ import Dialog, {
   DialogTitle,
   withMobileDialog,
 } from 'material-ui/Dialog';
-import { Link } from 'react-router-dom';
 
 class ResponsiveDialog extends React.Component {
   state = {
@@ -28,8 +27,8 @@ class ResponsiveDialog extends React.Component {
 
     return (
       <div style={{display:'flex', justifyContent:'center'}}>
-        <Button raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
-        ADD CATEGORY
+        <Button color="accent" onClick={this.handleClickOpen}>
+        Delete
         </Button>
         <Dialog
           fullScreen={fullScreen}
@@ -37,18 +36,17 @@ class ResponsiveDialog extends React.Component {
           onRequestClose={this.handleRequestClose}
         >
         <div style={{backgroundColor:'#424242'}}>
-          <DialogTitle><span  style={{color:'white'}}>Confirmation!</span></DialogTitle>
+          <DialogTitle><span  style={{color:'white'}}>Are you sure?</span></DialogTitle>
           <DialogContent>
             <DialogContentText style={{color:'white'}}>
-            Your Category with name "Sofar" has been added.
+            Are you sure you want to delete your product?
             </DialogContentText>
           </DialogContent>
-          <DialogActions>
-          <Link to="/Categories" style={{ textDecoration: 'none' }}>
-          <Button onClick={this.handleRequestClose} color="primary">
-              OK
-        </Button>
-        </Link>
+          <DialogActions><Button onClick={this.handleRequestClose} color="primary">
+                YES
+            </Button><Button onClick={this.handleRequestClose} color="primary">
+                NO
+            </Button>
           </DialogActions>
           </div>
         </Dialog>
