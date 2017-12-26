@@ -13,7 +13,8 @@ import {
  Link,
  Switch,
 } from 'react-router-dom';
-
+import request from "../../node_modules/superagent/superagent";
+import server from "../constants";
 const styles = {
   main: {
     position: 'relative',
@@ -53,6 +54,22 @@ handleMouseDownPassword = event => {
   event.preventDefault();
 };
 
+login = () => {
+  console.log('here', this.state.username);
+  const url = server.path+'/api/Accounts/login';
+  var data = {
+    username: this.state.username,
+    password: this.state.password
+    }
+    request
+      .post(url)
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .send()
+      .end(function(err, res){
+        console.log(res.text);
+      }); 
+  }
+
 handleClickShowPasssword = () => {
   this.setState({ showPassword: !this.state.showPassword });
 };
@@ -68,12 +85,13 @@ handleClickShowPasssword = () => {
             <InputLabel>
               Username
             </InputLabel>
-            <Input/>
+            <Input id= "username" name="username" onChange={this.handleChange('username')}/>
           </FormControl>
         <FormControl style={{minWidth:350, marginTop: '1rem'}}>
           <InputLabel htmlFor="password">Password</InputLabel>
           <Input
             id="password"
+            name="password"
             type={this.state.showPassword ? 'text' : 'password'}
             value={this.state.password}
             onChange={this.handleChange('password')}
@@ -89,7 +107,7 @@ handleClickShowPasssword = () => {
           />
         </FormControl>
         <Link to='/Login' style={styles.noUnderline}>
-        <Button raised component="span" style={{backgroundColor:'rgba(0,150,136,1)', marginTop: '3rem', color: 'white'}}>
+        <Button type='submit' onClick={this.login.bind(this)} raised component="span" style={{backgroundColor:'rgba(0,150,136,1)', marginTop: '3rem', color: 'white'}}>
         LOGIN
         </Button>
         </Link>
