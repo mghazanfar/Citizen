@@ -15,6 +15,9 @@ import {
 } from 'react-router-dom';
 import request from "../../node_modules/superagent/superagent";
 import server from "../constants";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 const styles = {
   main: {
     position: 'relative',
@@ -64,9 +67,14 @@ login = () => {
     request
       .post(url)
       .set('Content-Type', 'application/x-www-form-urlencoded')
-      .send()
+      .send(data)
       .end(function(err, res){
-        console.log(res.text);
+        if (res.status === 200) {
+          cookies.set('accessToken', res.body.id, { path: '/' });
+          console.log(cookies.get('accessToken'));
+        } else {
+          console.log(res);
+        }
       }); 
   }
 
