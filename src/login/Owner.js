@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import Owner from '../img/shop4.jpg';
@@ -8,8 +8,13 @@ import IconButton from 'material-ui/IconButton';
 import Visibility from 'material-ui-icons/Visibility';
 import VisibilityOff from 'material-ui-icons/VisibilityOff';
 import {
- Link,
-} from 'react-router-dom';
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from 'react-router-dom'
+
 
 const styles = {
   main: {
@@ -33,13 +38,12 @@ const styles = {
     }
 }
 
-
-class App extends Component {
+class AuthExample extends React.Component {
   state = {
     amount: '',
     password: '',
     weight: '',
-    showPassword: false,
+    showPassword: false,    
 };
 
 handleChange = prop => event => {
@@ -53,48 +57,126 @@ handleMouseDownPassword = event => {
 handleClickShowPasssword = () => {
   this.setState({ showPassword: !this.state.showPassword });
 };
-  render() {
-    return (
+  render(){
+  return (
+  <Router>
+    <div>
+      <AuthButton/>
       <div style={styles.main}>
-        <div style={styles.inner}>
-          <div style={styles.data}>
-          <Typography type="display2" gutterBottom style={{color:'grey', marginTop:'10rem'}}>
-            OWNER
-          </Typography>
-          <FormControl style={{minWidth:350, marginTop: '3rem'}}>
-            <InputLabel>
-              Username
-            </InputLabel>
-            <Input/>
-          </FormControl>
-        <FormControl style={{minWidth:350, marginTop: '1rem'}}>
-          <InputLabel htmlFor="password">Password</InputLabel>
-          <Input
-            id="password"
-            type={this.state.showPassword ? 'text' : 'password'}
-            value={this.state.password}
-            onChange={this.handleChange('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={this.handleClickShowPasssword}
-                  onMouseDown={this.handleMouseDownPassword}
-                >{this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
+      <div style={styles.inner}>
+        <div style={styles.data}>
+        <Typography type="display2" gutterBottom style={{color:'grey', marginTop:'10rem'}}>
+          OWNER
+        </Typography>
+        <FormControl style={{minWidth:350, marginTop: '3rem'}}>
+          <InputLabel required>
+            Username
+          </InputLabel>
+          <Input/>
         </FormControl>
-        <Link to='/Login' style={styles.noUnderline}>
+      <FormControl style={{minWidth:350, marginTop: '1rem'}}>
+        <InputLabel htmlFor="password" required>Password</InputLabel>
+        <Input
+          id="password"
+          type={this.state.showPassword ? 'text' : 'password'}
+          value={this.state.password}
+          onChange={this.handleChange('password')}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                onClick={this.handleClickShowPasssword}
+                onMouseDown={this.handleMouseDownPassword}
+              >{this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+        />
+      </FormControl>
+      <Link to='/protected' style={styles.noUnderline}>
         <Button raised component="span" style={{backgroundColor:'rgba(0,150,136,1)', marginTop: '3rem', color: 'white'}}>
         LOGIN
         </Button>
-        </Link>
-          </div>
+      </Link>
         </div>
       </div>
-    );
+    </div>
+      <Route path="/public" component={Public}/>
+      <Route path="/login" component={Login}/>
+      <PrivateRoute path="/protected" component={Protected}/>
+    </div>
+  </Router>
+  )
   }
 }
 
-export default App;
+const fakeAuth = {
+  isAuthenticated: false,
+  authenticate(cb) {
+    this.isAuthenticated = true
+    setTimeout(cb, 100) // fake async
+  },
+  signout(cb) {
+    this.isAuthenticated = false
+    setTimeout(cb, 100)
+  }
+}
+
+const AuthButton = withRouter(({ history }) => (
+  fakeAuth.isAuthenticated ? (      
+      <Link to='/' style={styles.noUnderline}>
+      <Button raised component="span" style={{backgroundColor:'rgba(0,150,136,1)', marginTop: '3rem', color: 'white'}} onClick={() => {
+        fakeAuth.signout(() => history.push('/Owner'))
+      }}>
+      SIGN OUT
+      </Button>
+      </Link>
+  ) : null
+))
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={props => (
+    fakeAuth.isAuthenticated ? (
+      <Component {...props}/>
+    ) : (
+      <Redirect to={{
+        pathname: '/login',
+        state: { from: props.location }
+      }}/>
+    )
+  )}/>
+)
+
+const Public = () => <h3>Public</h3>
+const Protected = () => <h3>Protected</h3>
+
+class Login extends React.Component {
+  state = {
+    redirectToReferrer: false
+  }
+
+  login = () => {
+    fakeAuth.authenticate(() => {
+      this.setState({ redirectToReferrer: true })
+    })
+  }
+
+  render() {
+    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    const { redirectToReferrer } = this.state
+    
+    if (redirectToReferrer) {
+      return (
+        <Redirect to={from}/>
+      )
+    }
+    
+    return (
+      <div>
+        <p>You must log in to view the page at {from.pathname}</p>
+        <button onClick={this.login}>Log in</button>
+      </div>
+    )
+  }
+}
+
+export default AuthExample
