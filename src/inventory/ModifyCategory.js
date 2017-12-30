@@ -13,11 +13,6 @@ import Hidden from 'material-ui/Hidden';
 import Sofa from '../img/sofa.png';
 import ModalCategory from './ModalCategory';
 
-import request from "../../node_modules/superagent/superagent";
-import server from "../constants";
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
-
 const styles = {
   left: {
       backgroundColor: 'rgba(255,255,255,0.2)',
@@ -85,7 +80,7 @@ function FullWidthGrid(props) {
           <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
             <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit', marginTop:'4rem', padding:30, display:'flex', flexDirection:'column'}}>
             <TextField
-            id="name"
+            id="full-width"
             label="Name"
             InputLabelProps={{
               shrink: true,
@@ -95,7 +90,7 @@ function FullWidthGrid(props) {
             margin="normal"
           />
           <TextField
-            id="description"
+            id="full-width"
             label="Description"
             InputLabelProps={{
               shrink: true,
@@ -120,7 +115,7 @@ function FullWidthGrid(props) {
             </label>
             <Divider inset/>
             </div>
-            <ModalCategory />
+            <ModalCategory category="modify" />
             </Paper>
           </div>
         </Grid>
@@ -130,7 +125,7 @@ function FullWidthGrid(props) {
           <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', textAlign:'center' }}>
             <Hidden smDown>
             <Typography type="display3" gutterBottom style={{color:'white'}}>
-            ADD CATEGORIES
+            MODIFY CATEGORIES
             </Typography>
             <Typography type="headline" paragraph style={{color:'white', width:'60%',}} align="center" >Here, You can add a category from here.</Typography>
             <Link to="/Inventory" style={styles.noUnderline}>
@@ -141,7 +136,7 @@ function FullWidthGrid(props) {
             </Hidden>
             <Hidden smUp>
             <Typography type="display1" gutterBottom style={{color:'white'}}>
-            ADD CATEGORIES
+            MODIFY CATEGORIES
             </Typography>
             <Typography type="headline" paragraph style={{color:'white', width:'60%',}} align="center" >Here, You can add a category from here.</Typography>
             <Link to="/Inventory" style={styles.noUnderline}>
@@ -193,7 +188,7 @@ function FullWidthGrid(props) {
             </label>
             <Divider inset/>
             </div>
-            <ModalCategory />
+            <ModalCategory category="modify" />
             </Paper>
           </div>
         </Grid>

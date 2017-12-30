@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Login from './img/slide3.jpg';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
@@ -6,14 +6,19 @@ import Owner from './login/Owner';
 import Loginn from './login/login';
 import Employee from './login/Employee';
 import Shop from './inventory/Shop';
+import ManageOrders from './inventory/ManageOrders';
+import Products from './inventory/Products';
 import Inventory from './inventory/Inventory';
 import Categories from './inventory/Categories';
 import AddCategory from './inventory/AddCategory';
+import AddProducts from './inventory/AddProducts';
+import ModifyProduct from './inventory/ModifyProduct';
+import ModifyCategory from './inventory/ModifyCategory';
+import CreateBills from './inventory/CreateBills';
 import './App.css';
 
 import {
  Route,
- NavLink,
  Link,
  Switch,
  BrowserRouter as Router
@@ -80,11 +85,13 @@ const ModalGallery = () => (
       <Route path='/ManageClaimStock'  component={Shop}/>
       <Route path='/ManageCompaniesBills'  component={Shop}/>
       <Route path='/Categories'  component={Categories}/>
-      <Route path='/Products'  component={Shop}/>
-      <Route path='/AddProducts'  component={Shop}/>
-      <Route path='/CreateBills'  component={Shop}/>
-      <Route path='/ManageOrders'  component={Shop}/>
+      <Route path='/Products'  component={Products}/>
+      <Route path='/AddProducts'  component={AddProducts}/>
+      <Route path='/ModifyProduct'  component={ModifyProduct}/>
+      <Route path='/CreateBills'  component={CreateBills}/>
+      <Route path='/ManageOrders'  component={ManageOrders}/>
       <Route path='/AddCategory'  component={AddCategory}/>
+      <Route path='/ModifyCategory'  component={ModifyCategory}/>
     </Switch>
   </Router>
 )
