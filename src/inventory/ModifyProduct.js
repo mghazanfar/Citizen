@@ -78,17 +78,16 @@ noUnderline: {
 
 class TextFields extends React.Component<props, {}> {
     state = {
-      category: 'Write name of your product category',
-      productName: 'Write Product Name',
-      modelNumber: 'Write Model Number',
-      brandName: 'Write Brand Name',
-      color: 'Write color of product',
-      basePrice: 'Write Base price',
-      salePrice: 'Write Sale price',
-      quantity: 'Write Quantity',
-      img: Table,
-      file: '',
-      imagePreviewUrl: Table,
+      category: this.props.category,
+      productName: this.props.productName,
+      modelNumber: this.props.modelNumber,
+      brandName: this.props.brandName,
+      color: this.props.color,
+      basePrice: this.props.basePrice,
+      salePrice: this.props.salePrice,
+      quantity: this.props.quantity,
+      img: this.props.img,
+      file: this.props.file,
     };
   
     _handleSubmit(e) {
@@ -133,7 +132,7 @@ class TextFields extends React.Component<props, {}> {
                       <Typography type="display3" gutterBottom style={{color:'white', width:'60%', textAlign:'center'}}>
                       MODIFY PRODUCTS
                       </Typography>
-                      <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the products of all/specific categories.</Typography>
+                      <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can modify your product.</Typography>
                       <Link to='/Inventory' style={styles.noUnderline}>
                       <Button raised style={styles.button}>
                       GO TO INVENTORY
@@ -145,7 +144,7 @@ class TextFields extends React.Component<props, {}> {
                       <Typography type="display1" gutterBottom style={{color:'white', width:'75%', textAlign:'center'}}>
                       MODIFY PRODUCTS
                       </Typography>
-                      <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the products of all/specific categories.</Typography>
+                      <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can modify your product.</Typography>
                       <Link to='/Inventory' style={styles.noUnderline}>
                       <Button raised style={styles.button}>
                       GO TO INVENTORY
