@@ -87,13 +87,13 @@ function FullWidthGrid(props) {
                   <Typography type="display2" gutterBottom style={{color:'white'}}>
                   PRODUCTS
                   </Typography>
-                  <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all thethe products of all/specific categories.</Typography>
+                  <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the products of all/specific categories.</Typography>
                 </Hidden>
                 <Hidden smDown>
                 <Typography type="display3" gutterBottom style={{color:'white'}}>
                 PRODUCTS
                 </Typography>
-                <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all thethe products of all/specific categories.</Typography>
+                <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the products of all/specific categories.</Typography>
                 </Hidden>
                 <Link to='/Inventory' style={styles.noUnderline}>
                 <Button raised style={styles.button}>
