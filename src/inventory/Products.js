@@ -10,8 +10,6 @@ import Hidden from 'material-ui/Hidden';
 import Menu from './Menu';
 import ProductPanel from './ProductPanel';
 
-import request from "../../node_modules/superagent/superagent";
-import server from "../constants";
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
@@ -68,7 +66,8 @@ noUnderline: {
 };
 
 function FullWidthGrid(props) {
-
+  var pro = cookies.get('products');
+  console.log(pro);
   return (
   <div style={styles.root}>
     <Grid container spacing={0} style={styles.container}>

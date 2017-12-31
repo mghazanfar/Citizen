@@ -82,7 +82,7 @@ login = () => {
                 document.cookie = 'products=' + JSON.stringify(products.body);;
               }
           );
-          //window.location.href = '/Login';
+          window.location.href = '/Login';
         } else {
 
         }

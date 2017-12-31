@@ -68,9 +68,7 @@ noUnderline: {
 };
 
 function FullWidthGrid(props) {
-        var cat = cookies.get('categories');
-        console.log(cat);
-
+  var cat = cookies.get('categories');
   return (
   <div style={styles.root}>
     <Grid container spacing={0} style={styles.container}>
