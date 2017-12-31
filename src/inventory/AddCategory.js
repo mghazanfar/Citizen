@@ -80,119 +80,275 @@ labelUpload: {
 }
 };
 
-function FullWidthGrid(props) {
 
-  return (
-    <div style={styles.root}>
-      <Grid container spacing={0} style={styles.container}>
-        <Hidden mdDown>
-          <Grid item xs={12} lg={8} style={styles.right}>
-          <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
-            <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit', marginTop:'4rem', padding:30, display:'flex', flexDirection:'column'}}>
-            <TextField
-            id="full-width"
-            label="Name"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            placeholder="Write name of category"
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            id="full-width"
-            label="Description"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            placeholder="Write desciption of category"
-            fullWidth
-            margin="normal"
-          />
-          <div style={{display:'flex'}}>
-            <Avatar src={Sofa} style={styles.avatar}/>
-            <input
-              accept="image/*"
-              style={{display:'none'}}
-              id="raised-button-file"
-              multiple
-              type="file"
-            />
-            <label htmlFor="raised-button-file" style={styles.labelUpload}>
-              <Button raised component="span" style={styles.buttonUpload}>
-                Upload
-              </Button>
-            </label>
-            <Divider inset/>
-            </div>
-            <Modal />
-            </Paper>
-          </div>
-        </Grid>
-        </Hidden>
-      
-        <Grid item xs={12} lg={4} style={styles.left}>
-          <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', }}>
-            <Typography type="display3" gutterBottom style={{color:'white'}}>
-            CATEGORIES
-            </Typography>
-            <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the categories of your furniture. You can also add/remove/modify a category from here.</Typography>
-            <Link to="/Inventory" style={styles.noUnderline}>
-            <Button raised style={styles.button}>
-            GO TO INVENTORY
-            </Button>
-            </Link>
-          </div>
-        </Grid>
 
-        <Hidden lgUp>
-         <Grid item xs={12} lg={8} style={styles.right}>
-          <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
-            <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit', marginTop:'4rem', padding:30, display:'flex', flexDirection:'column'}}>
-            <TextField
-            id="full-width"
-            label="Name"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            placeholder="Write name of category"
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            id="full-width"
-            label="Description"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            placeholder="Write desciption of category"
-            fullWidth
-            margin="normal"
-          />
-          <div style={{display:'flex'}}>
-            <Avatar src={Sofa} style={styles.avatar}/>
-            <input
-              accept="image/*"
-              style={{display:'none'}}
-              id="raised-button-file"
-              multiple
-              type="file"
+
+class TextFields extends React.Component<props, {}> {
+  state = {
+    name: 'Write name of your category',
+    description: 'Write description of your category',
+    img: Sofa,
+    file: '',
+    imagePreviewUrl: Sofa,
+  };
+
+  _handleSubmit(e) {
+    e.preventDefault();
+    // TODO: do something with -> this.state.file
+    console.log('handle uploading-', this.state.file);
+  }
+
+  _handleImageChange(e) {
+    e.preventDefault();
+
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        img: reader.result
+      });
+    }
+
+    reader.readAsDataURL(file)
+  }
+
+  handleChange = (name, description) => event => {
+    this.setState({
+      [name]: event.target.value,
+      [description]: event.target.value,
+    });
+  };
+
+  render() {
+    const { classes } = this.props;
+    let {img} = this.state;
+    let $imagePreview = null;
+    return (
+      <div style={styles.root}>
+        <Grid container spacing={0} style={styles.container}>
+          <Hidden mdDown>
+            <Grid item xs={12} lg={8} style={styles.right}>
+            <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
+              <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit', marginTop:'4rem', padding:30, display:'flex', flexDirection:'column'}}>
+              <TextField
+                label="Name"
+                className={classes.textField}
+                placeholder={this.state.name}
+                onChange={this.handleChange('name')}
+                margin="normal"
+              />
+              <TextField
+              label="Description"
+              className={classes.textField}
+              placeholder={this.state.description}
+              onChange={this.handleChange('description')}
+              margin="normal"
             />
-            <label htmlFor="raised-button-file" style={styles.labelUpload}>
-              <Button raised component="span" style={styles.buttonUpload}>
-                Upload
-              </Button>
-            </label>
-            <Divider inset/>
+            <div style={{display:'flex'}}>
+              <Avatar src={img} style={styles.avatar}/>
+              <input
+                accept="image/*"
+                style={{display:'none'}}
+                id="raised-button-file"
+                multiple
+                type="file"
+                onChange={(e)=>this._handleImageChange(e)}
+              />
+              <label htmlFor="raised-button-file" style={styles.labelUpload}>
+                <Button raised component="span" style={styles.buttonUpload}>
+                  Upload
+                </Button>
+              </label>
+              <Divider inset/>
+              </div>
+              <Modal addData={{name:this.state.name, description:this.state.description, img:this.state.img, file: this.state.file}} />
+              </Paper>
             </div>
-            <Modal />
-            </Paper>
-          </div>
+          </Grid>
+          </Hidden>
+        
+          <Grid item xs={12} lg={4} style={styles.left}>
+            <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', }}>
+              <Typography type="display3" gutterBottom style={{color:'white'}}>
+              CATEGORIES
+              </Typography>
+              <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the categories of your furniture. You can also add/remove/modify a category from here.</Typography>
+              <Link to="/Inventory" style={styles.noUnderline}>
+              <Button raised style={styles.button}>
+              GO TO INVENTORY
+              </Button>
+              </Link>
+            </div>
+          </Grid>
+  
+          <Hidden lgUp>
+           <Grid item xs={12} lg={8} style={styles.right}>
+            <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
+              <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit', marginTop:'4rem', padding:30, display:'flex', flexDirection:'column'}}>
+              <TextField
+              id="full-width"
+              label="Name"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              placeholder="Write name of category"
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              id="full-width"
+              label="Description"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              placeholder="Write desciption of category"
+              fullWidth
+              margin="normal"
+            />
+            <div style={{display:'flex'}}>
+              <Avatar src={Sofa} style={styles.avatar}/>
+              <input
+                accept="image/*"
+                style={{display:'none'}}
+                id="raised-button-file"
+                multiple
+                type="file"
+              />
+              <label htmlFor="raised-button-file" style={styles.labelUpload}>
+                <Button raised component="span" style={styles.buttonUpload}>
+                  Upload
+                </Button>
+              </label>
+              <Divider inset/>
+              </div>
+              <Modal />
+              </Paper>
+            </div>
+          </Grid>
+          </Hidden>
         </Grid>
-        </Hidden>
-      </Grid>
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
-export default withStyles(styles)(FullWidthGrid);
+export default withStyles(styles)(TextFields);
+
+// function FullWidthGrid(props) {
+
+//   return (
+//     <div style={styles.root}>
+//       <Grid container spacing={0} style={styles.container}>
+//         <Hidden mdDown>
+//           <Grid item xs={12} lg={8} style={styles.right}>
+//           <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
+//             <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit', marginTop:'4rem', padding:30, display:'flex', flexDirection:'column'}}>
+//             <TextField
+//             id="name"
+//             label="Name"
+//             InputLabelProps={{
+//               shrink: true,
+//             }}
+//             placeholder="Write name of category"
+//             fullWidth
+//             margin="normal"
+//           />
+//           <TextField
+//             id="description"
+//             label="Description"
+//             InputLabelProps={{
+//               shrink: true,
+//             }}
+//             placeholder="Write desciption of category"
+//             fullWidth
+//             margin="normal"
+//           />
+//           <div style={{display:'flex'}}>
+//             <Avatar src={Sofa} style={styles.avatar}/>
+//             <input
+//               accept="image/*"
+//               style={{display:'none'}}
+//               id="raised-button-file"
+//               multiple
+//               type="file"
+//             />
+//             <label htmlFor="raised-button-file" style={styles.labelUpload}>
+//               <Button raised component="span" style={styles.buttonUpload}>
+//                 Upload
+//               </Button>
+//             </label>
+//             <Divider inset/>
+//             </div>
+//             <Modal />
+//             </Paper>
+//           </div>
+//         </Grid>
+//         </Hidden>
+      
+//         <Grid item xs={12} lg={4} style={styles.left}>
+//           <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', }}>
+//             <Typography type="display3" gutterBottom style={{color:'white'}}>
+//             CATEGORIES
+//             </Typography>
+//             <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the categories of your furniture. You can also add/remove/modify a category from here.</Typography>
+//             <Link to="/Inventory" style={styles.noUnderline}>
+//             <Button raised style={styles.button}>
+//             GO TO INVENTORY
+//             </Button>
+//             </Link>
+//           </div>
+//         </Grid>
+
+//         <Hidden lgUp>
+//          <Grid item xs={12} lg={8} style={styles.right}>
+//           <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
+//             <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit', marginTop:'4rem', padding:30, display:'flex', flexDirection:'column'}}>
+//             <TextField
+//             id="full-width"
+//             label="Name"
+//             InputLabelProps={{
+//               shrink: true,
+//             }}
+//             placeholder="Write name of category"
+//             fullWidth
+//             margin="normal"
+//           />
+//           <TextField
+//             id="full-width"
+//             label="Description"
+//             InputLabelProps={{
+//               shrink: true,
+//             }}
+//             placeholder="Write desciption of category"
+//             fullWidth
+//             margin="normal"
+//           />
+//           <div style={{display:'flex'}}>
+//             <Avatar src={Sofa} style={styles.avatar}/>
+//             <input
+//               accept="image/*"
+//               style={{display:'none'}}
+//               id="raised-button-file"
+//               multiple
+//               type="file"
+//             />
+//             <label htmlFor="raised-button-file" style={styles.labelUpload}>
+//               <Button raised component="span" style={styles.buttonUpload}>
+//                 Upload
+//               </Button>
+//             </label>
+//             <Divider inset/>
+//             </div>
+//             <Modal />
+//             </Paper>
+//           </div>
+//         </Grid>
+//         </Hidden>
+//       </Grid>
+//     </div>
+//   );
+// }
+
+// export default withStyles(styles)(FullWidthGrid);
