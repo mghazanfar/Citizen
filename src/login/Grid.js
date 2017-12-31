@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import { GridList, GridListTile, GridListTileBar } from 'material-ui/GridList';
-import Subheader from 'material-ui/List/ListSubheader';
-import IconButton from 'material-ui/IconButton';
-import InfoIcon from 'material-ui-icons/Info';
+import { GridListTile, GridListTileBar } from 'material-ui/GridList';
 import tileData from './tileData';
 import { Link } from 'react-router-dom';
+import Grid from 'material-ui/Grid';
 
 const styles = theme => ({
   container: {
@@ -23,22 +21,22 @@ const styles = theme => ({
 });
 
 function TitlebarGridList(props) {
-  const { classes } = props;
-
   return (
     <div>
-      <GridList cellHeight={180} cols={6} spacing={100} style={{margin:0, justifyContent:'center'}}>
+      <Grid spacing='40' container justify="center" style={{width:'100%', margin:0}}>
         {tileData.map(tile => (
-          <GridListTile key={tile.img} cols={2} rows={1.5}>
-          <Link to='/Shop'><img src={tile.img} alt={tile.title} />
-            <GridListTileBar
-              title={tile.title}
-              subtitle={<span>{tile.address}</span>}
-              style={{textAlign:'left'}}
-            /></Link>
-          </GridListTile>
+          <Grid item xs={10} sm={8} lg={5}>
+            <GridListTile key={tile.img} cols={3} rows={1.5} style={{listStyle:'none'}}>
+              <Link to='/Shop'><img src={tile.img} alt={tile.title} width="100%" height="100%" />
+                <GridListTileBar
+                  title={tile.title}
+                  subtitle={<span>{tile.address}</span>}
+                  style={{textAlign:'left'}}
+                /></Link>
+            </GridListTile>
+          </Grid>
         ))}
-      </GridList>
+      </Grid>
     </div>
   );
 }

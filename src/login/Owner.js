@@ -3,19 +3,17 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import Owner from '../img/shop4.jpg';
 import Input, { InputLabel, InputAdornment  } from 'material-ui/Input';
-import TextField from 'material-ui/TextField';
-import { FormControl, FormHelperText  } from 'material-ui/Form';
+import { FormControl  } from 'material-ui/Form';
 import IconButton from 'material-ui/IconButton';
 import Visibility from 'material-ui-icons/Visibility';
 import VisibilityOff from 'material-ui-icons/VisibilityOff';
 import {
- Route,
- Link,
- Switch,
+ Link, Route,
 } from 'react-router-dom';
 import request from "../../node_modules/superagent/superagent";
 import server from "../constants";
 import Cookies from 'universal-cookie';
+import LinearProgress from 'material-ui/Progress/LinearProgress';
 const cookies = new Cookies();
 
 const styles = {
@@ -47,6 +45,7 @@ class App extends Component {
     password: '',
     weight: '',
     showPassword: false,
+    loggedin: false
 };
 
 handleChange = prop => event => {
@@ -58,7 +57,6 @@ handleMouseDownPassword = event => {
 };
 
 login = () => {
-  console.log('here', this.state.username);
   const url = server.path+'/api/Accounts/login';
   var data = {
     username: this.state.username,
@@ -68,12 +66,14 @@ login = () => {
       .post(url)
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .send(data)
-      .end(function(err, res){
+      .end((err, res) => {
         if (res.status === 200) {
           cookies.set('accessToken', res.body.id, { path: '/' });
           console.log(cookies.get('accessToken'));
-        } else {
-          console.log(res);
+          this.setState({
+            loggedin: true
+          });
+          window.location.href = '/Login';
         }
       }); 
   }
@@ -81,6 +81,7 @@ login = () => {
 handleClickShowPasssword = () => {
   this.setState({ showPassword: !this.state.showPassword });
 };
+
   render() {
     return (
       <div style={styles.main}>
@@ -114,11 +115,9 @@ handleClickShowPasssword = () => {
             }
           />
         </FormControl>
-        <Link to='/Login' style={styles.noUnderline}>
         <Button type='submit' onClick={this.login.bind(this)} raised component="span" style={{backgroundColor:'rgba(0,150,136,1)', marginTop: '3rem', color: 'white'}}>
         LOGIN
         </Button>
-        </Link>
           </div>
         </div>
       </div>
