@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
+import Paper from 'material-ui/Paper';
 import Owner from '../img/shop4.jpg';
 import Input, { InputLabel, InputAdornment  } from 'material-ui/Input';
 import { FormControl  } from 'material-ui/Form';
@@ -33,23 +34,18 @@ const styles = {
     },
     noUnderline: {
       textDecoration: 'none',
-    },
-    visible: {
-        display: 'block'
-    },
-    invisible: {
-        display: 'none'
     }
 }
 
 
 class App extends Component {
   state = {
+    loginFailed: '',
     amount: '',
     password: '',
     weight: '',
     showPassword: false,
-    visible: 'visible'
+    visible: 'none'
 };
 
 handleChange = prop => event => {
@@ -84,15 +80,18 @@ login = () => {
           );
           window.location.href = '/Login';
         } else {
-
+            console.log(res.body.error.message);
+            this.setState({
+                loginFailed: res.body.error.message,
+                visible: 'block'
+            });
         }
-      }); 
+      });
   }
 
 handleClickShowPasssword = () => {
   this.setState({ showPassword: !this.state.showPassword });
 };
-
   render() {
     return (
       <div style={styles.main}>
@@ -129,11 +128,17 @@ handleClickShowPasssword = () => {
         <Button type='submit' onClick={this.login.bind(this)} raised component="span" style={{backgroundColor:'rgba(0,150,136,1)', marginTop: '3rem', color: 'white'}}>
         LOGIN
         </Button>
+        <div style={{display: this.state.visible}}>
+            <Paper elevation={20} style={{padding:20, marginTop:30}}>
+              <Typography color="error">
+                  {this.state.loginFailed}
+              </Typography>
+            </Paper>
+        </div>
           </div>
         </div>
       </div>
     );
   }
 }
-
 export default App;

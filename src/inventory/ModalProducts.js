@@ -25,7 +25,7 @@ class ResponsiveDialog extends React.Component {
 
   render() {
     const { fullScreen, addData } = this.props;
-console.log("Name:" +addData.name);
+
     return (
       <div style={{display:'flex', justifyContent:'center'}}>
         <Button raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
@@ -40,7 +40,7 @@ console.log("Name:" +addData.name);
           <DialogTitle><span  style={{color:'white'}}>Confirmation!</span></DialogTitle>
           <DialogContent>
             <DialogContentText style={{color:'white'}}>
-            Your Category with name "{addData.name}" and description "{addData.description}" has been added.
+            Your Product with name '{addData.productName}' in category '{addData.category}' has been added.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
