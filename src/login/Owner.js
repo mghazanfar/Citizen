@@ -7,14 +7,12 @@ import { FormControl  } from 'material-ui/Form';
 import IconButton from 'material-ui/IconButton';
 import Visibility from 'material-ui-icons/Visibility';
 import VisibilityOff from 'material-ui-icons/VisibilityOff';
-import {
- Link, Route,
-} from 'react-router-dom';
+import LinearProgress from 'material-ui/Progress/LinearProgress';
+
 import request from "../../node_modules/superagent/superagent";
 import server from "../constants";
 import Cookies from 'universal-cookie';
-import LinearProgress from 'material-ui/Progress/LinearProgress';
-const cookies = new Cookies();
+var cookies = new Cookies();
 
 const styles = {
   main: {
@@ -35,6 +33,12 @@ const styles = {
     },
     noUnderline: {
       textDecoration: 'none',
+    },
+    visible: {
+        display: 'block'
+    },
+    invisible: {
+        display: 'none'
     }
 }
 
@@ -45,7 +49,7 @@ class App extends Component {
     password: '',
     weight: '',
     showPassword: false,
-    loggedin: false
+    visible: 'visible'
 };
 
 handleChange = prop => event => {
@@ -57,23 +61,30 @@ handleMouseDownPassword = event => {
 };
 
 login = () => {
-  const url = server.path+'/api/Accounts/login';
   var data = {
     username: this.state.username,
     password: this.state.password
-    }
+    };
     request
-      .post(url)
+      .post(server.path+'/api/Accounts/login')
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .send(data)
       .end((err, res) => {
         if (res.status === 200) {
-          cookies.set('accessToken', res.body.id, { path: '/' });
-          console.log(cookies.get('accessToken'));
-          this.setState({
-            loggedin: true
-          });
-          window.location.href = '/Login';
+          cookies.set('accessToken',{accessToken: res.body.id}, {path: '/'});
+          request.get(server.path+'/api/Categories?access_token='+res.body.id).end(
+              (err, categories) => {
+                document.cookie = 'categories=' + JSON.stringify(categories.body);
+              }
+          );
+          request.get(server.path+'/api/Products?access_token='+res.body.id).end(
+              (err, products) => {
+                document.cookie = 'products=' + JSON.stringify(products.body);;
+              }
+          );
+          //window.location.href = '/Login';
+        } else {
+
         }
       }); 
   }

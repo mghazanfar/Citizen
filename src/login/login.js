@@ -2,8 +2,17 @@ import React, { Component } from 'react';
 import Typography from 'material-ui/Typography';
 import Grid from './Grid';
 import '../App.css';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 class App extends Component {
+  componentWillMount(){
+    //cookies.remove('accessToken');
+    if(cookies.get('accessToken')) {
+    } else {
+      window.location.href = '/';
+    }
+  }
   render() {
     return (
       <div className="selectShop">

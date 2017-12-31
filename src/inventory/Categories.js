@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import Background from '../img/zimp.jpg';
@@ -11,8 +11,7 @@ import Hidden from 'material-ui/Hidden';
 import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
 import Table from '../img/table2.JPG';
 
-import request from "../../node_modules/superagent/superagent";
-import server from "../constants";
+import { valueFromAST } from 'graphql/utilities/valueFromAST';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
@@ -69,6 +68,8 @@ noUnderline: {
 };
 
 function FullWidthGrid(props) {
+        var cat = cookies.get('categories');
+        console.log(cat);
 
   return (
   <div style={styles.root}>
@@ -78,10 +79,11 @@ function FullWidthGrid(props) {
         <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
           <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit'}}>
           <List>
-            {[0, 1, 2, 3,4,5,6,7,8].map(value => (
-              <Link to='/Products' style={styles.noUnderline}><ListItem key={value} dense button style={styles.listItem} divider>
-                <Avatar src={Table} style={styles.avatar}/>
-                <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>Table {value + 1}</Typography>} secondary={"Tables for home, beautiful and durable."}/>
+            {cat.map(value => (
+              <Link to='/Products' style={styles.noUnderline}>
+              <ListItem key={value.name} dense button style={styles.listItem} divider>
+                <Avatar src={value.image} style={styles.avatar}/>
+                <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>{value.name}</Typography>} secondary={value.description}/>
                 <ListItemSecondaryAction />
                 <Link to='/ModifyCategory' style={styles.noUnderline}>
                   <Button color="primary">
@@ -124,10 +126,10 @@ function FullWidthGrid(props) {
           <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
             <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit', marginTop:'4rem'}}>
             <List>
-              {[0, 1, 2, 3,4,5,6,7,8].map(value => (
-                <ListItem key={value} dense button style={styles.listItem} divider>
-                  <Avatar src={Table} style={styles.avatar}/>
-                  <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>Table {value + 1}</Typography>} secondary={"Tables for home, beautiful and durable."}/>
+              {cat.map(value => (
+                <ListItem key={cat.name} dense button style={styles.listItem} divider>
+                  <Avatar src={value.image} style={styles.avatar}/>
+                  <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>{value.name}</Typography>} secondary={value.description}/>
                   <ListItemSecondaryAction />
                   <Link to='/ModifyCategory' style={styles.noUnderline}>
                     <Button color="primary">
