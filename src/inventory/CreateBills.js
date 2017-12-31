@@ -10,6 +10,7 @@ import Hidden from 'material-ui/Hidden';
 import TextField from 'material-ui/TextField';
 import ModalBills from './ModalBills';
 import Menu from './Menu';
+import Logout from './Logout';
 
 const styles = {
   left: {
@@ -127,6 +128,7 @@ function FullWidthGrid(props) {
             GO TO INVENTORY
             </Button>
             </Link>
+            <Logout />
           </div>
         </Grid>
 

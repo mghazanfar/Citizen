@@ -12,6 +12,7 @@ import Hidden from 'material-ui/Hidden';
 import Table from '../img/table2.JPG';
 import TextField from 'material-ui/TextField';
 import ModalProducts from './ModalProducts';
+import Logout from './Logout';
 
 const styles = {
   left: {
@@ -138,6 +139,7 @@ class TextFields extends React.Component<props, {}> {
                       GO TO INVENTORY
                       </Button>
                       </Link>
+                      <Logout />
                       </Hidden>
                       <Hidden smUp>
                       <Typography type="display1" gutterBottom style={{color:'white', width:'75%', textAlign:'center'}}>
@@ -149,6 +151,7 @@ class TextFields extends React.Component<props, {}> {
                       GO TO INVENTORY
                       </Button>
                       </Link>
+                      <Logout />
                       </Hidden>
                   </div>
                   </Grid>
@@ -358,218 +361,4 @@ class TextFields extends React.Component<props, {}> {
   }
   
   export default withStyles(styles)(TextFields);
-// function FullWidthGrid(props) {
-
-//   return (
-//   <div style={styles.root}>
-//     <Grid container spacing={0} style={styles.container} justify='center'>
-//         <Grid item xs={12} lg={4} style={styles.left}>
-//             <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', }}>
-//                 <Hidden smDown>
-//                 <Typography type="display3" gutterBottom style={{color:'white', width:'60%', textAlign:'center'}}>
-//                 ADD PRODUCTS
-//                 </Typography>
-//                 <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the products of all/specific categories.</Typography>
-//                 <Link to='/Inventory' style={styles.noUnderline}>
-//                 <Button raised style={styles.button}>
-//                 GO TO INVENTORY
-//                 </Button>
-//                 </Link>
-//                 </Hidden>
-//                 <Hidden smUp>
-//                 <Typography type="display1" gutterBottom style={{color:'white', width:'75%', textAlign:'center'}}>
-//                 ADD PRODUCTS
-//                 </Typography>
-//                 <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the products of all/specific categories.</Typography>
-//                 <Link to='/Inventory' style={styles.noUnderline}>
-//                 <Button raised style={styles.button}>
-//                 GO TO INVENTORY
-//                 </Button>
-//                 </Link>
-//                 </Hidden>
-//             </div>
-//             </Grid>
-//       <Hidden lgDown>
-//         <Grid item xs={12} lg={8} style={styles.right}>
-//             <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
-//                 <Paper elevation={24} style={{maxHeight:600, overflow:'auto', width:'inherit', padding: 20}}>
-//                     <TextField
-//                     id="search"
-//                     label="Category"
-//                     type="search"
-//                     margin="none"
-//                     style={{width:'100%'}}
-//                     />
-//                     <TextField
-//                     id="search"
-//                     label="Product Name"
-//                     type="search"
-//                     margin="none"
-//                     style={{width:'100%'}}
-//                     />
-//                     <TextField
-//                     id="search"
-//                     label="Model Number"
-//                     type="search"
-//                     margin="none"
-//                     style={{width:'100%'}}
-//                     />
-//                     <TextField
-//                     id="search"
-//                     label="Brand Name"
-//                     type="search"
-//                     margin="none"
-//                     style={{width:'100%'}}
-//                     />
-//                     <TextField
-//                     id="search"
-//                     label="Color"
-//                     type="search"
-//                     margin="none"
-//                     style={{width:'100%'}}
-//                     />
-//                     <TextField
-//                     id="search"
-//                     label="Base Price"
-//                     type="search"
-//                     margin="none"
-//                     style={{width:'100%'}}
-//                     />
-//                     <TextField
-//                     id="search"
-//                     label="Sale Price"
-//                     type="search"
-//                     margin="none"
-//                     style={{width:'100%'}}
-//                     />
-//                     <TextField
-//                     id="search"
-//                     label="Quantity"
-//                     type="search"
-//                     margin="none"
-//                     style={{width:'100%'}}
-//                     />
-//                     <div style={{display:'flex'}}>
-//                         <Avatar src={Table} style={styles.avatar}/>
-//                         <input
-//                         accept="image/*"
-//                         style={{display:'none'}}
-//                         id="raised-button-file"
-//                         multiple
-//                         type="file"
-//                         />
-//                         <label htmlFor="raised-button-file" style={styles.labelUpload}>
-//                         <Button raised component="span" style={styles.buttonUpload}>
-//                             Upload
-//                         </Button>
-//                         </label>
-//                         <Divider inset/>
-//                         </div>
-//                         <div style={{display:'flex',  justifyContent:'space-around'}}>
-//                         <ModalProducts />
-//                             <Link to='/Products' style={styles.noUnderline}>
-//                                 <Button raised style={styles.button}>
-//                                     CANCEL
-//                                 </Button>
-//                             </Link>
-//                         </div>
-//                 </Paper>
-//             </div>
-//         </Grid>
-//         </Hidden>
-      
-
-//         <Hidden lgUp>
-//         <Grid item xs={12} lg={8} style={styles.right}>
-//         <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%', marginTop:'2rem' }}>
-//             <Paper elevation={24} style={{maxHeight:800, overflow:'auto', width:'inherit', padding: 10}}>
-//                 <TextField
-//                 id="search"
-//                 label="Category"
-//                 type="search"
-//                 margin="none"
-//                 style={{width:'100%'}}
-//                 />
-//                 <TextField
-//                 id="search"
-//                 label="Product Name"
-//                 type="search"
-//                 margin="none"
-//                 style={{width:'100%'}}
-//                 />
-//                 <TextField
-//                 id="search"
-//                 label="Model Number"
-//                 type="search"
-//                 margin="none"
-//                 style={{width:'100%'}}
-//                 />
-//                 <TextField
-//                 id="search"
-//                 label="Brand Name"
-//                 type="search"
-//                 margin="none"
-//                 style={{width:'100%'}}
-//                 />
-//                 <TextField
-//                 id="search"
-//                 label="Color"
-//                 type="search"
-//                 margin="none"
-//                 style={{width:'100%'}}
-//                 />
-//                 <TextField
-//                 id="search"
-//                 label="Base Price"
-//                 type="search"
-//                 margin="none"
-//                 style={{width:'100%'}}
-//                 />
-//                 <TextField
-//                 id="search"
-//                 label="Sale Price"
-//                 type="search"
-//                 margin="none"
-//                 style={{width:'100%'}}
-//                 />
-//                 <TextField
-//                 id="search"
-//                 label="Quantity"
-//                 type="search"
-//                 margin="none"
-//                 style={{width:'100%'}}
-//                 />
-//                 <div style={{display:'flex'}}>
-//                     <Avatar src={Table} style={styles.avatar}/>
-//                     <input
-//                     accept="image/*"
-//                     style={{display:'none'}}
-//                     id="raised-button-file"
-//                     multiple
-//                     type="file"
-//                     />
-//                     <label htmlFor="raised-button-file" style={styles.labelUpload}>
-//                     <Button raised component="span" style={styles.buttonUpload}>
-//                         Upload
-//                     </Button>
-//                     </label>
-//                     <Divider inset/>
-//                     </div>
-//                     <div style={{display:'flex',  justifyContent:'space-around'}}>
-//                         <ModalProducts />
-//                         <Link to='/Products' style={styles.noUnderline}>
-//                             <Button raised style={styles.button}>
-//                                 CANCEL
-//                             </Button>
-//                         </Link>
-//                     </div>
-//             </Paper>
-//         </div>
-//     </Grid>
-//         </Hidden>
-//       </Grid>
-//     </div>
-//   );
-// }
-
-// export default withStyles(styles)(FullWidthGrid);
+  

@@ -9,6 +9,7 @@ import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
 import Menu from './Menu';
 import ProductPanel from './ProductPanel';
+import Logout from './Logout';
 
 const styles = {
   left: {
@@ -81,6 +82,7 @@ function FullWidthGrid(props) {
                 GO TO INVENTORY
                 </Button>
                 </Link>
+                <Logout />
               </Hidden>
               <Hidden lgUp>
                 <Hidden smUp>
@@ -100,6 +102,7 @@ function FullWidthGrid(props) {
                 GO TO INVENTORY
                 </Button>
                 </Link>
+                <Logout />
               </Hidden>
             </div>
             </Grid>
