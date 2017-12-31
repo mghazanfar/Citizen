@@ -32,7 +32,7 @@ class ResponsiveDialog extends React.Component {
   };
 
   render() {
-    const { fullScreen, category } = this.props;
+    const { fullScreen, category, addData } = this.props;
 
     if(category==='modify'){
       return (
@@ -49,7 +49,7 @@ class ResponsiveDialog extends React.Component {
             <DialogTitle><span  style={{color:'white'}}>Confirmation!</span></DialogTitle>
             <DialogContent>
               <DialogContentText style={{color:'white'}}>
-              Your Category with name "Sofa" has been modified.
+              Your Category with name "{addData.name}" and description "{addData.description}" has been modified.
               </DialogContentText>
             </DialogContent>
             <DialogActions>
@@ -78,7 +78,7 @@ class ResponsiveDialog extends React.Component {
           <DialogTitle><span  style={{color:'white'}}>Confirmation!</span></DialogTitle>
           <DialogContent>
             <DialogContentText style={{color:'white'}}>
-            Your Category with name "Sofa" has been added.
+            Your Category with name "{addData.name}" and description "{addData.description}" has been added.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
