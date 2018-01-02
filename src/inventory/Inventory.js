@@ -11,12 +11,14 @@ import Grid from 'material-ui/Grid';
 import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
 import Hidden from 'material-ui/Hidden';
+import Logout from './Logout';
 
 const styles = {
   left: {
       minHeight: '100vh',
       background: '-webkit-linear-gradient(-125deg, #D000F0, #E60080, #FF0000)',
       display: 'flex',
+      flexDirection:'column',
       alignItems:'center',
       justifyContent:'center',
   },
@@ -82,8 +84,9 @@ function FullWidthGrid(props) {
             <Button raised style={styles.button}>
             BACK
             </Button>
-            </Link>
+          </Link>
           </div>
+          <Logout />
             </div>
         </Grid>
         <Grid item xs={12} md={6} lg={8} style={styles.right}>

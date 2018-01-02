@@ -24,7 +24,7 @@ class ResponsiveDialog extends React.Component {
   };
 
   render() {
-    const { fullScreen } = this.props;
+    const { fullScreen, addData } = this.props;
 
     return (
       <div style={{display:'flex', justifyContent:'center'}}>
@@ -40,7 +40,7 @@ class ResponsiveDialog extends React.Component {
           <DialogTitle><span  style={{color:'white'}}>Confirmation!</span></DialogTitle>
           <DialogContent>
             <DialogContentText style={{color:'white'}}>
-            Your Product with name "Sofa" has been added.
+            Your Product with name '{addData.productName}' in category '{addData.category}' has been added.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
