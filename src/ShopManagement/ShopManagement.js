@@ -4,11 +4,12 @@ import { withStyles } from 'material-ui/styles';
 import Background from '../img/Manage.jpg';
 import Add from '../img/plus-circle.svg';
 import Remove from '../img/remove.svg';
+import Profile from '../img/user.svg';
 import Grid from 'material-ui/Grid';
 import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
 import Hidden from 'material-ui/Hidden';
-
+import Logout from '../inventory/Logout';
 const styles = {
   left: {
       minHeight: '100vh',
@@ -60,10 +61,13 @@ function FullWidthGrid(props) {
             Go to:
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/AddProducts' style={styles.headline}><img src={Add} alt="" style={styles.svg} />Add Account</Link>
+            <Link to='/AddAccount' style={styles.headline}><img src={Add} alt="" style={styles.svg} />Add Account</Link>
             </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/AddProducts' style={styles.headline}><img src={Remove} alt="" style={styles.svg} />Delete Account</Link>
+            <Link to='/DeleteAccount' style={styles.headline}><img src={Remove} alt="" style={styles.svg} />Delete Account</Link>
+            </Typography>
+            <Typography type="headline" gutterBottom style={{color:'white'}}>
+            <Link to='/MyAccount' style={styles.headline}><img src={Profile} alt="" style={styles.svg} />My Account</Link>
             </Typography>
           <div style={{display:'flex', justifyContent:'center', marginTop:'3rem'}}>
           <Link to='/Shop' style={styles.noUnderline}>
@@ -72,6 +76,7 @@ function FullWidthGrid(props) {
             </Button>
             </Link>
           </div>
+            <Logout />
             </div>
         </Grid>
         <Grid item xs={12} md={6} lg={8} style={styles.right}>
@@ -79,17 +84,15 @@ function FullWidthGrid(props) {
         <div style={{ marginTop:'4rem', marginLeft:'3rem' }}>
           <Hidden smDown>
             <Typography type="display4" gutterBottom style={{color:'white'}}>
-            Inventory
+            Manage Shop
             </Typography>
-            <Typography type="display2" paragraph style={{color:'white', width:'45%'}}>This inventory section lets you manage categories & orders of 
-                your furniture, add/remove/modify products, see products, and create bill for payments.</Typography>
+            <Typography type="display2" paragraph style={{color:'white', width:'45%'}}>This Shop Management section lets you manage accounts of your employees.</Typography>
             </Hidden>
           <Hidden smUp>
             <Typography type="display3" gutterBottom style={{color:'white'}}>
             Inventory
             </Typography>
-            <Typography type="headline" paragraph style={{color:'white', width:'45%'}}>This inventory section lets you manage categories & orders of 
-                your furniture, add/remove/modify products, see products, and create bill for payments.</Typography>
+            <Typography type="headline" paragraph style={{color:'white', width:'45%'}}>This Shop Management section lets you manage accounts of your employees.</Typography>
             </Hidden>
           </div>
             </div>
