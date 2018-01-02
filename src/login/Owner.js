@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
+import Paper from 'material-ui/Paper';
 import Owner from '../img/shop4.jpg';
 import Input, { InputLabel, InputAdornment  } from 'material-ui/Input';
 import { FormControl  } from 'material-ui/Form';
@@ -85,6 +86,11 @@ handleClickShowPasssword = () => {
             }
           />
         </FormControl>
+        <Paper elevation={20} style={{padding:20, marginTop:30}}>
+          <Typography color="error">
+            Sorry, Authentication failed. Please provide correct credentials.
+          </Typography>
+        </Paper>
         <Link to='/Login' style={styles.noUnderline}>
         <Button raised component="span" style={{backgroundColor:'rgba(0,150,136,1)', marginTop: '3rem', color: 'white'}}>
         LOGIN

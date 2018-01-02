@@ -9,6 +9,7 @@ import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
 import Menu from './Menu';
 import ProductPanel from './ProductPanel';
+import Logout from './Logout';
 
 const styles = {
   left: {
@@ -81,25 +82,27 @@ function FullWidthGrid(props) {
                 GO TO INVENTORY
                 </Button>
                 </Link>
+                <Logout />
               </Hidden>
               <Hidden lgUp>
                 <Hidden smUp>
                   <Typography type="display2" gutterBottom style={{color:'white'}}>
                   PRODUCTS
                   </Typography>
-                  <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all thethe products of all/specific categories.</Typography>
+                  <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the products of all/specific categories.</Typography>
                 </Hidden>
                 <Hidden smDown>
                 <Typography type="display3" gutterBottom style={{color:'white'}}>
                 PRODUCTS
                 </Typography>
-                <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all thethe products of all/specific categories.</Typography>
+                <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the products of all/specific categories.</Typography>
                 </Hidden>
                 <Link to='/Inventory' style={styles.noUnderline}>
                 <Button raised style={styles.button}>
                 GO TO INVENTORY
                 </Button>
                 </Link>
+                <Logout />
               </Hidden>
             </div>
             </Grid>

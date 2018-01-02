@@ -12,6 +12,7 @@ import Divider from 'material-ui/Divider';
 import Hidden from 'material-ui/Hidden';
 import Sofa from '../img/sofa.png';
 import ModalCategory from './ModalCategory';
+import Logout from './Logout';
 
 const styles = {
   left: {
@@ -133,6 +134,7 @@ function FullWidthGrid(props) {
             GO TO INVENTORY
             </Button>
             </Link>
+            <Logout />
             </Hidden>
             <Hidden smUp>
             <Typography type="display1" gutterBottom style={{color:'white'}}>
@@ -144,6 +146,7 @@ function FullWidthGrid(props) {
             GO TO INVENTORY
             </Button>
             </Link>
+            <Logout />
             </Hidden>
           </div>
         </Grid>

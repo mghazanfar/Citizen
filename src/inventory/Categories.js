@@ -10,6 +10,7 @@ import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
 import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
 import Table from '../img/table2.JPG';
+import Logout from './Logout';
 
 const styles = {
   left: {
@@ -111,6 +112,7 @@ function FullWidthGrid(props) {
             GO TO INVENTORY
             </Button>
             </Link>
+          <Logout />
           </div>
         </Grid>
 
