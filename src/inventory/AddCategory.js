@@ -191,7 +191,18 @@ function FullWidthGrid(props) {
             </label>
             <Divider inset/>
             </div>
-            <ModalCategory />
+            <ModalCategory
+                addData={{category: this.state.category,
+                    productName: this.state.productName,
+                    modelNumber: this.state.modelNumber,
+                    brandName: this.state.brandName,
+                    color: this.state.color,
+                    basePrice: this.state.basePrice,
+                    salePrice: this.state.salePrice,
+                    quantity: this.state.quantity,
+                    img: this.state.img,
+                    file: this.state.file,}}
+            />
             </Paper>
           </div>
         </Grid>

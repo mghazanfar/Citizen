@@ -13,6 +13,7 @@ import LinearProgress from 'material-ui/Progress/LinearProgress';
 import request from "../../node_modules/superagent/superagent";
 import server from "../constants";
 import Cookies from 'universal-cookie';
+//import cookie from "react-cookie";
 var cookies = new Cookies();
 
 const styles = {
@@ -67,20 +68,25 @@ login = () => {
       .send(data)
       .end((err, res) => {
         if (res.status === 200) {
+            console.log(res, err);
           cookies.set('accessToken',{accessToken: res.body.id}, {path: '/'});
           request.get(server.path+'/api/Categories?access_token='+res.body.id).end(
               (err, categories) => {
+                //cookies.set('categories',{categories: categories.body}, {path: '/'});
                 document.cookie = 'categories=' + JSON.stringify(categories.body);
+                //console.log(cookie.get('categories'));
               }
           );
           request.get(server.path+'/api/Products?access_token='+res.body.id).end(
               (err, products) => {
-                document.cookie = 'products=' + JSON.stringify(products.body);;
+                  //cookies.remove('products');
+                  document.cookie = 'products=' + JSON.stringify(products.body);
+                  //console.log(cookie.get('products'));
+                  //createStore(products);
               }
           );
-          window.location.href = '/Login';
+          //window.location.href = '/Login';
         } else {
-            console.log(res.body.error.message);
             this.setState({
                 loginFailed: res.body.error.message,
                 visible: 'block'

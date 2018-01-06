@@ -9,14 +9,36 @@ import Dialog, {
   withMobileDialog,
 } from 'material-ui/Dialog';
 import { Link } from 'react-router-dom';
+import request from "../../node_modules/superagent/superagent";
+import server from "../constants";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 class ResponsiveDialog extends React.Component {
   state = {
     open: false,
+    name: null,
+    category: null
   };
-
   handleClickOpen = () => {
-    this.setState({ open: true });
+    var data = {
+        category: this.props.addData.category,
+        name: this.props.addData.productName,
+        color: this.props.addData.color,
+        image: this.props.addData.img,
+        quanity: this.props.addData.quantity,
+        brand: this.props.addData.brandName,
+        salePrice: this.props.addData.salePrice,
+        basePrice: this.props.addData.basePrice,
+        model: this.props.addData.modelNumber
+    }
+    request.post(server.path+'/api/Products?access_token='+(cookies.get('accessToken').accessToken))
+      .send(data)
+      .end((err, res) => {
+        if(res.status === 200) {
+            this.setState({ open: true, name: res.body.name, category: res.body.category });
+        }
+      });
   };
 
   handleRequestClose = () => {
@@ -40,15 +62,13 @@ class ResponsiveDialog extends React.Component {
           <DialogTitle><span  style={{color:'white'}}>Confirmation!</span></DialogTitle>
           <DialogContent>
             <DialogContentText style={{color:'white'}}>
-            Your Product with name '{addData.productName}' in category '{addData.category}' has been added.
+            Your Product with name '{this.state.name}' in category '{this.state.category}' has been added.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-          <Link to="/Products" style={{ textDecoration: 'none' }}>
             <Button onClick={this.handleRequestClose} color="primary">
                 OK
             </Button>
-        </Link>
           </DialogActions>
           </div>
         </Dialog>

@@ -7,6 +7,10 @@ import Background from '../img/541.jpg';
 import Avatar from 'material-ui/Avatar';
 import { Link } from 'react-router-dom';
 import ModalDelete from './ModalDelete';
+import server from "../constants";
+import request from "superagent/superagent";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 const styles = {
   noUnderline: {
@@ -40,7 +44,13 @@ const data = [
 
 function BasicTable(props) {
   const { classes } = props;
-
+  var prod;
+    request.get(server.path + '/api/Products?access_token=' + cookies.get('accessToken').accessToken).end(
+        (err, products) => {
+            products = Array.prototype.slice.call(products.body, 0);
+            console.log(products);
+        }
+    );
   return (
       <Table className={classes.table}>
         <TableHead>
