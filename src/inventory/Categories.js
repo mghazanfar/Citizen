@@ -68,8 +68,13 @@ noUnderline: {
 }
 };
 
-function FullWidthGrid(props) {
 
+class FullWidthGrid extends React.Component<props, {}> {
+
+
+  render() {
+    const { classes } = this.props;
+    
   return (
   <div style={styles.root}>
     <Grid container spacing={0} style={styles.container}>
@@ -152,6 +157,7 @@ function FullWidthGrid(props) {
       </Grid>
     </div>
   );
+  }
 }
 
 export default withStyles(styles)(FullWidthGrid);

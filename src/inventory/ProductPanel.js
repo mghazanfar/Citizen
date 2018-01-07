@@ -38,9 +38,11 @@ const data = [
   createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
 ];
 
-function BasicTable(props) {
-  const { classes } = props;
 
+class BasicTable extends React.Component<props, {}> {
+
+  render(){
+    const { classes } = this.props;
   return (
       <Table className={classes.table}>
         <TableHead>
@@ -75,6 +77,7 @@ function BasicTable(props) {
         </TableBody>
       </Table>
   );
+}
 }
 
 BasicTable.propTypes = {
