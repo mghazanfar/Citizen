@@ -72,6 +72,11 @@ labelUpload: {
 };
 
 function FullWidthGrid(props) {
+  state = {
+    name: null,
+    description: null,
+    image: null,
+  }
 
   return (
     <div style={styles.root}>
@@ -192,7 +197,7 @@ function FullWidthGrid(props) {
             <Divider inset/>
             </div>
             <ModalCategory
-                addData={{category: this.state.category,
+                addData={{name: this.state.name,
                     productName: this.state.productName,
                     modelNumber: this.state.modelNumber,
                     brandName: this.state.brandName,

@@ -43,16 +43,22 @@ const data = [
 ];
 
 class BasicTable extends React.Component<props, {}> {
+  state = {
+    products: []
+    }
 
-  render(){
-    const { classes } = this.props;
-    var prod;
+  componentWillMount = () => {
       request.get(server.path + '/api/Products?access_token=' + cookies.get('accessToken').accessToken).end(
-          (err, products) => {
-              products = Array.prototype.slice.call(products.body, 0);
-              console.log(products);
+          (err, product) => {
+              this.setState({
+                  products: product.body
+              });
+              console.log(product.body);
           }
       );
+  }
+  render(){
+    const { classes } = this.props;
 return (
       <Table className={classes.table}>
         <TableHead>
@@ -69,7 +75,7 @@ return (
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map(n => {
+          {this.state.products.map(n => {
             return (
               <TableRow key={n.id}>
                 <TableCell>{n.price}</TableCell>

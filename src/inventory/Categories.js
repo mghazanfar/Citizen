@@ -73,18 +73,21 @@ noUnderline: {
 
 
 class FullWidthGrid extends React.Component<props, {}> {
-
-
+    state = {
+        categories: []
+    }
+    componentWillMount= () => {
+        request.get(server.path + '/api/Categories?access_token=' + cookies.get('accessToken').accessToken).end(
+            (err, category) => {
+                this.setState({
+                    categories: category.body
+                });
+                console.log(category.body);
+            }
+        );
+    }
   render() {
     const { classes } = this.props;
-    var cat;
-    request.get(server.path + '/api/Categories?access_token=' + cookies.get('accessToken').accessToken).end(
-        (err, categories) => {
-            document.cookie = 'categories=' + JSON.stringify(categories.body);
-            cat = Array.prototype.slice.call(categories.body, 0);
-            console.log(cat);
-        }
-    );
     
   return (
   <div style={styles.root}>
@@ -94,10 +97,10 @@ class FullWidthGrid extends React.Component<props, {}> {
         <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
           <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit'}}>
           <List>
-            {[0, 1, 2, 3,4,5,6,7,8].map(value => (
-              <Link to='/Products' style={styles.noUnderline}><ListItem key={value} dense button style={styles.listItem} divider>
-                <Avatar src={Table} style={styles.avatar}/>
-                <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>Table {value + 1}</Typography>} secondary={"Tables for home, beautiful and durable."}/>
+            {this.state.categories.map(value => (
+              <Link to='/Products' style={styles.noUnderline}><ListItem key={value.name} dense button style={styles.listItem} divider>
+                <Avatar src={value.image} style={styles.avatar}/>
+                <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>{value.name}</Typography>} secondary={value.description}/>
                 <ListItemSecondaryAction />
                 <Link to='/ModifyCategory' style={styles.noUnderline}>
                   <Button color="primary">
@@ -140,7 +143,7 @@ class FullWidthGrid extends React.Component<props, {}> {
           <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
             <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit', marginTop:'4rem'}}>
             <List>
-              {[0, 1, 2, 3,4,5,6,7,8].map(value => (
+              {this.state.categories.map(value => (
                 <ListItem key={value} dense button style={styles.listItem} divider>
                   <Avatar src={Table} style={styles.avatar}/>
                   <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>Table {value + 1}</Typography>} secondary={"Tables for home, beautiful and durable."}/>

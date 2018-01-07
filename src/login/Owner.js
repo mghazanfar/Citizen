@@ -85,7 +85,7 @@ login = () => {
                   //createStore(products);
               }
           );
-          //window.location.href = '/Login';
+          window.location.href = '/Login';
         } else {
             this.setState({
                 loginFailed: res.body.error.message,
