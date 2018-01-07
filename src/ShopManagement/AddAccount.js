@@ -13,6 +13,7 @@ import Table from '../img/table2.JPG';
 import TextField from 'material-ui/TextField';
 import ModalProducts from '../inventory/ModalProducts';
 import Logout from '../inventory/Logout';
+import Select from './MultipleSelect';
 
 const styles = {
   left: {
@@ -160,78 +161,20 @@ class TextFields extends React.Component<props, {}> {
                   <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
                       <Paper elevation={24} style={{maxHeight:600, overflow:'auto', width:'inherit', padding: 20}}>
                           <TextField
-                          label="Category"
+                          label="UserName"
                           className={classes.textField}
                           placeholder={this.state.category}
                           onChange={this.handleChange('category')}
                           fullWidth
                         />
                           <TextField
-                          label="Product Name"
+                          label="Password"
                           className={classes.textField}
                           placeholder={this.state.productName}
                           onChange={this.handleChange('productName')}
                           fullWidth
                         />
-                          <TextField
-                          label="Model Number"
-                          className={classes.textField}
-                          placeholder={this.state.modelNumber}
-                          onChange={this.handleChange('modelNumber')}
-                          fullWidth
-                        />
-                          <TextField
-                          label="Brand Name"
-                          className={classes.textField}
-                          placeholder={this.state.brandName}
-                          onChange={this.handleChange('brandName')}
-                          fullWidth
-                        />
-                          <TextField
-                          label="Color"
-                          className={classes.textField}
-                          placeholder={this.state.color}
-                          onChange={this.handleChange('color')}
-                          fullWidth
-                        />
-                          <TextField
-                          label="Base Price"
-                          className={classes.textField}
-                          placeholder={this.state.basePrice}
-                          onChange={this.handleChange('basePrice')}
-                          fullWidth
-                        />
-                          <TextField
-                          label="Sale Price"
-                          className={classes.textField}
-                          placeholder={this.state.salePrice}
-                          onChange={this.handleChange('salePrice')}
-                          fullWidth
-                        />
-                          <TextField
-                          label="Quantity"
-                          className={classes.textField}
-                          placeholder={this.state.quantity}
-                          onChange={this.handleChange('quantity')}
-                          fullWidth
-                        />
-                          <div style={{display:'flex'}}>
-                              <Avatar src={img} style={styles.avatar}/>
-                              <input
-                              accept="image/*"
-                              style={{display:'none'}}
-                              id="raised-button-file"
-                              multiple
-                              type="file"
-                              onChange={(e)=>this._handleImageChange(e)}
-                              />
-                              <label htmlFor="raised-button-file" style={styles.labelUpload}>
-                              <Button raised component="span" style={styles.buttonUpload}>
-                                  Upload
-                              </Button>
-                              </label>
-                              <Divider inset/>
-                              </div>
+                        <Select />
                               <div style={{display:'flex',  justifyContent:'space-around'}}>
                               <ModalProducts addData={{category: this.state.category,
       productName: this.state.productName,

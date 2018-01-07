@@ -24,7 +24,7 @@ const styles = {
   },
   rightInner: {
     minHeight: '100vh',
-    background: '-webkit-linear-gradient(-125deg, rgba(208,0,240,0.45), rgba(230,0,128,0.45), rgba(255,0,0,0.45))',
+    background: '-webkit-linear-gradient(-125deg, rgba(208,0,240,0.8), rgba(230,0,128,0.8), rgba(255,0,0,0.8))',
     display: 'flex',
     alignItems:'center',
     flexDirection:'column',
