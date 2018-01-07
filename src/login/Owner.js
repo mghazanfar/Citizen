@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
+import Paper from 'material-ui/Paper';
 import Owner from '../img/shop4.jpg';
 import Input, { InputLabel, InputAdornment  } from 'material-ui/Input';
 import { FormControl  } from 'material-ui/Form';
 import IconButton from 'material-ui/IconButton';
 import Visibility from 'material-ui-icons/Visibility';
 import VisibilityOff from 'material-ui-icons/VisibilityOff';
-import {
- Link, Route,
-} from 'react-router-dom';
+import LinearProgress from 'material-ui/Progress/LinearProgress';
+
 import request from "../../node_modules/superagent/superagent";
 import server from "../constants";
 import Cookies from 'universal-cookie';
-import LinearProgress from 'material-ui/Progress/LinearProgress';
-const cookies = new Cookies();
+//import cookie from "react-cookie";
+var cookies = new Cookies();
 
 const styles = {
   main: {
@@ -41,11 +41,12 @@ const styles = {
 
 class App extends Component {
   state = {
+    loginFailed: '',
     amount: '',
     password: '',
     weight: '',
     showPassword: false,
-    loggedin: false
+    visible: 'none'
 };
 
 handleChange = prop => event => {
@@ -57,31 +58,46 @@ handleMouseDownPassword = event => {
 };
 
 login = () => {
-  const url = server.path+'/api/Accounts/login';
   var data = {
     username: this.state.username,
     password: this.state.password
-    }
+    };
     request
-      .post(url)
+      .post(server.path+'/api/Accounts/login')
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .send(data)
       .end((err, res) => {
         if (res.status === 200) {
-          cookies.set('accessToken', res.body.id, { path: '/' });
-          console.log(cookies.get('accessToken'));
-          this.setState({
-            loggedin: true
-          });
-          window.location.href = '/Login';
+            console.log(res, err);
+          cookies.set('accessToken',{accessToken: res.body.id}, {path: '/'});
+          request.get(server.path+'/api/Categories?access_token='+res.body.id).end(
+              (err, categories) => {
+                //cookies.set('categories',{categories: categories.body}, {path: '/'});
+                document.cookie = 'categories=' + JSON.stringify(categories.body);
+                //console.log(cookie.get('categories'));
+              }
+          );
+          request.get(server.path+'/api/Products?access_token='+res.body.id).end(
+              (err, products) => {
+                  //cookies.remove('products');
+                  document.cookie = 'products=' + JSON.stringify(products.body);
+                  //console.log(cookie.get('products'));
+                  //createStore(products);
+              }
+          );
+          //window.location.href = '/Login';
+        } else {
+            this.setState({
+                loginFailed: res.body.error.message,
+                visible: 'block'
+            });
         }
-      }); 
+      });
   }
 
 handleClickShowPasssword = () => {
   this.setState({ showPassword: !this.state.showPassword });
 };
-
   render() {
     return (
       <div style={styles.main}>
@@ -118,11 +134,17 @@ handleClickShowPasssword = () => {
         <Button type='submit' onClick={this.login.bind(this)} raised component="span" style={{backgroundColor:'rgba(0,150,136,1)', marginTop: '3rem', color: 'white'}}>
         LOGIN
         </Button>
+        <div style={{display: this.state.visible}}>
+            <Paper elevation={20} style={{padding:20, marginTop:30}}>
+              <Typography color="error">
+                  {this.state.loginFailed}
+              </Typography>
+            </Paper>
+        </div>
           </div>
         </div>
       </div>
     );
   }
 }
-
 export default App;

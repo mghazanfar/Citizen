@@ -33,7 +33,7 @@ class ResponsiveDialog extends React.Component {
 
   render() {
     const { fullScreen, category, addData } = this.props;
-
+console.log(this);
     if(category==='modify'){
       return (
         <div style={{display:'flex', justifyContent:'center'}}>

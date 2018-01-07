@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
 import Hidden from 'material-ui/Hidden';
 import ManageDates from './ManageDates';
+import Logout from './Logout';
 
 const styles = {
   left: {
@@ -91,6 +92,7 @@ function FullWidthGrid(props) {
               Create a bill
             </Button>
             </Link>
+            <Logout />
           </div>
         </Grid>
 

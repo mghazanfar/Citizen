@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import Background from '../img/zimp.jpg';
@@ -10,10 +10,13 @@ import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
 import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
 import Table from '../img/table2.JPG';
+import Logout from './Logout';
 
-import request from "../../node_modules/superagent/superagent";
-import server from "../constants";
+import { valueFromAST } from 'graphql/utilities/valueFromAST';
 import Cookies from 'universal-cookie';
+import server from "../constants";
+import request from "superagent/superagent";
+const waterfall = require('async/waterfall');
 const cookies = new Cookies();
 
 const styles = {
@@ -74,6 +77,14 @@ class FullWidthGrid extends React.Component<props, {}> {
 
   render() {
     const { classes } = this.props;
+    var cat;
+    request.get(server.path + '/api/Categories?access_token=' + cookies.get('accessToken').accessToken).end(
+        (err, categories) => {
+            document.cookie = 'categories=' + JSON.stringify(categories.body);
+            cat = Array.prototype.slice.call(categories.body, 0);
+            console.log(cat);
+        }
+    );
     
   return (
   <div style={styles.root}>
