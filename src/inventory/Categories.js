@@ -74,7 +74,8 @@ noUnderline: {
 
 class FullWidthGrid extends React.Component<props, {}> {
     state = {
-        categories: []
+        categories: [],
+        id: null,
     }
     componentWillMount= () => {
         request.get(server.path + '/api/Categories?access_token=' + cookies.get('accessToken').accessToken).end(
@@ -82,9 +83,12 @@ class FullWidthGrid extends React.Component<props, {}> {
                 this.setState({
                     categories: category.body
                 });
-                console.log(category.body);
             }
         );
+    }
+
+    delete = () => {
+        //console.log(id);
     }
   render() {
     const { classes } = this.props;
@@ -98,7 +102,7 @@ class FullWidthGrid extends React.Component<props, {}> {
           <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit'}}>
           <List>
             {this.state.categories.map(value => (
-              <Link to='/Products' style={styles.noUnderline}><ListItem key={value.name} dense button style={styles.listItem} divider>
+              <ListItem key={value.name} dense button style={styles.listItem} divider>
                 <Avatar src={value.image} style={styles.avatar}/>
                 <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>{value.name}</Typography>} secondary={value.description}/>
                 <ListItemSecondaryAction />
@@ -107,11 +111,10 @@ class FullWidthGrid extends React.Component<props, {}> {
                     MODIFY
                   </Button>
                 </Link>
-                <Button color="accent">
+                <Button color="accent" name="delete" id={value.id} onClick={this.delete.bind(this)}>
                   DELETE
                 </Button>
               </ListItem>
-              </Link>
             ))}
           </List>
           </Paper>
@@ -145,8 +148,8 @@ class FullWidthGrid extends React.Component<props, {}> {
             <List>
               {this.state.categories.map(value => (
                 <ListItem key={value} dense button style={styles.listItem} divider>
-                  <Avatar src={Table} style={styles.avatar}/>
-                  <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>Table {value + 1}</Typography>} secondary={"Tables for home, beautiful and durable."}/>
+                  <Avatar src={value.image} style={styles.avatar}/>
+                  <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>{value.name}</Typography>} secondary={value.description}/>
                   <ListItemSecondaryAction />
                   <Link to='/ModifyCategory' style={styles.noUnderline}>
                     <Button color="primary">

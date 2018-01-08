@@ -9,13 +9,32 @@ import Dialog, {
   withMobileDialog,
 } from 'material-ui/Dialog';
 
-class ResponsiveDialog extends React.Component {
+import request from "../../node_modules/superagent/superagent";
+import server from "../constants";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
+class ResponsiveDialog extends React.Component<props, {}> {
   state = {
     open: false,
   };
 
   handleClickOpen = () => {
-    this.setState({ open: true });
+      var accessToken = cookies.get('accessToken').accessToken;
+      console.log(accessToken);
+      if(accessToken == undefined) {
+          window.location.href = '/'
+      }
+      var url = server.path+'/api/Products/'+this.props.id.id+'?access_token='+accessToken;
+      request.delete(url)
+          .end((err, res) => {
+              if(res.status == 401) {
+                alert(res.body.error.message);
+              } else {
+                  this.setState({ open: true });
+                  window.location.href = '/Products';
+              }
+          });
   };
 
   handleRequestClose = () => {

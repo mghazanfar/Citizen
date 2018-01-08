@@ -10,7 +10,9 @@ import Hidden from 'material-ui/Hidden';
 import Menu from './Menu';
 import ProductPanel from './ProductPanel';
 import Logout from './Logout';
+import server from '../constants';
 
+import request from '../../node_modules/request';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
@@ -66,84 +68,101 @@ noUnderline: {
 }
 };
 
-function FullWidthGrid(props) {
-  var pro = cookies.get('products');
-  console.log(pro);
-  return (
-  <div style={styles.root}>
-    <Grid container spacing={0} style={styles.container}>
-        <Grid item xs={12} lg={2} style={styles.left}>
-            <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', }}>
-              <Hidden lgDown>
-                <Hidden smDown>
-                  <Typography type="display1" gutterBottom style={{color:'white'}}>
-                  PRODUCTS
-                  </Typography>
-                  <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all thethe products of all/specific categories.</Typography>
+class FullWidthGrid  extends React.Component {
+    state = {
+        products : []
+    }
+
+  render () {
+    return(
+
+        <div style={styles.root}>
+            <Grid container spacing={0} style={styles.container}>
+                <Grid item xs={12} lg={2} style={styles.left}>
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        marginTop: '4rem',
+                        marginBottom: '4rem',
+                    }}>
+                        <Hidden lgDown>
+                            <Hidden smDown>
+                                <Typography type="display1" gutterBottom style={{color: 'white'}}>
+                                    PRODUCTS
+                                </Typography>
+                                <Typography type="headline" paragraph
+                                            style={{color: 'white', textAlign: 'center', width: '60%',}}>Here, you can see
+                                    all thethe products of all/specific categories.</Typography>
+                            </Hidden>
+                            <Link to='/Inventory' style={styles.noUnderline}>
+                                <Button raised style={styles.button}>
+                                    GO TO INVENTORY
+                                </Button>
+                            </Link>
+                            <Logout/>
+                        </Hidden>
+                        <Hidden lgUp>
+                            <Hidden smUp>
+                                <Typography type="display2" gutterBottom style={{color: 'white'}}>
+                                    PRODUCTS
+                                </Typography>
+                                <Typography type="headline" paragraph
+                                            style={{color: 'white', textAlign: 'center', width: '60%',}}>Here, you can see
+                                    all the products of all/specific categories.</Typography>
+                            </Hidden>
+                            <Hidden smDown>
+                                <Typography type="display3" gutterBottom style={{color: 'white'}}>
+                                    PRODUCTS
+                                </Typography>
+                                <Typography type="headline" paragraph
+                                            style={{color: 'white', textAlign: 'center', width: '60%',}}>Here, you can see
+                                    all the products of all/specific categories.</Typography>
+                            </Hidden>
+                            <Link to='/Inventory' style={styles.noUnderline}>
+                                <Button raised style={styles.button}>
+                                    GO TO INVENTORY
+                                </Button>
+                            </Link>
+                            <Logout/>
+                        </Hidden>
+                    </div>
+                </Grid>
+                <Hidden mdDown>
+                    <Grid item xs={12} lg={10} style={styles.right}>
+                        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '99%'}}>
+                            <Menu category/>
+                            <Paper elevation={24} style={{maxHeight: 600, overflow: 'auto', width: 'inherit'}}>
+                                <ProductPanel/>
+                            </Paper>
+                            <Link to='/AddProducts' style={styles.noUnderline}>
+                                <Button raised style={styles.button}>
+                                    ADD PRODUCT
+                                </Button>
+                            </Link>
+                        </div>
+                    </Grid>
                 </Hidden>
-                <Link to='/Inventory' style={styles.noUnderline}>
-                <Button raised style={styles.button}>
-                GO TO INVENTORY
-                </Button>
-                </Link>
-                <Logout />
-              </Hidden>
-              <Hidden lgUp>
-                <Hidden smUp>
-                  <Typography type="display2" gutterBottom style={{color:'white'}}>
-                  PRODUCTS
-                  </Typography>
-                  <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the products of all/specific categories.</Typography>
+
+                <Hidden mdUp>
+                    <Grid item xs={12} lg={10} style={styles.right}>
+                        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '99%'}}>
+                            <Menu category/>
+                            <Paper elevation={24} style={{maxHeight: 600, overflow: 'auto', width: 'inherit'}}>
+                                <ProductPanel/>
+                            </Paper>
+                            <Link to='/AddProducts' style={styles.noUnderline}>
+                                <Button raised style={styles.button}>
+                                    ADD PRODUCT
+                                </Button>
+                            </Link>
+                        </div>
+                    </Grid>
                 </Hidden>
-                <Hidden smDown>
-                <Typography type="display3" gutterBottom style={{color:'white'}}>
-                PRODUCTS
-                </Typography>
-                <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the products of all/specific categories.</Typography>
-                </Hidden>
-                <Link to='/Inventory' style={styles.noUnderline}>
-                <Button raised style={styles.button}>
-                GO TO INVENTORY
-                </Button>
-                </Link>
-                <Logout />
-              </Hidden>
-            </div>
             </Grid>
-      <Hidden mdDown>
-        <Grid item xs={12} lg={10} style={styles.right}>
-            <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'99%' }}>
-                <Menu category/>
-                <Paper elevation={24} style={{maxHeight:600, overflow:'auto', width:'inherit'}}>
-                  <ProductPanel/>
-                </Paper>
-                <Link to='/AddProducts' style={styles.noUnderline}>
-                <Button raised style={styles.button}>
-                    ADD PRODUCT
-                </Button>
-                </Link>
-            </div>
-        </Grid>
-        </Hidden>
-      
-        <Hidden mdUp>
-          <Grid item xs={12} lg={10} style={styles.right}>
-              <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'99%' }}>
-                  <Menu category/>
-                  <Paper elevation={24} style={{maxHeight:600, overflow:'auto', width:'inherit'}}>
-                    <ProductPanel/>
-                  </Paper>
-                  <Link to='/AddProducts' style={styles.noUnderline}>
-                  <Button raised style={styles.button}>
-                      ADD PRODUCT
-                  </Button>
-                  </Link>
-              </div>
-          </Grid>
-        </Hidden>
-      </Grid>
-    </div>
-  );
+        </div>
+    );
+  };
 }
 
-export default withStyles(styles)(FullWidthGrid);
+export default (FullWidthGrid);

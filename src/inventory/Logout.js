@@ -10,6 +10,11 @@ import { withStyles } from 'material-ui/styles';
 import { Manager, Target, Popper } from 'react-popper';
 import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
 
+import server from "../constants";
+import request from "superagent/superagent";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 const styles = {
   root: {
     display: 'flex',
@@ -37,6 +42,19 @@ class MenuListComposition extends React.Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+
+  logout = () => {
+    var accessToken = cookies.get('accessToken').accessToken;
+    if(accessToken == undefined ){
+      window.location.href = '/';
+    }
+    request.post(server.path+'/api/Accounts/logout?access_token='+accessToken)
+        .end((err, res) => {
+          if(res.status == 204) {
+            window.location.href = '/'
+          }
+        });
+  }
 
   render() {
     const { classes } = this.props;
@@ -66,7 +84,7 @@ class MenuListComposition extends React.Component {
                   <MenuList role="menu">
                     <MenuItem onClick={this.handleClose}>Profile</MenuItem>
                     <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                    <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+                    <MenuItem onClick={this.logout.bind(this)}>Logout</MenuItem>
                   </MenuList>
                 </Paper>
               </Grow>

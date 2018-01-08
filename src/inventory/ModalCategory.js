@@ -15,16 +15,31 @@ import server from "../constants";
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
-class ResponsiveDialog extends React.Component {
+class ResponsiveDialog extends React.Component <props, {}>{
   state = {
     open: false,
+    name: null,
+    description: null,
   };
 
   handleClickOpen = () => {
+      console.log(this);
+      var data = {
+          name: this.props.addData.name,
+          description: this.props.addData.description,
+          image: this.props.addData.image,
+      }
+      request.post(server.path+'/api/Categories?access_token='+(cookies.get('accessToken').accessToken))
+          .send(data)
+          .end((err, res) => {
+              console.log((res));
+              if(res.status === 200) {
+                  this.setState({ open: true, name: res.body.name, category: res.body.category });
+              }
+          });
     if(this.props.category==="modify"){
       
     }
-    this.setState({ open: true });
   };
 
   handleRequestClose = () => {
@@ -33,7 +48,6 @@ class ResponsiveDialog extends React.Component {
 
   render() {
     const { fullScreen, category, addData } = this.props;
-console.log(this);
     if(category==='modify'){
       return (
         <div style={{display:'flex', justifyContent:'center'}}>
@@ -78,7 +92,7 @@ console.log(this);
           <DialogTitle><span  style={{color:'white'}}>Confirmation!</span></DialogTitle>
           <DialogContent>
             <DialogContentText style={{color:'white'}}>
-            Your Category with name "{addData.name}" and description "{addData.description}" has been added.
+            Your Category with name "{this.state.name}" and description "{this.state.description}" has been added.
             </DialogContentText>
           </DialogContent>
           <DialogActions>

@@ -48,14 +48,28 @@ class BasicTable extends React.Component<props, {}> {
     }
 
   componentWillMount = () => {
-      request.get(server.path + '/api/Products?access_token=' + cookies.get('accessToken').accessToken).end(
-          (err, product) => {
-              this.setState({
-                  products: product.body
-              });
-              console.log(product.body);
-          }
-      );
+      var accessToken = cookies.get('accessToken').accessToken;
+      if(accessToken == undefined) {
+          window.location.href = '/'
+      } else {
+          request.get(server.path + '/api/Products?access_token=' + accessToken).end(
+              (err, product) => {
+                  if(product.status === 401) {
+                      window.location.href = '/';
+                  }
+                  if(product.body.length == 0) {
+                      window.location.href = '/AddProducts'
+                  }
+                  this.setState({
+                      products: product.body
+                  });
+              }
+          );
+      }
+  }
+
+  modify = () => {
+
   }
   render(){
     const { classes } = this.props;
@@ -78,15 +92,15 @@ return (
           {this.state.products.map(n => {
             return (
               <TableRow key={n.id}>
-                <TableCell>{n.price}</TableCell>
+                <TableCell>{n.salePrice}</TableCell>
                 <TableCell numeric>{n.brand}</TableCell>
                 <TableCell numeric>{n.model}</TableCell>
                 <TableCell numeric>{n.name}</TableCell>
                 <TableCell numeric>{n.color}</TableCell>
-                <TableCell><Avatar src={n.picture} style={{width:70, height:70}} /></TableCell>
+                <TableCell><Avatar src={n.image} style={{width:70, height:70}} /></TableCell>
                 <TableCell numeric>{n.category}</TableCell>
                 <TableCell numeric>{n.quantity}</TableCell>
-                <TableCell ><div><Link to='/ModifyProduct' style={styles.noUnderline}><Button color='primary'>MODIFY</Button></Link><ModalDelete /></div></TableCell>
+                <TableCell ><div><Link to='/ModifyProduct' style={styles.noUnderline}><Button id={n.id} onClick={this.delete.bind(this)} color='primary'>MODIFY</Button></Link><ModalDelete id={{id: n.id}}/></div></TableCell>
               </TableRow>
             );
           })}

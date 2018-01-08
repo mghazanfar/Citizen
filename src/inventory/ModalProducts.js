@@ -21,6 +21,7 @@ class ResponsiveDialog extends React.Component {
     category: null
   };
   handleClickOpen = () => {
+      console.log(this.props.addData.img);
     var data = {
         category: this.props.addData.category,
         name: this.props.addData.productName,
@@ -37,6 +38,7 @@ class ResponsiveDialog extends React.Component {
       .end((err, res) => {
         if(res.status === 200) {
             this.setState({ open: true, name: res.body.name, category: res.body.category });
+            window.location.href = '/Products';
         }
       });
   };
