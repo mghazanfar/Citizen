@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Button from 'material-ui/Button';
-import Background from '../img/541.jpg';
 import Avatar from 'material-ui/Avatar';
 import { Link } from 'react-router-dom';
 import ModalDelete from './ModalDelete';
@@ -18,38 +17,17 @@ const styles = {
   }
 };
 
-let id = 0;
-function createData(price, brand, model, name, color, picture, category, quantity) {
-  id += 1;
-  return { id,price, brand, model, name, color, picture, category, quantity };
-}
-
-const data = [
-  createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-  createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-  createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-  createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-  createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-  createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-  createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-  createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-  createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-  createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-  createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-  createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-  createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-  createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-  createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-];
-
 class BasicTable extends React.Component<props, {}> {
   state = {
     products: []
     }
 
   componentWillMount = () => {
+      if(cookies.get('accessToken') === undefined){
+          window.location.href = '/';
+      }
       var accessToken = cookies.get('accessToken').accessToken;
-      if(accessToken == undefined) {
+      if(accessToken === undefined) {
           window.location.href = '/'
       } else {
           request.get(server.path + '/api/Products?access_token=' + accessToken).end(
@@ -57,20 +35,19 @@ class BasicTable extends React.Component<props, {}> {
                   if(product.status === 401) {
                       window.location.href = '/';
                   }
-                  if(product.body.length == 0) {
+                  if(product.body.length === 0) {
+                      alert('No Products Available. Please add a few');
                       window.location.href = '/AddProducts'
                   }
                   this.setState({
                       products: product.body
+
                   });
               }
           );
       }
   }
 
-  modify = () => {
-
-  }
   render(){
     const { classes } = this.props;
 return (
@@ -100,7 +77,7 @@ return (
                 <TableCell><Avatar src={n.image} style={{width:70, height:70}} /></TableCell>
                 <TableCell numeric>{n.category}</TableCell>
                 <TableCell numeric>{n.quantity}</TableCell>
-                <TableCell ><div><Link to='/ModifyProduct' style={styles.noUnderline}><Button id={n.id} onClick={this.delete.bind(this)} color='primary'>MODIFY</Button></Link><ModalDelete id={{id: n.id}}/></div></TableCell>
+                <TableCell ><div><Link to={`/ModifyProduct?id=${n.id}`} style={styles.noUnderline}><Button id={n.id} color='primary'>MODIFY</Button></Link><ModalDelete id={{id: n.id}}/></div></TableCell>
               </TableRow>
             );
           })}

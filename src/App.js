@@ -47,7 +47,9 @@ const styles = {
   }
 }
 
+
 const Home = () => (
+
   <div style={styles.main}>
     <div style={styles.inner}>
       <div style={styles.data}>

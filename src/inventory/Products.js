@@ -93,7 +93,7 @@ class FullWidthGrid  extends React.Component {
                                 </Typography>
                                 <Typography type="headline" paragraph
                                             style={{color: 'white', textAlign: 'center', width: '60%',}}>Here, you can see
-                                    all thethe products of all/specific categories.</Typography>
+                                    all the products of all/specific categories.</Typography>
                             </Hidden>
                             <Link to='/Inventory' style={styles.noUnderline}>
                                 <Button raised style={styles.button}>

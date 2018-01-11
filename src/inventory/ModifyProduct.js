@@ -9,10 +9,14 @@ import Avatar from 'material-ui/Avatar';
 import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
 import Hidden from 'material-ui/Hidden';
-import Table from '../img/table2.JPG';
 import TextField from 'material-ui/TextField';
 import ModalProducts from './ModalProducts';
 import Logout from './Logout';
+
+import server from "../constants";
+import request from "superagent/superagent";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 const styles = {
   left: {
@@ -78,17 +82,56 @@ noUnderline: {
 
 class TextFields extends React.Component<props, {}> {
     state = {
-      category: this.props.category,
-      productName: this.props.productName,
-      modelNumber: this.props.modelNumber,
-      brandName: this.props.brandName,
-      color: this.props.color,
-      basePrice: this.props.basePrice,
-      salePrice: this.props.salePrice,
-      quantity: this.props.quantity,
-      img: this.props.img,
-      file: this.props.file,
+        id: null,
+        category: this.props.category,
+        productName: this.props.productName,
+        modelNumber: this.props.modelNumber,
+        brandName: this.props.brandName,
+        color: this.props.color,
+        basePrice: this.props.basePrice,
+        salePrice: this.props.salePrice,
+        quantity: this.props.quantity,
+        img: this.props.img,
+        file: this.props.file,
     };
+    componentWillMount() {
+        if(cookies.get('accessToken') === undefined){
+            window.location.href = '/';
+        }
+        var accessToken =cookies.get('accessToken').accessToken;
+        if (accessToken === undefined) {
+            window.location.href = '/';
+        }
+        var id = window.location.search.substring(1).split("=");
+        if(id[1] === undefined) {
+            window.location.href = '/Products'
+        }
+        request.get(`${server.path}/api/Products/${id[1]}?access_token=${accessToken}`)
+            .end((err, res) => {
+                if(res.statusCode === 401){
+                    alert(res.body.error.message);
+                    window.location.href = '/Products';
+                }
+                if(res.statusCode === 404) {
+                    alert(res.body.error.message);
+                    window.location.href = '/Products'
+                }
+                this.setState({
+                    id: res.body.id,
+                    category: res.body.category,
+                    productName: res.body.name,
+                    modelNumber: res.body.model,
+                    brandName: res.body.brand,
+                    color: res.body.color,
+                    basePrice: res.body.basePrice,
+                    salePrice: res.body.salePrice,
+                    quantity: res.body.quantity,
+                    img: res.body.image,
+                    file: res.body.image,
+                });
+            });
+
+    }
   
     _handleSubmit(e) {
       e.preventDefault();
@@ -144,7 +187,7 @@ class TextFields extends React.Component<props, {}> {
                       <Typography type="display1" gutterBottom style={{color:'white', width:'75%', textAlign:'center'}}>
                       MODIFY PRODUCTS
                       </Typography>
-                      <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can modify your product.</Typography>
+                      <Typography type="headline" paragraph style={{color:'white', textAlign:'c0enter', width:'60%',}}>Here, you can modify your product.</Typography>
                       <Link to='/Inventory' style={styles.noUnderline}>
                       <Button raised style={styles.button}>
                       GO TO INVENTORY
@@ -159,56 +202,56 @@ class TextFields extends React.Component<props, {}> {
                   <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
                       <Paper elevation={24} style={{maxHeight:600, overflow:'auto', width:'inherit', padding: 20}}>
                           <TextField
-                          label="Category"
+                          label='Category'
                           className={classes.textField}
                           placeholder={this.state.category}
                           onChange={this.handleChange('category')}
                           fullWidth
                         />
                           <TextField
-                          label="Product Name"
+                          label='Product Name'
                           className={classes.textField}
                           placeholder={this.state.productName}
                           onChange={this.handleChange('productName')}
                           fullWidth
                         />
                           <TextField
-                          label="Model Number"
+                          label='Model'
                           className={classes.textField}
                           placeholder={this.state.modelNumber}
                           onChange={this.handleChange('modelNumber')}
                           fullWidth
                         />
                           <TextField
-                          label="Brand Name"
+                          label='Brand'
                           className={classes.textField}
                           placeholder={this.state.brandName}
                           onChange={this.handleChange('brandName')}
                           fullWidth
                         />
                           <TextField
-                          label="Color"
+                          label='Color'
                           className={classes.textField}
                           placeholder={this.state.color}
                           onChange={this.handleChange('color')}
                           fullWidth
                         />
                           <TextField
-                          label="Base Price"
+                          label='Base Price'
                           className={classes.textField}
                           placeholder={this.state.basePrice}
                           onChange={this.handleChange('basePrice')}
                           fullWidth
                         />
                           <TextField
-                          label="Sale Price"
+                          label='Sale Price'
                           className={classes.textField}
                           placeholder={this.state.salePrice}
                           onChange={this.handleChange('salePrice')}
                           fullWidth
                         />
                           <TextField
-                          label="Quantity"
+                          label='Quantity'
                           className={classes.textField}
                           placeholder={this.state.quantity}
                           onChange={this.handleChange('quantity')}
@@ -232,7 +275,9 @@ class TextFields extends React.Component<props, {}> {
                               <Divider inset/>
                               </div>
                               <div style={{display:'flex',  justifyContent:'space-around'}}>
-                              <ModalProducts addData={{category: this.state.category,
+                              <ModalProducts addData={{
+      id: this.state.id,
+      category: this.state.category,
       productName: this.state.productName,
       modelNumber: this.state.modelNumber,
       brandName: this.state.brandName,
@@ -332,16 +377,18 @@ class TextFields extends React.Component<props, {}> {
                   <Divider inset/>
                   </div>
                   <div style={{display:'flex',  justifyContent:'space-around'}}>
-                  <ModalProducts addData={{category: this.state.category,
-                    productName: this.state.productName,
-                    modelNumber: this.state.modelNumber,
-                    brandName: this.state.brandName,
-                    color: this.state.color,
-                    basePrice: this.state.basePrice,
-                    salePrice: this.state.salePrice,
-                    quantity: this.state.quantity,
-                    img: this.state.img,
-                    file: this.state.file,}}
+                  <ModalProducts addData={{
+                      id: this.state.id,
+                      category: this.state.category,
+                      productName: this.state.productName,
+                      modelNumber: this.state.modelNumber,
+                      brandName: this.state.brandName,
+                      color: this.state.color,
+                      basePrice: this.state.basePrice,
+                      salePrice: this.state.salePrice,
+                      quantity: this.state.quantity,
+                      img: this.state.img,
+                      file: this.state.file,}}
                     />
                       <Link to='/Products' style={styles.noUnderline}>
                           <Button raised style={styles.button}>

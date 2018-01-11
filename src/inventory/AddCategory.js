@@ -13,6 +13,8 @@ import Hidden from 'material-ui/Hidden';
 import Sofa from '../img/sofa.png';
 import ModalCategory from './ModalCategory';
 import Logout from './Logout';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 const styles = {
   left: {
@@ -77,6 +79,12 @@ class FullWidthGrid extends React.Component{
     description: null,
     img: null,
   };
+
+  componentWillMount() {
+      if(cookies.get('accessToken') === undefined){
+          window.location.href = '/';
+      }
+  }
 
     _handleImageChange(e) {
         e.preventDefault();

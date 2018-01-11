@@ -24,21 +24,22 @@ class ResponsiveDialog extends React.Component <props, {}>{
 
   handleClickOpen = () => {
       console.log(this);
-      var data = {
-          name: this.props.addData.name,
-          description: this.props.addData.description,
-          image: this.props.addData.image,
-      }
-      request.post(server.path+'/api/Categories?access_token='+(cookies.get('accessToken').accessToken))
-          .send(data)
-          .end((err, res) => {
-              console.log((res));
-              if(res.status === 200) {
-                  this.setState({ open: true, name: res.body.name, category: res.body.category });
-              }
-          });
     if(this.props.category==="modify"){
       
+    } else {
+        var data = {
+            name: this.props.addData.name,
+            description: this.props.addData.description,
+            image: this.props.addData.image,
+        }
+        request.post(server.path+'/api/Categories?access_token='+(cookies.get('accessToken').accessToken))
+            .send(data)
+            .end((err, res) => {
+                console.log((res));
+                if(res.status === 200) {
+                    this.setState({ open: true, name: res.body.name, category: res.body.category });
+                }
+            });
     }
   };
 

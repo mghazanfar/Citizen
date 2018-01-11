@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {  } from 'react';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import Background from '../img/zimp.jpg';
@@ -9,14 +9,11 @@ import Avatar from 'material-ui/Avatar';
 import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
 import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
-import Table from '../img/table2.JPG';
 import Logout from './Logout';
 
-import { valueFromAST } from 'graphql/utilities/valueFromAST';
 import Cookies from 'universal-cookie';
 import server from "../constants";
 import request from "superagent/superagent";
-const waterfall = require('async/waterfall');
 const cookies = new Cookies();
 
 const styles = {
@@ -78,6 +75,9 @@ class FullWidthGrid extends React.Component<props, {}> {
         id: null,
     }
     componentWillMount= () => {
+        if(cookies.get('accessToken') === undefined){
+            window.location.href = '/';
+        }
         request.get(server.path + '/api/Categories?access_token=' + cookies.get('accessToken').accessToken).end(
             (err, category) => {
                 this.setState({
@@ -87,12 +87,22 @@ class FullWidthGrid extends React.Component<props, {}> {
         );
     }
 
-    delete = () => {
-        //console.log(id);
-    }
+    delete = function(e) {
+        console.log(e);
+        var r = window.confirm("Are you sure you want to delete?");
+        if (r == true) {
+            request.delete(`${server.path}/api/Categories/${e}?access_token=${cookies.get('accessToken').accessToken}`)
+                .end((err, res) => {
+                    console.log(res);
+                    if (res.status !==200) {
+                        alert(res.status);
+                    }
+                    window.location.href = '/Categories';
+                });
+        }
+    };
   render() {
-    const { classes } = this.props;
-    
+
   return (
   <div style={styles.root}>
     <Grid container spacing={0} style={styles.container}>
@@ -106,12 +116,12 @@ class FullWidthGrid extends React.Component<props, {}> {
                 <Avatar src={value.image} style={styles.avatar}/>
                 <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>{value.name}</Typography>} secondary={value.description}/>
                 <ListItemSecondaryAction />
-                <Link to='/ModifyCategory' style={styles.noUnderline}>
+                <Link to={`/ModifyCategory?id=${value.id}`} style={styles.noUnderline}>
                   <Button color="primary">
                     MODIFY
                   </Button>
                 </Link>
-                <Button color="accent" name="delete" id={value.id} onClick={this.delete.bind(this)}>
+                <Button color="accent" id={value.id} onClick={this.delete.bind(this, value.id)}>
                   DELETE
                 </Button>
               </ListItem>
@@ -156,7 +166,7 @@ class FullWidthGrid extends React.Component<props, {}> {
                       MODIFY
                     </Button>
                   </Link>
-                  <Button color="accent">
+                  <Button color="accent" id={value.id} onClick={this.delete.bind(null, value.id)}>
                     DELETE
                   </Button>
                 </ListItem>
@@ -169,7 +179,7 @@ class FullWidthGrid extends React.Component<props, {}> {
             </Button>
             </Link>
           </div>
-        </Grid>
+        </Grid>e
         </Hidden>
       </Grid>
     </div>

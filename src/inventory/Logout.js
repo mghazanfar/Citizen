@@ -45,12 +45,13 @@ class MenuListComposition extends React.Component {
 
   logout = () => {
     var accessToken = cookies.get('accessToken').accessToken;
-    if(accessToken == undefined ){
+    if(accessToken === undefined ){
       window.location.href = '/';
     }
     request.post(server.path+'/api/Accounts/logout?access_token='+accessToken)
         .end((err, res) => {
-          if(res.status == 204) {
+          if(res.status === 204) {
+            cookies.remove('accessToken');
             window.location.href = '/'
           }
         });

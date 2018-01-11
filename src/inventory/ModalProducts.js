@@ -16,35 +16,71 @@ const cookies = new Cookies();
 
 class ResponsiveDialog extends React.Component {
   state = {
+    buttonText: 'ADD PRODUCT',
     open: false,
     name: null,
     category: null
   };
+  componentWillMount() {
+      var id = window.location.search.substring(1).split("=");
+      if(id[0] !== '') {
+          this.setState({
+              buttonText: 'MODIFY PRODUCT'
+          });
+      }
+  }
   handleClickOpen = () => {
-      console.log(this.props.addData.img);
-    var data = {
-        category: this.props.addData.category,
-        name: this.props.addData.productName,
-        color: this.props.addData.color,
-        image: this.props.addData.img,
-        quanity: this.props.addData.quantity,
-        brand: this.props.addData.brandName,
-        salePrice: this.props.addData.salePrice,
-        basePrice: this.props.addData.basePrice,
-        model: this.props.addData.modelNumber
-    }
-    request.post(server.path+'/api/Products?access_token='+(cookies.get('accessToken').accessToken))
-      .send(data)
-      .end((err, res) => {
-        if(res.status === 200) {
-            this.setState({ open: true, name: res.body.name, category: res.body.category });
-            window.location.href = '/Products';
-        }
-      });
+      var id = window.location.search.substring(1).split("=");
+      if(id[0] !== '') {
+          var data = {
+              category: this.props.addData.category,
+              name: this.props.addData.productName,
+              color: this.props.addData.color,
+              image: this.props.addData.img,
+              quanity: this.props.addData.quantity,
+              brand: this.props.addData.brandName,
+              salePrice: this.props.addData.salePrice,
+              basePrice: this.props.addData.basePrice,
+              model: this.props.addData.modelNumber
+          }
+          request.patch(server.path + '/api/Products/'+id[1]+'?access_token=' + (cookies.get('accessToken').accessToken))
+              .send(data)
+              .end((err, res) => {
+                  console.log(res)
+                  if (res.status === 200) {
+                      this.setState({open: true, name: res.body.name, category: res.body.category});
+                  }
+              });
+
+      } else {
+          console.log("here");
+          var data = {
+              category: this.props.addData.category,
+              name: this.props.addData.productName,
+              color: this.props.addData.color,
+              image: this.props.addData.img,
+              quantity: this.props.addData.quantity,
+              brand: this.props.addData.brandName,
+              salePrice: this.props.addData.salePrice,
+              basePrice: this.props.addData.basePrice,
+              model: this.props.addData.modelNumber
+          }
+          request.post(server.path + '/api/Products?access_token=' + (cookies.get('accessToken').accessToken))
+              .send(data)
+              .end((err, res) => {
+                  if(res.status === 413){
+                      alert(res.body.error.message);
+                  }
+                  if (res.status === 200) {
+                      this.setState({open: true, name: res.body.name, category: res.body.category});
+                  }
+              });
+      }
   };
 
   handleRequestClose = () => {
     this.setState({ open: false });
+      window.location.href = '/Products';
   };
 
   render() {
@@ -53,7 +89,7 @@ class ResponsiveDialog extends React.Component {
     return (
       <div style={{display:'flex', justifyContent:'center'}}>
         <Button raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
-        ADD PRODUCT
+            {this.state.buttonText}
         </Button>
         <Dialog
           fullScreen={fullScreen}

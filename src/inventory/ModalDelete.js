@@ -19,19 +19,21 @@ class ResponsiveDialog extends React.Component<props, {}> {
     open: false,
   };
 
-  handleClickOpen = () => {
+    handleClickOpen = () => {
+        this.setState({ open: true });
+    }
+  yes = () => {
       var accessToken = cookies.get('accessToken').accessToken;
-      console.log(accessToken);
-      if(accessToken == undefined) {
+      if(accessToken === undefined) {
           window.location.href = '/'
       }
       var url = server.path+'/api/Products/'+this.props.id.id+'?access_token='+accessToken;
       request.delete(url)
           .end((err, res) => {
-              if(res.status == 401) {
+              if(res.status === 401) {
                 alert(res.body.error.message);
               } else {
-                  this.setState({ open: true });
+                  this.setState({ open: false });
                   window.location.href = '/Products';
               }
           });
@@ -61,7 +63,7 @@ class ResponsiveDialog extends React.Component<props, {}> {
             Are you sure you want to delete your product?
             </DialogContentText>
           </DialogContent>
-          <DialogActions><Button onClick={this.handleRequestClose} color="primary">
+          <DialogActions><Button onClick={this.yes} color="primary">
                 YES
             </Button><Button onClick={this.handleRequestClose} color="primary">
                 NO

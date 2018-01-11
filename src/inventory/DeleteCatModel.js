@@ -21,7 +21,6 @@ class ResponsiveDialog extends React.Component<props, {}> {
 
     handleClickOpen = () => {
         var accessToken = cookies.get('accessToken').accessToken;
-        console.log(accessToken);
         if(accessToken == undefined) {
             window.location.href = '/'
         }
