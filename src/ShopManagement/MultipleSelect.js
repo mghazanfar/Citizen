@@ -12,7 +12,6 @@ const styles = theme => ({
     flexWrap: 'wrap',
   },
   formControl: {
-    margin: theme.spacing.unit,
     minWidth: 120,
     maxWidth: 300,
   },
@@ -49,9 +48,10 @@ class MultipleSelect extends React.Component {
     return (
       <div className={classes.container}>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="name-multiple">Name</InputLabel>
+          <InputLabel htmlFor="name-multiple">Select roles</InputLabel>
           <Select
             multiple
+            margin="normal"
             value={this.state.name}
             onChange={this.handleChange}
             input={<Input id="name-multiple" />}

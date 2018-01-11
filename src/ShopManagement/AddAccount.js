@@ -11,7 +11,7 @@ import Divider from 'material-ui/Divider';
 import Hidden from 'material-ui/Hidden';
 import Table from '../img/table2.JPG';
 import TextField from 'material-ui/TextField';
-import ModalProducts from '../inventory/ModalProducts';
+import ModalAccount from './ModalAccount';
 import Logout from '../inventory/Logout';
 import Select from './MultipleSelect';
 
@@ -79,8 +79,8 @@ noUnderline: {
 
 class TextFields extends React.Component<props, {}> {
     state = {
-      category: 'Write name of your product category',
-      productName: 'Write Product Name',
+      username: 'Choose Username',
+      password: 'choose password',
       modelNumber: 'Write Model Number',
       brandName: 'Write Brand Name',
       color: 'Write color of product',
@@ -114,10 +114,10 @@ class TextFields extends React.Component<props, {}> {
       reader.readAsDataURL(file)
     }
   
-    handleChange = (name, description) => event => {
+    handleChange = (username, password) => event => {
       this.setState({
-        [name]: event.target.value,
-        [description]: event.target.value,
+        [username]: event.target.value,
+        [password]: event.target.value,
       });
     };
   
@@ -161,32 +161,29 @@ class TextFields extends React.Component<props, {}> {
                   <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
                       <Paper elevation={24} style={{maxHeight:600, overflow:'auto', width:'inherit', padding: 20}}>
                           <TextField
-                          label="UserName"
-                          className={classes.textField}
-                          placeholder={this.state.category}
-                          onChange={this.handleChange('category')}
-                          fullWidth
-                        />
+                            label="Username"
+                            className={classes.textField}
+                            placeholder={this.state.username}
+                            onChange={this.handleChange('username')}
+                            fullWidth
+                            margin="normal"
+                          />
                           <TextField
-                          label="Password"
-                          className={classes.textField}
-                          placeholder={this.state.productName}
-                          onChange={this.handleChange('productName')}
-                          fullWidth
+                            label="Password"
+                            className={classes.textField}
+                            placeholder={this.state.password}
+                            type="password"
+                            onChange={this.handleChange('Password')}
+                            fullWidth
+                            margin="normal"
                         />
                         <Select />
                               <div style={{display:'flex',  justifyContent:'space-around'}}>
-                              <ModalProducts addData={{category: this.state.category,
-      productName: this.state.productName,
-      modelNumber: this.state.modelNumber,
-      brandName: this.state.brandName,
-      color: this.state.color,
-      basePrice: this.state.basePrice,
-      salePrice: this.state.salePrice,
-      quantity: this.state.quantity,
-      img: this.state.img,
-      file: this.state.file,}} />
-                                  <Link to='/Products' style={styles.noUnderline}>
+                              <ModalAccount addData={{username: this.state.username,
+                                                      password: this.state.password,
+                                                      }}
+                              />
+                                  <Link to='/ManageShop' style={styles.noUnderline}>
                                       <Button raised style={styles.button}>
                                           CANCEL
                                       </Button>
@@ -202,98 +199,36 @@ class TextFields extends React.Component<props, {}> {
               <Grid item xs={12} lg={8} style={styles.right}>
               <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%', marginTop:'2rem' }}>
               <Paper elevation={24} style={{maxHeight:600, overflow:'auto', width:'inherit', padding: 20}}>
-              <TextField
-              label="Category"
-              className={classes.textField}
-              placeholder={this.state.category}
-              onChange={this.handleChange('category')}
-              fullWidth
-            />
-              <TextField
-              label="Product Name"
-              className={classes.textField}
-              placeholder={this.state.productName}
-              onChange={this.handleChange('productName')}
-              fullWidth
-            />
-              <TextField
-              label="Model Number"
-              className={classes.textField}
-              placeholder={this.state.modelNumber}
-              onChange={this.handleChange('modelNumber')}
-              fullWidth
-            />
-              <TextField
-              label="Brand Name"
-              className={classes.textField}
-              placeholder={this.state.brandName}
-              onChange={this.handleChange('brandName')}
-              fullWidth
-            />
-              <TextField
-              label="Color"
-              className={classes.textField}
-              placeholder={this.state.color}
-              onChange={this.handleChange('color')}
-              fullWidth
-            />
-              <TextField
-              label="Base Price"
-              className={classes.textField}
-              placeholder={this.state.basePrice}
-              onChange={this.handleChange('basePrice')}
-              fullWidth
-            />
-              <TextField
-              label="Sale Price"
-              className={classes.textField}
-              placeholder={this.state.salePrice}
-              onChange={this.handleChange('salePrice')}
-              fullWidth
-            />
-              <TextField
-              label="Quantity"
-              className={classes.textField}
-              placeholder={this.state.quantity}
-              onChange={this.handleChange('quantity')}
-              fullWidth
-            />
-              <div style={{display:'flex'}}>
-                  <Avatar src={img} style={styles.avatar}/>
-                  <input
-                  accept="image/*"
-                  style={{display:'none'}}
-                  id="raised-button-file"
-                  multiple
-                  type="file"
-                  onChange={(e)=>this._handleImageChange(e)}
+                  <TextField
+                    label="Username"
+                    className={classes.textField}
+                    placeholder={this.state.username}
+                    onChange={this.handleChange('username')}
+                    fullWidth
+                    margin="normal"
                   />
-                  <label htmlFor="raised-button-file" style={styles.labelUpload}>
-                  <Button raised component="span" style={styles.buttonUpload}>
-                      Upload
-                  </Button>
-                  </label>
-                  <Divider inset/>
-                  </div>
-                  <div style={{display:'flex',  justifyContent:'space-around'}}>
-                  <ModalProducts addData={{category: this.state.category,
-                    productName: this.state.productName,
-                    modelNumber: this.state.modelNumber,
-                    brandName: this.state.brandName,
-                    color: this.state.color,
-                    basePrice: this.state.basePrice,
-                    salePrice: this.state.salePrice,
-                    quantity: this.state.quantity,
-                    img: this.state.img,
-                    file: this.state.file,}}
-                    />
-                      <Link to='/Products' style={styles.noUnderline}>
-                          <Button raised style={styles.button}>
-                              CANCEL
-                          </Button>
-                      </Link>
-                  </div>
-          </Paper>
+                  <TextField
+                    label="Password"
+                    className={classes.textField}
+                    placeholder={this.state.password}
+                    type="password"
+                    onChange={this.handleChange('Password')}
+                    fullWidth
+                    margin="normal"
+                />
+                <Select />
+                      <div style={{display:'flex',  justifyContent:'space-around'}}>
+                      <ModalAccount addData={{username: this.state.username,
+                                              password: this.state.password,
+                                              }}
+                      />
+                          <Link to='/ManageShop' style={styles.noUnderline}>
+                              <Button raised style={styles.button}>
+                                  CANCEL
+                              </Button>
+                          </Link>
+                      </div>
+              </Paper>
               </div>
           </Grid>
               </Hidden>
