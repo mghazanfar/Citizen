@@ -9,7 +9,6 @@ import Avatar from 'material-ui/Avatar';
 import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
 import Hidden from 'material-ui/Hidden';
-import Table from '../img/table2.JPG';
 import TextField from 'material-ui/TextField';
 import ModalProducts from './ModalProducts';
 import Logout from './Logout';
@@ -122,7 +121,6 @@ class TextFields extends React.Component<props, {}> {
     render() {
       const { classes } = this.props;
       let {img} = this.state;
-      let $imagePreview = null;
       return (
         <div style={styles.root}>
           <Grid container spacing={0} style={styles.container} justify='center'>

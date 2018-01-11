@@ -123,7 +123,6 @@ class TextFields extends React.Component<props, {}> {
     render() {
       const { classes } = this.props;
       let {img} = this.state;
-      let $imagePreview = null;
       return (
         <div style={styles.root}>
           <Grid container spacing={0} style={styles.container} justify='center'>
