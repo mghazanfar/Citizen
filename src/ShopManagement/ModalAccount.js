@@ -24,13 +24,17 @@ class ResponsiveDialog extends React.Component {
   };
 
   render() {
-    const { fullScreen, addData } = this.props;
+    const { fullScreen, addData, profile } = this.props;
 
     return (
       <div style={{display:'flex', justifyContent:'center'}}>
+        {profile ?
+        <Button raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
+        Change Password
+        </Button>:
         <Button raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
         ADD Account
-        </Button>
+        </Button>}
         <Dialog
           fullScreen={fullScreen}
           open={this.state.open}
@@ -39,9 +43,12 @@ class ResponsiveDialog extends React.Component {
         <div style={{backgroundColor:'#424242'}}>
           <DialogTitle><span  style={{color:'white'}}>Confirmation!</span></DialogTitle>
           <DialogContent>
+            {profile? <DialogContentText style={{color:'white'}}>
+            Your password has been changed successfully.
+            </DialogContentText>: 
             <DialogContentText style={{color:'white'}}>
             Your account with username '{addData.username}' has been added.
-            </DialogContentText>
+            </DialogContentText>}
           </DialogContent>
           <DialogActions>
           <Link to="/ManageShop" style={{ textDecoration: 'none' }}>

@@ -1,13 +1,11 @@
 import React from 'react';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
-import Background from '../img/round.jpg';
+import Background from '../img/addAccount.png';
 import Grid from 'material-ui/Grid';
 import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
-import Avatar from 'material-ui/Avatar';
 import Paper from 'material-ui/Paper';
-import Divider from 'material-ui/Divider';
 import Hidden from 'material-ui/Hidden';
 import Table from '../img/table2.JPG';
 import TextField from 'material-ui/TextField';
@@ -17,7 +15,7 @@ import Select from './MultipleSelect';
 
 const styles = {
   left: {
-    backgroundColor: 'rgba(255,255,255,0.4)',
+    backgroundColor: 'rgba(0,0,0,0.4)',
     display: 'flex',
     alignItems:'center',
     justifyContent:'center',
@@ -30,11 +28,11 @@ const styles = {
     },
     container: {
     minHeight:'inherit',
-    background: '#e36209',
+    background: 'rgba(227, 98, 9, 0.8)',
 },
 root: {
   backgroundImage: `url(${Background})`,
-  backgroundSize: 'contain',
+  backgroundSize: 'auto',
   minHeight: '100vh',
 },
 buttonUpload: {
@@ -123,8 +121,6 @@ class TextFields extends React.Component<props, {}> {
   
     render() {
       const { classes } = this.props;
-      let {img} = this.state;
-      let $imagePreview = null;
       return (
         <div style={styles.root}>
           <Grid container spacing={0} style={styles.container} justify='center'>
@@ -135,7 +131,7 @@ class TextFields extends React.Component<props, {}> {
                       ADD ACCOUNT
                       </Typography>
                       <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can add account for your employees.</Typography>
-                      <Link to='/Inventory' style={styles.noUnderline}>
+                      <Link to='/ManageShop' style={styles.noUnderline}>
                       <Button raised style={styles.button}>
                       GO To Shop Management
                       </Button>
@@ -147,7 +143,7 @@ class TextFields extends React.Component<props, {}> {
                       ADD ACCOUNT
                       </Typography>
                       <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the products of all/specific categories.</Typography>
-                      <Link to='/Inventory' style={styles.noUnderline}>
+                      <Link to='/ManageShop' style={styles.noUnderline}>
                       <Button raised style={styles.button}>
                       GO To Shop Management
                       </Button>

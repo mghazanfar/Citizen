@@ -9,6 +9,7 @@ import setting from '../img/settings.svg';
 import { withStyles } from 'material-ui/styles';
 import { Manager, Target, Popper } from 'react-popper';
 import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
+import { Link } from 'react-router-dom';
 
 const styles = {
   root: {
@@ -52,7 +53,7 @@ class MenuListComposition extends React.Component {
               onClick={this.handleClick}
               style={styles.button}
             >
-              <img src={setting} width={25} height={25} />
+              <img src={setting} width={25} height={25} alt='S' />
             </Button>
           </Target>
           <Popper
@@ -64,8 +65,7 @@ class MenuListComposition extends React.Component {
               <Grow in={open} id="menu-list" style={{ transformOrigin: '0 0 0' }}>
                 <Paper>
                   <MenuList role="menu">
-                    <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                    <MenuItem onClick={this.handleClose}><Link to='/MyAccount' style={{textDecoration:'none'}}>Profile</Link></MenuItem>
                     <MenuItem onClick={this.handleClose}>Logout</MenuItem>
                   </MenuList>
                 </Paper>

@@ -5,11 +5,9 @@ import Background from '../img/delete.svg';
 import Grid from 'material-ui/Grid';
 import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
-import Avatar from 'material-ui/Avatar';
 import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
 import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
-import Table from '../img/table2.JPG';
 import Logout from '../inventory/Logout';
 
 const styles = {
@@ -75,41 +73,29 @@ function FullWidthGrid(props) {
           <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit'}}>
           <List>
             {[0, 1, 2, 3,4,5,6,7,8].map(value => (
-              <Link to='/Products' style={styles.noUnderline}><ListItem key={value} dense button style={styles.listItem} divider>
-                <Avatar src={Table} style={styles.avatar}/>
-                <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>Table {value + 1}</Typography>} secondary={"Tables for home, beautiful and durable."}/>
+                <ListItem key={value} button style={styles.listItem} divider>
+                <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>Username {value + 1}</Typography>}/>
                 <ListItemSecondaryAction />
-                <Link to='/ModifyCategory' style={styles.noUnderline}>
-                  <Button color="primary">
-                    MODIFY
-                  </Button>
-                </Link>
                 <Button color="accent">
                   DELETE
                 </Button>
               </ListItem>
-              </Link>
             ))}
           </List>
           </Paper>
-         <Link to='/AddCategory' style={styles.noUnderline}>
-         <Button raised style={styles.button}>
-          ADD CATEGORY
-          </Button>
-          </Link>
         </div>
       </Grid>
     </Hidden>
     
     <Grid item xs={12} lg={4} style={styles.left}>
           <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', }}>
-            <Typography type="display3" gutterBottom style={{color:'white'}}>
+            <Typography type="display3" gutterBottom style={{color:'white', textAlign:'center'}}>
             DELETE ACCOUNT
             </Typography>
-            <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the categories of your furniture. You can also add/remove/modify a category from here.</Typography>
-            <Link to='/Inventory' style={styles.noUnderline}>
+            <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can delete a user.</Typography>
+            <Link to='/ManageShop' style={styles.noUnderline}>
             <Button raised style={styles.button}>
-            GO TO INVENTORY
+            GO TO SHOP MANAGEMENT
             </Button>
             </Link>
           <Logout />
@@ -119,30 +105,19 @@ function FullWidthGrid(props) {
         <Hidden lgUp>
           <Grid item xs={12} lg={8} style={styles.right}>
           <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
-            <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit', marginTop:'4rem'}}>
+            <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit'}}>
             <List>
-              {[0, 1, 2, 3,4,5,6,7,8].map(value => (
-                <ListItem key={value} dense button style={styles.listItem} divider>
-                  <Avatar src={Table} style={styles.avatar}/>
-                  <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>Table {value + 1}</Typography>} secondary={"Tables for home, beautiful and durable."}/>
-                  <ListItemSecondaryAction />
-                  <Link to='/ModifyCategory' style={styles.noUnderline}>
-                    <Button color="primary">
-                      MODIFY
-                    </Button>
-                  </Link>
-                  <Button color="accent">
+                {[0, 1, 2, 3,4,5,6,7,8].map(value => (
+                    <ListItem key={value} button style={styles.listItem} divider>
+                    <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>Username {value + 1}</Typography>}/>
+                    <ListItemSecondaryAction />
+                    <Button color="accent">
                     DELETE
-                  </Button>
+                    </Button>
                 </ListItem>
-              ))}
+                ))}
             </List>
             </Paper>
-          <Link to='/AddCategory' style={styles.noUnderline}>
-          <Button raised style={styles.button}>
-            ADD CATEGORY
-            </Button>
-            </Link>
           </div>
         </Grid>
         </Hidden>
