@@ -29,7 +29,7 @@ class ResponsiveDialog extends React.Component {
     return (
       <div style={{display:'flex', justifyContent:'center'}}>
         {profile ?
-        <Button raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
+        <Button raised style={{ color:'white', backgroundColor:'black', marginTop:'1rem', width:'100%'}} onClick={this.handleClickOpen}>
         Change Password
         </Button>:
         <Button raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>

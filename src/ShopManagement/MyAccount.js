@@ -56,6 +56,12 @@ button: {
   backgroundColor:'black',
   marginTop:'4rem',
 },
+buttonUsername: {
+  color:'white',
+  backgroundColor:'black',
+  width:'100%',
+  marginTop:'1rem',
+},
 headline: {
   textDecoration: 'none',
   color: 'white',
@@ -117,28 +123,28 @@ class TextFields extends React.Component<props, {}> {
               <Grid item xs={12} lg={4} style={styles.left}>
                   <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', }}>
                       <Hidden smDown>
-                      <Typography type="display3" gutterBottom style={{color:'white', width:'60%', textAlign:'center'}}>
-                      MY PROFILE
-                      </Typography>
-                      <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can change your username and password.</Typography>
-                      <Link to='/ManageShop' style={styles.noUnderline}>
-                      <Button raised style={styles.button}>
-                      GO To Shop Management
-                      </Button>
-                      </Link>
-                      <Logout />
-                      </Hidden>
-                      <Hidden smUp>
-                      <Typography type="display1" gutterBottom style={{color:'white', width:'75%', textAlign:'center'}}>
-                      MY PROFILE
-                      </Typography>
-                      <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the products of all/specific categories.</Typography>
-                      <Link to='/ManageShop' style={styles.noUnderline}>
-                      <Button raised style={styles.button}>
-                      GO To Shop Management
-                      </Button>
-                      </Link>
-                      <Logout />
+                        <Typography type="display3" gutterBottom style={{color:'white', width:'60%', textAlign:'center'}}>
+                        MY PROFILE
+                        </Typography>
+                        <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can change your username and password.</Typography>
+                        <Link to='/ManageShop' style={styles.noUnderline}>
+                        <Button raised style={styles.button}>
+                        GO To Shop Management
+                        </Button>
+                        </Link>
+                        <Logout />
+                        </Hidden>
+                        <Hidden smUp>
+                        <Typography type="display1" gutterBottom style={{color:'white', width:'75%', textAlign:'center'}}>
+                        MY PROFILE
+                        </Typography>
+                        <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the products of all/specific categories.</Typography>
+                        <Link to='/ManageShop' style={styles.noUnderline}>
+                        <Button raised style={styles.button}>
+                        GO To Shop Management
+                        </Button>
+                        </Link>
+                        <Logout />
                       </Hidden>
                   </div>
                   </Grid>
@@ -154,35 +160,49 @@ class TextFields extends React.Component<props, {}> {
                             disabled
                             margin="normal"
                           />
-                          <TextField
-                            label="Change Username"
-                            className={classes.textField}
-                            onChange={this.handleChange('username')}
-                            fullWidth
-                            margin="normal"
+                          <div style={{display:'flex', justifyContent:'space-evenly'}}>
+                            <TextField
+                              label="Change Username"
+                              className={classes.textField}
+                              onChange={this.handleChange('username')}
+                              margin="normal"
+                            />
+                            <TextField
+                              label="Current Password"
+                              className={classes.textField}
+                              type="password"
+                              onChange={this.handleChange('Password')}
+                              required
+                              margin="normal"
                           />
+                          </div>
+                            <Button raised style={styles.buttonUsername}>
+                                change username
+                            </Button>
+                          <div style={{display:'flex', justifyContent:'space-evenly'}}>
                           <TextField
                             label="Change Password"
                             className={classes.textField}
                             type="password"
                             onChange={this.handleChange('Password')}
-                            fullWidth
+                            
                             margin="normal"
-                        />
+                          />
                           <TextField
                             label="Previous Password"
                             className={classes.textField}
                             type="password"
                             onChange={this.handleChange('Password')}
-                            fullWidth
+                            
                             required
                             margin="normal"
                         />
-                        <div style={{display:'flex',  justifyContent:'space-around'}}>
+                        </div>
                         <ModalAccount profile addData={{username: this.state.username,
                                                 password: this.state.password,
                                                 }}
                         />
+                        <div style={{display:'flex',  justifyContent:'space-around'}}>
                             <Link to='/ManageShop' style={styles.noUnderline}>
                                 <Button raised style={styles.button}>
                                     CANCEL
