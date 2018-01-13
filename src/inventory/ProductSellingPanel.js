@@ -23,22 +23,10 @@ import Tooltip from 'material-ui/Tooltip';
 import DeleteIcon from 'material-ui-icons/Delete';
 import FilterListIcon from 'material-ui-icons/FilterList';
 
-let counter = 0;
-function createData( price, brand, model, name, color, picture, category, quantity) {
-  counter += 1;
-  return { id: counter, price, brand, model, name, color, picture, category, quantity };
-}
-
-const columnData = [
-  { id: 'price', numeric: false, disablePadding: true, label: 'Price' },
-  { id: 'brand', numeric: false, disablePadding: true, label: 'Brand' },
-  { id: 'model', numeric: true, disablePadding: false, label: 'Model' },
-  { id: 'name', numeric: true, disablePadding: false, label: 'Name' },
-  { id: 'color', numeric: true, disablePadding: false, label: 'Color' },
-  { id: 'picture', numeric: true, disablePadding: false, label: 'Picture' },
-  { id: 'category', numeric: true, disablePadding: false, label: 'Category' },
-  { id: 'quantity', numeric: true, disablePadding: false, label: 'Quantity' },
-];
+import Cookies from 'universal-cookie';
+import server from "../constants";
+import request from "superagent/superagent";
+const cookies = new Cookies();
 
 class EnhancedTableHead extends React.Component {
   static propTypes = {
@@ -50,9 +38,31 @@ class EnhancedTableHead extends React.Component {
     rowCount: PropTypes.number.isRequired,
   };
 
+  state = {
+    products: []
+  }
+
+
   createSortHandler = property => event => {
     this.props.onRequestSort(event, property);
   };
+
+    componentWillMount(){
+      if(cookies.get('accesToken') === undefined){
+        window.location.href = '/'
+      }
+      request.get(`${server.path}/api/Products?access_token=${cookies.get('accessToken').accessToken}`)
+          .end((err, res) => {
+            if(res.statusCode === 200){
+              this.setState({
+                  products: res.body
+              });
+            } else {
+              alert('Error!!')
+            }
+          });
+
+    }
 
   render() {
     const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
@@ -67,7 +77,7 @@ class EnhancedTableHead extends React.Component {
               onChange={onSelectAllClick}
             />
           </TableCell>
-          {columnData.map(column => {
+          {this.state.products.map(column => {
             return (
               <TableCell
                 key={column.id}
@@ -186,23 +196,6 @@ class EnhancedTable extends React.Component {
       order: 'asc',
       orderBy: 'calories',
       selected: [],
-      data : [
-        createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-        createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-        createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-        createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-        createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-        createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-        createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-        createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-        createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-        createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-        createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-        createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-        createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-        createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-        createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
-      ].sort((a, b) => (a.calories < b.calories ? -1 : 1)),
       page: 0,
       rowsPerPage: 5,
     };

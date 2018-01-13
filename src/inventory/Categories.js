@@ -161,7 +161,7 @@ class FullWidthGrid extends React.Component<props, {}> {
                   <Avatar src={value.image} style={styles.avatar}/>
                   <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>{value.name}</Typography>} secondary={value.description}/>
                   <ListItemSecondaryAction />
-                  <Link to='/ModifyCategory' style={styles.noUnderline}>
+                  <Link to={`/ModifyCategory?id=${value.id}`} style={styles.noUnderline}>
                     <Button color="primary">
                       MODIFY
                     </Button>

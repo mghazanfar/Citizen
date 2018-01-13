@@ -85,7 +85,7 @@ class MenuListComposition extends React.Component {
                   <MenuList role="menu">
                     <MenuItem onClick={this.handleClose}>Profile</MenuItem>
                     <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                    <MenuItem onClick={this.logout.bind(this)}>Logout</MenuItem>
+                    <MenuItem onClick={this.logout}>Logout</MenuItem>
                   </MenuList>
                 </Paper>
               </Grow>
