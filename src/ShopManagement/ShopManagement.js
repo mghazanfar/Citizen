@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
 import Hidden from 'material-ui/Hidden';
 import Logout from '../inventory/Logout';
+import '../inventory/clickables.css';
 const styles = {
   left: {
       minHeight: '100vh',
@@ -36,10 +37,6 @@ svg: {
   marginRight: 10,
   fillColor: 'white',
 },
-headline: {
-  textDecoration: 'none',
-  color: 'white',
-},
 noUnderline: {
   textDecoration:'none',
 },
@@ -61,13 +58,13 @@ function FullWidthGrid(props) {
             Go to:
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/AddAccount' style={styles.headline}><img src={Add} alt="" style={styles.svg} />Add Account</Link>
+            <Link to='/AddAccount' className='underline'><img src={Add} alt="" style={styles.svg} />Add Account</Link>
             </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/DeleteAccount' style={styles.headline}><img src={Remove} alt="" style={styles.svg} />Delete Account</Link>
+            <Link to='/DeleteAccount' className='underline'><img src={Remove} alt="" style={styles.svg} />Delete Account</Link>
             </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/MyAccount' style={styles.headline}><img src={Profile} alt="" style={styles.svg} />My Account</Link>
+            <Link to='/MyAccount' className='underline'><img src={Profile} alt="" style={styles.svg} />My Account</Link>
             </Typography>
           <div style={{display:'flex', justifyContent:'center', marginTop:'3rem'}}>
           <Link to='/Shop' style={styles.noUnderline}>

@@ -1,0 +1,9 @@
+.underline {
+    color: white !important;
+    text-decoration: none !important;
+}
+.underline:hover{
+    text-decoration: underline !important;
+    color: black !important;
+    transition: color 0.25s;
+}
