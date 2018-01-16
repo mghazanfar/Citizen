@@ -17,22 +17,37 @@ const cookies = new Cookies();
 
 class ResponsiveDialog extends React.Component <props, {}>{
   state = {
+    shopId: null,
     open: false,
     name: null,
     description: null,
   };
 
   handleClickOpen = () => {
-      console.log(this);
+
     if(this.props.category==="modify"){
-      
+        console.log(this.props.addData);
+        var data = {
+            name: this.props.addData.name,
+            description: this.props.addData.description,
+            image: this.props.addData.image,
+        }
+        request.put(`${server.path}/api/Shops/${this.props.addData.shopId}/categories/${this.props.addData.id}?access_token=${cookies.get('accessToken').accessToken}`)
+            .send(data)
+            .end((err, res) => {
+                if(res.statusCode === 200){
+                    this.setState({ open: true });
+                } else {
+                    alert('Error');
+                }
+            });
     } else {
         var data = {
             name: this.props.addData.name,
             description: this.props.addData.description,
             image: this.props.addData.image,
         }
-        request.post(server.path+'/api/Categories?access_token='+(cookies.get('accessToken').accessToken))
+        request.post(server.path+'/api/Shops/'+this.props.addData.shopId+'/Categories?access_token='+(cookies.get('accessToken').accessToken))
             .send(data)
             .end((err, res) => {
                 console.log((res));
@@ -68,7 +83,7 @@ class ResponsiveDialog extends React.Component <props, {}>{
               </DialogContentText>
             </DialogContent>
             <DialogActions>
-            <Link to="/Categories" style={{ textDecoration: 'none' }}>
+            <Link to={`/Categories?shop=${this.props.addData.shopId}`} style={{ textDecoration: 'none' }}>
             <Button onClick={this.handleRequestClose} color="primary">
                 OK
           </Button>
@@ -97,7 +112,7 @@ class ResponsiveDialog extends React.Component <props, {}>{
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-          <Link to="/Categories" style={{ textDecoration: 'none' }}>
+          <Link to={`/Categories?shop=${this.props.addData.shopId}`} style={{ textDecoration: 'none' }}>
           <Button onClick={this.handleRequestClose} color="primary">
               OK
         </Button>

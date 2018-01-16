@@ -75,15 +75,24 @@ labelUpload: {
 
 class FullWidthGrid extends React.Component{
   state = {
+    shop: null,
     name: null,
     description: null,
     img: null,
   };
 
   componentWillMount() {
-      if(cookies.get('accessToken') === undefined){
+      if(cookies.get('accessToken').accessToken === undefined) {
           window.location.href = '/';
       }
+      if(window.location.href.split('?')[1] === undefined){
+          window.location.href = '/Login';
+      }
+      let url = window.location.href.split('?')[1];
+      this.setState({
+          shop: url.split('=')[1]
+      });
+      console.log(this.state);
   }
 
     _handleImageChange(e) {
@@ -165,6 +174,7 @@ class FullWidthGrid extends React.Component{
                                   </div>
                                   <ModalCategory
                                       addData={{
+                                          shopId: this.state.shop,
                                           name: this.state.name,
                                           description: this.state.description,
                                           image: this.state.img
@@ -190,7 +200,7 @@ class FullWidthGrid extends React.Component{
                               </Typography>
                               <Typography type="headline" paragraph style={{color: 'white', width: '60%',}}
                                           align="center">Here, You can add a category from here.</Typography>
-                              <Link to="/Inventory" style={styles.noUnderline}>
+                              <Link to={`/Inventory?shop=${this.state.shop}`} style={styles.noUnderline}>
                                   <Button raised style={styles.button}>
                                       GO TO INVENTORY
                                   </Button>
@@ -203,7 +213,7 @@ class FullWidthGrid extends React.Component{
                               </Typography>
                               <Typography type="headline" paragraph style={{color: 'white', width: '60%',}}
                                           align="center">Here, You can add a category from here.</Typography>
-                              <Link to="/Inventory" style={styles.noUnderline}>
+                              <Link to={`/Inventory?shop=${this.state.shop}`} style={styles.noUnderline}>
                                   <Button raised style={styles.button}>
                                       GO TO INVENTORY
                                   </Button>
@@ -266,6 +276,7 @@ class FullWidthGrid extends React.Component{
                                   </div>
                                   <ModalCategory
                                       addData={{
+                                          shopId: this.state.shop,
                                           name: this.state.name,
                                           description: this.state.description,
                                           image: this.state.image

@@ -71,33 +71,43 @@ noUnderline: {
 
 class FullWidthGrid extends React.Component<props, {}> {
     state = {
+        shop: null,
         categories: [],
         id: null,
     }
     componentWillMount= () => {
-        if(cookies.get('accessToken') === undefined){
+        if(cookies.get('accessToken').accessToken === undefined) {
             window.location.href = '/';
         }
-        request.get(server.path + '/api/Categories?access_token=' + cookies.get('accessToken').accessToken).end(
+        if(window.location.href.split('?')[1] === undefined){
+            window.location.href = '/Login';
+        }
+        let url = window.location.href.split('?')[1];
+        this.setState({
+            shop: url.split('=')[1]
+        });
+        request.get(server.path + '/api/Shops/'+url.split('=')[1]+'/categories?access_token=' + cookies.get('accessToken').accessToken).end(
             (err, category) => {
-                this.setState({
-                    categories: category.body
-                });
+                if(category.body.length > 0) {
+                    this.setState({
+                        categories: category.body
+                    });
+                } else {
+                    alert('No Categrories Found');
+                }
             }
         );
     }
 
     delete = function(e) {
-        console.log(e);
         var r = window.confirm("Are you sure you want to delete?");
-        if (r == true) {
+        if (r === true) {
             request.delete(`${server.path}/api/Categories/${e}?access_token=${cookies.get('accessToken').accessToken}`)
                 .end((err, res) => {
-                    console.log(res);
                     if (res.status !==200) {
                         alert(res.status);
                     }
-                    window.location.href = '/Categories';
+                    window.location.href = '/Categories?shop='+this.state.shop;
                 });
         }
     };
@@ -116,7 +126,7 @@ class FullWidthGrid extends React.Component<props, {}> {
                 <Avatar src={value.image} style={styles.avatar}/>
                 <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>{value.name}</Typography>} secondary={value.description}/>
                 <ListItemSecondaryAction />
-                <Link to={`/ModifyCategory?id=${value.id}`} style={styles.noUnderline}>
+                <Link to={`/ModifyCategory?shop=${this.state.shop}&id=${value.id}`} style={styles.noUnderline}>
                   <Button color="primary">
                     MODIFY
                   </Button>
@@ -128,7 +138,7 @@ class FullWidthGrid extends React.Component<props, {}> {
             ))}
           </List>
           </Paper>
-         <Link to='/AddCategory' style={styles.noUnderline}>
+         <Link to={`/AddCategory?shop=${this.state.shop}`} style={styles.noUnderline}>
          <Button raised style={styles.button}>
           ADD CATEGORY
           </Button>
@@ -143,7 +153,7 @@ class FullWidthGrid extends React.Component<props, {}> {
             CATEGORIES
             </Typography>
             <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the categories of your furniture. You can also add/remove/modify a category from here.</Typography>
-            <Link to='/Inventory' style={styles.noUnderline}>
+            <Link to={`/Inventory?shop=${this.state.shop}`} style={styles.noUnderline}>
             <Button raised style={styles.button}>
             GO TO INVENTORY
             </Button>
@@ -161,7 +171,7 @@ class FullWidthGrid extends React.Component<props, {}> {
                   <Avatar src={value.image} style={styles.avatar}/>
                   <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>{value.name}</Typography>} secondary={value.description}/>
                   <ListItemSecondaryAction />
-                  <Link to={`/ModifyCategory?id=${value.id}`} style={styles.noUnderline}>
+                  <Link to={`/ModifyCategory?shop=${this.state.shop}&id=${value.id}`} style={styles.noUnderline}>
                     <Button color="primary">
                       MODIFY
                     </Button>
@@ -173,7 +183,7 @@ class FullWidthGrid extends React.Component<props, {}> {
               ))}
             </List>
             </Paper>
-          <Link to='/AddCategory' style={styles.noUnderline}>
+          <Link to={`/AddCategory?shop=${this.state.shop}`} style={styles.noUnderline}>
           <Button raised style={styles.button}>
             ADD CATEGORY
             </Button>

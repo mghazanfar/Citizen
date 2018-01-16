@@ -13,6 +13,10 @@ import Button from 'material-ui/Button';
 import Hidden from 'material-ui/Hidden';
 import Logout from './Logout';
 
+import server from "../constants";
+import request from "superagent/superagent";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 const styles = {
   left: {
       minHeight: '100vh',
@@ -54,64 +58,88 @@ button: {
 },
 };
 
-function FullWidthGrid(props) {
+class FullWidthGrid extends React.Component<props, {}> {
+  state = {
+    shop: null,
+  };
+    componentWillMount(){
+        if(cookies.get('accessToken').accessToken === undefined) {
+            window.location.href = '/';
+        }
+        if(window.location.href.split('?')[1] === undefined){
+            window.location.href = '/Login';
+        }
+        let url = window.location.href.split('?')[1];
+        this.setState({
+            shop: url
+        });
+    }
 
-  return (
-    <div>
-      <Grid container spacing={0}>
-        <Grid item xs={12} md={6} lg={4} style={styles.left}>
-            <div>
-            <Typography type="display3" gutterBottom style={{color:'white'}}>
-            Go to:
-          </Typography>
-            <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/Categories' style={styles.headline}><img src={Categories} alt="" style={styles.svg} />Categories</Link>
-          </Typography>
-            <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/Products' style={styles.headline}><img src={Products} alt="" style={styles.svg} />Products</Link>
-          </Typography>
-            <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/AddProducts' style={styles.headline}><img src={Add} alt="" style={styles.svg} />Add Products</Link>
-          </Typography>
-            <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/CreateBills' style={styles.headline}><img src={Bills} alt="" style={styles.svg} />Create Bills</Link>
-          </Typography>
-            <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/ManageOrders' style={styles.headline}><img src={Orders} alt="" style={styles.svg} />Manage Orders</Link>
-          </Typography>
-          <div style={{display:'flex', justifyContent:'center', marginTop:'3rem'}}>
-          <Link to='/Shop' style={styles.noUnderline}>
-            <Button raised style={styles.button}>
-            BACK
-            </Button>
-          </Link>
+  render() {
+      return (
+          <div>
+            <Grid container spacing={0}>
+              <Grid item xs={12} md={6} lg={4} style={styles.left}>
+                <div>
+                  <Typography type="display3" gutterBottom style={{color: 'white'}}>
+                    Go to:
+                  </Typography>
+                  <Typography type="headline" gutterBottom style={{color: 'white'}}>
+                    <Link to={`/Categories?${this.state.shop}`} style={styles.headline}><img src={Categories} alt="" style={styles.svg}/>Categories</Link>
+                  </Typography>
+                  <Typography type="headline" gutterBottom style={{color: 'white'}}>
+                    <Link to={`/Products?${this.state.shop}`} style={styles.headline}><img src={Products} alt="" style={styles.svg}/>Products</Link>
+                  </Typography>
+                  <Typography type="headline" gutterBottom style={{color: 'white'}}>
+                    <Link to={`/AddProducts?${this.state.shop}`} style={styles.headline}><img src={Add} alt="" style={styles.svg}/>Add
+                      Products</Link>
+                  </Typography>
+                  <Typography type="headline" gutterBottom style={{color: 'white'}}>
+                    <Link to={`/CreateBills?${this.state.shop}`} style={styles.headline}><img src={Bills} alt="" style={styles.svg}/>Create
+                      Bills</Link>
+                  </Typography>
+                  <Typography type="headline" gutterBottom style={{color: 'white'}}>
+                    <Link to={`/ManageOrders?${this.state.shop}`} style={styles.headline}><img src={Orders} alt="" style={styles.svg}/>Manage
+                      Orders</Link>
+                  </Typography>
+                  <div style={{display: 'flex', justifyContent: 'center', marginTop: '3rem'}}>
+                    <Link to={`/Shop?${this.state.shop}`} style={styles.noUnderline}>
+                      <Button raised style={styles.button}>
+                        BACK
+                      </Button>
+                    </Link>
+                  </div>
+                  <Logout/>
+                </div>
+              </Grid>
+              <Grid item xs={12} md={6} lg={8} style={styles.right}>
+                <div style={styles.rightInner}>
+                  <div style={{marginTop: '4rem', marginLeft: '3rem'}}>
+                    <Hidden smDown>
+                      <Typography type="display4" gutterBottom style={{color: 'white'}}>
+                        Inventory
+                      </Typography>
+                      <Typography type="display2" paragraph style={{color: 'white', width: '45%'}}>This inventory
+                        section lets you manage categories & orders of
+                        your furniture, add/remove/modify products, see products, and create bill for
+                        payments.</Typography>
+                    </Hidden>
+                    <Hidden smUp>
+                      <Typography type="display3" gutterBottom style={{color: 'white'}}>
+                        Inventory
+                      </Typography>
+                      <Typography type="headline" paragraph style={{color: 'white', width: '45%'}}>This inventory
+                        section lets you manage categories & orders of
+                        your furniture, add/remove/modify products, see products, and create bill for
+                        payments.</Typography>
+                    </Hidden>
+                  </div>
+                </div>
+              </Grid>
+            </Grid>
           </div>
-          <Logout />
-            </div>
-        </Grid>
-        <Grid item xs={12} md={6} lg={8} style={styles.right}>
-        <div style={styles.rightInner}>
-        <div style={{ marginTop:'4rem', marginLeft:'3rem' }}>
-          <Hidden smDown>
-            <Typography type="display4" gutterBottom style={{color:'white'}}>
-            Inventory
-            </Typography>
-            <Typography type="display2" paragraph style={{color:'white', width:'45%'}}>This inventory section lets you manage categories & orders of 
-                your furniture, add/remove/modify products, see products, and create bill for payments.</Typography>
-            </Hidden>
-          <Hidden smUp>
-            <Typography type="display3" gutterBottom style={{color:'white'}}>
-            Inventory
-            </Typography>
-            <Typography type="headline" paragraph style={{color:'white', width:'45%'}}>This inventory section lets you manage categories & orders of 
-                your furniture, add/remove/modify products, see products, and create bill for payments.</Typography>
-            </Hidden>
-          </div>
-            </div>
-        </Grid>
-      </Grid>
-    </div>
-  );
+      );
+  }
 }
 
 export default withStyles(styles)(FullWidthGrid);

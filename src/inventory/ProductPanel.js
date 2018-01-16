@@ -19,25 +19,33 @@ const styles = {
 
 class BasicTable extends React.Component<props, {}> {
   state = {
+    shop: null,
     products: []
-    }
+    };
 
   componentWillMount = () => {
-      if(cookies.get('accessToken') === undefined){
+      if(cookies.get('accessToken').accessToken === undefined) {
           window.location.href = '/';
       }
+      if(window.location.href.split('?')[1] === undefined){
+          window.location.href = '/Login';
+      }
+      let url = window.location.href.split('?')[1];
+      this.setState({
+          shop: url.split('=')[1]
+      });
       var accessToken = cookies.get('accessToken').accessToken;
       if(accessToken === undefined) {
           window.location.href = '/'
       } else {
-          request.get(server.path + '/api/Products?access_token=' + accessToken).end(
+          request.get(`${server.path}/api/Shops/${url.split('=')[1]}/products?access_token=${accessToken}`).end(
               (err, product) => {
                   if(product.status === 401) {
                       window.location.href = '/';
                   }
                   if(product.body.length === 0) {
                       alert('No Products Available. Please add a few');
-                      window.location.href = '/AddProducts'
+                      //window.location.href = '/AddProducts'
                   }
                   this.setState({
                       products: product.body
@@ -77,7 +85,7 @@ return (
                 <TableCell><Avatar src={n.image} style={{width:70, height:70}} /></TableCell>
                 <TableCell numeric>{n.category}</TableCell>
                 <TableCell numeric>{n.quantity}</TableCell>
-                <TableCell ><div><Link to={`/ModifyProduct?id=${n.id}`} style={styles.noUnderline}><Button id={n.id} color='primary'>MODIFY</Button></Link><ModalDelete id={{id: n.id}}/></div></TableCell>
+                <TableCell ><div><Link to={`/ModifyProduct?id=${n.id}`} style={styles.noUnderline}><Button id={n.id} color='primary'>MODIFY</Button></Link><ModalDelete shop={this.state.shop} id={{id: n.id}}/></div></TableCell>
               </TableRow>
             );
           })}

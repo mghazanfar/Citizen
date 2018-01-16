@@ -70,12 +70,24 @@ noUnderline: {
 
 class FullWidthGrid  extends React.Component {
     state = {
+        shop: null,
         products : []
+    };
+    componentWillMount(){
+        if(cookies.get('accessToken').accessToken === undefined) {
+            window.location.href = '/';
+        }
+        if(window.location.href.split('?')[1] === undefined){
+            window.location.href = '/Login';
+        }
+        let url = window.location.href.split('?')[1];
+        this.setState({
+            shop: url.split('=')[1]
+        });
     }
 
   render () {
     return(
-
         <div style={styles.root}>
             <Grid container spacing={0} style={styles.container}>
                 <Grid item xs={12} lg={2} style={styles.left}>
@@ -95,7 +107,7 @@ class FullWidthGrid  extends React.Component {
                                             style={{color: 'white', textAlign: 'center', width: '60%',}}>Here, you can see
                                     all the products of all/specific categories.</Typography>
                             </Hidden>
-                            <Link to='/Inventory' style={styles.noUnderline}>
+                            <Link to={`/Inventory?shop=${this.state.shop}`} style={styles.noUnderline}>
                                 <Button raised style={styles.button}>
                                     GO TO INVENTORY
                                 </Button>
@@ -119,7 +131,7 @@ class FullWidthGrid  extends React.Component {
                                             style={{color: 'white', textAlign: 'center', width: '60%',}}>Here, you can see
                                     all the products of all/specific categories.</Typography>
                             </Hidden>
-                            <Link to='/Inventory' style={styles.noUnderline}>
+                            <Link to={`/Inventory?shop=${this.state.shop}`} style={styles.noUnderline}>
                                 <Button raised style={styles.button}>
                                     GO TO INVENTORY
                                 </Button>
@@ -135,7 +147,7 @@ class FullWidthGrid  extends React.Component {
                             <Paper elevation={24} style={{maxHeight: 600, overflow: 'auto', width: 'inherit'}}>
                                 <ProductPanel/>
                             </Paper>
-                            <Link to='/AddProducts' style={styles.noUnderline}>
+                            <Link to={`/AddProducts?shop=${this.state.shop}`} style={styles.noUnderline}>
                                 <Button raised style={styles.button}>
                                     ADD PRODUCT
                                 </Button>

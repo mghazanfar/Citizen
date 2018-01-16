@@ -22,8 +22,18 @@ class ResponsiveDialog extends React.Component {
     category: null
   };
   componentWillMount() {
+      if(cookies.get('accessToken').accessToken === undefined) {
+          window.location.href = '/';
+      }
+      if(window.location.href.split('?')[1] === undefined){
+          window.location.href = '/Login';
+      }
+      let url = window.location.href.split('?')[1];
+      this.setState({
+          shop: url
+      });
       var id = window.location.search.substring(1).split("=");
-      if(id[0] !== '') {
+      if(this.props.addData.id) {
           this.setState({
               buttonText: 'MODIFY PRODUCT'
           });
@@ -31,8 +41,9 @@ class ResponsiveDialog extends React.Component {
   }
   handleClickOpen = () => {
       var id = window.location.search.substring(1).split("=");
-      if(id[0] !== '') {
+      if(this.props.addData.id) {
           var data = {
+              shopId: this.props.addData.shop,
               category: this.props.addData.category,
               name: this.props.addData.productName,
               color: this.props.addData.color,
@@ -43,7 +54,7 @@ class ResponsiveDialog extends React.Component {
               basePrice: this.props.addData.basePrice,
               model: this.props.addData.modelNumber
           }
-          request.patch(server.path + '/api/Products/'+id[1]+'?access_token=' + (cookies.get('accessToken').accessToken))
+          request.patch(server.path + '/api/Products/'+this.props.addData.id+'?access_token=' + (cookies.get('accessToken').accessToken))
               .send(data)
               .end((err, res) => {
                   console.log(res)
@@ -53,7 +64,6 @@ class ResponsiveDialog extends React.Component {
               });
 
       } else {
-          console.log("here");
           var data = {
               category: this.props.addData.category,
               name: this.props.addData.productName,
@@ -65,7 +75,7 @@ class ResponsiveDialog extends React.Component {
               basePrice: this.props.addData.basePrice,
               model: this.props.addData.modelNumber
           }
-          request.post(server.path + '/api/Products?access_token=' + (cookies.get('accessToken').accessToken))
+          request.post(`${server.path}/api/Shops/${this.props.addData.shop}/products?access_token=${(cookies.get('accessToken').accessToken)}`)
               .send(data)
               .end((err, res) => {
                   if(res.status === 413){
@@ -80,7 +90,7 @@ class ResponsiveDialog extends React.Component {
 
   handleRequestClose = () => {
     this.setState({ open: false });
-      window.location.href = '/Products';
+      window.location.href = `/Products?shop=${this.props.addData.shop}`;
   };
 
   render() {

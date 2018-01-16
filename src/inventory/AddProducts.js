@@ -83,6 +83,7 @@ noUnderline: {
 
 class TextFields extends React.Component<props, {}> {
     state = {
+        shop: null,
       category: 'Write name of your product category',
       productName: 'Write Product Name',
       modelNumber: 'Write Model Number',
@@ -116,6 +117,19 @@ class TextFields extends React.Component<props, {}> {
       }
   
       reader.readAsDataURL(file)
+    }
+
+    componentWillMount(){
+        if(cookies.get('accessToken').accessToken === undefined) {
+            window.location.href = '/';
+        }
+        if(window.location.href.split('?')[1] === undefined){
+            window.location.href = '/Login';
+        }
+        let url = window.location.href.split('?')[1];
+        this.setState({
+            shop: url.split('=')[1]
+        });
     }
   
     handleChange = (name, description) => event => {
@@ -238,6 +252,7 @@ class TextFields extends React.Component<props, {}> {
                               </div>
                               <div style={{display:'flex',  justifyContent:'space-around'}}>
                               <ModalProducts addData={{category: this.state.category,
+      shop: this.state.shop,
       productName: this.state.productName,
       modelNumber: this.state.modelNumber,
       brandName: this.state.brandName,
@@ -247,7 +262,7 @@ class TextFields extends React.Component<props, {}> {
       quantity: this.state.quantity,
       img: this.state.img,
       file: this.state.file,}} />
-                                  <Link to='/Products' style={styles.noUnderline}>
+                                  <Link to={`/Products?shop=${this.state.shop}`} style={styles.noUnderline}>
                                       <Button raised style={styles.button}>
                                           CANCEL
                                       </Button>
@@ -338,6 +353,7 @@ class TextFields extends React.Component<props, {}> {
                   </div>
                   <div style={{display:'flex',  justifyContent:'space-around'}}>
                   <ModalProducts addData={{category: this.state.category,
+                    shop: this.state.shop,
                     productName: this.state.productName,
                     modelNumber: this.state.modelNumber,
                     brandName: this.state.brandName,
@@ -348,7 +364,7 @@ class TextFields extends React.Component<props, {}> {
                     img: this.state.img,
                     file: this.state.file,}}
                     />
-                      <Link to='/Products' style={styles.noUnderline}>
+                      <Link to={`/Products?shop=${this.state.shop}`} style={styles.noUnderline}>
                           <Button raised style={styles.button}>
                               CANCEL
                           </Button>

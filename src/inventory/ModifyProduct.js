@@ -102,19 +102,19 @@ class TextFields extends React.Component<props, {}> {
         if (accessToken === undefined) {
             window.location.href = '/';
         }
-        var id = window.location.search.substring(1).split("=");
+        var id = window.location.href.split("=");
         if(id[1] === undefined) {
-            window.location.href = '/Products'
+            window.location.href = '/Login'
         }
         request.get(`${server.path}/api/Products/${id[1]}?access_token=${accessToken}`)
             .end((err, res) => {
                 if(res.statusCode === 401){
                     alert(res.body.error.message);
-                    window.location.href = '/Products';
+                    window.location.href = '/Login';
                 }
                 if(res.statusCode === 404) {
                     alert(res.body.error.message);
-                    window.location.href = '/Products'
+                    window.location.href = '/Login'
                 }
                 this.setState({
                     id: res.body.id,

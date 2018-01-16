@@ -77,6 +77,7 @@ labelUpload: {
 
 class FullWidthGrid extends React.Component<props, {}>{
   state = {
+      shop: null,
       id: null,
       name: null,
       description: null,
@@ -91,21 +92,21 @@ class FullWidthGrid extends React.Component<props, {}>{
       if (accessToken === undefined) {
           window.location.href = '/';
       }
-      var id = window.location.search.substring(1).split("=");
-      if(id[1] === undefined) {
-          window.location.href = '/Categories'
-      }
-      request.get(`${server.path}/api/Categories/${id[1]}?access_token=${accessToken}`)
+      var params = window.location.href.split("?")[1].split('&');
+      var shop = params[0].split('=')[1] ;
+      var category = params[1].split('=')[1];
+      request.get(`${server.path}/api/Shops/${shop}/categories/${category}?access_token=${accessToken}`)
           .end((err, res) => {
               if(res.statusCode === 401){
                   alert(res.body.error.message);
-                  window.location.href = '/Categories';
+                  //window.location.href = '/Categories';
               }
               if(res.statusCode === 404) {
                   alert(res.body.error.message);
-                  window.location.href = '/Categories'
+                  //window.location.href = '/Categories'
               }
               this.setState({
+                  shop: shop,
                   id: res.body.id,
                   name: res.body.name,
                   description: res.body.description,
@@ -201,7 +202,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                                       <Divider inset/>
                                   </div>
                                   <ModalCategory
-                                      addData={{name: this.state.name, description: this.state.description, image: this.state.image}}
+                                      addData={{shopId: this.state.shop, id: this.state.id, name: this.state.name, description: this.state.description, image: this.state.image}}
                                       category="modify"/>
                               </Paper>
                           </div>
@@ -223,7 +224,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                               </Typography>
                               <Typography type="headline" paragraph style={{color: 'white', width: '60%',}}
                                           align="center">Here, You can add a category from here.</Typography>
-                              <Link to="/Inventory" style={styles.noUnderline}>
+                              <Link to={`/Inventory?shop=${this.state.shop}`} style={styles.noUnderline}>
                                   <Button raised style={styles.button}>
                                       GO TO INVENTORY
                                   </Button>
@@ -236,7 +237,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                               </Typography>
                               <Typography type="headline" paragraph style={{color: 'white', width: '60%',}}
                                           align="center">Here, You can add a category from here.</Typography>
-                              <Link to="/Inventory" style={styles.noUnderline}>
+                              <Link to={`/Inventory?shop=${this.state.shop}`} style={styles.noUnderline}>
                                   <Button raised style={styles.button}>
                                       GO TO INVENTORY
                                   </Button>
@@ -295,7 +296,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                                       <Divider inset/>
                                   </div>
                                   <ModalCategory category="modify"
-                                    addData={{name: this.state.name, description: this.state.description, image: this.state.image}}
+                                    addData={{shopId: this.state.shop, id: this.state.id, name: this.state.name, description: this.state.description, image: this.state.image}}
                                   />
                               </Paper>
                           </div>

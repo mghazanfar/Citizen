@@ -82,6 +82,7 @@ noUnderline: {
 
 class TextFields extends React.Component<props, {}> {
     state = {
+      shop: null,
       username: 'Choose Username',
       password: 'Choose Password',
       role: '',
@@ -115,6 +116,18 @@ class TextFields extends React.Component<props, {}> {
         [password]: event.target.value,
       });
     };
+    componentWillMount(){
+        if(cookies.get('accessToken').accessToken === undefined) {
+            window.location.href = '/';
+        }
+        if(window.location.href.split('?')[1] === undefined){
+            window.location.href = '/Login';
+        }
+        let url = window.location.href.split('?')[1];
+        this.setState({
+            shop: url
+        });
+    }
   
     render() {
       const { classes } = this.props;
