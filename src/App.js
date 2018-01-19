@@ -19,6 +19,7 @@ import ManageShop from './ShopManagement/ShopManagement';
 import AddAccount from './ShopManagement/AddAccount';
 import DeleteAccount from './ShopManagement/DeleteAccount';
 import MyAccount from './ShopManagement/MyAccount';
+import HandleExpenses from './HandleExpenses/HandleExpense';
 import './App.css';
 
 import {
@@ -84,7 +85,7 @@ const ModalGallery = () => (
       <Route path='/Shop'  component={Shop}/>
       <Route path='/Inventory'  component={Inventory}/>
       <Route path='/HandleProfit'  component={Shop}/>
-      <Route path='/HandleExpenses'  component={Shop}/>
+      <Route path='/HandleExpenses'  component={HandleExpenses}/>
       <Route path='/ManageClaimStock'  component={Shop}/>
       <Route path='/ManageCompaniesBills'  component={Shop}/>
       <Route path='/Categories'  component={Categories}/>
