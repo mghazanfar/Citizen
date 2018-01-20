@@ -28,11 +28,15 @@ class ResponsiveDialog extends React.Component {
       if(window.location.href.split('?')[1] === undefined){
           window.location.href = '/Login';
       }
-      let url = window.location.href.split('?')[1];
+      var params = window.location.href.split("?")[1].split('&');
+      var shop = params[0].split('=')[1] ;
       this.setState({
-          shop: url
+          shop: shop
       });
-      var id = window.location.search.substring(1).split("=");
+      if(params.length > 1){
+          var product = params[1].split('=')[1];
+
+      }
       if(this.props.addData.id) {
           this.setState({
               buttonText: 'MODIFY PRODUCT'
@@ -54,9 +58,9 @@ class ResponsiveDialog extends React.Component {
               basePrice: this.props.addData.basePrice,
               model: this.props.addData.modelNumber
           }
-          request.patch(server.path + '/api/Products/'+this.props.addData.id+'?access_token=' + (cookies.get('accessToken').accessToken))
-              .send(data)
-              .end((err, res) => {
+          request.put(server.path + '/api/Shops/'+this.state.shop+'/products/'+this.props.addData.id+'?access_token=' + (cookies.get('accessToken').accessToken),
+              data,
+              (err, res) => {
                   console.log(res)
                   if (res.status === 200) {
                       this.setState({open: true, name: res.body.name, category: res.body.category});
@@ -90,7 +94,7 @@ class ResponsiveDialog extends React.Component {
 
   handleRequestClose = () => {
     this.setState({ open: false });
-      window.location.href = `/Products?shop=${this.props.addData.shop}`;
+      window.location.href = `/Products?shop=${this.state.shop}`;
   };
 
   render() {

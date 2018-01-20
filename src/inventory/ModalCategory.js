@@ -26,15 +26,13 @@ class ResponsiveDialog extends React.Component <props, {}>{
   handleClickOpen = () => {
 
     if(this.props.category==="modify"){
-        console.log(this.props.addData);
         var data = {
             name: this.props.addData.name,
             description: this.props.addData.description,
             image: this.props.addData.image,
         }
-        request.put(`${server.path}/api/Shops/${this.props.addData.shopId}/categories/${this.props.addData.id}?access_token=${cookies.get('accessToken').accessToken}`)
-            .send(data)
-            .end((err, res) => {
+        request.put(`${server.path}/api/Shops/${this.props.addData.shopId}/categories/${this.props.addData.id}?access_token=${cookies.get('accessToken').accessToken}`,
+            data,(err, res) => {
                 if(res.statusCode === 200){
                     this.setState({ open: true });
                 } else {

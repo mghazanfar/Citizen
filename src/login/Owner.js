@@ -67,30 +67,22 @@ login = () => {
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .send(data)
       .end((err, res) => {
-        if (res.status === 200) {
-            console.log(res, err);
-          cookies.set('accessToken',{accessToken: res.body.id}, {path: '/'});
-          request.get(server.path+'/api/Categories?access_token='+res.body.id).end(
-              (err, categories) => {
-                //cookies.set('categories',{categories: categories.body}, {path: '/'});
-                document.cookie = 'categories=' + JSON.stringify(categories.body);
-                //console.log(cookie.get('categories'));
-              }
-          );
-          request.get(server.path+'/api/Products?access_token='+res.body.id).end(
-              (err, products) => {
-                  //cookies.remove('products');
-                  document.cookie = 'products=' + JSON.stringify(products.body);
-                  //console.log(cookie.get('products'));
-                  //createStore(products);
-              }
-          );
-          window.location.href = '/Login';
-        } else {
+        if(!res){
             this.setState({
-                loginFailed: res.body.error.message,
+                loginFailed: 'Server is Unreachable',
                 visible: 'block'
             });
+        } else {
+            if (res.status === 200) {
+                console.log(res, err);
+                cookies.set('accessToken', {accessToken: res.body.id}, {path: '/'});
+                window.location.href = '/Login';
+            } else {
+                this.setState({
+                    loginFailed: res.body.error.message,
+                    visible: 'block'
+                });
+            }
         }
       });
   }

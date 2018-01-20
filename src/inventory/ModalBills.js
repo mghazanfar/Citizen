@@ -11,6 +11,11 @@ import Dialog, {
 import { Link } from 'react-router-dom';
 import ProductSellingPanel from './ProductSellingPanel';
 
+import server from "../constants";
+import request from "superagent/superagent";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 const theme = createMuiTheme({
   overrides: {
     MuiDialog: {
@@ -23,10 +28,27 @@ const theme = createMuiTheme({
   },
 });
 
-class ResponsiveDialog extends React.Component {
+class ResponsiveDialog extends React.Component<props, {}> {
   state = {
     open: false,
+    products: []
   };
+  componentWillMount() {
+      if(cookies.get('accessToken').accessToken){
+          let accessToken = cookies.get('accessToken').accessToken;
+          let shop = window.location.href.split('?')[1].split('=')[1];
+          request.get(`${server.path}/api/Shops/${shop}?access_token=${accessToken}`)
+          .end((err, res) => {
+              if(res.statusCode === 200) {
+                  this.setState({
+                      products : res.body
+                  });
+              }
+          });
+      } else {
+          window.location.href = '/';
+      }
+  }
 
   handleClickOpen = () => {
     this.setState({ open: true });

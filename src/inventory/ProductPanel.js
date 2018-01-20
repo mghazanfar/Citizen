@@ -6,6 +6,7 @@ import Button from 'material-ui/Button';
 import Avatar from 'material-ui/Avatar';
 import { Link } from 'react-router-dom';
 import ModalDelete from './ModalDelete';
+
 import server from "../constants";
 import request from "superagent/superagent";
 import Cookies from 'universal-cookie';
@@ -85,7 +86,7 @@ return (
                 <TableCell><Avatar src={n.image} style={{width:70, height:70}} /></TableCell>
                 <TableCell numeric>{n.category}</TableCell>
                 <TableCell numeric>{n.quantity}</TableCell>
-                <TableCell ><div><Link to={`/ModifyProduct?id=${n.id}`} style={styles.noUnderline}><Button id={n.id} color='primary'>MODIFY</Button></Link><ModalDelete shop={this.state.shop} id={{id: n.id}}/></div></TableCell>
+                <TableCell ><div><Link to={`/ModifyProduct?shop=${this.state.shop}&id=${n.id}`} style={styles.noUnderline}><Button id={n.id} color='primary'>MODIFY</Button></Link><ModalDelete shop={this.state.shop} id={{id: n.id}}/></div></TableCell>
               </TableRow>
             );
           })}

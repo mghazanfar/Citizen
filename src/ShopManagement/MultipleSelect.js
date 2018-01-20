@@ -58,7 +58,6 @@ class MultipleSelect extends React.Component {
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="name-multiple">Select roles</InputLabel>
           <Select
-            multiple
             margin="normal"
             value={this.state.name}
             onChange={this.handleChange}

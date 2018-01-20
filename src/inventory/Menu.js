@@ -3,11 +3,38 @@ import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
 import Menu, { MenuItem } from 'material-ui/Menu';
 
-class SimpleMenu extends React.Component {
+import server from "../constants";
+import request from "superagent/superagent";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
+class SimpleMenu extends React.Component<props, {}> {
   state = {
     anchorEl: null,
     open: false,
+    categories: []
   };
+
+  componentWillMount(){
+      let url = window.location.href.split('?')[1];
+      this.setState({
+          shop: url.split('=')[1]
+      });
+      request.get(server.path + '/api/Shops/'+this.state.shop+'/categories?access_token=' + cookies.get('accessToken').accessToken).end(
+          (err, category) => {
+              if(category.body.length > 0) {
+                  this.setState({
+                      categories: category.body
+                  });
+              } else {
+                this.setState({
+                    categories: ['No Categories']
+                });
+              }
+          }
+      );
+
+  }
 
   handleClick = event => {
     this.setState({ open: true, anchorEl: event.currentTarget });
@@ -34,9 +61,13 @@ class SimpleMenu extends React.Component {
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
         >
-          <MenuItem onClick={this.handleRequestClose}>Chair</MenuItem>
-          <MenuItem onClick={this.handleRequestClose}>Table</MenuItem>
-          <MenuItem onClick={this.handleRequestClose}>Sofa</MenuItem>
+            {
+              this.state.categories.map(category => {
+                return(
+                    <MenuItem onClick={this.handleRequestClose}>{category}</MenuItem>
+                );
+              })
+            }
         </Menu>
       </Paper>
     );

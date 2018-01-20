@@ -61,130 +61,154 @@ noUnderline: {
 }
 };
 
-function FullWidthGrid(props) {
+class FullWidthGrid extends React.Component<props, {}>{
 
-  return (
-  <div style={styles.root}>
-    <Grid container spacing={0} style={styles.container}>
-      <Hidden lgDown>
-        <Grid item xs={12} lg={8} style={styles.right}>
-        <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%', height:'inherit' }}>
-          <Paper elevation={24} style={{maxHeight:700, overflow:'auto', width:'inherit', padding:20, height:'inherit'}}>
-          <TextField
-          id="search"
-          label="Customer name"
-          type="search"
-          margin="normal"
-          style={{width:'100%'}}
-          />
-          <TextField
-          id="search"
-          label="Phone number"
-          type="search"
-          margin="normal"
-          style={{width:'100%'}}
-          />
-          <ModalBills />
-          <TextField
-          id="search"
-          label="Add discounts"
-          type="search"
-          margin="normal"
-          style={{width:'100%'}}
-          />
-          <TextField
-          id="search"
-          label="Total Payment"
-          type="search"
-          margin="normal"
-          style={{width:'100%'}}
-          />
-          <Menu />
-          </Paper>
-          <div style={{display:'flex', justifyContent:'space-around', width:'inherit'}}>
-            <Link to='/AddCategory' style={styles.noUnderline}>
-            <Button raised style={styles.button}>
-            Create Bill
-            </Button>
-            </Link>
-            <Link to='/AddCategory' style={styles.noUnderline}>
-            <Button raised style={styles.button}>
-            Cancel
-            </Button>
-            </Link>
-        </div>
-    </div>
- </Grid>
-</Hidden>
-      
-        <Grid item xs={12} lg={4} style={styles.left}>
-          <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', textAlign:'center' }}>
-            <Typography type="display3" gutterBottom style={{color:'white'}}>
-            CREATE BILL
-            </Typography>
-            <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Create bills for your customers here.</Typography>
-            <Link to='/Inventory' style={styles.noUnderline}>
-            <Button raised style={styles.button}>
-            GO TO INVENTORY
-            </Button>
-            </Link>
-            <Logout />
+  render() {
+      return (
+          <div style={styles.root}>
+            <Grid container spacing={0} style={styles.container}>
+              <Hidden lgDown>
+                <Grid item xs={12} lg={8} style={styles.right}>
+                  <div style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      width: '95%',
+                      height: 'inherit'
+                  }}>
+                    <Paper elevation={24}
+                           style={{maxHeight: 700, overflow: 'auto', width: 'inherit', padding: 20, height: 'inherit'}}>
+                      <TextField
+                          id="search"
+                          label="Customer name"
+                          type="search"
+                          margin="normal"
+                          style={{width: '100%'}}
+                      />
+                      <TextField
+                          id="search"
+                          label="Phone number"
+                          type="search"
+                          margin="normal"
+                          style={{width: '100%'}}
+                      />
+                      <ModalBills/>
+                      <TextField
+                          id="search"
+                          label="Add discounts"
+                          type="search"
+                          margin="normal"
+                          style={{width: '100%'}}
+                      />
+                      <TextField
+                          id="search"
+                          label="Total Payment"
+                          type="search"
+                          margin="normal"
+                          style={{width: '100%'}}
+                      />
+                      <Menu/>
+                    </Paper>
+                    <div style={{display: 'flex', justifyContent: 'space-around', width: 'inherit'}}>
+                      <Link to='/AddCategory' style={styles.noUnderline}>
+                        <Button raised style={styles.button}>
+                          Create Bill
+                        </Button>
+                      </Link>
+                      <Link to='/AddCategory' style={styles.noUnderline}>
+                        <Button raised style={styles.button}>
+                          Cancel
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                </Grid>
+              </Hidden>
+
+              <Grid item xs={12} lg={4} style={styles.left}>
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    marginTop: '4rem',
+                    marginBottom: '4rem',
+                    textAlign: 'center'
+                }}>
+                  <Typography type="display3" gutterBottom style={{color: 'white'}}>
+                    CREATE BILL
+                  </Typography>
+                  <Typography type="headline" paragraph style={{color: 'white', textAlign: 'center', width: '60%',}}>Create
+                    bills for your customers here.</Typography>
+                  <Link to='/Inventory' style={styles.noUnderline}>
+                    <Button raised style={styles.button}>
+                      GO TO INVENTORY
+                    </Button>
+                  </Link>
+                  <Logout/>
+                </div>
+              </Grid>
+
+              <Hidden lgUp>
+                <Grid item xs={12} lg={8} style={styles.right}>
+                  <div style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      width: '95%',
+                      height: 'inherit'
+                  }}>
+                    <Paper elevation={24}
+                           style={{maxHeight: 700, overflow: 'auto', width: 'inherit', padding: 10, height: 'inherit'}}>
+                      <TextField
+                          id="search"
+                          label="Customer name"
+                          type="search"
+                          margin="normal"
+                          style={{width: '100%'}}
+                      />
+                      <TextField
+                          id="search"
+                          label="Phone number"
+                          type="search"
+                          margin="normal"
+                          style={{width: '100%'}}
+                      />
+                      <ModalBills/>
+                      <TextField
+                          id="search"
+                          label="Add discounts"
+                          type="search"
+                          margin="normal"
+                          style={{width: '100%'}}
+                      />
+                      <TextField
+                          id="search"
+                          label="Total Payment"
+                          type="search"
+                          margin="normal"
+                          style={{width: '100%'}}
+                      />
+                      <Menu/>
+                    </Paper>
+                    <div style={{display: 'flex', justifyContent: 'space-around', width: 'inherit'}}>
+                      <Link to='/AddCategory' style={styles.noUnderline}>
+                        <Button raised style={styles.button}>
+                          Create Bill
+                        </Button>
+                      </Link>
+                      <Link to='/AddCategory' style={styles.noUnderline}>
+                        <Button raised style={styles.button}>
+                          Cancel
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                </Grid>
+              </Hidden>
+            </Grid>
           </div>
-        </Grid>
-
-        <Hidden lgUp>
-        <Grid item xs={12} lg={8} style={styles.right}>
-        <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%', height:'inherit' }}>
-          <Paper elevation={24} style={{maxHeight:700, overflow:'auto', width:'inherit', padding:10, height:'inherit'}}>
-          <TextField
-          id="search"
-          label="Customer name"
-          type="search"
-          margin="normal"
-          style={{width:'100%'}}
-          />
-          <TextField
-          id="search"
-          label="Phone number"
-          type="search"
-          margin="normal"
-          style={{width:'100%'}}
-          />
-          <ModalBills />
-          <TextField
-          id="search"
-          label="Add discounts"
-          type="search"
-          margin="normal"
-          style={{width:'100%'}}
-          />
-          <TextField
-          id="search"
-          label="Total Payment"
-          type="search"
-          margin="normal"
-          style={{width:'100%'}}
-          />
-          <Menu />
-          </Paper>
-          <div style={{display:'flex', justifyContent:'space-around', width:'inherit'}}>
-            <Link to='/AddCategory' style={styles.noUnderline}>
-            <Button raised style={styles.button}>
-            Create Bill
-            </Button>
-            </Link>
-            <Link to='/AddCategory' style={styles.noUnderline}>
-            <Button raised style={styles.button}>
-            Cancel
-            </Button>
-            </Link>
-        </div>
-    </div>
- </Grid>
-        </Hidden>
-      </Grid>
-    </div>
-  );
+      );
+  }
 }
 
 export default withStyles(styles)(FullWidthGrid);
