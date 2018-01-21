@@ -40,7 +40,7 @@ class ResponsiveDialog extends React.Component {
           <DialogTitle><span  style={{color:'white'}}>Confirmation!</span></DialogTitle>
           <DialogContent>
             <DialogContentText style={{color:'white'}}>
-            Your expenses with year '{addData.year}', month '{addData.month}', salaries '{addData.salary}', kameti '{addData.kameti}', and households '{addData.household}' '{addData.category}' has been added.
+            Your expenses with year '{addData.year}', month '{addData.month}', salaries '{addData.salary}', kameti '{addData.kameti}', Other Expenses '{addData.expenses[0].name}', and households '{addData.household}' has been added.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
