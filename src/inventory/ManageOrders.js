@@ -9,6 +9,11 @@ import Hidden from 'material-ui/Hidden';
 import ManageDates from './ManageDates';
 import Logout from './Logout';
 
+import server from "../constants";
+import request from "superagent/superagent";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 const styles = {
   left: {
       backgroundColor: 'rgba(255,255,255,0.2)',
@@ -61,53 +66,97 @@ noUnderline: {
 }
 };
 
-function FullWidthGrid(props) {
+class FullWidthGrid extends React.Component<props, {}> {
+  state = {
+    orders: []
+  };
 
-  return (
-  <div style={styles.root}>
-    <Grid container spacing={0} style={styles.container}>
-      <Hidden lgDown>
-        <Grid item xs={12} lg={8} style={styles.right}>
-          <div style={{maxHeight:700, overflow:'auto'}}>
-        {[0, 1, 2, 3, 4].map(value => (
-              <ManageDates key={value} />
-            ))}
-          </div>
-        </Grid>
-      </Hidden>
-      
-        <Grid item xs={12} lg={4} style={styles.left}>
-          <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', textAlign:'center'}}>
-            <Typography type="display3" gutterBottom style={{color:'white'}}>
-            Manage Orders
-            </Typography>
-            <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Manage your orders here and keep track of their status.</Typography>
-            <Link to='/Inventory' style={styles.noUnderline}>
-            <Button raised style={styles.button}>
-            GO TO INVENTORY
-            </Button>
-            </Link>
-            <Link to='/CreateBills' style={styles.noUnderline}>
-            <Button raised style={styles.button}>
-              Create a bill
-            </Button>
-            </Link>
-            <Logout />
-          </div>
-        </Grid>
+  componentWillMount(){
+      if(cookies.get('accessToken').accessToken === undefined) {
+          window.location.href = '/';
+      }
+      if(window.location.href.split('?shop=')[1] === undefined){
+          window.location.href = '/Login';
+      }
+      let url = window.location.href.split('?shop=')[1];
+      let accessToken = cookies.get('accessToken').accessToken;
+      this.setState({
+          shop: url
+      });
+      let today = new Date;
+      let date = `${today.getDate()}-${today.getMonth()+1}-${today.getFullYear()}`;
+      request.get(`${server.path}/api/Shops/${url}/bills?filter=%7B%22where%22%3A%7B%22date%22%3A%22${date}%22%7D%7D&access_token=${accessToken}`).
+          end((err, bills) => {
+        if(bills) {
+            if (bills.statusCode !== 200) {
+              alert(bills.body.error.message);
+            } else {
+              console.log(bills.body);
+              this.setState({
+                  orders: bills.body
+              });
+            }
+        } else {
+          alert('Could not reach service');
+        }
+      });
+  }
 
-        <Hidden lgUp>
-          <Grid item xs={12} lg={8} style={styles.right}>
-            <div style={{maxHeight:700, overflow:'auto'}}>
-          {[0, 1, 2, 3, 4].map(value => (
-                <ManageDates key={value} />
-              ))}
-            </div>
-          </Grid>
-        </Hidden>
-      </Grid>
-    </div>
-  );
+  render() {
+      return (
+          <div style={styles.root}>
+            <Grid container spacing={0} style={styles.container}>
+              <Hidden lgDown>
+                <Grid item xs={12} lg={8} style={styles.right}>
+                  <div style={{maxHeight: 700, overflow: 'auto'}}>
+                      {this.state.orders.map(value => (
+                          <ManageDates key={value}/>
+                      ))}
+                  </div>
+                </Grid>
+              </Hidden>
+
+              <Grid item xs={12} lg={4} style={styles.left}>
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    marginTop: '4rem',
+                    marginBottom: '4rem',
+                    textAlign: 'center'
+                }}>
+                  <Typography type="display3" gutterBottom style={{color: 'white'}}>
+                    Manage Orders
+                  </Typography>
+                  <Typography type="headline" paragraph style={{color: 'white', textAlign: 'center', width: '60%',}}>Manage
+                    your orders here and keep track of their status.</Typography>
+                  <Link to='/Inventory' style={styles.noUnderline}>
+                    <Button raised style={styles.button}>
+                      GO TO INVENTORY
+                    </Button>
+                  </Link>
+                  <Link to='/CreateBills' style={styles.noUnderline}>
+                    <Button raised style={styles.button}>
+                      Create a bill
+                    </Button>
+                  </Link>
+                  <Logout/>
+                </div>
+              </Grid>
+
+              <Hidden lgUp>
+                <Grid item xs={12} lg={8} style={styles.right}>
+                  <div style={{maxHeight: 700, overflow: 'auto'}}>
+                      {this.state.orders.map(value => (
+                          <ManageDates key={value}/>
+                      ))}
+                  </div>
+                </Grid>
+              </Hidden>
+            </Grid>
+          </div>
+      );
+  }
 }
 
 export default withStyles(styles)(FullWidthGrid);

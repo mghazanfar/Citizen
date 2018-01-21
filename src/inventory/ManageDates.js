@@ -21,9 +21,9 @@ const ManageDates = Props => (
             {[0, 1, 2, 3, 4, 5, 6, 7, 8].map(value => (
             <ListItem key={value} dense style={styles.listItem} divider button={false} >
             <Typography type="title" gutterBottom>
-                102.
+                {this.props}
             </Typography>
-                <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>Usman</Typography>} secondary={<span>0333-4928475
+                <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>{value}</Typography>} secondary={<span>0333-4928475
                 <Typography type="caption">
                 Rs. 800
                 </Typography></span>}/>

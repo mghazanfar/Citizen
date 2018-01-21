@@ -83,7 +83,7 @@ noUnderline: {
 
 class TextFields extends React.Component<props, {}> {
     state = {
-        shop: null,
+      shop: null,
       category: 'Write name of your product category',
       productName: 'Write Product Name',
       modelNumber: 'Write Model Number',

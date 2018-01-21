@@ -9,8 +9,13 @@ import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
 import TextField from 'material-ui/TextField';
 import ModalBills from './ModalBills';
-import Menu from './Menu';
+import BillStatus from './BillStatus';
 import Logout from './Logout';
+
+import request from "../../node_modules/superagent/superagent";
+import server from "../constants";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 const styles = {
   left: {
@@ -62,6 +67,87 @@ noUnderline: {
 };
 
 class FullWidthGrid extends React.Component<props, {}>{
+  state = {
+    shop: null,
+    customerName: null,
+    phoneNumber: null,
+    products: [],
+    discount: null,
+    payment: null,
+    status: null,
+  };
+
+  componentWillMount() {
+    let url = window.location.href.search('shop=');
+    if(url === -1){
+      window.location.href = '/Login';
+    }else{
+      let shop = window.location.href.split('shop=')[1];
+      shop = shop.split('&')[0];
+     this.setState({ shop: shop});
+    }
+  }
+    handleChange = (name, description) => event => {
+        this.setState({
+            [name]: event.target.value,
+            [description]: event.target.value,
+        });
+    };
+
+  createBill(){
+    let url = window.location.href.split('&')[1];
+    if(url === undefined){
+        alert('No product selected');
+    } else {
+        let products = url.split('&')[0].split(',');
+        let status = window.location.href.split('&status=')[1];
+        if (cookies.get('accessToken').accessToken === undefined) {
+            window.location.href = '/';
+        }
+        if (products.length < 1) {
+            alert('No product selected');
+        } else {
+            let today = new Date();
+            let data = {
+                customerName: this.state.customerName,
+                phoneNumber: this.state.phoneNumber,
+                discount: this.state.discount,
+                payment: this.state.payment,
+                status: status,
+                date: `${today.getDate()}-${today.getMonth()+1}-${today.getFullYear()}`,
+                products:
+                    products.map((value) => {
+                            return {productId: value}
+                    })
+            };
+            console.log(data.products);
+            if (data.customerName === null || data.customerName === undefined) {
+                alert('Please provide name');
+            }
+            else if (data.phoneNumber === null || data.phoneNumber === undefined) {
+                alert('Please provide phone number');
+            }
+            else if (data.products.length === 0) {
+                alert('Please select some products');
+            }
+            else if(data.payment ===  null){
+                alert('Please provide total payment');
+            }
+            else if (data.status === null || data.status === undefined) {
+                alert('Please select bill status');
+            } else {
+                let accessToken = cookies.get('accessToken').accessToken;
+                request.post(`${server.path}/api/Shops/${this.state.shop}/bills?access_token=${accessToken}`).send(data).end((err, res) => {
+                    if (res.statusCode !== 200) {
+                        alert(res.body.error.message);
+                    } else {
+                        window.location.href = `/Inventory?shop=${this.state.shop}`;
+                    }
+                });
+            }
+        }
+    }
+  }
 
   render() {
       return (
@@ -83,6 +169,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                           label="Customer name"
                           type="search"
                           margin="normal"
+                          onChange={this.handleChange('customerName')}
                           style={{width: '100%'}}
                       />
                       <TextField
@@ -90,6 +177,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                           label="Phone number"
                           type="search"
                           margin="normal"
+                          onChange={this.handleChange('phoneNumber')}
                           style={{width: '100%'}}
                       />
                       <ModalBills/>
@@ -98,6 +186,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                           label="Add discounts"
                           type="search"
                           margin="normal"
+                          onChange={this.handleChange('discount')}
                           style={{width: '100%'}}
                       />
                       <TextField
@@ -105,21 +194,18 @@ class FullWidthGrid extends React.Component<props, {}>{
                           label="Total Payment"
                           type="search"
                           margin="normal"
+                          onChange={this.handleChange('payment')}
                           style={{width: '100%'}}
                       />
-                      <Menu/>
+                      <BillStatus/>
                     </Paper>
                     <div style={{display: 'flex', justifyContent: 'space-around', width: 'inherit'}}>
-                      <Link to='/AddCategory' style={styles.noUnderline}>
-                        <Button raised style={styles.button}>
+                        <Button onClick={this.createBill.bind(this)} raised style={styles.button}>
                           Create Bill
                         </Button>
-                      </Link>
-                      <Link to='/AddCategory' style={styles.noUnderline}>
                         <Button raised style={styles.button}>
                           Cancel
                         </Button>
-                      </Link>
                     </div>
                   </div>
                 </Grid>
@@ -164,6 +250,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                           label="Customer name"
                           type="search"
                           margin="normal"
+                          onChange={this.handleChange('customerName')}
                           style={{width: '100%'}}
                       />
                       <TextField
@@ -171,6 +258,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                           label="Phone number"
                           type="search"
                           margin="normal"
+                          onChange={this.handleChange('phoneNumber')}
                           style={{width: '100%'}}
                       />
                       <ModalBills/>
@@ -179,6 +267,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                           label="Add discounts"
                           type="search"
                           margin="normal"
+                          onChange={this.handleChange('discount')}
                           style={{width: '100%'}}
                       />
                       <TextField
@@ -186,21 +275,18 @@ class FullWidthGrid extends React.Component<props, {}>{
                           label="Total Payment"
                           type="search"
                           margin="normal"
+                          onChange={this.handleChange('payment')}
                           style={{width: '100%'}}
                       />
-                      <Menu/>
+                      <BillStatus/>
                     </Paper>
                     <div style={{display: 'flex', justifyContent: 'space-around', width: 'inherit'}}>
-                      <Link to='/AddCategory' style={styles.noUnderline}>
-                        <Button raised style={styles.button}>
+                        <Button onClick={this.createBill.bind(this)} raised style={styles.button}>
                           Create Bill
                         </Button>
-                      </Link>
-                      <Link to='/AddCategory' style={styles.noUnderline}>
                         <Button raised style={styles.button}>
                           Cancel
                         </Button>
-                      </Link>
                     </div>
                   </div>
                 </Grid>

@@ -216,7 +216,7 @@ class EnhancedTable extends React.Component {
     componentWillMount(){
       if(cookies.get('accessToken').accessToken){
         let accessToken = cookies.get('accessToken').accessToken;
-        let shop = window.location.href.split('?')[1].split('=')[1];
+        let shop = window.location.href.split('?')[1].split('=')[1].split('&')[0];
         request.get(`${server.path}/api/Shops/${shop}/products?access_token=${accessToken}`).
         end((err, products) => {
           if(products.statusCode === 200){
@@ -286,7 +286,12 @@ class EnhancedTable extends React.Component {
         }
 
         this.setState({ selected: newSelected });
-        console.log('Selected are', newSelected.id);
+        let url = window.location.href.split('&')[0] + '&' + newSelected;
+        if(window.location.href.search('status=') !== -1){
+          url += `&status=${window.location.href.split('&status=')[1]}`;
+        }
+        window.history.pushState('page2', 'Title', url);
+        console.log('Selected are', newSelected);
     };
 
     handleChangePage = (event, page) => {

@@ -36,7 +36,7 @@ class ResponsiveDialog extends React.Component<props, {}> {
   componentWillMount() {
       if(cookies.get('accessToken').accessToken){
           let accessToken = cookies.get('accessToken').accessToken;
-          let shop = window.location.href.split('?')[1].split('=')[1];
+          let shop = window.location.href.split('?')[1].split('=')[1].split('&')[0];
           request.get(`${server.path}/api/Shops/${shop}?access_token=${accessToken}`)
           .end((err, res) => {
               if(res.statusCode === 200) {
@@ -79,11 +79,9 @@ class ResponsiveDialog extends React.Component<props, {}> {
             <ProductSellingPanel />
           </DialogContent>
           <DialogActions>
-          <Link to="/Categories" style={{ textDecoration: 'none' }}>
           <Button onClick={this.handleRequestClose} color="primary">
               OK
         </Button>
-        </Link>
           </DialogActions>
           </div>
         </Dialog>

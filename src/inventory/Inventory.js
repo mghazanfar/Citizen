@@ -17,6 +17,7 @@ import server from "../constants";
 import request from "superagent/superagent";
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
+
 const styles = {
   left: {
       minHeight: '100vh',
