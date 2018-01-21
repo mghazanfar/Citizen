@@ -65,7 +65,7 @@ class MenuListComposition extends React.Component {
               <Grow in={open} id="menu-list" style={{ transformOrigin: '0 0 0' }}>
                 <Paper>
                   <MenuList role="menu">
-                    <MenuItem onClick={this.handleClose}><Link to='/MyAccount' style={{textDecoration:'none'}}>Profile</Link></MenuItem>
+                    <MenuItem onClick={this.handleClose}><Link to='/MyAccount' style={{textDecoration:'none', color:'black'}}>Profile</Link></MenuItem>
                     <MenuItem onClick={this.handleClose}>Logout</MenuItem>
                   </MenuList>
                 </Paper>

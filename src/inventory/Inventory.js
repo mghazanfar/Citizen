@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
 import Hidden from 'material-ui/Hidden';
 import Logout from './Logout';
+import './clickables.css';
 
 const styles = {
   left: {
@@ -40,10 +41,6 @@ svg: {
   marginRight: 10,
   fillColor: 'white',
 },
-headline: {
-  textDecoration: 'none',
-  color: 'white',
-},
 noUnderline: {
   textDecoration:'none',
 },
@@ -65,19 +62,19 @@ function FullWidthGrid(props) {
             Go to:
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/Categories' style={styles.headline}><img src={Categories} alt="" style={styles.svg} />Categories</Link>
+            <Link to='/Categories' className='underline'><img src={Categories} alt="" style={styles.svg} />Categories</Link>
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/Products' style={styles.headline}><img src={Products} alt="" style={styles.svg} />Products</Link>
+            <Link to='/Products' className='underline'><img src={Products} alt="" style={styles.svg} />Products</Link>
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/AddProducts' style={styles.headline}><img src={Add} alt="" style={styles.svg} />Add Products</Link>
+            <Link to='/AddProducts' className='underline'><img src={Add} alt="" style={styles.svg} />Add Products</Link>
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/CreateBills' style={styles.headline}><img src={Bills} alt="" style={styles.svg} />Create Bills</Link>
+            <Link to='/CreateBills' className='underline'><img src={Bills} alt="" style={styles.svg} />Create Bills</Link>
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/ManageOrders' style={styles.headline}><img src={Orders} alt="" style={styles.svg} />Manage Orders</Link>
+            <Link to='/ManageOrders' className='underline'><img src={Orders} alt="" style={styles.svg} />Manage Orders</Link>
           </Typography>
           <div style={{display:'flex', justifyContent:'center', marginTop:'3rem'}}>
           <Link to='/Shop' style={styles.noUnderline}>

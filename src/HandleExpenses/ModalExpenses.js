@@ -1,26 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import Dialog, {
   DialogActions,
   DialogContent,
+  DialogContentText,
   DialogTitle,
   withMobileDialog,
 } from 'material-ui/Dialog';
-import ProductSellingPanel from './ProductSellingPanel';
-
-const theme = createMuiTheme({
-  overrides: {
-    MuiDialog: {
-      // Name of the styleSheet
-      paperWidthSm: {
-        // Name of the rule
-        maxWidth: 'max-content',
-      },
-    },
-  },
-});
+import { Link } from 'react-router-dom';
 
 class ResponsiveDialog extends React.Component {
   state = {
@@ -36,33 +24,34 @@ class ResponsiveDialog extends React.Component {
   };
 
   render() {
-    const { fullScreen } = this.props;
+    const { fullScreen, addData } = this.props;
 
     return (
-      <div style={{display:'flex', marginTop:'1rem'}}>
-        <Button raised style={{ color:'white', backgroundColor:'black'}} onClick={this.handleClickOpen}>
-        ADD ITEMS
+      <div style={{display:'flex', justifyContent:'center'}}>
+        <Button raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
+        ADD Expenses
         </Button>
-        
-    <MuiThemeProvider theme={theme}>
         <Dialog
           fullScreen={fullScreen}
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
         >
         <div style={{backgroundColor:'#424242'}}>
-          <DialogTitle><span  style={{color:'white'}}>Add Items!</span></DialogTitle>
+          <DialogTitle><span  style={{color:'white'}}>Confirmation!</span></DialogTitle>
           <DialogContent>
-            <ProductSellingPanel />
+            <DialogContentText style={{color:'white'}}>
+            Your expenses with year '{addData.year}', month '{addData.month}', salaries '{addData.salary}', kameti '{addData.kameti}', Other Expenses '{addData.expenses[0].name}', and households '{addData.household}' has been added.
+            </DialogContentText>
           </DialogContent>
           <DialogActions>
-          <Button onClick={this.handleRequestClose} color="primary">
-              OK
-        </Button>
+          <Link to="/Shop" style={{ textDecoration: 'none' }}>
+            <Button onClick={this.handleRequestClose} color="primary">
+                OK
+            </Button>
+        </Link>
           </DialogActions>
           </div>
         </Dialog>
-    </MuiThemeProvider>
       </div>
     );
   }

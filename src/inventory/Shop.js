@@ -4,6 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import Background from '../img/img2.jpg';
 import Grid from 'material-ui/Grid';
 import { Link } from 'react-router-dom';
+import './clickables.css';
 
 const styles = {
   left: {
@@ -25,10 +26,6 @@ const styles = {
     alignItems:'center',
     flexDirection:'column',
     textAlign:'left',
-},
-headline: {
-  textDecoration: 'none',
-  color: 'white',
 }
 };
 
@@ -43,22 +40,22 @@ function FullWidthGrid(props) {
             Let's Start!
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/ManageShop' style={styles.headline}>Shop management</Link>
+            <Link to='/ManageShop' className='underline'>Shop management</Link>
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/Inventory' style={styles.headline}>Inventory</Link>
+            <Link to='/Inventory' className='underline'>Inventory</Link>
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/HandleProfit' style={styles.headline}>Profit handling</Link>
+            <Link to='/HandleProfit' className='underline'>Profit handling</Link>
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/HandleExpenses' style={styles.headline}>Expense handling</Link>
+            <Link to='/HandleExpenses' className='underline'>Expense handling</Link>
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/ManageClaimStock' style={styles.headline}>Stock Claim Management</Link>
+            <Link to='/ManageClaimStock' className='underline'>Stock Claim Management</Link>
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/ManageCompaniesBills' style={styles.headline}>Bills to companies record</Link>
+            <Link to='/ManageCompaniesBills' className='underline'>Bills to companies record</Link>
           </Typography>
             </div>
         </Grid>
