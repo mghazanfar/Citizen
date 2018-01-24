@@ -76,6 +76,8 @@ login = () => {
             if (res.status === 200) {
                 console.log(res, err);
                 cookies.set('accessToken', {accessToken: res.body.id}, {path: '/'});
+                cookies.set('username', {username: this.state.username}, {path: '/'});
+                cookies.set('userId', {userId: res.body.userId}, {path: '/'});
                 window.location.href = '/Login';
             } else {
                 this.setState({
@@ -139,4 +141,5 @@ handleClickShowPasssword = () => {
     );
   }
 }
+
 export default App;

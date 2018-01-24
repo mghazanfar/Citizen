@@ -11,6 +11,11 @@ import TextField from 'material-ui/TextField';
 import ModalAccount from './ModalAccount';
 import Logout from '../inventory/Logout';
 
+import server from "../constants";
+import request from "superagent/superagent";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 const styles = {
   left: {
     backgroundColor: 'rgba(0,0,0,0.4)',
@@ -56,6 +61,12 @@ button: {
   backgroundColor:'black',
   marginTop:'4rem',
 },
+buttonUsername: {
+  color:'white',
+  backgroundColor:'black',
+  width:'100%',
+  marginTop:'1rem',
+},
 headline: {
   textDecoration: 'none',
   color: 'white',
@@ -78,7 +89,26 @@ class TextFields extends React.Component<props, {}> {
       username: 'Choose Username',
       password: 'Choose password',
       prevPassword: 'Previous password',
+      shop: null,
+      user: cookies.get('username').username,
     };
+
+    componentWillMount(){
+        if(cookies.get('accessToken')){
+
+        } else {
+            window.location.href = '/';
+        }
+        let shop = window.location.href.split('?shop=');
+        if(shop === undefined){
+            window.location.href = '/Login';
+        }else {
+            this.setState({
+                shop: shop,
+                user: cookies.get('username').username
+            });
+        }
+    }
   
     _handleSubmit(e) {
       e.preventDefault();
@@ -103,11 +133,69 @@ class TextFields extends React.Component<props, {}> {
     }
   
     handleChange = (username, password) => event => {
+        console.log(event);
       this.setState({
         [username]: event.target.value,
         [password]: event.target.value,
       });
     };
+
+    changeUsername(){
+        if(this.state.username === 'Choose Username'){
+            alert('Please enter the user name');
+        } else if (this.state.password === 'Choose password'){
+            alert('Please enter the password');
+        } else {
+            let userId = cookies.get('userId').userId;
+            let accessToken =cookies.get('accessToken').accessToken;
+            request.post(`${server.path}/api/Accounts/change-password?access_token=${accessToken}`)
+                .send({oldPassword: this.state.password, newPassword: this.state.password})
+                .end((err, res) => {
+                    if(!res){
+                        alert('Service Unreachable');
+                    } else {
+                        if(res.statusCode === 204){
+                            request.patch(`${server.path}/api/Accounts/${userId}?access_token=${accessToken}`).
+                            send({username: this.state.username}).
+                            end((err, res) => {
+                                if(!res){
+                                    alert('Serverice Unreachable');
+                                } else if(res.statusCode === 200){
+                                    alert('Username Changed');
+                                } else {
+                                    alert(res.body.error.message);
+                                }
+                            });
+                        } else {
+                            alert(res.body.error.message);
+                        }
+                    }
+                });
+        }
+    }
+
+    changePassword(){
+        if(this.state.password === 'Choose password'){
+            alert('Please enter new password');
+        } else if (this.state.prevPassword === 'Previous password'){
+            alert('Please enter your current password');
+        } else {
+            let accessToken =cookies.get('accessToken').accessToken;
+            request.post(`${server.path}/api/Accounts/change-password?access_token=${accessToken}`)
+                .send({oldPassword: this.state.password, newPassword: this.state.password})
+                .end((err, res) => {
+                    if(!res){
+                        alert('Service Unreachable');
+                    } else {
+                        if(res.statusCode === 204){
+                            alert('Password Changed');
+                        } else {
+                            alert(res.body.error.message);
+                        }
+                    }
+                });
+        }
+    }
   
     render() {
       const { classes } = this.props;
@@ -117,28 +205,28 @@ class TextFields extends React.Component<props, {}> {
               <Grid item xs={12} lg={4} style={styles.left}>
                   <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', }}>
                       <Hidden smDown>
-                      <Typography type="display3" gutterBottom style={{color:'white', width:'60%', textAlign:'center'}}>
-                      MY PROFILE
-                      </Typography>
-                      <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can change your username and password.</Typography>
-                      <Link to='/ManageShop' style={styles.noUnderline}>
-                      <Button raised style={styles.button}>
-                      GO To Shop Management
-                      </Button>
-                      </Link>
-                      <Logout />
-                      </Hidden>
-                      <Hidden smUp>
-                      <Typography type="display1" gutterBottom style={{color:'white', width:'75%', textAlign:'center'}}>
-                      MY PROFILE
-                      </Typography>
-                      <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the products of all/specific categories.</Typography>
-                      <Link to='/ManageShop' style={styles.noUnderline}>
-                      <Button raised style={styles.button}>
-                      GO To Shop Management
-                      </Button>
-                      </Link>
-                      <Logout />
+                        <Typography type="display3" gutterBottom style={{color:'white', width:'60%', textAlign:'center'}}>
+                        MY PROFILE
+                        </Typography>
+                        <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can change your username and password.</Typography>
+                        <Link to={`/ManageShop?shop=${this.state.shop}`} style={styles.noUnderline}>
+                        <Button raised style={styles.button}>
+                        GO To Shop Management
+                        </Button>
+                        </Link>
+                        <Logout />
+                        </Hidden>
+                        <Hidden smUp>
+                        <Typography type="display1" gutterBottom style={{color:'white', width:'75%', textAlign:'center'}}>
+                        MY PROFILE
+                        </Typography>
+                        <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the products of all/specific categories.</Typography>
+                        <Link to={`/ManageShop?shop=${this.state.shop}`} style={styles.noUnderline}>
+                        <Button raised style={styles.button}>
+                        GO To Shop Management
+                        </Button>
+                        </Link>
+                        <Logout />
                       </Hidden>
                   </div>
                   </Grid>
@@ -147,43 +235,57 @@ class TextFields extends React.Component<props, {}> {
                   <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
                       <Paper elevation={24} style={{maxHeight:600, overflow:'auto', width:'inherit', padding: 20}}>
                           <TextField
-                            label="Username"
+                            label={this.state.user}
                             className={classes.textField}
                             onChange={this.handleChange('username')}
                             fullWidth
                             disabled
                             margin="normal"
                           />
-                          <TextField
-                            label="Change Username"
-                            className={classes.textField}
-                            onChange={this.handleChange('username')}
-                            fullWidth
-                            margin="normal"
+                          <div style={{display:'flex', justifyContent:'space-evenly'}}>
+                            <TextField
+                              label="Change Username"
+                              className={classes.textField}
+                              onChange={this.handleChange('username')}
+                              margin="normal"
+                            />
+                            <TextField
+                              label="Current Password"
+                              className={classes.textField}
+                              type="password"
+                              onChange={this.handleChange('password')}
+                              required
+                              margin="normal"
                           />
+                          </div>
+                            <Button raised style={styles.buttonUsername} onClick={this.changeUsername.bind(this)} >
+                                change username
+                            </Button>
+                          <div style={{display:'flex', justifyContent:'space-evenly'}}>
                           <TextField
                             label="Change Password"
                             className={classes.textField}
                             type="password"
-                            onChange={this.handleChange('Password')}
-                            fullWidth
+                            onChange={this.handleChange('password')}
+                            
                             margin="normal"
-                        />
+                          />
                           <TextField
                             label="Previous Password"
                             className={classes.textField}
                             type="password"
-                            onChange={this.handleChange('Password')}
-                            fullWidth
+                            onChange={this.handleChange('prevPassword')}
+                            
                             required
                             margin="normal"
                         />
-                        <div style={{display:'flex',  justifyContent:'space-around'}}>
+                        </div>
                         <ModalAccount profile addData={{username: this.state.username,
                                                 password: this.state.password,
                                                 }}
                         />
-                            <Link to='/ManageShop' style={styles.noUnderline}>
+                        <div style={{display:'flex',  justifyContent:'space-around'}}>
+                            <Link to={`/ManageShop?shop=${this.state.shop}`} style={styles.noUnderline}>
                                 <Button raised style={styles.button}>
                                     CANCEL
                                 </Button>
@@ -200,7 +302,7 @@ class TextFields extends React.Component<props, {}> {
               <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%', marginTop:'2rem' }}>
               <Paper elevation={24} style={{maxHeight:600, overflow:'auto', width:'inherit', padding: 20}}>
                   <TextField
-                    label="Username"
+                    label={this.state.user}
                     className={classes.textField}
                     placeholder={this.state.username}
                     onChange={this.handleChange('username')}

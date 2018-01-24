@@ -25,22 +25,17 @@ const styles = theme => ({
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 
-class MultipleSelect extends React.Component {
+class MultipleSelect extends React.Component<props, {}> {
   state = {
     name: [],
     role: '',
   };
 
     componentWillMount(){
+        console.log(this.props);
         if(cookies.get('accessToken') === undefined){
             window.location.href = '/';
         }
-        request.get(`${server.path}/api/Roles?access_tokn=${cookies.get('accessToken').accessToken}`)
-            .end((err, res) => {
-                this.setState({
-                    name: res.body
-                });
-            });
     }
     selected(name) {
       this.setState({role: name});
@@ -75,7 +70,6 @@ class MultipleSelect extends React.Component {
               <MenuItem
                 key={name.name}
                 value={name.name}
-                onClick={this.selected.bind(null, name.name)}
                 style={{
                   fontWeight: this.state.name.indexOf(name.name) !== -1 ? '500' : '400',
                 }}

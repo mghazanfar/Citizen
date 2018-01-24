@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
 import Hidden from 'material-ui/Hidden';
 import Logout from './Logout';
+import './clickables.css';
 
 import server from "../constants";
 import request from "superagent/superagent";

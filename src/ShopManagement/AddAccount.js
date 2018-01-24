@@ -85,7 +85,7 @@ class TextFields extends React.Component<props, {}> {
       shop: null,
       username: 'Choose Username',
       password: 'Choose Password',
-      role: '',
+      role: [],
     };
   
     _handleSubmit(e) {
@@ -127,6 +127,14 @@ class TextFields extends React.Component<props, {}> {
         this.setState({
             shop: url
         });
+        console.log("here");
+        request.get(`${server.path}/api/Roles?access_tokn=${cookies.get('accessToken').accessToken}`)
+            .end((err, res) => {
+            console.log(res);
+                this.setState({
+                    role: res.body
+                });
+            });
     }
   
     render() {
@@ -183,7 +191,7 @@ class TextFields extends React.Component<props, {}> {
                             fullWidth
                             margin="normal"
                         />
-                        <Select />
+                        <Select role = {{role: this.state.role}}/>
                               <div style={{display:'flex',  justifyContent:'space-around'}}>
                               <ModalAccount addData={{username: this.state.username,
                                                       password: this.state.password,
@@ -223,7 +231,7 @@ class TextFields extends React.Component<props, {}> {
                     fullWidth
                     margin="normal"
                 />
-                <Select />
+                <Select role = {{role: this.state.role}}/>
                       <div style={{display:'flex',  justifyContent:'space-around'}}>
                       <ModalAccount addData={{username: this.state.username,
                                               password: this.state.password,

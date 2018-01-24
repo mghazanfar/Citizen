@@ -4,6 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import Background from '../img/img2.jpg';
 import Grid from 'material-ui/Grid';
 import { Link } from 'react-router-dom';
+import './clickables.css';
 
 import Cookies from 'universal-cookie';
 import server from "../constants";

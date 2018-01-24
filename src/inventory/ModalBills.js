@@ -8,7 +8,6 @@ import Dialog, {
   DialogTitle,
   withMobileDialog,
 } from 'material-ui/Dialog';
-import { Link } from 'react-router-dom';
 import ProductSellingPanel from './ProductSellingPanel';
 
 import server from "../constants";

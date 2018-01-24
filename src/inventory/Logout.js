@@ -9,6 +9,7 @@ import setting from '../img/settings.svg';
 import { withStyles } from 'material-ui/styles';
 import { Manager, Target, Popper } from 'react-popper';
 import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
+import { Link } from 'react-router-dom';
 
 import server from "../constants";
 import request from "superagent/superagent";
@@ -85,7 +86,7 @@ class MenuListComposition extends React.Component {
                   <MenuList role="menu">
                     <MenuItem onClick={this.handleClose}>Profile</MenuItem>
                     <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                    <MenuItem onClick={this.logout}>Logout</MenuItem>
+                    <MenuItem onClick={this.logout.bind(this)}>Logout</MenuItem>
                   </MenuList>
                 </Paper>
               </Grow>

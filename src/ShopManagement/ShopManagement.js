@@ -9,7 +9,8 @@ import Grid from 'material-ui/Grid';
 import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
 import Hidden from 'material-ui/Hidden';
-import Logout from '../inventory/Logout'
+import Logout from '../inventory/Logout';
+import '../inventory/clickables.css';
 
 import Cookies from 'universal-cookie';
 import server from "../constants";
