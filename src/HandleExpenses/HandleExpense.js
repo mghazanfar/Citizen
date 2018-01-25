@@ -14,8 +14,13 @@ import ModalExpenses from './ModalExpenses';
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
 import Logout from '../inventory/Logout';
+import request from "../../node_modules/superagent/superagent";
+import server from "../constants";
+import Cookies from 'universal-cookie';
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const years = ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029'];
+
+var cookies = new Cookies();
 
 const styles = {
 left: {
@@ -87,7 +92,19 @@ class TextFields extends React.Component<props, {}> {
       kameti: ' ',
       household: ' ',
       expenses: [{ name: '' }],
+      shop: null,
     };
+
+    componentWillMount(){
+        if(cookies.get('accessToken') === undefined) {
+            window.location.href = '/';
+        } else {
+            let url = window.location.href.split('shop=')[1].split('&')[0];
+            this.setState({
+                shop: url
+            });
+        }
+    }
 
     handleShareholderNameChange = (idx) => (evt) => {
       const newExpenses = this.state.expenses.map((expense, sidx) => {
@@ -155,7 +172,7 @@ class TextFields extends React.Component<props, {}> {
                       Handle Expenses
                       </Typography>
                       <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can handle your expenses.</Typography>
-                      <Link to='/Shop' style={styles.noUnderline}>
+                      <Link to={`/Shop?shop=${this.state.shop}`} style={styles.noUnderline}>
                       <Button raised style={styles.button}>
                       back
                       </Button>
@@ -167,7 +184,7 @@ class TextFields extends React.Component<props, {}> {
                       Handle Expenses
                       </Typography>
                       <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the products of all/specific categories.</Typography>
-                      <Link to='/Shop' style={styles.noUnderline}>
+                      <Link to={`/Shop?shop=${this.state.shop}`} style={styles.noUnderline}>
                       <Button raised style={styles.button}>
                       back
                       </Button>
@@ -271,7 +288,7 @@ class TextFields extends React.Component<props, {}> {
                                   kameti: this.state.kameti,
                                   household: this.state.household,
                                   expenses: this.state.expenses}} />
-                                  <Link to='/Products' style={styles.noUnderline}>
+                                  <Link to={`/Products?shop=${this.state.shop}`} style={styles.noUnderline}>
                                       <Button raised style={styles.button}>
                                           CANCEL
                                       </Button>
@@ -369,7 +386,7 @@ class TextFields extends React.Component<props, {}> {
                           salary: this.state.salary,
                           kameti: this.state.kameti,
                           household: this.state.household,}} />
-                          <Link to='/Products' style={styles.noUnderline}>
+                          <Link to={`/Products?shop=${this.state.shop}`} style={styles.noUnderline}>
                               <Button raised style={styles.button}>
                                   CANCEL
                               </Button>

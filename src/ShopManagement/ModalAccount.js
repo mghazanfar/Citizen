@@ -10,7 +10,7 @@ import Dialog, {
 } from 'material-ui/Dialog';
 import { Link } from 'react-router-dom';
 
-class ResponsiveDialog extends React.Component {
+class ResponsiveDialog extends React.Component<props, {}> {
   state = {
     open: false,
   };
@@ -23,6 +23,10 @@ class ResponsiveDialog extends React.Component {
     this.setState({ open: false });
   };
 
+  addAccount(){
+    console.log(this);
+  }
+
   render() {
     const { fullScreen, addData, profile } = this.props;
 
@@ -32,7 +36,7 @@ class ResponsiveDialog extends React.Component {
         <Button raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
         Change Password
         </Button>:
-        <Button raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
+        <Button raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.addAccount()}>
         ADD Account
         </Button>}
         <Dialog
@@ -51,7 +55,7 @@ class ResponsiveDialog extends React.Component {
             </DialogContentText>}
           </DialogContent>
           <DialogActions>
-          <Link to="/ManageShop" style={{ textDecoration: 'none' }}>
+          <Link to={`/ManageShop?shop=${this.props.shop}`} style={{ textDecoration: 'none' }}>
             <Button onClick={this.handleRequestClose} color="primary">
                 OK
             </Button>

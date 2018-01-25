@@ -8,6 +8,9 @@ import Button from 'material-ui/Button';
 import Hidden from 'material-ui/Hidden';
 import ManageDates from './ManageDates';
 import Logout from './Logout';
+/*//import DatePickerExampleToggle from 'DatePicker';
+import DatePicker from 'material-ui/DatePicker';
+import Toggle from 'material-ui/Toggle';*/
 
 import server from "../constants";
 import request from "superagent/superagent";

@@ -85,7 +85,7 @@ class TextFields extends React.Component<props, {}> {
       shop: null,
       username: 'Choose Username',
       password: 'Choose Password',
-      role: [],
+      role: null,
     };
   
     _handleSubmit(e) {
@@ -123,18 +123,43 @@ class TextFields extends React.Component<props, {}> {
         if(window.location.href.split('?')[1] === undefined){
             window.location.href = '/Login';
         }
-        let url = window.location.href.split('?')[1];
+        let url = window.location.href.split('?shop=')[1].split('&')[0];
         this.setState({
             shop: url
         });
-        console.log("here");
-        request.get(`${server.path}/api/Roles?access_tokn=${cookies.get('accessToken').accessToken}`)
-            .end((err, res) => {
-            console.log(res);
-                this.setState({
-                    role: res.body
-                });
-            });
+    }
+
+    addAccount(){
+        if(this.state.username === 'Choose Username'){
+            alert('Please provide username');
+        } else if( this.state.password === 'Choose Password'){
+            alert('Please provide password');
+        } else {
+            let role = window.location.href.split('&role=')[1];
+            if(role === undefined) {
+                alert('Please select a role');
+            } else {
+                let accessToken = cookies.get('accessToken').accessToken;
+                let date = {
+                    username: this.state.username,
+                    password: this.state.password,
+                    role : role
+                }
+                request.post(`${server.path}/api/Accounts?access_token=${accessToken}`)
+                    .send(date)
+                    .end((err, res) => {
+                        if(!res){
+                            alert('Serverice Unreachable');
+                        } else {
+                            if(res.statusCode === 200){
+                                alert('Account created successfully')
+                            } else {
+                                alert(res.body.error.message);
+                            }
+                        }
+                    });
+            }
+        }
     }
   
     render() {
@@ -149,7 +174,7 @@ class TextFields extends React.Component<props, {}> {
                       ADD ACCOUNT
                       </Typography>
                       <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can add account for your employees.</Typography>
-                      <Link to='/ManageShop' style={styles.noUnderline}>
+                      <Link to={`/ManageShop?shop=${this.state.shop}`} style={styles.noUnderline}>
                       <Button raised style={styles.button}>
                       GO To Shop Management
                       </Button>
@@ -161,7 +186,7 @@ class TextFields extends React.Component<props, {}> {
                       ADD ACCOUNT
                       </Typography>
                       <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the products of all/specific categories.</Typography>
-                      <Link to='/ManageShop' style={styles.noUnderline}>
+                      <Link to={`/ManageShop?shop=${this.state.shop}`} style={styles.noUnderline}>
                       <Button raised style={styles.button}>
                       GO To Shop Management
                       </Button>
@@ -187,18 +212,16 @@ class TextFields extends React.Component<props, {}> {
                             className={classes.textField}
                             placeholder={this.state.password}
                             type="password"
-                            onChange={this.handleChange('Password')}
+                            onChange={this.handleChange('password')}
                             fullWidth
                             margin="normal"
                         />
-                        <Select role = {{role: this.state.role}}/>
+                        <Select/>
                               <div style={{display:'flex',  justifyContent:'space-around'}}>
-                              <ModalAccount addData={{username: this.state.username,
-                                                      password: this.state.password,
-                                                      role: this.state.role,
-                                                      }}
-                              />
-                                  <Link to='/ManageShop' style={styles.noUnderline}>
+                                  <Button raised style={styles.button} onClick={this.addAccount.bind(this)}>
+                                      ADD ACCOUNT
+                                  </Button>
+                                  <Link to={`/ManageShop?shop=${this.state.shop}`} style={styles.noUnderline}>
                                       <Button raised style={styles.button}>
                                           CANCEL
                                       </Button>
@@ -227,18 +250,16 @@ class TextFields extends React.Component<props, {}> {
                     className={classes.textField}
                     placeholder={this.state.password}
                     type="password"
-                    onChange={this.handleChange('Password')}
+                    onChange={this.handleChange('password')}
                     fullWidth
                     margin="normal"
                 />
-                <Select role = {{role: this.state.role}}/>
+                <Select />
                       <div style={{display:'flex',  justifyContent:'space-around'}}>
-                      <ModalAccount addData={{username: this.state.username,
-                                              password: this.state.password,
-                                              role: this.state.role,
-                                              }}
-                      />
-                          <Link to='/ManageShop' style={styles.noUnderline}>
+                          <Button raised style={styles.button} onClick={this.addAccount.bind(this)}>
+                              ADD ACCOUNT
+                          </Button>
+                          <Link to={`/ManageShop?shop=${this.state.shop}`} style={styles.noUnderline}>
                               <Button raised style={styles.button}>
                                   CANCEL
                               </Button>

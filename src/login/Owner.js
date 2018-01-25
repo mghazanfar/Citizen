@@ -13,7 +13,6 @@ import LinearProgress from 'material-ui/Progress/LinearProgress';
 import request from "../../node_modules/superagent/superagent";
 import server from "../constants";
 import Cookies from 'universal-cookie';
-//import cookie from "react-cookie";
 var cookies = new Cookies();
 
 const styles = {

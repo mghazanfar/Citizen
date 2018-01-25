@@ -99,7 +99,7 @@ class TextFields extends React.Component<props, {}> {
         } else {
             window.location.href = '/';
         }
-        let shop = window.location.href.split('?shop=');
+        let shop = window.location.href.split('?shop=')[1];
         if(shop === undefined){
             window.location.href = '/Login';
         }else {
@@ -181,8 +181,9 @@ class TextFields extends React.Component<props, {}> {
             alert('Please enter your current password');
         } else {
             let accessToken =cookies.get('accessToken').accessToken;
+            console.log()
             request.post(`${server.path}/api/Accounts/change-password?access_token=${accessToken}`)
-                .send({oldPassword: this.state.password, newPassword: this.state.password})
+                .send({oldPassword: this.state.prevPassword, newPassword: this.state.password})
                 .end((err, res) => {
                     if(!res){
                         alert('Service Unreachable');
@@ -280,10 +281,9 @@ class TextFields extends React.Component<props, {}> {
                             margin="normal"
                         />
                         </div>
-                        <ModalAccount profile addData={{username: this.state.username,
-                                                password: this.state.password,
-                                                }}
-                        />
+                          <Button raised style={styles.buttonUsername} onClick={this.changePassword.bind(this)} >
+                              change password
+                          </Button>
                         <div style={{display:'flex',  justifyContent:'space-around'}}>
                             <Link to={`/ManageShop?shop=${this.state.shop}`} style={styles.noUnderline}>
                                 <Button raised style={styles.button}>
@@ -338,11 +338,10 @@ class TextFields extends React.Component<props, {}> {
                     margin="normal"
                 />
                 <div style={{display:'flex',  justifyContent:'space-around'}}>
-                <ModalAccount profile addData={{username: this.state.username,
-                                        password: this.state.password,
-                                        }}
-                />
-                    <Link to='/ManageShop' style={styles.noUnderline}>
+                    <Button raised style={styles.buttonUsername} onClick={this.changePassword.bind(this)} >
+                        change password
+                    </Button>
+                    <Link to={`/ManageShop?shop=${this.state.shop}`} style={styles.noUnderline}>
                         <Button raised style={styles.button}>
                             CANCEL
                         </Button>

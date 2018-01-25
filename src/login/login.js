@@ -7,8 +7,6 @@ const cookies = new Cookies();
 
 class App extends Component {
   componentWillMount(){
-    //cookies.remove('accessToken');
-      console.log(cookies.get('accessToken'));
     if(cookies.get('accessToken')) {
     } else {
       window.location.href = '/';

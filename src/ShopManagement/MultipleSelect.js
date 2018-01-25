@@ -27,8 +27,8 @@ const ITEM_PADDING_TOP = 8;
 
 class MultipleSelect extends React.Component<props, {}> {
   state = {
-    name: [],
-    role: '',
+    name: '',
+    role: [],
   };
 
     componentWillMount(){
@@ -36,13 +36,34 @@ class MultipleSelect extends React.Component<props, {}> {
         if(cookies.get('accessToken') === undefined){
             window.location.href = '/';
         }
-    }
-    selected(name) {
-      this.setState({role: name});
+        let accessToken = cookies.get('accessToken').accessToken;
+        request.get(`${server.path}/api/Roles?access_token=${accessToken}`)
+            .end((err, res) => {
+              if(!res){
+                alert('Service Unreachable');
+              } else {
+                if(res.statusCode === 200){
+                    this.setState({
+                        role: res.body
+                    });
+                } else {
+                  alert(res.body.error.message);
+                }
+              }
+            });
     }
 
   handleChange = event => {
     this.setState({ name: event.target.value });
+    let url = window.location.href.split('&role=')[1];
+    if(url === undefined){
+      url = `${window.location.href}&role=${event.target.value}`;
+        window.history.pushState('index.html', 'title', url);
+    } else {
+      url = window.location.href.split('&role=')[0];
+      url += `&role=${event.target.value}`;
+      window.history.pushState('index.html', 'title', url);
+    }
   };
 
   render() {
@@ -66,7 +87,7 @@ class MultipleSelect extends React.Component<props, {}> {
               },
             }}
           >
-            {this.state.name.map(name => (
+            {this.state.role.map(name => (
               <MenuItem
                 key={name.name}
                 value={name.name}

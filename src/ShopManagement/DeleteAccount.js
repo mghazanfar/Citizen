@@ -69,12 +69,21 @@ noUnderline: {
 class FullWidthGrid extends React.Component <props, {}>{
 
   state = {
-    users: []
-  }
+    users: [],
+    shop: null,
+  };
 
   componentWillMount(){
     if(cookies.get('accessToken').accessToken === undefined){
       window.location.href = '/';
+    }
+    let url = window.location.href.split('?shop=')[1].split('&')[0];
+    if(url === undefined){
+        window.location.href = '/'
+    }else {
+        this.setState({
+            shop: url
+        });
     }
     request.get(`${server.path}/api/Accounts?access_token=${cookies.get('accessToken').accessToken}`)
         .end((err, res) => {
@@ -142,7 +151,7 @@ class FullWidthGrid extends React.Component <props, {}>{
                   </Typography>
                   <Typography type="headline" paragraph style={{color: 'white', textAlign: 'center', width: '60%',}}>Here,
                     you can delete a user.</Typography>
-                  <Link to='/ManageShop' style={styles.noUnderline}>
+                  <Link to={`/ManageShop?shop=${this.state.shop}`} style={styles.noUnderline}>
                     <Button raised style={styles.button}>
                       GO TO SHOP MANAGEMENT
                     </Button>
