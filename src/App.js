@@ -85,7 +85,7 @@ const ModalGallery = () => (
       <Route path='/Login'  component={Loginn}/>
       <Route path='/Shop'  component={Shop}/>
       <Route path='/Inventory'  component={Inventory}/>
-      <Route path='/HandleProfit'  component={HandleProfit}/>
+      <Route path='/ProfitReports'  component={HandleProfit}/>
       <Route path='/HandleExpenses'  component={HandleExpenses}/>
       <Route path='/ManageClaimStock'  component={Shop}/>
       <Route path='/ManageCompaniesBills'  component={Shop}/>

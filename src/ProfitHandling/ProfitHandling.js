@@ -3,6 +3,12 @@ import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import Background from '../img/profit.jpg';
 import Grid from 'material-ui/Grid';
+import Dialog, {
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from 'material-ui/Dialog';
 import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
@@ -10,7 +16,6 @@ import Hidden from 'material-ui/Hidden';
 import TextField from 'material-ui/TextField';
 import { MenuItem } from 'material-ui/Menu';
 import Select from 'material-ui/Select';
-import ModalExpenses from '../HandleExpenses/ModalExpenses';
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
 import Logout from '../inventory/Logout';
@@ -83,96 +88,61 @@ class TextFields extends React.Component<props, {}> {
     state = {
       month: ' ',
       year: '2018',
-      salary: ' ',
-      kameti: ' ',
-      household: ' ',
-      expenses: [{ name: '' }],
+      open: false,
+      monthSelected: false,
     };
 
-    handleShareholderNameChange = (idx) => (evt) => {
-      const newExpenses = this.state.expenses.map((expense, sidx) => {
-        if (idx !== sidx) return expense;
-        return { ...expense, name: evt.target.value };
-      });
-  
-      this.setState({ expenses: newExpenses });
-    }
-  
-    handleAddShareholder = () => {
-      this.setState({
-        expenses: this.state.expenses.concat([{ name: '' }])
+    handleRequestClose = () => {
+      this.setState ({
+        open: false,
       });
     }
-  
-    handleRemoveShareholder = (idx) => () => {
-      this.setState({
-        expenses: this.state.expenses.filter((s, sidx) => idx !== sidx)
-      });
-    }  
-  
-    _handleSubmit(e) {
-      e.preventDefault();
-      // TODO: do something with -> this.state.file
-      console.log('handle uploading-', this.state.file);
-    }
-  
-    _handleImageChange(e) {
-      e.preventDefault();
-  
-      let reader = new FileReader();
-      let file = e.target.files[0];
-  
-      reader.onloadend = () => {
-        this.setState({
-          file: file,
-          img: reader.result
-        });
-      }
-  
-      reader.readAsDataURL(file)
-    }
-  
-    handleChange = (salary, kameti, household, month, year, label) => event => {
-      this.setState({
-        [salary]: event.target.value,
-        [kameti]: event.target.value,
-        [household]: event.target.value,
-        [month]: event.target.value,
+    
+    handleRequestOpen = (year) => event => {
+      this.setState ({
+        open: true,
         [year]: event.target.value,
-        [label]: event.target.value,
+      });
+    }
+  
+  
+    handleChange = ( month, monthSelected ) => event => {
+      this.setState({
+        [month]: event.target.value,
+        monthSelected: true,
       });
     };
   
     render() {
-      const { classes } = this.props;
+      const { classes, fullScreen } = this.props;
       return (
         <div style={styles.root}>
           <Grid container spacing={0} style={styles.container} justify='center'>
               <Grid item xs={12} lg={4} style={styles.left}>
                   <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', }}>
                       <Hidden smDown>
-                      <Typography type="display3" gutterBottom style={{color:'white', width:'60%', textAlign:'center'}}>
-                      Profit Reports
-                      </Typography>
-                      <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here you can view monthly and yearly profit reports.</Typography>
-                      <Link to='/Shop' style={styles.noUnderline}>
-                      <Button raised style={styles.button}>
-                      back
-                      </Button>
-                      </Link>
-                      <Logout />
-                      </Hidden>
-                      <Hidden smUp>
-                      <Typography type="display1" gutterBottom style={{color:'white', width:'75%', textAlign:'center'}}>
-                      Profit Reports
-                      </Typography>
-                      <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here you can view monthly and yearly profit reports.</Typography>
-                      <Link to='/Shop' style={styles.noUnderline}>
-                      <Button raised style={styles.button}>
-                      back
-                      </Button>
-                      </Link>
-                      <Logout />
+                        <Typography type="display3" gutterBottom style={{color:'white', width:'60%', textAlign:'center'}}>
+                        Profit Reports
+                        </Typography>
+                        <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here you can view your daily, monthly and yearly profit reports.</Typography>
+                        <Link to='/Shop' style={styles.noUnderline}>
+                        <Button raised style={styles.button}>
+                        back
+                        </Button>
+                        </Link>
+                        <Logout />
+                        </Hidden>
+                        <Hidden smUp>
+                        <Typography type="display1" gutterBottom style={{color:'white', width:'75%', textAlign:'center'}}>
+                        Profit Reports
+                        </Typography>
+                        <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here you can view your daily, monthly and yearly profit reports.</Typography>
+                        <Link to='/Shop' style={styles.noUnderline}>
+                        <Button raised style={styles.button}>
+                        back
+                        </Button>
+                        </Link>
+                        <Logout />
                       </Hidden>
                   </div>
                   </Grid>
@@ -180,7 +150,21 @@ class TextFields extends React.Component<props, {}> {
               <Grid item xs={12} lg={8} style={styles.right}>
                   <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
                       <Paper elevation={24} style={{maxHeight:600, overflow:'auto', width:'inherit', padding: 20}}>
-                        <div style={{display:'flex', justifyContent:'space-around'}}>
+                        <div style={{display:'flex', justifyContent:'space-between'}}>
+                          <div style={{width:'30%'}}>
+                            <TextField
+                              id="date"
+                              label="Date"
+                              type="date"
+                              defaultValue="2018-05-24"
+                              className={classes.textField}
+                              InputLabelProps={{
+                                shrink: true,
+                              }}
+                              fullWidth
+                            />
+                          <FormHelperText>Please select the date</FormHelperText>
+                          </div>
                           <div style={{width:'30%'}}>
                         <FormControl className={classes.formControl} fullWidth>
                           <InputLabel htmlFor="age-simple">Month</InputLabel>
@@ -202,7 +186,7 @@ class TextFields extends React.Component<props, {}> {
                           <InputLabel htmlFor="age-simple">Year</InputLabel>
                           <Select
                             value={this.state.year}
-                            onChange={this.handleChange('year')}
+                            onChange={this.handleRequestOpen('year')}
                             input={<Input name="age" id="age-simple" />}
                             autoWidth
                             placeholder={this.state.year}
@@ -216,67 +200,107 @@ class TextFields extends React.Component<props, {}> {
                         </div>  
                         </div>    
                         <FormControl fullWidth style={{marginTop:14}}>
-                            <InputLabel htmlFor="amount">Salaries</InputLabel>
+                            <InputLabel htmlFor="amount">Amount Recieved Today</InputLabel>
                             <Input
                                 id="adornment-amount"
                                 value={this.state.salary}
                                 onChange={this.handleChange('salary')}
                                 startAdornment={<InputAdornment position="start">Rs. </InputAdornment>}
                                 type="number"
+                                disabled
                             />
                         </FormControl>      
                         <FormControl fullWidth style={{marginTop:14}}>
-                            <InputLabel htmlFor="amount">Kameti</InputLabel>
+                            <InputLabel htmlFor="amount">Base Prices</InputLabel>
                             <Input
                                 id="adornment-amount"
                                 value={this.state.kameti}
                                 onChange={this.handleChange('kameti')}
                                 startAdornment={<InputAdornment position="start">Rs. </InputAdornment>}
                                 type="number"
+                                disabled
                             />
                         </FormControl>      
                         <FormControl fullWidth style={{marginTop:14}}>
-                            <InputLabel htmlFor="amount">Households</InputLabel>
+                            <InputLabel htmlFor="amount">Shop Expenses</InputLabel>
                             <Input
                                 id="adornment-amount"
                                 value={this.state.household}
                                 onChange={this.handleChange('household')}
                                 startAdornment={<InputAdornment position="start">Rs. </InputAdornment>}
                                 type="number"
+                                disabled
+                            />
+                        </FormControl>      
+                        <FormControl fullWidth style={{marginTop:14}}>
+                            <InputLabel htmlFor="amount">Total Profit Today</InputLabel>
+                            <Input
+                                id="adornment-amount"
+                                value={this.state.household}
+                                onChange={this.handleChange('household')}
+                                startAdornment={<InputAdornment position="start">Rs. </InputAdornment>}
+                                type="number"
+                                disabled
+                            />
+                        </FormControl>      
+                        <FormControl fullWidth style={{marginTop:14}}>
+                            <InputLabel htmlFor="amount">Total Profit Current Month</InputLabel>
+                            <Input
+                                id="adornment-amount"
+                                value={this.state.household}
+                                onChange={this.handleChange('household')}
+                                startAdornment={<InputAdornment position="start">Rs. </InputAdornment>}
+                                type="number"
+                                disabled
+                            />
+                        </FormControl>      
+                        <FormControl fullWidth style={{marginTop:14}}>
+                            <InputLabel htmlFor="amount">Total Profit Current Year</InputLabel>
+                            <Input
+                                id="adornment-amount"
+                                value={this.state.household}
+                                onChange={this.handleChange('household')}
+                                startAdornment={<InputAdornment position="start">Rs. </InputAdornment>}
+                                type="number"
+                                disabled
                             />
                         </FormControl>
-                        {this.state.expenses.map((expense, idx) => (
-                        <div style={{display:"flex"}}> 
-                          <FormControl fullWidth style={{marginTop:14}} key={idx}>
-                              <InputLabel htmlFor="amount">Others</InputLabel>
-                              <Input
-                                  id="adornment-amount"
-                                  value={expense.name}
-                                  onChange={this.handleShareholderNameChange(idx)}
-                                  startAdornment={<InputAdornment position="start">Rs. </InputAdornment>}
-                                  type="number"
-                              />
-                          </FormControl>
-                          <Button type="button" onClick={this.handleRemoveShareholder(idx)} style={{ color:'white', backgroundColor:'black', marginTop:12}} dense>-</Button>
-                          </div>
-                      ))}
-                        <Button raised style={{ color:'white', backgroundColor:'black', fontSize:'1.5rem', marginTop:12}} fab mini onClick={this.handleAddShareholder}>
-                            +
-                        </Button>
-                              <div style={{display:'flex',  justifyContent:'space-around'}}>
-                              <ModalExpenses addData={{
-                                  month: this.state.month,
-                                  year: this.state.year,
-                                  salary: this.state.salary,
-                                  kameti: this.state.kameti,
-                                  household: this.state.household,
-                                  expenses: this.state.expenses}} />
-                                  <Link to='/Products' style={styles.noUnderline}>
-                                      <Button raised style={styles.button}>
-                                          CANCEL
-                                      </Button>
-                                  </Link>
-                              </div>
+                        <Dialog
+                          fullScreen={fullScreen}
+                          open={this.state.open}
+                          onRequestClose={this.handleRequestClose}
+                        >
+                        <div style={{backgroundColor:'#424242'}}>
+                          <DialogTitle><span style={{color:'white'}}>Profit Report for {this.state.year} </span></DialogTitle>
+                          <div style={{width:'100%'}}>
+                          {months.map(month => (
+                          <DialogContent>
+                            <DialogContentText style={{color:'white'}}>
+                            {month}'s Profit: Rs. Profit
+                            </DialogContentText>
+                          </DialogContent>
+                          ))}
+                          <DialogActions>
+                              <Button onClick={this.handleRequestClose} color="primary">
+                                  OK
+                              </Button>
+                          </DialogActions>
+                        </div>
+                        </div>
+                        </Dialog>
+                         {/*The display property will turn into block when a month or year is selected to show
+                            the profit of the selected month or year  */}
+                        <FormControl fullWidth style={{marginTop:14, display:this.state.monthSelected===true? 'block': 'none'}}>
+                            <InputLabel htmlFor="amount">Total Profit {this.state.month}</InputLabel>
+                            <Input
+                                id="adornment-amount"
+                                value={this.state.household}
+                                onChange={this.handleChange('household')}
+                                startAdornment={<InputAdornment position="start">Rs. </InputAdornment>}
+                                type="number"
+                                disabled
+                            />
+                        </FormControl>
                       </Paper>
                   </div>
               </Grid>
@@ -284,100 +308,164 @@ class TextFields extends React.Component<props, {}> {
             
       
               <Hidden lgUp>
-              <Grid item xs={12} lg={8} style={styles.right}>
-              <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
-              <Paper elevation={24} style={{maxHeight:600, overflow:'auto', width:'inherit', padding: 20}}>
-                <div style={{display:'flex', justifyContent:'space-around'}}>
+                <Grid item xs={12} lg={8} style={styles.right}>
+                  <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
+                    
+                  <Paper elevation={24} style={{maxHeight:600, overflow:'auto', width:'inherit', padding: 20}}>
+                  <div style={{display:'flex', justifyContent:'space-between'}}>
+                    <div style={{width:'30%'}}>
+                      <TextField
+                        id="date"
+                        label="Date"
+                        type="date"
+                        defaultValue="2018-05-24"
+                        className={classes.textField}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                        fullWidth
+                      />
+                    <FormHelperText>Please select the date</FormHelperText>
+                    </div>
+                    <div style={{width:'30%'}}>
+                  <FormControl className={classes.formControl} fullWidth>
+                    <InputLabel htmlFor="age-simple">Month</InputLabel>
+                    <Select
+                      value={this.state.month}
+                      onChange={this.handleChange('month')}
+                      input={<Input name="age" id="age-simple" />}
+                      autoWidth
+                    >
+                    {months.map(month => (
+                      <MenuItem value={month}>{month}</MenuItem>
+              ))}
+                    </Select>
+                    <FormHelperText>Please select the month</FormHelperText>
+                  </FormControl>
+                  </div>
                   <div style={{width:'30%'}}>
-                <FormControl className={classes.formControl} fullWidth>
-                  <InputLabel htmlFor="age-simple">Month</InputLabel>
-                  <Select
-                    value={this.state.month}
-                    onChange={this.handleChange('month')}
-                    input={<Input name="age" id="age-simple" />}
-                    autoWidth
+                  <FormControl className={classes.formControl} fullWidth>
+                    <InputLabel htmlFor="age-simple">Year</InputLabel>
+                    <Select
+                      value={this.state.year}
+                      onChange={this.handleRequestOpen('year')}
+                      input={<Input name="age" id="age-simple" />}
+                      autoWidth
+                      placeholder={this.state.year}
+                    >
+                    {years.map(year => (
+                      <MenuItem value={year}>{year}</MenuItem>
+              ))}
+                    </Select>
+                    <FormHelperText>Please select the year</FormHelperText>
+                  </FormControl>
+                  </div>  
+                  </div>    
+                  <FormControl fullWidth style={{marginTop:14}}>
+                      <InputLabel htmlFor="amount">Amount Recieved Today</InputLabel>
+                      <Input
+                          id="adornment-amount"
+                          value={this.state.salary}
+                          onChange={this.handleChange('salary')}
+                          startAdornment={<InputAdornment position="start">Rs. </InputAdornment>}
+                          type="number"
+                          disabled
+                      />
+                  </FormControl>      
+                  <FormControl fullWidth style={{marginTop:14}}>
+                      <InputLabel htmlFor="amount">Base Prices</InputLabel>
+                      <Input
+                          id="adornment-amount"
+                          value={this.state.kameti}
+                          onChange={this.handleChange('kameti')}
+                          startAdornment={<InputAdornment position="start">Rs. </InputAdornment>}
+                          type="number"
+                          disabled
+                      />
+                  </FormControl>      
+                  <FormControl fullWidth style={{marginTop:14}}>
+                      <InputLabel htmlFor="amount">Shop Expenses</InputLabel>
+                      <Input
+                          id="adornment-amount"
+                          value={this.state.household}
+                          onChange={this.handleChange('household')}
+                          startAdornment={<InputAdornment position="start">Rs. </InputAdornment>}
+                          type="number"
+                          disabled
+                      />
+                  </FormControl>      
+                  <FormControl fullWidth style={{marginTop:14}}>
+                      <InputLabel htmlFor="amount">Total Profit Today</InputLabel>
+                      <Input
+                          id="adornment-amount"
+                          value={this.state.household}
+                          onChange={this.handleChange('household')}
+                          startAdornment={<InputAdornment position="start">Rs. </InputAdornment>}
+                          type="number"
+                          disabled
+                      />
+                  </FormControl>      
+                  <FormControl fullWidth style={{marginTop:14}}>
+                      <InputLabel htmlFor="amount">Total Profit Current Month</InputLabel>
+                      <Input
+                          id="adornment-amount"
+                          value={this.state.household}
+                          onChange={this.handleChange('household')}
+                          startAdornment={<InputAdornment position="start">Rs. </InputAdornment>}
+                          type="number"
+                          disabled
+                      />
+                  </FormControl>      
+                  <FormControl fullWidth style={{marginTop:14}}>
+                      <InputLabel htmlFor="amount">Total Profit Current Year</InputLabel>
+                      <Input
+                          id="adornment-amount"
+                          value={this.state.household}
+                          onChange={this.handleChange('household')}
+                          startAdornment={<InputAdornment position="start">Rs. </InputAdornment>}
+                          type="number"
+                          disabled
+                      />
+                  </FormControl>
+                  <Dialog
+                    fullScreen={fullScreen}
+                    open={this.state.open}
+                    onRequestClose={this.handleRequestClose}
                   >
-                  {months.map(month => (
-                    <MenuItem value={month}>{month}</MenuItem>
-            ))}
-                  </Select>
-                  <FormHelperText>Please select the month</FormHelperText>
-                </FormControl>
-                </div>
-                <div style={{width:'30%'}}>
-                <FormControl className={classes.formControl} fullWidth>
-                  <InputLabel htmlFor="age-simple">Year</InputLabel>
-                  <Select
-                    value={this.state.year}
-                    onChange={this.handleChange('year')}
-                    input={<Input name="age" id="age-simple" />}
-                    autoWidth
-                    placeholder={this.state.year}
-                  >
-                  {years.map(year => (
-                    <MenuItem value={year}>{year}</MenuItem>
-            ))}
-                  </Select>
-                  <FormHelperText>Please select the year</FormHelperText>
-                </FormControl>
-                </div>  
-                </div>    
-                <FormControl fullWidth style={{marginTop:14}}>
-                    <InputLabel htmlFor="amount">Salaries</InputLabel>
-                    <Input
-                        id="adornment-amount"
-                        value={this.state.salary}
-                        onChange={this.handleChange('salary')}
-                        startAdornment={<InputAdornment position="start">Rs. </InputAdornment>}
-                        type="number"
-                    />
-                </FormControl>      
-                <FormControl fullWidth style={{marginTop:14}}>
-                    <InputLabel htmlFor="amount">Kameti</InputLabel>
-                    <Input
-                        id="adornment-amount"
-                        value={this.state.kameti}
-                        onChange={this.handleChange('kameti')}
-                        startAdornment={<InputAdornment position="start">Rs. </InputAdornment>}
-                        type="number"
-                    />
-                </FormControl>      
-                <FormControl fullWidth style={{marginTop:14}}>
-                    <InputLabel htmlFor="amount">Households</InputLabel>
-                    <Input
-                        id="adornment-amount"
-                        value={this.state.household}
-                        onChange={this.handleChange('household')}
-                        startAdornment={<InputAdornment position="start">Rs. </InputAdornment>}
-                        type="number"
-                    />
-                </FormControl>
-                <TextField
-                  id="label"
-                  placeholder={this.state.label}
-                  className={classes.textField}
-                  onChange={this.handleChange('label')}
-                  margin="normal"
-                />
-                <Button raised style={{ color:'white', backgroundColor:'black', fontSize:'1.5rem', marginTop:12}} fab mini onClick={this.onAddChild}>
-                    +
-                </Button>
-                      <div style={{display:'flex',  justifyContent:'space-around'}}>
-                      <ModalExpenses addData={{category: this.state.category,
-                          month: this.state.month,
-                          year: this.state.year,
-                          salary: this.state.salary,
-                          kameti: this.state.kameti,
-                          household: this.state.household,}} />
-                          <Link to='/Products' style={styles.noUnderline}>
-                              <Button raised style={styles.button}>
-                                  CANCEL
-                              </Button>
-                          </Link>
-                      </div>
-              </Paper>
-          </div>
-          </Grid>
+                  <div style={{backgroundColor:'#424242'}}>
+                    <DialogTitle><span style={{color:'white'}}>Profit Report for {this.state.year} </span></DialogTitle>
+                    <div style={{width:'100%'}}>
+                    {months.map(month => (
+                    <DialogContent>
+                      <DialogContentText style={{color:'white'}}>
+                      {month}'s Profit: Rs. Profit
+                      </DialogContentText>
+                    </DialogContent>
+                    ))}
+                    <DialogActions>
+                        <Button onClick={this.handleRequestClose} color="primary">
+                            OK
+                        </Button>
+                    </DialogActions>
+                  </div>
+                  </div>
+                  </Dialog>
+                   {/*The display property will turn into block when a month or year is selected to show
+                      the profit of the selected month or year  */}
+                  <FormControl fullWidth style={{marginTop:14, display:this.state.monthSelected===true? 'block': 'none'}}>
+                      <InputLabel htmlFor="amount">Total Profit {this.state.month}</InputLabel>
+                      <Input
+                          id="adornment-amount"
+                          value={this.state.household}
+                          onChange={this.handleChange('household')}
+                          startAdornment={<InputAdornment position="start">Rs. </InputAdornment>}
+                          type="number"
+                          disabled
+                      />
+                  </FormControl>
+                </Paper>
+              </div>
+            </Grid>
               </Hidden>
             </Grid>
           </div>

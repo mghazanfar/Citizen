@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
-import TextField from 'material-ui/TextField';
 import { MenuItem } from 'material-ui/Menu';
 import Select from 'material-ui/Select';
 import ModalExpenses from './ModalExpenses';
@@ -352,23 +351,32 @@ class TextFields extends React.Component<props, {}> {
                         type="number"
                     />
                 </FormControl>
-                <TextField
-                  id="label"
-                  placeholder={this.state.label}
-                  className={classes.textField}
-                  onChange={this.handleChange('label')}
-                  margin="normal"
-                />
-                <Button raised style={{ color:'white', backgroundColor:'black', fontSize:'1.5rem', marginTop:12}} fab mini onClick={this.onAddChild}>
+                {this.state.expenses.map((expense, idx) => (
+                <div style={{display:"flex"}}> 
+                  <FormControl fullWidth style={{marginTop:14}} key={idx}>
+                      <InputLabel htmlFor="amount">Others</InputLabel>
+                      <Input
+                          id="adornment-amount"
+                          value={expense.name}
+                          onChange={this.handleShareholderNameChange(idx)}
+                          startAdornment={<InputAdornment position="start">Rs. </InputAdornment>}
+                          type="number"
+                      />
+                  </FormControl>
+                  <Button type="button" onClick={this.handleRemoveShareholder(idx)} style={{ color:'white', backgroundColor:'black', marginTop:12}} dense>-</Button>
+                  </div>
+              ))}
+                <Button raised style={{ color:'white', backgroundColor:'black', fontSize:'1.5rem', marginTop:12}} fab mini onClick={this.handleAddShareholder}>
                     +
                 </Button>
                       <div style={{display:'flex',  justifyContent:'space-around'}}>
-                      <ModalExpenses addData={{category: this.state.category,
+                      <ModalExpenses addData={{
                           month: this.state.month,
                           year: this.state.year,
                           salary: this.state.salary,
                           kameti: this.state.kameti,
-                          household: this.state.household,}} />
+                          household: this.state.household,
+                          expenses: this.state.expenses}} />
                           <Link to='/Products' style={styles.noUnderline}>
                               <Button raised style={styles.button}>
                                   CANCEL

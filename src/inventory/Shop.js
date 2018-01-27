@@ -46,7 +46,7 @@ function FullWidthGrid(props) {
             <Link to='/Inventory' className='underline'>Inventory</Link>
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/HandleProfit' className='underline'>Profit handling</Link>
+            <Link to='/ProfitReports' className='underline'>Profit Reports</Link>
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
             <Link to='/HandleExpenses' className='underline'>Expense handling</Link>
