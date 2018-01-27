@@ -1,7 +1,7 @@
 import React from 'react';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
-import Background from '../img/expenses.png';
+import Background from '../img/profit.jpg';
 import Grid from 'material-ui/Grid';
 import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
@@ -10,7 +10,7 @@ import Hidden from 'material-ui/Hidden';
 import TextField from 'material-ui/TextField';
 import { MenuItem } from 'material-ui/Menu';
 import Select from 'material-ui/Select';
-import ModalExpenses from './ModalExpenses';
+import ModalExpenses from '../HandleExpenses/ModalExpenses';
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
 import Logout from '../inventory/Logout';
@@ -19,7 +19,7 @@ const years = ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '
 
 const styles = {
 left: {
-  backgroundColor: 'rgba(0,0,0,0.4)',
+  backgroundColor: 'rgba(0,0,0,0.8)',
   display: 'flex',
   alignItems:'center',
   justifyContent:'center',
@@ -32,7 +32,7 @@ right: {
 },
 container: {
   minHeight:'inherit',
-  background: 'rgba(255, 255, 255, 0.9)',
+  background: 'rgba(255, 255, 255, 0)',
 },
 root: {
   backgroundImage: `url(${Background})`,
@@ -152,9 +152,9 @@ class TextFields extends React.Component<props, {}> {
                   <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', }}>
                       <Hidden smDown>
                       <Typography type="display3" gutterBottom style={{color:'white', width:'60%', textAlign:'center'}}>
-                      Handle Expenses
+                      Profit Reports
                       </Typography>
-                      <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can handle your expenses.</Typography>
+                      <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here you can view monthly and yearly profit reports.</Typography>
                       <Link to='/Shop' style={styles.noUnderline}>
                       <Button raised style={styles.button}>
                       back
@@ -164,9 +164,9 @@ class TextFields extends React.Component<props, {}> {
                       </Hidden>
                       <Hidden smUp>
                       <Typography type="display1" gutterBottom style={{color:'white', width:'75%', textAlign:'center'}}>
-                      Handle Expenses
+                      Profit Reports
                       </Typography>
-                      <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can handle your expenses.</Typography>
+                      <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here you can view monthly and yearly profit reports.</Typography>
                       <Link to='/Shop' style={styles.noUnderline}>
                       <Button raised style={styles.button}>
                       back
