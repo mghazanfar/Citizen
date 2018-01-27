@@ -32,11 +32,11 @@ const styles = {
 function FullWidthGrid(props) {
 
   return (
-    <div>
-      <Grid container spacing={0}>
-        <Grid item xs={12} md={6} lg={4} style={styles.left}>
-            <div>
-            <Typography type="display3" gutterBottom style={{color:'white'}}>
+  <div>
+    <Grid container spacing={0}>
+      <Grid item xs={12} md={6} lg={4} style={styles.left}>
+        <div>
+          <Typography type="display3" gutterBottom style={{color:'white'}}>
             Let's Start!
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
@@ -46,7 +46,7 @@ function FullWidthGrid(props) {
             <Link to='/Inventory' className='underline'>Inventory</Link>
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/HandleProfit' className='underline'>Profit handling</Link>
+            <Link to='/ProfitReports' className='underline'>Profit Reports</Link>
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
             <Link to='/HandleExpenses' className='underline'>Expense handling</Link>
@@ -57,22 +57,22 @@ function FullWidthGrid(props) {
             <Typography type="headline" gutterBottom style={{color:'white'}}>
             <Link to='/ManageCompaniesBills' className='underline'>Bills to companies record</Link>
           </Typography>
-            </div>
-        </Grid>
+        </div>
+      </Grid>
 
-        <Grid item xs={12} md={6} lg={8} style={styles.right}>
+      <Grid item xs={12} md={6} lg={8} style={styles.right}>
         <div style={styles.rightInner}>
           <div style={{ marginTop:'4rem', marginLeft:'4rem' }}>
-          <Typography type="display4" gutterBottom style={{color:'white'}}>
-           Citizen
-          </Typography>
-          <Typography type="display1" paragraph style={{color:'white', width:'45%'}}>This portal is helpful for your shop. You can manage 
-            your products,salaries, expenses, Stock claimming, profit, and much more.</Typography>
-            </div>
-            </div>
-        </Grid>
+            <Typography type="display4" gutterBottom style={{color:'white'}}>
+              Citizen
+            </Typography>
+            <Typography type="display1" paragraph style={{color:'white', width:'45%'}}>This portal is helpful for your shop. You can manage 
+              your products,salaries, expenses, Stock claimming, profit, and much more.</Typography>
+          </div>
+        </div>
       </Grid>
-    </div>
+    </Grid>
+  </div>
   );
 }
 
