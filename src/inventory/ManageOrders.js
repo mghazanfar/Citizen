@@ -8,9 +8,7 @@ import Button from 'material-ui/Button';
 import Hidden from 'material-ui/Hidden';
 import ManageDates from './ManageDates';
 import Logout from './Logout';
-/*//import DatePickerExampleToggle from 'DatePicker';
-import DatePicker from 'material-ui/DatePicker';
-import Toggle from 'material-ui/Toggle';*/
+import DatePicker from 'react-date-picker';
 
 import server from "../constants";
 import request from "superagent/superagent";
@@ -71,10 +69,13 @@ noUnderline: {
 
 class FullWidthGrid extends React.Component<props, {}> {
   state = {
-    orders: []
+    orders: [],
+    date: new Date()
   };
+    onChange = date => this.setState({ date })
 
-  componentWillMount(){
+
+    componentWillMount(){
       if(cookies.get('accessToken').accessToken === undefined) {
           window.location.href = '/';
       }
@@ -111,6 +112,12 @@ class FullWidthGrid extends React.Component<props, {}> {
             <Grid container spacing={0} style={styles.container}>
               <Hidden lgDown>
                 <Grid item xs={12} lg={8} style={styles.right}>
+                   {/* <div>
+                        <DatePicker
+                            onChange={this.onChange}
+                            value={this.state.date}
+                        />
+                    </div>*/}
                   <div style={{maxHeight: 700, overflow: 'auto'}}>
                       {this.state.orders.map(value => (
                           <ManageDates key={value}/>
@@ -133,12 +140,12 @@ class FullWidthGrid extends React.Component<props, {}> {
                   </Typography>
                   <Typography type="headline" paragraph style={{color: 'white', textAlign: 'center', width: '60%',}}>Manage
                     your orders here and keep track of their status.</Typography>
-                  <Link to='/Inventory' style={styles.noUnderline}>
+                  <Link to={`/Inventory?shop=${this.state.shop}`} style={styles.noUnderline}>
                     <Button raised style={styles.button}>
                       GO TO INVENTORY
                     </Button>
                   </Link>
-                  <Link to='/CreateBills' style={styles.noUnderline}>
+                  <Link to={`/CreateBills?shop=${this.state.shop}`} style={styles.noUnderline}>
                     <Button raised style={styles.button}>
                       Create a bill
                     </Button>
@@ -149,6 +156,12 @@ class FullWidthGrid extends React.Component<props, {}> {
 
               <Hidden lgUp>
                 <Grid item xs={12} lg={8} style={styles.right}>
+                   {/* <div>
+                        <DatePicker
+                            onChange={this.onChange}
+                            value={this.state.date}
+                        />
+                    </div>*/}
                   <div style={{maxHeight: 700, overflow: 'auto'}}>
                       {this.state.orders.map(value => (
                           <ManageDates key={value}/>

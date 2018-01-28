@@ -96,10 +96,14 @@ class TextFields extends React.Component<props, {}> {
     };
 
     componentWillMount(){
+
         if(cookies.get('accessToken') === undefined) {
             window.location.href = '/';
         } else {
             let url = window.location.href.split('shop=')[1].split('&')[0];
+            if(url === undefined){
+                window.location.href = '/Login';
+            }
             this.setState({
                 shop: url
             });
@@ -113,13 +117,13 @@ class TextFields extends React.Component<props, {}> {
       });
   
       this.setState({ expenses: newExpenses });
-    }
+    };
   
     handleAddShareholder = () => {
       this.setState({
         expenses: this.state.expenses.concat([{ name: '' }])
       });
-    }
+    };
   
     handleRemoveShareholder = (idx) => () => {
       this.setState({
@@ -144,8 +148,7 @@ class TextFields extends React.Component<props, {}> {
           file: file,
           img: reader.result
         });
-      }
-  
+      };
       reader.readAsDataURL(file)
     }
   
@@ -159,6 +162,38 @@ class TextFields extends React.Component<props, {}> {
         [label]: event.target.value,
       });
     };
+
+    saveExpense(){
+        let data = {
+            "salaries": this.state.salary,
+            "committee": this.state.kameti,
+            "extra": this.state.expenses,
+            "housholds": this.state.household,
+            "date": `${this.state.month}-${this.state.year}`,
+        };
+        let accessToken = cookies.get('accessToken').accessToken;
+        if(data.salaries === ' '){
+            alert('Please enter salaries');
+        } else if(this.state.month === ' '){
+            alert('Please enter correct date');
+        } else if(data.committee === ' ' || data.housholds === ' '){
+            alert('Please entermissing data');
+        } else {
+            request.post(`${server.path}/api/Shops/${this.state.shop}/expenses?access_token=${accessToken}`)
+                .send(data)
+                .end((err, res) => {
+                    if(!res){
+                        alert('Service Unreachable');
+                    } else{
+                        if(res.statusCode === 200){
+                            alert('Expense saved');
+                        } else {
+                            alert(res.body.error.message);
+                        }
+                    }
+                });
+        }
+    }
   
     render() {
       const { classes } = this.props;
@@ -281,14 +316,10 @@ class TextFields extends React.Component<props, {}> {
                             +
                         </Button>
                               <div style={{display:'flex',  justifyContent:'space-around'}}>
-                              <ModalExpenses addData={{
-                                  month: this.state.month,
-                                  year: this.state.year,
-                                  salary: this.state.salary,
-                                  kameti: this.state.kameti,
-                                  household: this.state.household,
-                                  expenses: this.state.expenses}} />
-                                  <Link to={`/Products?shop=${this.state.shop}`} style={styles.noUnderline}>
+                                  <Button onClick={this.saveExpense.bind(this)} raised style={styles.button}>
+                                      ADD EXPENSES
+                                  </Button>
+                                  <Link to={`/Shop?shop=${this.state.shop}`} style={styles.noUnderline}>
                                       <Button raised style={styles.button}>
                                           CANCEL
                                       </Button>
@@ -380,13 +411,10 @@ class TextFields extends React.Component<props, {}> {
                     +
                 </Button>
                       <div style={{display:'flex',  justifyContent:'space-around'}}>
-                      <ModalExpenses addData={{category: this.state.category,
-                          month: this.state.month,
-                          year: this.state.year,
-                          salary: this.state.salary,
-                          kameti: this.state.kameti,
-                          household: this.state.household,}} />
-                          <Link to={`/Products?shop=${this.state.shop}`} style={styles.noUnderline}>
+                          <Button onClick={this.saveExpense.bind(this)} raised style={styles.button}>
+                              ADD EXPENSES
+                          </Button>
+                          <Link to={`/Shop?shop=${this.state.shop}`} style={styles.noUnderline}>
                               <Button raised style={styles.button}>
                                   CANCEL
                               </Button>

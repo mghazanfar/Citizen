@@ -10,9 +10,9 @@ import Dialog, {
 } from 'material-ui/Dialog';
 import { Link } from 'react-router-dom';
 
-class ResponsiveDialog extends React.Component {
+class ResponsiveDialog extends React.Component<props, {}> {
   state = {
-    open: false,
+    open: this.props.display,
   };
 
   handleClickOpen = () => {
@@ -28,9 +28,6 @@ class ResponsiveDialog extends React.Component {
 
     return (
       <div style={{display:'flex', justifyContent:'center'}}>
-        <Button raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
-        ADD Expenses
-        </Button>
         <Dialog
           fullScreen={fullScreen}
           open={this.state.open}
