@@ -1,7 +1,7 @@
 import React from 'react';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
-import Background from '../img/claim.jpg';
+import Background from '../img/manageBills.svg';
 import Grid from 'material-ui/Grid';
 import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
@@ -9,11 +9,33 @@ import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
 import TextField from 'material-ui/TextField';
 import Logout from '../inventory/Logout';
-import ModalBills from '../inventory/ModalBills';
+
+const data = [
+    {
+        company:'Citizen',
+        amount: 120,
+},
+    {
+        company:'Citizen',
+        amount: 120,
+},
+    {
+        company:'Citizen',
+        amount: 120,
+},
+    {
+        company:'Citizen',
+        amount: 120,
+},
+    {
+        company:'Citizen',
+        amount: 120,
+}
+];
 
 const styles = {
 left: {
-  backgroundColor: 'rgba(0,0,0,0.8)',
+  backgroundColor: 'rgba(255,255,255,0.4)',
   display: 'flex',
   alignItems:'center',
   justifyContent:'center',
@@ -26,7 +48,7 @@ right: {
 },
 container: {
   minHeight:'inherit',
-  background: 'rgba(255, 255, 255, 0)',
+  background: 'rgba(0, 0, 0, 0.6)',
 },
 root: {
   backgroundImage: `url(${Background})`,
@@ -110,9 +132,9 @@ class TextFields extends React.Component<props, {}> {
                   <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:'4rem', marginBottom:'4rem', }}>
                       <Hidden smDown>
                         <Typography type="display3" gutterBottom style={{color:'white', width:'60%', textAlign:'center'}}>
-                        Manage Claims
+                        Companies' Bills
                         </Typography>
-                        <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here you can manage your claims.</Typography>
+                        <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here you can see bills, you have to pay.</Typography>
                         <Link to='/Shop' style={styles.noUnderline}>
                         <Button raised style={styles.button}>
                         back
@@ -122,9 +144,9 @@ class TextFields extends React.Component<props, {}> {
                         </Hidden>
                         <Hidden smUp>
                         <Typography type="display1" gutterBottom style={{color:'white', width:'75%', textAlign:'center'}}>
-                        Manage Claims
+                        Companies' Bills
                         </Typography>
-                        <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here you can manage your claims.</Typography>
+                        <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here you can see bills, you have to pay.</Typography>
                         <Link to='/Shop' style={styles.noUnderline}>
                         <Button raised style={styles.button}>
                         back
@@ -136,93 +158,60 @@ class TextFields extends React.Component<props, {}> {
                   </Grid>
             <Hidden lgDown>
               <Grid item xs={12} lg={8} style={styles.right}>
-                  <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
-                    <Paper elevation={24} style={{maxHeight:700, overflow:'auto', width:'inherit', padding:20, height:'inherit'}}>
-                      <TextField
-                      id="search"
-                      label="Customer name"
-                      type="search"
-                      margin="normal"
-                      style={{width:'100%'}}
-                      />
-                      <TextField
-                      id="search"
-                      label="Phone number"
-                      type="search"
-                      margin="normal"
-                      style={{width:'100%'}}
-                      />
-                      <ModalBills stock={true} />
-                      <ModalBills />
-                      <TextField
-                      id="search"
-                      label="Claim price"
-                      type="search"
-                      margin="normal"
-                      style={{width:'100%'}}
-                      />
-                      <TextField
-                      id="search"
-                      label="Add discounts"
-                      type="search"
-                      margin="normal"
-                      style={{width:'100%'}}
-                      />
-                      <TextField
-                      id="search"
-                      label="Total Payment"
-                      type="search"
-                      margin="normal"
-                      style={{width:'100%'}}
-                      />
-                  </Paper>
-                  </div>
+                  <div style={{width:'95%', display:'flex', flexWrap:'wrap', maxHeight:800, overflowY:'auto', justifyContent:'center'}}>
+                    {data.map(details => (
+                        <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:10, marginLeft:10, width: 'auto' }}>
+                            <Paper elevation={24} style={{maxHeight:700, overflow:'auto', width:'inherit', padding:20, height:'inherit'}}>
+                            <TextField
+                            id="search"
+                            label={details.company}
+                            type="search"
+                            margin="normal"
+                            style={{width:'100%'}}
+                            disabled
+                            />
+                            <TextField
+                            id="search"
+                            label={details.amount}
+                            type="search"
+                            margin="normal"
+                            style={{width:'100%'}}
+                            disabled
+                            />
+                        </Paper>
+                        </div> 
+                    ))}
+              </div>
               </Grid>
               </Hidden>
             
       
               <Hidden lgUp>
                 <Grid item xs={12} lg={8} style={styles.right}>
-                  <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
-                  <Paper elevation={24} style={{maxHeight:700, overflow:'auto', width:'inherit', padding:20, height:'inherit'}}>
-                  <TextField
-                  id="search"
-                  label="Customer name"
-                  type="search"
-                  margin="normal"
-                  style={{width:'100%'}}
-                  />
-                  <TextField
-                  id="search"
-                  label="Phone number"
-                  type="search"
-                  margin="normal"
-                  style={{width:'100%'}}
-                  />
-                  <ModalBills />
-                  <TextField
-                  id="search"
-                  label="Claim price"
-                  type="search"
-                  margin="normal"
-                  style={{width:'100%'}}
-                  />
-                  <TextField
-                  id="search"
-                  label="Add discounts"
-                  type="search"
-                  margin="normal"
-                  style={{width:'100%'}}
-                  />
-                  <TextField
-                  id="search"
-                  label="Total Payment"
-                  type="search"
-                  margin="normal"
-                  style={{width:'100%'}}
-                  />
-              </Paper>
-              </div>
+                <div style={{width:'95%', display:'flex', flexWrap:'wrap', maxHeight:800, overflowY:'auto', justifyContent:'center'}}>
+                  {data.map(details => (
+                      <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:10, marginLeft:10, width: 'auto' }}>
+                          <Paper elevation={24} style={{maxHeight:700, overflow:'auto', width:'inherit', padding:20, height:'inherit'}}>
+                          <TextField
+                          id="search"
+                          label={details.company}
+                          type="search"
+                          margin="normal"
+                          style={{width:'100%'}}
+                          disabled
+                          />
+                          <TextField
+                          id="search"
+                          label={details.amount}
+                          type="search"
+                          margin="normal"
+                          style={{width:'100%'}}
+                          disabled
+                          />
+                      </Paper>
+                      </div> 
+                  ))}
+            </div>
             </Grid>
               </Hidden>
             </Grid>

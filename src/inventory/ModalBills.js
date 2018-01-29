@@ -36,12 +36,12 @@ class ResponsiveDialog extends React.Component {
   };
 
   render() {
-    const { fullScreen } = this.props;
+    const { fullScreen, stock } = this.props;
 
     return (
       <div style={{display:'flex', marginTop:'1rem'}}>
         <Button raised style={{ color:'white', backgroundColor:'black'}} onClick={this.handleClickOpen}>
-        ADD ITEMS
+        {stock?  'Claim return items' : 'ADD ITEMS' }
         </Button>
         
     <MuiThemeProvider theme={theme}>
