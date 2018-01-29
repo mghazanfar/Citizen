@@ -122,7 +122,8 @@ class FullWidthGrid extends React.Component<props, {}> {
           <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit'}}>
           <List>
             {this.state.categories.map(value => (
-              <ListItem key={value.name} dense button style={styles.listItem} divider>
+                <Link to={`/Products?shop=${this.state.shop}&cat=${value.id}`} style={styles.noUnderline}>
+                <ListItem key={value.name} dense button style={styles.listItem} divider>
                 <Avatar src={value.image} style={styles.avatar}/>
                 <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>{value.name}</Typography>} secondary={value.description}/>
                 <ListItemSecondaryAction />
@@ -135,6 +136,7 @@ class FullWidthGrid extends React.Component<props, {}> {
                   DELETE
                 </Button>
               </ListItem>
+                </Link>
             ))}
           </List>
           </Paper>
@@ -167,6 +169,7 @@ class FullWidthGrid extends React.Component<props, {}> {
             <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit', marginTop:'4rem'}}>
             <List>
               {this.state.categories.map(value => (
+                  <Link to={`/Products?shop=${this.state.shop}&cat=${value.id}`}style={styles.noUnderline}>
                 <ListItem key={value} dense button style={styles.listItem} divider>
                   <Avatar src={value.image} style={styles.avatar}/>
                   <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>{value.name}</Typography>} secondary={value.description}/>
@@ -180,6 +183,7 @@ class FullWidthGrid extends React.Component<props, {}> {
                     DELETE
                   </Button>
                 </ListItem>
+                  </Link>
               ))}
             </List>
             </Paper>

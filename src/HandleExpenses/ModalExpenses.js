@@ -41,13 +41,13 @@ class ResponsiveDialog extends React.Component<props, {}> {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-          <Link to="/Shop" style={{ textDecoration: 'none' }}>
-            <Button onClick={this.handleRequestClose} color="primary">
-                OK
-            </Button>
-        </Link>
+            <Link to="/Shop" style={{ textDecoration: 'none' }}>
+              <Button onClick={this.handleRequestClose} color="primary">
+                  OK
+              </Button>
+            </Link>
           </DialogActions>
-          </div>
+        </div>
         </Dialog>
       </div>
     );

@@ -25,22 +25,40 @@ class BasicTable extends React.Component<props, {}> {
     };
 
   componentWillMount = () => {
-      if(cookies.get('accessToken').accessToken === undefined) {
+      if(cookies.get('accessToken') === undefined) {
           window.location.href = '/';
       }
-      if(window.location.href.split('?')[1] === undefined){
+      if(window.location.href.split('shop=')[1] === undefined){
           window.location.href = '/Login';
       }
-      let url = window.location.href.split('?')[1];
+      let url = window.location.href.split('shop=')[1].split('&')[0];
       this.setState({
-          shop: url.split('=')[1]
+          shop: url
       });
       var accessToken = cookies.get('accessToken').accessToken;
-      if(accessToken === undefined) {
-          window.location.href = '/'
-      } else {
-          request.get(`${server.path}/api/Shops/${url.split('=')[1]}/products?access_token=${accessToken}`).end(
+        if (window.location.href.split('cat=') !== undefined){
+          let cat = window.location.href.split('cat=')[1].split('&')[0];
+          console.log(cat);
+          request.get(`${server.path}/api/Products?filter=%7B%22where%22%3A%7B%22categoryId%22%3A%22${cat}%22%7D%7D&access_token=${accessToken}`)
+              .end((err, product) => {
+                  console.log(product);
+                  if(product.status === 401) {
+                      //window.location.href = '/';
+                  }
+                  if(product.body.length === 0) {
+                      alert('No Products Available. Please add a few');
+                      //window.location.href = '/AddProducts'
+                  }
+                  this.setState({
+                      products: product.body
+
+                  });
+              });
+
+      }else {
+          request.get(`${server.path}/api/Shops/${url}/products?access_token=${accessToken}`).end(
               (err, product) => {
+                  console.log(product);
                   if(product.status === 401) {
                       window.location.href = '/';
                   }
