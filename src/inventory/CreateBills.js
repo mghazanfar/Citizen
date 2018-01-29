@@ -70,35 +70,35 @@ function FullWidthGrid(props) {
         <Grid item xs={12} lg={8} style={styles.right}>
         <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%', height:'inherit' }}>
           <Paper elevation={24} style={{maxHeight:700, overflow:'auto', width:'inherit', padding:20, height:'inherit'}}>
-          <TextField
-          id="search"
-          label="Customer name"
-          type="search"
-          margin="normal"
-          style={{width:'100%'}}
-          />
-          <TextField
-          id="search"
-          label="Phone number"
-          type="search"
-          margin="normal"
-          style={{width:'100%'}}
-          />
-          <ModalBills />
-          <TextField
-          id="search"
-          label="Add discounts"
-          type="search"
-          margin="normal"
-          style={{width:'100%'}}
-          />
-          <TextField
-          id="search"
-          label="Total Payment"
-          type="search"
-          margin="normal"
-          style={{width:'100%'}}
-          />
+            <TextField
+            id="search"
+            label="Customer name"
+            type="search"
+            margin="normal"
+            style={{width:'100%'}}
+            />
+            <TextField
+            id="search"
+            label="Phone number"
+            type="search"
+            margin="normal"
+            style={{width:'100%'}}
+            />
+            <ModalBills />
+            <TextField
+            id="search"
+            label="Add discounts"
+            type="search"
+            margin="normal"
+            style={{width:'100%'}}
+            />
+            <TextField
+            id="search"
+            label="Total Payment"
+            type="search"
+            margin="normal"
+            style={{width:'100%'}}
+            />
           <Menu />
           </Paper>
           <div style={{display:'flex', justifyContent:'space-around', width:'inherit'}}>

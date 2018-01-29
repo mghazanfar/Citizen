@@ -21,6 +21,7 @@ import DeleteAccount from './ShopManagement/DeleteAccount';
 import MyAccount from './ShopManagement/MyAccount';
 import HandleExpenses from './HandleExpenses/HandleExpense';
 import HandleProfit from './ProfitHandling/ProfitHandling';
+import ManageClaimStock from './ManageClaimStock/ManageClaimStock';
 import './App.css';
 
 import {
@@ -87,7 +88,7 @@ const ModalGallery = () => (
       <Route path='/Inventory'  component={Inventory}/>
       <Route path='/ProfitReports'  component={HandleProfit}/>
       <Route path='/HandleExpenses'  component={HandleExpenses}/>
-      <Route path='/ManageClaimStock'  component={Shop}/>
+      <Route path='/ManageClaimStock'  component={ManageClaimStock}/>
       <Route path='/ManageCompaniesBills'  component={Shop}/>
       <Route path='/Categories'  component={Categories}/>
       <Route path='/Products'  component={Products}/>
