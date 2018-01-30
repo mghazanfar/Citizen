@@ -165,6 +165,7 @@ class TextFields extends React.Component<props, {}> {
 
     saveExpense(){
         let data = {
+            "shopId": window.location.href.split('shop=')[1].split('&')[0],
             "salaries": this.state.salary,
             "committee": this.state.kameti,
             "extra": this.state.expenses,
@@ -179,13 +180,14 @@ class TextFields extends React.Component<props, {}> {
         } else if(data.committee === ' ' || data.housholds === ' '){
             alert('Please entermissing data');
         } else {
-            request.post(`${server.path}/api/Shops/${this.state.shop}/expenses?access_token=${accessToken}`)
+            request.post(`${server.path}/api/Expenses?access_token=${accessToken}`)
                 .send(data)
                 .end((err, res) => {
                     if(!res){
                         alert('Service Unreachable');
                     } else{
                         if(res.statusCode === 200){
+                            console.log(res);
                             alert('Expense saved');
                         } else {
                             alert(res.body.error.message);

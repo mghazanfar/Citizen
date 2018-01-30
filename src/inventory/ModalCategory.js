@@ -24,33 +24,46 @@ class ResponsiveDialog extends React.Component <props, {}>{
   };
 
   handleClickOpen = () => {
-
     if(this.props.category==="modify"){
+        console.log('modify');
         var data = {
+            shopId: this.props.addData.shopId,
             name: this.props.addData.name,
             description: this.props.addData.description,
             image: this.props.addData.image,
         }
-        request.put(`${server.path}/api/Shops/${this.props.addData.shopId}/categories/${this.props.addData.id}?access_token=${cookies.get('accessToken').accessToken}`,
+        request.patch(`${server.path}/api/Categories/${this.props.addData.id}?access_token=${cookies.get('accessToken').accessToken}`,
             data,(err, res) => {
-                if(res.statusCode === 200){
-                    this.setState({ open: true });
+            console.log(res);
+            if(res) {
+                if (res.statusCode === 200) {
+                    this.setState({open: true});
                 } else {
-                    alert('Error');
+                    alert(res.body.error.message);
                 }
+            } else {
+                alert('Service Unreachable');
+            }
             });
     } else {
         var data = {
+            shopId: this.props.addData.shopId,
             name: this.props.addData.name,
             description: this.props.addData.description,
             image: this.props.addData.image,
-        }
-        request.post(server.path+'/api/Shops/'+this.props.addData.shopId+'/Categories?access_token='+(cookies.get('accessToken').accessToken))
+        };
+        console.log('add', data);
+        request.post(`${server.path}/api/Categories?access_token=${cookies.get('accessToken').accessToken}`)
             .send(data)
             .end((err, res) => {
-                console.log((res));
-                if(res.status === 200) {
-                    this.setState({ open: true, name: res.body.name, category: res.body.category });
+                if(res) {
+                    if (res.statusCode === 200) {
+                        this.setState({open: true});
+                    } else {
+                        alert(res.body.error.message);
+                    }
+                } else {
+                    alert('Service Unreachable');
                 }
             });
     }

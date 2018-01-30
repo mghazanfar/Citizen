@@ -36,16 +36,16 @@ class BasicTable extends React.Component<props, {}> {
           shop: url
       });
       var accessToken = cookies.get('accessToken').accessToken;
-        if (window.location.href.split('cat=') !== undefined){
+        if (window.location.href.split('cat=')[1] !== undefined){
           let cat = window.location.href.split('cat=')[1].split('&')[0];
           console.log(cat);
           request.get(`${server.path}/api/Products?filter=%7B%22where%22%3A%7B%22categoryId%22%3A%22${cat}%22%7D%7D&access_token=${accessToken}`)
               .end((err, product) => {
-                  console.log(product);
-                  if(product.status === 401) {
+              if(product) {
+                  if (product.status === 401) {
                       //window.location.href = '/';
                   }
-                  if(product.body.length === 0) {
+                  if (product.body.length === 0) {
                       alert('No Products Available. Please add a few');
                       //window.location.href = '/AddProducts'
                   }
@@ -53,23 +53,30 @@ class BasicTable extends React.Component<props, {}> {
                       products: product.body
 
                   });
+              } else {
+                  alert('Service Unreachable');
+              }
               });
 
       }else {
-          request.get(`${server.path}/api/Shops/${url}/products?access_token=${accessToken}`).end(
+          request.get(`${server.path}/api/Products?filter=%7B%22where%22%3A%7B%22shopId%22%3A%22${url}%22%7D%7D&access_token=${accessToken}`).end(
               (err, product) => {
                   console.log(product);
-                  if(product.status === 401) {
-                      window.location.href = '/';
-                  }
-                  if(product.body.length === 0) {
-                      alert('No Products Available. Please add a few');
-                      //window.location.href = '/AddProducts'
-                  }
-                  this.setState({
-                      products: product.body
+                  if(product) {
+                      if (product.status === 401) {
+                          window.location.href = '/';
+                      }
+                      if (product.body.length === 0) {
+                          alert('No Products Available. Please add a few');
+                          //window.location.href = '/AddProducts'
+                      }
+                      this.setState({
+                          products: product.body
 
-                  });
+                      });
+                  } else {
+                      alert('Service Unreachable');
+                  }
               }
           );
       }

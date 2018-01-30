@@ -20,16 +20,20 @@ class SimpleMenu extends React.Component<props, {}> {
       this.setState({
           shop: url.split('=')[1]
       });
-      request.get(server.path + '/api/Shops/'+this.state.shop+'/categories?access_token=' + cookies.get('accessToken').accessToken).end(
+      request.get(server.path + '/api/Categories?filter=%7B%22where%22%3A%7B%22shopId%22%3A%22'+url.split('=')[1]+'%22%7D%7D&access_token=/?access_token=' + cookies.get('accessToken').accessToken).end(
           (err, category) => {
-              if(category.body.length > 0) {
-                  this.setState({
-                      categories: category.body
-                  });
+              if(category) {
+                  if (category.body.length > 0) {
+                      this.setState({
+                          categories: category.body
+                      });
+                  } else {
+                      this.setState({
+                          categories: ['No Categories']
+                      });
+                  }
               } else {
-                this.setState({
-                    categories: ['No Categories']
-                });
+                  alert('Service Unreachable');
               }
           }
       );

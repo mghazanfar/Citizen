@@ -14,6 +14,7 @@ import Table, {
     TableRow,
     TableSortLabel,
 } from 'material-ui/Table';
+import TextField from 'material-ui/TextField';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
@@ -190,6 +191,7 @@ class EnhancedTable extends React.Component {
         this.state = {
             order: 'asc',
             orderBy: 'calories',
+            product: [],
             selected: [],
             data : [].sort((a, b) => (a.calories < b.calories ? -1 : 1)),
             page: 0,
@@ -201,7 +203,7 @@ class EnhancedTable extends React.Component {
       if(cookies.get('accessToken').accessToken){
         let accessToken = cookies.get('accessToken').accessToken;
         let shop = window.location.href.split('?')[1].split('=')[1].split('&')[0];
-        request.get(`${server.path}/api/Shops/${shop}/products?access_token=${accessToken}`).
+        request.get(`${server.path}/api/Products?filter=%7B%22where%22%3A%7B%22shopId%22%3A%22${shop}%22%7D%7D&access_token=${accessToken}`).
         end((err, products) => {
           if(products.statusCode === 200){
             this.setState({
@@ -276,6 +278,28 @@ class EnhancedTable extends React.Component {
         }
         window.history.pushState('page2', 'Title', url);
     };
+    saveProductCokkies = (id, description) => event => {
+        //console.log(id, event.target.value, this.state.product);
+        let product = this.state.product;
+        if(product.length < 1) {
+            product.push({productId: id, quantity: event.target.value});
+            this.setState({
+                product: product
+            });
+        } else {
+            product.map((o, i) => {
+                if (o.productId == id) {
+                    return product[i].quantity = event.target.value; // stop searching
+                } else {
+                    return product.push({productId: id, quantity: event.target.value});
+                }
+            });
+            this.setState({
+                product: product
+            });
+            console.log(product);
+        }
+    };
 
     handleChangePage = (event, page) => {
         this.setState({ page });
@@ -322,14 +346,22 @@ class EnhancedTable extends React.Component {
                                 <TableCell padding="checkbox">
                                   <Checkbox checked={isSelected} />
                                 </TableCell>
-                                <TableCell padding="none">{n.price}</TableCell>
+                                <TableCell padding="none">{n.salePrice}</TableCell>
                                 <TableCell numeric>{n.brand}</TableCell>
                                 <TableCell numeric>{n.model}</TableCell>
                                 <TableCell numeric>{n.name}</TableCell>
                                 <TableCell numeric>{n.color}</TableCell>
-                                <TableCell numeric><Avatar style={{width:72, height:72}} src={n.picture}/></TableCell>
+                                <TableCell numeric><Avatar style={{width:72, height:72}} src={n.image}/></TableCell>
                                 <TableCell numeric>{n.category}</TableCell>
                                 <TableCell numeric>{n.quantity}</TableCell>
+                                  <TextField
+                                      id="search"
+                                      label="Quantity"
+                                      type="text"
+                                      margin="normal"
+                                      onChange={this.saveProductCokkies(n.id)}
+                                      style={{width: '100%'}}
+                                  />
                               </TableRow>
                           );
                       })}

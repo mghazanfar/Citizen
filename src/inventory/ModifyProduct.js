@@ -106,7 +106,7 @@ class TextFields extends React.Component<props, {}> {
         var shop = params[0].split('=')[1] ;
         var product = params[1].split('=')[1];
         var id = window.location.href.split("=");
-        request.get(`${server.path}/api/Shops/${shop}/products/${product}?access_token=${accessToken}`)
+        request.get(`${server.path}/api/Products/${product}?access_token=${accessToken}`)
             .end((err, res) => {
                 if(res.statusCode === 401){
                     alert(res.body.error.message);
@@ -276,6 +276,7 @@ class TextFields extends React.Component<props, {}> {
                               <div style={{display:'flex',  justifyContent:'space-around'}}>
                               <ModalProducts addData={{
       id: this.state.id,
+      shopId: this.state.shop,
       category: this.state.category,
       productName: this.state.productName,
       modelNumber: this.state.modelNumber,
@@ -286,7 +287,7 @@ class TextFields extends React.Component<props, {}> {
       quantity: this.state.quantity,
       img: this.state.img,
       file: this.state.file,}} />
-                                  <Link to='/Products' style={styles.noUnderline}>
+                                  <Link to={`/Products?shop=${this.state.shop}`} style={styles.noUnderline}>
                                       <Button raised style={styles.button}>
                                           CANCEL
                                       </Button>
@@ -378,6 +379,7 @@ class TextFields extends React.Component<props, {}> {
                   <div style={{display:'flex',  justifyContent:'space-around'}}>
                   <ModalProducts addData={{
                       id: this.state.id,
+                      shopId: this.state.shop,
                       category: this.state.category,
                       productName: this.state.productName,
                       modelNumber: this.state.modelNumber,
@@ -389,7 +391,7 @@ class TextFields extends React.Component<props, {}> {
                       img: this.state.img,
                       file: this.state.file,}}
                     />
-                      <Link to='/Products' style={styles.noUnderline}>
+                      <Link to={`/Products?shop=${this.state.shop}`} style={styles.noUnderline}>
                           <Button raised style={styles.button}>
                               CANCEL
                           </Button>

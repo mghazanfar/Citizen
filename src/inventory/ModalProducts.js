@@ -37,14 +37,14 @@ class ResponsiveDialog extends React.Component {
           var product = params[1].split('=')[1];
 
       }
-      if(this.props.addData.id) {
+      if(window.location.href.split('id=')[1] !== undefined) {
           this.setState({
               buttonText: 'MODIFY PRODUCT'
           });
       }
   }
   handleClickOpen = () => {
-      var id = window.location.search.substring(1).split("=");
+      var id = window.location.href.split("cat=");
       if(this.props.addData.id) {
           var data = {
               shopId: this.props.addData.shop,
@@ -52,13 +52,13 @@ class ResponsiveDialog extends React.Component {
               name: this.props.addData.productName,
               color: this.props.addData.color,
               image: this.props.addData.img,
-              quanity: this.props.addData.quantity,
+              quantity: this.props.addData.quantity,
               brand: this.props.addData.brandName,
               salePrice: this.props.addData.salePrice,
               basePrice: this.props.addData.basePrice,
               model: this.props.addData.modelNumber
-          }
-          request.put(server.path + '/api/Shops/'+this.state.shop+'/products/'+this.props.addData.id+'?access_token=' + (cookies.get('accessToken').accessToken),
+          };
+          request.patch(server.path + '/api/Products/'+this.props.addData.id+'?access_token=' + (cookies.get('accessToken').accessToken),
               data,
               (err, res) => {
                   console.log(res)
@@ -69,6 +69,7 @@ class ResponsiveDialog extends React.Component {
 
       } else {
           var data = {
+              shopId: this.props.addData.shop,
               category: this.props.addData.category,
               name: this.props.addData.productName,
               color: this.props.addData.color,
@@ -79,7 +80,7 @@ class ResponsiveDialog extends React.Component {
               basePrice: this.props.addData.basePrice,
               model: this.props.addData.modelNumber
           }
-          request.post(`${server.path}/api/Shops/${this.props.addData.shop}/products?access_token=${(cookies.get('accessToken').accessToken)}`)
+          request.post(`${server.path}/api/Products?access_token=${(cookies.get('accessToken').accessToken)}`)
               .send(data)
               .end((err, res) => {
                   if(res.status === 413){

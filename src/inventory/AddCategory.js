@@ -78,7 +78,8 @@ class FullWidthGrid extends React.Component{
     shop: null,
     name: null,
     description: null,
-    img: null,
+    img: Sofa,
+    file: null,
   };
 
   componentWillMount() {
@@ -90,13 +91,12 @@ class FullWidthGrid extends React.Component{
       }
       let url = window.location.href.split('?')[1];
       this.setState({
-          shop: url.split('=')[1]
+          shop: url.split('=')[1].split('&')[0]
       });
-      console.log(this.state);
   }
 
     _handleImageChange(e) {
-        e.preventDefault();
+;        e.preventDefault();
 
         let reader = new FileReader();
         let file = e.target.files[0];
@@ -156,7 +156,7 @@ class FullWidthGrid extends React.Component{
                                       onChange={this.handleChange('description')}
                                   />
                                   <div style={{display: 'flex'}}>
-                                      <Avatar src={Sofa} style={styles.avatar}/>
+                                      <Avatar src={this.state.image} style={styles.avatar}/>
                                       <input
                                           accept="image/*"
                                           style={{display: 'none'}}
@@ -177,7 +177,8 @@ class FullWidthGrid extends React.Component{
                                           shopId: this.state.shop,
                                           name: this.state.name,
                                           description: this.state.description,
-                                          image: this.state.img
+                                          image: this.state.img,
+                                          file: this.state.file
                                       }}
                                   />
                               </Paper>
@@ -258,7 +259,7 @@ class FullWidthGrid extends React.Component{
                                       onChange={this.handleChange('description')}
                                   />
                                   <div style={{display: 'flex'}}>
-                                      <Avatar src={Sofa} style={styles.avatar}/>
+                                      <Avatar src={this.state.image} style={styles.avatar}/>
                                       <input
                                           accept="image/*"
                                           style={{display: 'none'}}
@@ -279,7 +280,8 @@ class FullWidthGrid extends React.Component{
                                           shopId: this.state.shop,
                                           name: this.state.name,
                                           description: this.state.description,
-                                          image: this.state.image
+                                          image: this.state.image,
+                                          file: this.state.file
                                       }}
                                   />
                               </Paper>

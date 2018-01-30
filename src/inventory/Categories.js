@@ -86,14 +86,18 @@ class FullWidthGrid extends React.Component<props, {}> {
         this.setState({
             shop: url.split('=')[1]
         });
-        request.get(server.path + '/api/Shops/'+url.split('=')[1]+'/categories?access_token=' + cookies.get('accessToken').accessToken).end(
-            (err, category) => {
-                if(category.body.length > 0) {
-                    this.setState({
-                        categories: category.body
-                    });
-                } else {
-                    alert('No Categrories Found');
+        request.get(server.path + '/api/Categories?filter=%7B%22where%22%3A%7B%22shopId%22%3A%22'+url.split('=')[1]+'%22%7D%7D&access_token=' + cookies.get('accessToken').accessToken).
+        end((err, category) => {
+                if(category) {
+                    if (category.body.length > 0) {
+                        this.setState({
+                            categories: category.body
+                        });
+                    } else {
+                        alert('No Categrories Found');
+                    }
+                }else {
+                    alert('Service Unreachable');
                 }
             }
         );

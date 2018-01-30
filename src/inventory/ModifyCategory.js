@@ -95,7 +95,7 @@ class FullWidthGrid extends React.Component<props, {}>{
       var params = window.location.href.split("?")[1].split('&');
       var shop = params[0].split('=')[1] ;
       var category = params[1].split('=')[1];
-      request.get(`${server.path}/api/Shops/${shop}/categories/${category}?access_token=${accessToken}`)
+      request.get(`${server.path}/api/Categories/${category}?access_token=${accessToken}`)
           .end((err, res) => {
               if(res.statusCode === 401){
                   alert(res.body.error.message);

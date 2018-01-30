@@ -120,7 +120,7 @@ class TextFields extends React.Component<props, {}> {
     }
 
     componentWillMount(){
-        if(cookies.get('accessToken').accessToken === undefined) {
+        if(cookies.get('accessToken') === undefined) {
             window.location.href = '/';
         }
         if(window.location.href.split('?')[1] === undefined){

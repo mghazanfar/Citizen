@@ -11,7 +11,15 @@ import TextField from 'material-ui/TextField';
 import ModalBills from './ModalBills';
 import BillStatus from './BillStatus';
 import Logout from './Logout';
-
+import Table, {
+    TableBody,
+    TableCell,
+    TableFooter,
+    TableHead,
+    TablePagination,
+    TableRow,
+    TableSortLabel,
+} from 'material-ui/Table';
 import request from "../../node_modules/superagent/superagent";
 import server from "../constants";
 import Cookies from 'universal-cookie';
