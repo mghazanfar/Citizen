@@ -112,70 +112,56 @@ class FullWidthGrid extends React.Component<props, {}>{
         if (cookies.get('accessToken').accessToken === undefined) {
             window.location.href = '/';
         }
-        if(cookies.get('billProductQuantity') === undefined){
+        if (cookies.get('billProductQuantity') === undefined) {
             alert('Please set product quantities');
-        } else{
-            var productsWithQuantities;
-            var billProductQuantity = cookies.get('billProductQuantity');
-            billProductQuantity.map(value => {
-                console.log(value);
-                products.map(p => {
-                    if(p == value.productId){
-                        if(productsWithQuantities) {
-                            if (productsWithQuantities.indexOf(p) === -1) {
-                                console.log('insert value');
-                                productsWithQuantities.push(value);
-                            }
-                        }else {
-                            productsWithQuantities = [value];
-                        }
-                    }
-                });
-            });
-            console.log(productsWithQuantities);
-        }
-        if (products.length < 1) {
-            alert('No product selected');
         } else {
-            let today = new Date();
-            let data = {
-                customerName: this.state.customerName,
-                phoneNumber: this.state.phoneNumber,
-                discount: this.state.discount,
-                payment: this.state.payment,
-                status: status,
-                day: today.getDate(),
-                month: today.getMonth()+1,
-                year: today.getFullYear(),
-                products:
-                    products.map((value) => {
-                            return {productId: value}
-                    })
-            };
-            console.log(data.products);
-            if (data.customerName === null || data.customerName === undefined) {
-                alert('Please provide name');
-            }
-            else if (data.phoneNumber === null || data.phoneNumber === undefined) {
-                alert('Please provide phone number');
-            }
-            else if (data.products.length === 0) {
-                alert('Please select some products');
-            }
-            else if(data.payment ===  null){
-                alert('Please provide total payment');
-            }
-            else if (data.status === null || data.status === undefined) {
-                alert('Please select bill status');
+            var productsWithQuantities = cookies.get('billProductQuantity');
+            if (products.length < 1) {
+                alert('No product selected');
             } else {
-                let accessToken = cookies.get('accessToken').accessToken;
-                /*request.post(`${server.path}/api/Shops/${this.state.shop}/bills?access_token=${accessToken}`).send(data).end((err, res) => {
-                    if (res.statusCode !== 200) {
-                        alert(res.body.error.message);
-                    } else {
-                        window.location.href = `/Inventory?shop=${this.state.shop}`;
-                    }
-                });*/
+                let today = new Date();
+                let data = {
+                    customerName: this.state.customerName,
+                    phoneNumber: this.state.phoneNumber,
+                    discount: this.state.discount,
+                    payment: this.state.payment,
+                    shopId: this.state.shop,
+                    status: status,
+                    day: today.getDate(),
+                    month: today.getMonth() + 1,
+                    year: today.getFullYear(),
+                    products: productsWithQuantities
+                };
+                console.log(data.products);
+                if (data.customerName === null || data.customerName === undefined) {
+                    alert('Please provide name');
+                }
+                else if (data.phoneNumber === null || data.phoneNumber === undefined) {
+                    alert('Please provide phone number');
+                }
+                else if (data.products.length === 0) {
+                    alert('Please select some products');
+                }
+                else if (data.payment === null) {
+                    alert('Please provide total payment');
+                }
+                else if (data.status === null || data.status === undefined) {
+                    alert('Please select bill status');
+                } else {
+                    let accessToken = cookies.get('accessToken').accessToken;
+                    request.post(`${server.path}/api/Bills?access_token=${accessToken}`).send(data).end((err, res) => {
+                        if(res) {
+                            if (res.statusCode !== 200) {
+                                alert(res.body.error.message);
+                            } else {
+                                cookies.remove('billProductQuantity');
+                                window.location.href = `/Inventory?shop=${this.state.shop}`;
+                            }
+                        } else {
+                            alert('Service Unreachable');
+                        }
+                    });
+                }
             }
         }
     }

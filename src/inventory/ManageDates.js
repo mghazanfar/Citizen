@@ -14,7 +14,7 @@ const styles = {
 
 const ManageDates = Props => (
 <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
-    <Typography type="title" gutterBottom style={{alignSelf:'flex-start', color:'white', marginTop:10}} >January 12, 2018</Typography>
+    <Typography type="title" gutterBottom style={{alignSelf:'flex-start', color:'white', marginTop:10}} >{`${(new Date).getDate()}-${((new Date()).getMonth()+1)}-${(new Date).getFullYear()}`}</Typography>
     <div style={{display:'flex', width:'inherit'}}>
         <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'70%'}}>
         <List>

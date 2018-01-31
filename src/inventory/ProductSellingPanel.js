@@ -221,7 +221,7 @@ class EnhancedTable extends React.Component {
       } else {
         window.location.href = '/';
       }
-      if(window.location.href.split('&')[1].split('&')[0]){
+      if(window.location.href.split('&')[1]){
           let selected = window.location.href.split('&')[1].split('&').splice(',');
       }
     }
@@ -282,7 +282,6 @@ class EnhancedTable extends React.Component {
         window.history.pushState('page2', 'Title', url);
     };
     saveProductCokkies = (id, description) => event => {
-        //console.log(id, event.target.value, this.state.product);
         let product = this.state.product;
         if(product.length < 1) {
             product.push({productId: id, quantity: event.target.value});
@@ -290,20 +289,23 @@ class EnhancedTable extends React.Component {
                 product: product
             });
         } else {
-            product.map((o, i) => {
+            let found = product.map((o, i) => {
                 if (o.productId == id) {
-                    return product[i].quantity = event.target.value; // stop searching
-                } else {
-                    return product.push({productId: id, quantity: event.target.value});
+                    console.log('found',i);
+                    product[i].quantity = event.target.value;
+                    return true;// stop searching
                 }
             });
+            if(found.indexOf(true) === -1){
+                product.push({productId: id, quantity: event.target.value});
+            }
             this.setState({
                 product: product
             });
-            cookies.remove('billProductQuantity');
-            cookies.set('billProductQuantity', product);
-            console.log(cookies.get('billProductQuantity'));
         }
+        cookies.remove('billProductQuantity');
+        cookies.set('billProductQuantity', product);
+        console.log(cookies.get('billProductQuantity'));
     };
 
     handleChangePage = (event, page) => {

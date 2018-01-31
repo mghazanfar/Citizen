@@ -89,7 +89,7 @@ class FullWidthGrid extends React.Component<props, {}> {
       });
       let today = new Date;
       let date = `${today.getDate()}-${today.getMonth()+1}-${today.getFullYear()}`;
-      request.get(`${server.path}/api/Shops/${url}/bills?filter=%7B%22where%22%3A%7B%22date%22%3A%22${date}%22%7D%7D&access_token=${accessToken}`).
+      request.get(`${server.path}/api/Bills?filter=%7B%22where%22%3A%7B%22shopId%22%3A%22${url}%22%7D%7D&access_token=${accessToken}`).
           end((err, bills) => {
         if(bills) {
             if (bills.statusCode !== 200) {
@@ -119,9 +119,7 @@ class FullWidthGrid extends React.Component<props, {}> {
                         />
                     </div>*/}
                   <div style={{maxHeight: 700, overflow: 'auto'}}>
-                      {this.state.orders.map(value => (
-                          <ManageDates key={value}/>
-                      ))}
+                          <ManageDates key={this.state.orders}/>
                   </div>
                 </Grid>
               </Hidden>
@@ -163,9 +161,7 @@ class FullWidthGrid extends React.Component<props, {}> {
                         />
                     </div>*/}
                   <div style={{maxHeight: 700, overflow: 'auto'}}>
-                      {this.state.orders.map(value => (
-                          <ManageDates key={value}/>
-                      ))}
+                          <ManageDates key={this.state.orders}/>
                   </div>
                 </Grid>
               </Hidden>
