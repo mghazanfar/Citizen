@@ -221,6 +221,9 @@ class EnhancedTable extends React.Component {
       } else {
         window.location.href = '/';
       }
+      if(window.location.href.split('&')[1].split('&')[0]){
+          let selected = window.location.href.split('&')[1].split('&').splice(',');
+      }
     }
 
     handleRequestSort = (event, property) => {
@@ -297,7 +300,9 @@ class EnhancedTable extends React.Component {
             this.setState({
                 product: product
             });
-            console.log(product);
+            cookies.remove('billProductQuantity');
+            cookies.set('billProductQuantity', product);
+            console.log(cookies.get('billProductQuantity'));
         }
     };
 

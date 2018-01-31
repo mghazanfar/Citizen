@@ -103,7 +103,7 @@ class FullWidthGrid extends React.Component<props, {}>{
     };
 
   createBill(){
-    let url = window.location.href.split('&')[1];
+    let url = window.location.href.split('&')[1].split('&')[0];
     if(url === undefined){
         alert('No product selected');
     } else {
@@ -111,6 +111,28 @@ class FullWidthGrid extends React.Component<props, {}>{
         let status = window.location.href.split('&status=')[1];
         if (cookies.get('accessToken').accessToken === undefined) {
             window.location.href = '/';
+        }
+        if(cookies.get('billProductQuantity') === undefined){
+            alert('Please set product quantities');
+        } else{
+            var productsWithQuantities;
+            var billProductQuantity = cookies.get('billProductQuantity');
+            billProductQuantity.map(value => {
+                console.log(value);
+                products.map(p => {
+                    if(p == value.productId){
+                        if(productsWithQuantities) {
+                            if (productsWithQuantities.indexOf(p) === -1) {
+                                console.log('insert value');
+                                productsWithQuantities.push(value);
+                            }
+                        }else {
+                            productsWithQuantities = [value];
+                        }
+                    }
+                });
+            });
+            console.log(productsWithQuantities);
         }
         if (products.length < 1) {
             alert('No product selected');
@@ -122,7 +144,9 @@ class FullWidthGrid extends React.Component<props, {}>{
                 discount: this.state.discount,
                 payment: this.state.payment,
                 status: status,
-                date: `${today.getDate()}-${today.getMonth()+1}-${today.getFullYear()}`,
+                day: today.getDate(),
+                month: today.getMonth()+1,
+                year: today.getFullYear(),
                 products:
                     products.map((value) => {
                             return {productId: value}
@@ -145,13 +169,13 @@ class FullWidthGrid extends React.Component<props, {}>{
                 alert('Please select bill status');
             } else {
                 let accessToken = cookies.get('accessToken').accessToken;
-                request.post(`${server.path}/api/Shops/${this.state.shop}/bills?access_token=${accessToken}`).send(data).end((err, res) => {
+                /*request.post(`${server.path}/api/Shops/${this.state.shop}/bills?access_token=${accessToken}`).send(data).end((err, res) => {
                     if (res.statusCode !== 200) {
                         alert(res.body.error.message);
                     } else {
                         window.location.href = `/Inventory?shop=${this.state.shop}`;
                     }
-                });
+                });*/
             }
         }
     }
