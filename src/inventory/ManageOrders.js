@@ -95,7 +95,7 @@ class FullWidthGrid extends React.Component<props, {}> {
             if (bills.statusCode !== 200) {
               alert(bills.body.error.message);
             } else {
-              console.log(bills.body);
+              //console.log(bills.body);
               this.setState({
                   orders: bills.body
               });

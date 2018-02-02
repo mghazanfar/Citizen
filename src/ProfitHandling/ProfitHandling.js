@@ -94,7 +94,7 @@ class TextFields extends React.Component<props, {}> {
     state = {
       month: ' ',
       year: '2018',
-      date: null,
+      date: `${(new Date).getFullYear()}-${(new Date).getMonth()+1}-${(new Date).getDate()}`,
       open: false,
       monthSelected: false,
       shop: null,
@@ -143,7 +143,7 @@ class TextFields extends React.Component<props, {}> {
                         if(res.statusCode === 200){
                             console.log(res.body[0]);
                             this.setState({
-                                amountReceivedToday: 'No Record Found',
+                                amountReceivedToday: 'No Record',
                                 shopExpenses: null,
                                 basePrices: null,
                                 totalProfitToday: null,
@@ -208,7 +208,7 @@ class TextFields extends React.Component<props, {}> {
                               id="date"
                               label="Date"
                               type="date"
-                              defaultValue="2018-05-24"
+                              defaultValue={this.state.date}
                               className={classes.textField}
                               onChange={this.date}
                               InputLabelProps={{

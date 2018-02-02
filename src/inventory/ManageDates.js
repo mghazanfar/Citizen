@@ -14,16 +14,16 @@ const styles = {
 
 const ManageDates = Props => (
 <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
-    <Typography type="title" gutterBottom style={{alignSelf:'flex-start', color:'white', marginTop:10}} >{`${(new Date).getDate()}-${((new Date()).getMonth()+1)}-${(new Date).getFullYear()}`}</Typography>
+    <Typography type="title" gutterBottom style={{alignSelf:'flex-start', color:'white', marginTop:10}} >{`${(new Date).getDate()}-${(new Date).getMonth()+1}-${(new Date).getFullYear()}`}</Typography>
     <div style={{display:'flex', width:'inherit'}}>
         <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'70%'}}>
         <List>
             {[0, 1, 2, 3, 4, 5, 6, 7, 8].map(value => (
             <ListItem key={value} dense style={styles.listItem} divider button={false} >
             <Typography type="title" gutterBottom>
-                {this.props}
+                102.
             </Typography>
-                <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>{value}</Typography>} secondary={<span>0333-4928475
+                <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>Usman</Typography>} secondary={<span>0333-4928475
                 <Typography type="caption">
                 Rs. 800
                 </Typography></span>}/>

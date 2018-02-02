@@ -170,7 +170,8 @@ class TextFields extends React.Component<props, {}> {
             "committee": this.state.kameti,
             "extra": this.state.expenses,
             "housholds": this.state.household,
-            "date": `${this.state.month}-${this.state.year}`,
+            "month": this.state.month,
+             "year": this.state.year,
         };
         let accessToken = cookies.get('accessToken').accessToken;
         if(data.salaries === ' '){

@@ -10,6 +10,11 @@ import Hidden from 'material-ui/Hidden';
 import TextField from 'material-ui/TextField';
 import Logout from '../inventory/Logout';
 
+import server from "../constants";
+import request from "superagent/superagent";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 const data = [
     {
         company:'Citizen',
@@ -97,11 +102,26 @@ noUnderline: {
 
 class TextFields extends React.Component<props, {}> {
     state = {
+      shop: null,
       month: ' ',
       year: '2018',
       open: false,
       monthSelected: false,
     };
+
+    componentWillMount(){
+        let shop = window.location.href.split('shop=')[1];
+        if(shop === undefined){
+            window.location.href = '/Login'
+        } else {
+            this.setState({
+                shop: window.location.href.split('shop=')[1].split('&')[0]
+            });
+        }
+        if(cookies.get('accessToken') === undefined){
+            window.location.href = '/'
+        }
+    }
 
     handleRequestClose = () => {
       this.setState ({
@@ -135,7 +155,7 @@ class TextFields extends React.Component<props, {}> {
                         Companies' Bills
                         </Typography>
                         <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here you can see bills, you have to pay.</Typography>
-                        <Link to='/Shop' style={styles.noUnderline}>
+                        <Link to={`/Shop?shop=${this.state.shop}`} style={styles.noUnderline}>
                         <Button raised style={styles.button}>
                         back
                         </Button>
@@ -147,7 +167,7 @@ class TextFields extends React.Component<props, {}> {
                         Companies' Bills
                         </Typography>
                         <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here you can see bills, you have to pay.</Typography>
-                        <Link to='/Shop' style={styles.noUnderline}>
+                        <Link to={`/Shop?shop=${this.state.shop}`} style={styles.noUnderline}>
                         <Button raised style={styles.button}>
                         back
                         </Button>

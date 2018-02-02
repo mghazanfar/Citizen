@@ -70,7 +70,7 @@ class FullWidthGrid extends React.Component<props, {}> {
                     <Link to={`/Inventory?${this.state.shop}`} style={styles.headline}>Inventory</Link>
                   </Typography>
                   <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                    <Link to={`/HandleProfit?${this.state.shop}`} style={styles.headline}>Profit handling</Link>
+                    <Link to={`/ProfitReports?${this.state.shop}`} style={styles.headline}>Profit handling</Link>
                   </Typography>
                   <Typography type="headline" gutterBottom style={{color: 'white'}}>
                     <Link to={`/HandleExpenses?${this.state.shop}`} style={styles.headline}>Expense handling</Link>
