@@ -70,7 +70,7 @@ function FullWidthGrid(props) {
         <Grid item xs={12} lg={8} style={styles.right}>
           <div style={{maxHeight:700, overflow:'auto'}}>
         {[0, 1, 2, 3, 4].map(value => (
-              <ManageDates key={value} />
+              <ManageDates key={value}  data={[0,1,2,3]}/>
             ))}
           </div>
         </Grid>
@@ -100,7 +100,7 @@ function FullWidthGrid(props) {
           <Grid item xs={12} lg={8} style={styles.right}>
             <div style={{maxHeight:700, overflow:'auto'}}>
           {[0, 1, 2, 3, 4].map(value => (
-                <ManageDates key={value} />
+                <ManageDates key={value} data={[0,1,2,3]}/>
               ))}
             </div>
           </Grid>
