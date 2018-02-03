@@ -12,7 +12,7 @@ const styles = {
   },
   };
 
-const ManageDates = Props => (
+const ManageDates = (props) => (
 <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
     <Typography type="title" gutterBottom style={{alignSelf:'flex-start', color:'white', marginTop:10}} >{`${(new Date).getDate()}-${(new Date).getMonth()+1}-${(new Date).getFullYear()}`}</Typography>
     <div style={{display:'flex', width:'inherit'}}>

@@ -140,6 +140,7 @@ class TextFields extends React.Component<props, {}> {
                     if(!res){
                         alert('Service Unreachable');
                     } else {
+                        console.log(res);
                         if(res.statusCode === 200){
                             console.log(res.body[0]);
                             this.setState({

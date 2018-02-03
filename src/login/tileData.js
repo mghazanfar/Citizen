@@ -8,7 +8,7 @@ const tileData = [
     address: '24, Main Gulberg III, Lahore',
   },
   {
-   id: null,
+   id:  null,
    img: shop1,
    title: 'Citizen',
    address: '24, Shadara, Lahore',

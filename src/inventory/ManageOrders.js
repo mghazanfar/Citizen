@@ -161,7 +161,7 @@ class FullWidthGrid extends React.Component<props, {}> {
                         />
                     </div>*/}
                   <div style={{maxHeight: 700, overflow: 'auto'}}>
-                          <ManageDates key={this.state.orders}/>
+                          <ManageDates data={this.state.orders}/>
                   </div>
                 </Grid>
               </Hidden>

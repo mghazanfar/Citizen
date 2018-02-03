@@ -103,7 +103,7 @@ class FullWidthGrid extends React.Component<props, {}>{
     };
 
   createBill(){
-    let url = window.location.href.split('&')[1].split('&')[0];
+    let url = window.location.href.split('&')[1];
     if(url === undefined){
         alert('No product selected');
     } else {
@@ -151,11 +151,12 @@ class FullWidthGrid extends React.Component<props, {}>{
                     let accessToken = cookies.get('accessToken').accessToken;
                     request.post(`${server.path}/api/Bills?access_token=${accessToken}`).send(data).end((err, res) => {
                         if(res) {
+                            console.log(res);
                             if (res.statusCode !== 200) {
                                 alert(res.body.error.message);
                             } else {
                                 cookies.remove('billProductQuantity');
-                                window.location.href = `/Inventory?shop=${this.state.shop}`;
+                                //window.location.href = `/Inventory?shop=${this.state.shop}`;
                             }
                         } else {
                             alert('Service Unreachable');
