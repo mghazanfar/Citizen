@@ -5,6 +5,7 @@ import Menu, { MenuItem } from 'material-ui/Menu';
 
 class SimpleMenu extends React.Component {
   state = {
+    status: 'Status',
     anchorEl: null,
     open: false,
   };
@@ -13,8 +14,8 @@ class SimpleMenu extends React.Component {
     this.setState({ open: true, anchorEl: event.currentTarget });
   };
 
-  handleRequestClose = () => {
-    this.setState({ open: false });
+  handleRequestClose = (status) => {
+      this.setState({ open: false, status: status });
   };
 
   render() {
@@ -25,7 +26,7 @@ class SimpleMenu extends React.Component {
           aria-haspopup="true"
           onClick={this.handleClick}
         >
-          Status
+            {this.state.status}
         </Button>
         <Menu
           id="simple-menu"
@@ -33,9 +34,9 @@ class SimpleMenu extends React.Component {
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
         >
-          <MenuItem onClick={this.handleRequestClose}>To be paid</MenuItem>
-          <MenuItem onClick={this.handleRequestClose}>Paid</MenuItem>
-          <MenuItem onClick={this.handleRequestClose}>Some amount remaining</MenuItem>
+          <MenuItem onClick={this.handleRequestClose.bind(null, 'Partial')}>Partial</MenuItem>
+          <MenuItem onClick={this.handleRequestClose.bind(null, 'Paid')}>Paid</MenuItem>
+          <MenuItem onClick={this.handleRequestClose.bind(null, 'Unpaid')}>Unpaid</MenuItem>
         </Menu>
       </Paper>
     );

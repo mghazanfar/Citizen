@@ -135,22 +135,38 @@ class TextFields extends React.Component<props, {}> {
            });
            let today = new Date();
            let date = `${today.getDate()}-0${today.getMonth()+1}-${today.getFullYear()}`;
-           request.get(`${server.path}/api/Shops/${url}/expenses?filter=%7B%22where%22%3A%7B%22date%22%3A%22${date}%22%7D%7D&access_token=${cookies.get('accessToken').accessToken}`)
+           request.get(`${server.path}/api/Shops/getDailyReport?shopId=${url}&day=${today.getDate()}&month=${today.getMonth()+1}&year=${today.getFullYear()}&access_token=${cookies.get('accessToken').accessToken}`)
                .end((err, res) => {
                     if(!res){
                         alert('Service Unreachable');
                     } else {
-                        console.log(res);
                         if(res.statusCode === 200){
-                            console.log(res.body[0]);
                             this.setState({
-                                amountReceivedToday: 'No Record',
+                                amountReceivedToday: res.body.Report.payment,
                                 shopExpenses: null,
-                                basePrices: null,
-                                totalProfitToday: null,
+                                basePrices: res.body.Report.basePrices,
+                                totalProfitToday: res.body.Report.salePrices-res.body.Report.basePrices,
                                 totalProfitMonthly: null,
                                 totalProfitYearly: null,
                             });
+                            let ex = 0;
+                            if(res.body.Report.expense.length > 0){
+                                if(res.body.Report.expense[0].extra.length > 0){
+                                    res.body.Report.expense[0].extra.map(val => {
+                                        if(parseInt(val.name) !== NaN) {
+                                            res.body.Report.expense[0].salaries += parseInt(val.name);
+                                        }
+                                    });
+                                    this.setState({
+                                        shopExpenses: parseInt(res.body.Report.expense[0].salaries) + parseInt(res.body.Report.expense[0].committee) + parseInt(res.body.Report.expense[0].housholds)
+                                    });
+                                } else {
+                                    this.setState({
+                                        shopExpenses: parseInt(res.body.Report.expense[0].salaries) + parseInt(res.body.Report.expense[0].committee) + parseInt(res.body.Report.expense[0].households)
+                                    });
+                                }
+                            }
+
                         } else {
                             alert(res.body.error.message);
                         }
@@ -160,10 +176,93 @@ class TextFields extends React.Component<props, {}> {
     }
   
     handleChange = ( month, monthSelected ) => event => {
+        console.log(month)
       this.setState({
         [month]: event.target.value,
         monthSelected: true,
       });
+        if(month == 'month') {
+            let mon = months.indexOf(event.target.value) + 1;
+            request.get(`${server.path}/api/Shops/getMonthlyReport?shopId=${this.state.shop}&month=${mon}&year=${this.state.year}&access_token=${cookies.get('accessToken').accessToken}`)
+                .end((err, res) => {
+                    if (!res) {
+                        alert('Service Unreachable');
+                    } else {
+                        if (res.statusCode === 200) {
+                            this.setState({
+                                amountReceivedToday: res.body.Report.payment,
+                                shopExpenses: null,
+                                basePrices: res.body.Report.basePrices,
+                                totalProfitToday: res.body.Report.salePrices - res.body.Report.basePrices,
+                                totalProfitMonthly: null,
+                                totalProfitYearly: null,
+                            });
+                            let ex = 0;
+                            if (res.body.Report.expense.length > 0) {
+                                if (res.body.Report.expense[0].extra.length > 0) {
+                                    res.body.Report.expense[0].extra.map(val => {
+                                        if (parseInt(val.name) !== NaN) {
+                                            res.body.Report.expense[0].salaries += parseInt(val.name);
+                                        }
+                                    });
+                                    this.setState({
+                                        shopExpenses: parseInt(res.body.Report.expense[0].salaries) + parseInt(res.body.Report.expense[0].committee) + parseInt(res.body.Report.expense[0].housholds)
+                                    });
+                                } else {
+                                    this.setState({
+                                        shopExpenses: parseInt(res.body.Report.expense[0].salaries) + parseInt(res.body.Report.expense[0].committee) + parseInt(res.body.Report.expense[0].households)
+                                    });
+                                }
+                            }
+
+                        } else {
+                            alert(res.body.error.message);
+                        }
+                    }
+                })
+        } else {
+            let date = event.target.value.split('-');
+            let year = parseInt(date[0]);
+            let month = parseInt(date[1]);
+            let day = parseInt(date[2]);
+            request.get(`${server.path}/api/Shops/getDailyReport?shopId=${this.state.shop}&day=${day}&month=${month}&year=${year}&access_token=${cookies.get('accessToken').accessToken}`)
+                .end((err, res) => {
+                    if(!res){
+                        alert('Service Unreachable');
+                    } else {
+                        if(res.statusCode === 200){
+                            this.setState({
+                                amountReceivedToday: res.body.Report.payment,
+                                shopExpenses: null,
+                                basePrices: res.body.Report.basePrices,
+                                totalProfitToday: res.body.Report.salePrices-res.body.Report.basePrices,
+                                totalProfitMonthly: null,
+                                totalProfitYearly: null,
+                            });
+                            let ex = 0;
+                            if(res.body.Report.expense.length > 0){
+                                if(res.body.Report.expense[0].extra.length > 0){
+                                    res.body.Report.expense[0].extra.map(val => {
+                                        if(parseInt(val.name) !== NaN) {
+                                            res.body.Report.expense[0].salaries += parseInt(val.name);
+                                        }
+                                    });
+                                    this.setState({
+                                        shopExpenses: parseInt(res.body.Report.expense[0].salaries) + parseInt(res.body.Report.expense[0].committee) + parseInt(res.body.Report.expense[0].housholds)
+                                    });
+                                } else {
+                                    this.setState({
+                                        shopExpenses: parseInt(res.body.Report.expense[0].salaries) + parseInt(res.body.Report.expense[0].committee) + parseInt(res.body.Report.expense[0].households)
+                                    });
+                                }
+                            }
+
+                        } else {
+                            alert(res.body.error.message);
+                        }
+                    }
+                })
+        }
     };
   
     render() {
@@ -211,7 +310,7 @@ class TextFields extends React.Component<props, {}> {
                               type="date"
                               defaultValue={this.state.date}
                               className={classes.textField}
-                              onChange={this.date}
+                              onChange={this.handleChange('date')}
                               InputLabelProps={{
                                 shrink: true,
                               }}
@@ -270,7 +369,7 @@ class TextFields extends React.Component<props, {}> {
                                 id="adornment-amount"
                                 value={this.state.kameti}
                                 onChange={this.handleChange('kameti')}
-                                startAdornment={<InputAdornment position="start">Rs. {this.state.amountReceivedToday}  </InputAdornment>}
+                                startAdornment={<InputAdornment position="start">Rs. {this.state.basePrice}  </InputAdornment>}
                                 type="number"
                                 disabled
                             />
@@ -281,7 +380,7 @@ class TextFields extends React.Component<props, {}> {
                                 id="adornment-amount"
                                 value={this.state.household}
                                 onChange={this.handleChange('household')}
-                                startAdornment={<InputAdornment position="start">Rs. {this.state.amountReceivedToday} </InputAdornment>}
+                                startAdornment={<InputAdornment position="start">Rs. {this.state.shopExpenses} </InputAdornment>}
                                 type="number"
                                 disabled
                             />
@@ -292,7 +391,7 @@ class TextFields extends React.Component<props, {}> {
                                 id="adornment-amount"
                                 value={this.state.household}
                                 onChange={this.handleChange('household')}
-                                startAdornment={<InputAdornment position="start">Rs. {this.state.amountReceivedToday} </InputAdornment>}
+                                startAdornment={<InputAdornment position="start">Rs. {this.state.totalProfitToday} </InputAdornment>}
                                 type="number"
                                 disabled
                             />
@@ -303,7 +402,7 @@ class TextFields extends React.Component<props, {}> {
                                 id="adornment-amount"
                                 value={this.state.household}
                                 onChange={this.handleChange('household')}
-                                startAdornment={<InputAdornment position="start">Rs. {this.state.amountReceivedToday} </InputAdornment>}
+                                startAdornment={<InputAdornment position="start">Rs. {this.state.totalProfitMonthly} </InputAdornment>}
                                 type="number"
                                 disabled
                             />
@@ -314,7 +413,7 @@ class TextFields extends React.Component<props, {}> {
                                 id="adornment-amount"
                                 value={this.state.household}
                                 onChange={this.handleChange('household')}
-                                startAdornment={<InputAdornment position="start">Rs. {this.state.amountReceivedToday} </InputAdornment>}
+                                startAdornment={<InputAdornment position="start">Rs. {this.state.totalProfitYearly} </InputAdornment>}
                                 type="number"
                                 disabled
                             />
@@ -433,7 +532,7 @@ class TextFields extends React.Component<props, {}> {
                           id="adornment-amount"
                           value={this.state.kameti}
                           onChange={this.handleChange('kameti')}
-                          startAdornment={<InputAdornment position="start">Rs. {this.state.amountReceivedToday} </InputAdornment>}
+                          startAdornment={<InputAdornment position="start">Rs. {this.state.basePrices} </InputAdornment>}
                           type="number"
                           disabled
                       />
@@ -444,7 +543,7 @@ class TextFields extends React.Component<props, {}> {
                           id="adornment-amount"
                           value={this.state.household}
                           onChange={this.handleChange('household')}
-                          startAdornment={<InputAdornment position="start">Rs. {this.state.amountReceivedToday} </InputAdornment>}
+                          startAdornment={<InputAdornment position="start">Rs. {this.state.shopExpenses} </InputAdornment>}
                           type="number"
                           disabled
                       />
@@ -455,7 +554,7 @@ class TextFields extends React.Component<props, {}> {
                           id="adornment-amount"
                           value={this.state.household}
                           onChange={this.handleChange('household')}
-                          startAdornment={<InputAdornment position="start">Rs. {this.state.amountReceivedToday} </InputAdornment>}
+                          startAdornment={<InputAdornment position="start">Rs. {this.state.totalProfitToday} </InputAdornment>}
                           type="number"
                           disabled
                       />
@@ -466,7 +565,7 @@ class TextFields extends React.Component<props, {}> {
                           id="adornment-amount"
                           value={this.state.household}
                           onChange={this.handleChange('household')}
-                          startAdornment={<InputAdornment position="start">Rs. {this.state.amountReceivedToday} </InputAdornment>}
+                          startAdornment={<InputAdornment position="start">Rs. {this.state.totalProfitMonthly} </InputAdornment>}
                           type="number"
                           disabled
                       />
@@ -477,7 +576,7 @@ class TextFields extends React.Component<props, {}> {
                           id="adornment-amount"
                           value={this.state.household}
                           onChange={this.handleChange('household')}
-                          startAdornment={<InputAdornment position="start">Rs. {this.state.amountReceivedToday} </InputAdornment>}
+                          startAdornment={<InputAdornment position="start">Rs. {this.state.totalProfitYearly} </InputAdornment>}
                           type="number"
                           disabled
                       />

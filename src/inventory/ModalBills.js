@@ -38,10 +38,14 @@ class ResponsiveDialog extends React.Component<props, {}> {
           let shop = window.location.href.split('?')[1].split('=')[1].split('&')[0];
           request.get(`${server.path}/api/Shops/${shop}?access_token=${accessToken}`)
           .end((err, res) => {
-              if(res.statusCode === 200) {
-                  this.setState({
-                      products : res.body
-                  });
+              if (res) {
+                  if (res.statusCode === 200) {
+                      this.setState({
+                          products: res.body
+                      });
+                  }
+              } else {
+                  alert('Service Unreachable');
               }
           });
       } else {

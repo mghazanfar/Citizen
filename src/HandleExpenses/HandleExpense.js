@@ -157,7 +157,7 @@ class TextFields extends React.Component<props, {}> {
         [salary]: event.target.value,
         [kameti]: event.target.value,
         [household]: event.target.value,
-        [month]: event.target.value,
+        [month]: months.indexOf(event.target.value)+1,
         [year]: event.target.value,
         [label]: event.target.value,
       });
@@ -170,16 +170,17 @@ class TextFields extends React.Component<props, {}> {
             "committee": this.state.kameti,
             "extra": this.state.expenses,
             "housholds": this.state.household,
-            "month": this.state.month,
-             "year": this.state.year,
+            "month": months.indexOf(this.state.month)+1,
+            "year": this.state.year,
         };
+        console.log(data);
         let accessToken = cookies.get('accessToken').accessToken;
         if(data.salaries === ' '){
             alert('Please enter salaries');
         } else if(this.state.month === ' '){
             alert('Please enter correct date');
         } else if(data.committee === ' ' || data.housholds === ' '){
-            alert('Please entermissing data');
+            alert('Please enter missing data');
         } else {
             request.post(`${server.path}/api/Expenses?access_token=${accessToken}`)
                 .send(data)

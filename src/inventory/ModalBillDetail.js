@@ -40,10 +40,25 @@ const theme = createMuiTheme({
 class ResponsiveDialog extends React.Component {
   state = {
     open: false,
+    shop: null,
+    order: [],
   };
 
-  handleClickOpen = () => {
-    this.setState({ open: true });
+  componentWillMount(){
+      //console.log(this.props);
+      let shop = window.location.href.split('shop=')[1].split('&')[0];
+      if (shop === undefined){
+          window.location.href = '/';
+      } else {
+          this.setState({
+              shop: shop
+          });
+      }
+  }
+
+  handleClickOpen = (order) => {
+      console.log(order);
+    this.setState({ open: true, order: order });
   };
 
   handleRequestClose = () => {
@@ -55,7 +70,7 @@ class ResponsiveDialog extends React.Component {
 
     return (
       <div style={{display:'flex'}}>
-        <Button color='primary' onClick={this.handleClickOpen}>
+        <Button color='primary' onClick={this.handleClickOpen.bind(null, this.props.order)}>
         Details
         </Button>
     
@@ -70,21 +85,21 @@ class ResponsiveDialog extends React.Component {
             <Paper style={{padding:20, minWidth:700}}>
             <div style={{display:'flex', justifyContent:'space-between'}}>
                 <FormControl disabled>
-                    <InputLabel htmlFor="name-disabled">OrderNumber</InputLabel>
+                    <InputLabel htmlFor="name-disabled"> {this.state.order.id} </InputLabel>
                     <Input id="name-disabled" value={this.state.name} onChange={this.handleChange} />
                 </FormControl>
                 <FormControl disabled>
-                    <InputLabel htmlFor="name-disabled">Date</InputLabel>
+                    <InputLabel htmlFor="name-disabled"> {this.state.order.createdAt} </InputLabel>
                     <Input id="name-disabled" value={this.state.name} onChange={this.handleChange} />
                 </FormControl>
                 <FormControl disabled>
-                    <InputLabel htmlFor="name-disabled">Time</InputLabel>
+                    <InputLabel htmlFor="name-disabled"> {this.state.order.updatedAt} </InputLabel>
                     <Input id="name-disabled" value={this.state.name} onChange={this.handleChange} />
                 </FormControl>
             </div>
             <div style={{marginTop:15}}>
             <Input
-              defaultValue="Hello world"
+              defaultValue={this.state.order.customerName}
               inputProps={{
                 'aria-label': 'Description',
               }}
@@ -92,7 +107,7 @@ class ResponsiveDialog extends React.Component {
             />
             <Input
             style={{marginTop:15}}
-              defaultValue="0312-3857670"
+              defaultValue={this.state.order.phoneNumber}
               inputProps={{
                 'aria-label': 'Description',
               }}
@@ -100,30 +115,28 @@ class ResponsiveDialog extends React.Component {
             />
             </div>
             <Paper style={{marginTop:15, maxHeight:200, overflow:'scroll'}}>
-                <BilledProductPanel />
+                <BilledProductPanel products={this.state.order.products} />
             </Paper>
             <ChangeItems />
             <div style={{marginTop:15}}>
                 <RSInput
-                defaultValue={300}
+                defaultValue={this.state.order.discount}
                 />
                 <RSInput
                 style={{marginTop:15}}
-                defaultValue={800}
+                defaultValue={this.state.order.payment}
                 />
                 <StatusMenu style={{marginTop:15}} />
             </div>
             <div style={{marginTop:5, display:'flex', justifyContent:'space-around'}}>
-                <Link to='/Inventory' style={styles.noUnderline}>
+                <Link to={`/Inventory?shop=${this.state.shop}`} style={styles.noUnderline}>
                 <Button raised style={styles.button}>
                 update bill
                 </Button>
                 </Link>
-                <Link to='/..' style={styles.noUnderline}>
-                <Button raised style={styles.button}>
+                <Button onClick={this.handleRequestClose} raised style={styles.button}>
                 ok
                 </Button>
-                </Link>
             </div>
                 </Paper>
           </DialogContent>

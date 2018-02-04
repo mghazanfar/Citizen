@@ -116,6 +116,10 @@ class FullWidthGrid extends React.Component<props, {}>{
             alert('Please set product quantities');
         } else {
             var productsWithQuantities = cookies.get('billProductQuantity');
+            productsWithQuantities.forEach((value, index) => {
+                productsWithQuantities[index].basePrice = 0;
+                productsWithQuantities[index].salePrice = 0;
+            });
             if (products.length < 1) {
                 alert('No product selected');
             } else {
@@ -130,16 +134,18 @@ class FullWidthGrid extends React.Component<props, {}>{
                     day: today.getDate(),
                     month: today.getMonth() + 1,
                     year: today.getFullYear(),
-                    products: productsWithQuantities
+                    _products: productsWithQuantities
                 };
-                console.log(data.products);
+                if(data.discount === null){
+                    data.discount = 0;
+                }
                 if (data.customerName === null || data.customerName === undefined) {
                     alert('Please provide name');
                 }
                 else if (data.phoneNumber === null || data.phoneNumber === undefined) {
                     alert('Please provide phone number');
                 }
-                else if (data.products.length === 0) {
+                else if (data._products.length === 0) {
                     alert('Please select some products');
                 }
                 else if (data.payment === null) {
@@ -156,7 +162,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                                 alert(res.body.error.message);
                             } else {
                                 cookies.remove('billProductQuantity');
-                                //window.location.href = `/Inventory?shop=${this.state.shop}`;
+                                window.location.href = `/Inventory?shop=${this.state.shop}`;
                             }
                         } else {
                             alert('Service Unreachable');

@@ -70,7 +70,8 @@ noUnderline: {
 class FullWidthGrid extends React.Component<props, {}> {
   state = {
     orders: [],
-    date: new Date()
+    date: new Date(),
+    shop: null,
   };
     onChange = date => this.setState({ date })
 
@@ -82,28 +83,11 @@ class FullWidthGrid extends React.Component<props, {}> {
       if(window.location.href.split('?shop=')[1] === undefined){
           window.location.href = '/Login';
       }
-      let url = window.location.href.split('?shop=')[1];
-      let accessToken = cookies.get('accessToken').accessToken;
-      this.setState({
-          shop: url
-      });
-      let today = new Date;
-      let date = `${today.getDate()}-${today.getMonth()+1}-${today.getFullYear()}`;
-      request.get(`${server.path}/api/Bills?filter=%7B%22where%22%3A%7B%22shopId%22%3A%22${url}%22%7D%7D&access_token=${accessToken}`).
-          end((err, bills) => {
-        if(bills) {
-            if (bills.statusCode !== 200) {
-              alert(bills.body.error.message);
-            } else {
-              //console.log(bills.body);
-              this.setState({
-                  orders: bills.body
-              });
-            }
-        } else {
-          alert('Could not reach service');
-        }
-      });
+        let url = window.location.href.split('?shop=')[1];
+        let accessToken = cookies.get('accessToken').accessToken;
+        this.setState({
+            shop: url
+        });
   }
 
   render() {
@@ -119,7 +103,7 @@ class FullWidthGrid extends React.Component<props, {}> {
                         />
                     </div>*/}
                   <div style={{maxHeight: 700, overflow: 'auto'}}>
-                          <ManageDates key={this.state.orders}/>
+                          <ManageDates data={this.state.orders} date={this.state.date}/>
                   </div>
                 </Grid>
               </Hidden>
@@ -161,7 +145,7 @@ class FullWidthGrid extends React.Component<props, {}> {
                         />
                     </div>*/}
                   <div style={{maxHeight: 700, overflow: 'auto'}}>
-                          <ManageDates data={this.state.orders}/>
+                          <ManageDates data={this.state.orders} date={this.state.date} />
                   </div>
                 </Grid>
               </Hidden>

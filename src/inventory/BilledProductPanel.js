@@ -25,41 +25,46 @@ const data = [
   createData(120, 'Citizen', 'AD0Pk', 'Clasic chair', 'Green', Background, 'Chair', 200),
 ];
 
-function BasicTable(props) {
-  const { classes } = props;
+class BasicTable extends React.Component {
+  //const { classes } = this.props;
 
-  return (
-      <Table className={classes.table}>
-        <TableHead>
-          <TableRow style={{fontSize:'1rem', fontWeight:700, color:'black'}}>
-            <TableCell style={{fontWeight:700}}>Price</TableCell>
-            <TableCell numeric style={{fontWeight:700}}>Brand</TableCell>
-            <TableCell numeric style={{fontWeight:700}}>Model</TableCell>
-            <TableCell numeric style={{fontWeight:700}}>Name</TableCell>
-            <TableCell numeric style={{fontWeight:700}}>Color</TableCell>
-            <TableCell numeric style={{fontWeight:700}}>Picture</TableCell>
-            <TableCell numeric style={{fontWeight:700}}>Category</TableCell>
-            <TableCell numeric style={{fontWeight:700}}>Quantity</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map(n => {
-            return (
-              <TableRow key={n.id}>
-                <TableCell>{n.price}</TableCell>
-                <TableCell numeric>{n.brand}</TableCell>
-                <TableCell numeric>{n.model}</TableCell>
-                <TableCell numeric>{n.name}</TableCell>
-                <TableCell numeric>{n.color}</TableCell>
-                <TableCell><Avatar src={n.picture} style={{width:70, height:70}} /></TableCell>
-                <TableCell numeric>{n.category}</TableCell>
-                <TableCell numeric>{n.quantity}</TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-  );
+  componentWillMount(){
+    console.log(this.props.products[0]);
+  }
+  render() {
+    return (
+        <Table>
+          <TableHead>
+            <TableRow style={{fontSize: '1rem', fontWeight: 700, color: 'black'}}>
+              <TableCell style={{fontWeight: 700}}>Price</TableCell>
+              <TableCell numeric style={{fontWeight: 700}}>Brand</TableCell>
+              <TableCell numeric style={{fontWeight: 700}}>Model</TableCell>
+              <TableCell numeric style={{fontWeight: 700}}>Name</TableCell>
+              <TableCell numeric style={{fontWeight: 700}}>Color</TableCell>
+              <TableCell numeric style={{fontWeight: 700}}>Picture</TableCell>
+              <TableCell numeric style={{fontWeight: 700}}>Category</TableCell>
+              <TableCell numeric style={{fontWeight: 700}}>Quantity</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+              {data.map(n => {
+                  return (
+                      <TableRow key={n.id}>
+                        <TableCell>{n.price}</TableCell>
+                        <TableCell numeric>{n.brand}</TableCell>
+                        <TableCell numeric>{n.model}</TableCell>
+                        <TableCell numeric>{n.name}</TableCell>
+                        <TableCell numeric>{n.color}</TableCell>
+                        <TableCell><Avatar src={n.picture} style={{width: 70, height: 70}}/></TableCell>
+                        <TableCell numeric>{n.category}</TableCell>
+                        <TableCell numeric>{n.quantity}</TableCell>
+                      </TableRow>
+                  );
+              })}
+          </TableBody>
+        </Table>
+    );
+}
 }
 
 BasicTable.propTypes = {
