@@ -57,7 +57,6 @@ class ResponsiveDialog extends React.Component {
   }
 
   handleClickOpen = (order) => {
-      console.log(order);
     this.setState({ open: true, order: order });
   };
 
@@ -115,7 +114,7 @@ class ResponsiveDialog extends React.Component {
             />
             </div>
             <Paper style={{marginTop:15, maxHeight:200, overflow:'scroll'}}>
-                <BilledProductPanel products={this.state.order.products} />
+                <BilledProductPanel products={this.state.order._products} />
             </Paper>
             <ChangeItems />
             <div style={{marginTop:15}}>

@@ -14,14 +14,11 @@
     "react-apollo": "^1.4.14",
     "react-cookie": "^2.1.2",
     "react-cookies": "^0.1.0",
-    "react-date-picker": "^6.7.0",
-    "react-datepicker": "^1.0.4",
     "react-dom": "^16.2.0",
     "react-number-format": "^3.1.2",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
     "react-text-mask": "^5.0.2",
-    "react-waterfall": "0.0.1-security",
     "superagent": "^3.8.2",
     "universal-cookie": "^2.1.2"
   },
@@ -36,7 +33,7 @@
     "eslint-plugin-react": "^7.5.1",
     "grunt": "^1.0.1",
     "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-copy": "n^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-sass": "^2.0.0"
   }

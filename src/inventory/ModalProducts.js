@@ -83,11 +83,14 @@ class ResponsiveDialog extends React.Component {
           request.post(`${server.path}/api/Products?access_token=${(cookies.get('accessToken').accessToken)}`)
               .send(data)
               .end((err, res) => {
-                  if(res.status === 413){
-                      alert(res.body.error.message);
-                  }
-                  if (res.status === 200) {
-                      this.setState({open: true, name: res.body.name, category: res.body.category});
+                  if(res){
+                      if (res.status === 200) {
+                          this.setState({open: true, name: res.body.name, category: res.body.category});
+                      } else {
+                          alert(res.body.error.message);
+                      }
+                  } else {
+                      alert('Service Unreachable');
                   }
               });
       }

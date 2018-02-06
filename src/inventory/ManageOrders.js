@@ -8,7 +8,6 @@ import Button from 'material-ui/Button';
 import Hidden from 'material-ui/Hidden';
 import ManageDates from './ManageDates';
 import Logout from './Logout';
-import DatePicker from 'react-date-picker';
 
 import server from "../constants";
 import request from "superagent/superagent";
