@@ -1,4 +1,4 @@
 const server = {
-    path : 'http://localhost:10000'
+    path : process.env.SERVER_PATH
 }
 module.exports = server;

@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1522b67c-b505-4c18-9c5e-26704d678d3d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/login/Owner.js" afterPath="$PROJECT_DIR$/src/login/Owner.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inventory/ProductPanel.js" afterPath="$PROJECT_DIR$/src/inventory/ProductPanel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/constants.js" afterPath="$PROJECT_DIR$/src/constants.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,16 +16,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ModalBillDetail.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/inventory/ModalBillDetail.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="7" lean-forward="false" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="BilledProductPanel.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/inventory/BilledProductPanel.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -102,11 +90,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductPanel.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ProductPanel.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/inventory/ProductPanel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="75" column="29" lean-forward="false" selection-start-line="75" selection-start-column="29" selection-end-line="75" selection-end-column="29" />
+            <state relative-caret-position="182">
+              <caret line="71" column="29" lean-forward="true" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="constants.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/constants.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="24" lean-forward="true" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -164,7 +162,6 @@
         <option value="$PROJECT_DIR$/src/inventory/DeleteCatModel.js" />
         <option value="$PROJECT_DIR$/src/login/Grid.js" />
         <option value="$PROJECT_DIR$/src/inventory/ModalDelete.js" />
-        <option value="$PROJECT_DIR$/src/constants.js" />
         <option value="$PROJECT_DIR$/src/inventory/BillStatus.js" />
         <option value="$PROJECT_DIR$/src/inventory/Inventory.js" />
         <option value="$PROJECT_DIR$/src/ShopManagement/ShopManagement.js" />
@@ -205,6 +202,7 @@
         <option value="$PROJECT_DIR$/src/inventory/ManageOrders.js" />
         <option value="$PROJECT_DIR$/src/login/Owner.js" />
         <option value="$PROJECT_DIR$/src/inventory/ProductPanel.js" />
+        <option value="$PROJECT_DIR$/src/constants.js" />
       </list>
     </option>
   </component>
@@ -370,15 +368,16 @@
       <workItem from="1517831392727" duration="50000" />
       <workItem from="1517833621273" duration="1853000" />
       <workItem from="1517929145614" duration="3415000" />
-      <workItem from="1517968744867" duration="7000" />
+      <workItem from="1517968744867" duration="586000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="231485000" />
+    <option name="totallyTimeSpent" value="232064000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="430" y="24" width="936" height="744" extended-state="4" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20920044" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -387,7 +386,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32580644" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22903226" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22903226" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -736,13 +735,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/login/login.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -780,8 +772,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/inventory/ProductPanel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="75" column="29" lean-forward="false" selection-start-line="75" selection-start-column="29" selection-end-line="75" selection-end-column="29" />
+        <state relative-caret-position="182">
+          <caret line="71" column="29" lean-forward="true" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="24" lean-forward="true" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
           <folding />
         </state>
       </provider>
