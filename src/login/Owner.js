@@ -45,7 +45,8 @@ class App extends Component {
     password: '',
     weight: '',
     showPassword: false,
-    visible: 'none'
+    visible: 'none',
+    disabled: false,
 };
 
 handleChange = prop => event => {
@@ -61,6 +62,10 @@ login = () => {
     username: this.state.username,
     password: this.state.password
     };
+  this.setState({
+      disabled: true
+  });
+
     request
       .post(server.path+'/api/Accounts/login')
       .set('Content-Type', 'application/x-www-form-urlencoded')
@@ -81,7 +86,8 @@ login = () => {
             } else {
                 this.setState({
                     loginFailed: res.body.error.message,
-                    visible: 'block'
+                    visible: 'block',
+                    disabled: false
                 });
             }
         }
@@ -124,7 +130,7 @@ handleClickShowPasssword = () => {
             }
           />
         </FormControl>
-        <Button type='submit' onClick={this.login.bind(this)} raised component="span" style={{backgroundColor:'rgba(0,150,136,1)', marginTop: '3rem', color: 'white'}}>
+        <Button disabled={this.state.disabled} type='submit' onClick={this.login.bind(this)} raised component="span" style={{backgroundColor:'rgba(0,150,136,1)', marginTop: '3rem', color: 'white'}}>
         LOGIN
         </Button>
         <div style={{display: this.state.visible}}>

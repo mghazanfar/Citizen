@@ -69,11 +69,12 @@ class BasicTable extends React.Component<props, {}> {
                       if (product.body.length === 0) {
                           alert('No Products Available. Please add a few');
                           //window.location.href = '/AddProducts'
-                      }
-                      this.setState({
-                          products: product.body
+                      } else{
+                          this.setState({
+                              products: product.body
 
-                      });
+                          });
+                      }
                   } else {
                       alert('Service Unreachable');
                   }
