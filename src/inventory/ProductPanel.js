@@ -59,7 +59,7 @@ class BasicTable extends React.Component<props, {}> {
               });
 
       }else {
-          request.get(`${server.path}/api/Products?filter=%7B%22where%22%3A%7B%22shopId%22%3A%22${url}%22%7D%7D&access_token=${accessToken}`).end(
+          request.get(`${server.path}/api/Products?filter=%7B%22shopId%22%3A%22${url}%22%7D&access_token=${accessToken}`).end(
               (err, product) => {
                   console.log(product);
                   if(product) {
