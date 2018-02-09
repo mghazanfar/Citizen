@@ -1,4 +1,4 @@
 const server = {
-    path : 'http://localhost:10000'
+    path : 'https://desolate-crag-83552.herokuapp.com'
 }
 module.exports = server;
