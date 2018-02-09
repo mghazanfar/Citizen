@@ -11,9 +11,18 @@ import Dialog, {
 import { Link } from 'react-router-dom';
 import request from "../../node_modules/superagent/superagent";
 import server from "../constants";
-import Cookies from 'universal-cookie';
+import Cookies from 'universal-cookie'
+import cloudinary from 'cloudinary';
 const cookies = new Cookies();
 
+
+cloudinary.config({ 
+    cloud_name: 'my-furniture-shop', 
+    api_key: '842684991763488', 
+    api_secret: 'JTWKG9czuqaFywMA3xCkrZuA-ls' 
+  });
+  
+  
 class ResponsiveDialog extends React.Component {
   state = {
     buttonText: 'ADD PRODUCT',
@@ -68,31 +77,41 @@ class ResponsiveDialog extends React.Component {
               });
 
       } else {
-          var data = {
-              shopId: this.props.addData.shop,
-              category: this.props.addData.category,
-              name: this.props.addData.productName,
-              color: this.props.addData.color,
-              image: this.props.addData.img,
-              quantity: this.props.addData.quantity,
-              brand: this.props.addData.brandName,
-              salePrice: this.props.addData.salePrice,
-              basePrice: this.props.addData.basePrice,
-              model: this.props.addData.modelNumber
-          }
-          request.post(`${server.path}/api/Products?access_token=${(cookies.get('accessToken').accessToken)}`)
-              .send(data)
-              .end((err, res) => {
-                  if(res){
-                      if (res.status === 200) {
-                          this.setState({open: true, name: res.body.name, category: res.body.category});
-                      } else {
-                          alert(res.body.error.message);
-                      }
-                  } else {
-                      alert('Service Unreachable');
-                  }
-              });
+          console.log("image test");
+          cloudinary.v2.uploader.upload(this.props.addData.img, 
+          (error, result) =>  {console.log(result)
+            if(error){
+                alert("Error uploading image")
+            } else {
+                console.log(this);
+                var data = {
+                    shopId: this.props.addData.shop,
+                    category: this.props.addData.category,
+                    name: this.props.addData.productName,
+                    color: this.props.addData.color,
+                    image: result.secure_url,
+                    quantity: this.props.addData.quantity,
+                    brand: this.props.addData.brandName,
+                    salePrice: this.props.addData.salePrice,
+                    basePrice: this.props.addData.basePrice,
+                    model: this.props.addData.modelNumber
+                }
+                request.post(`${server.path}/api/Products?access_token=${(cookies.get('accessToken').accessToken)}`)
+                    .send(data)
+                    .end((err, res) => {
+                        if(res){
+                            if (res.status === 200) {
+                                this.setState({open: true, name: res.body.name, category: res.body.category});
+                            } else {
+                                alert(res.body.error.message);
+                            }
+                        } else {
+                            alert('Service Unreachable');
+                        }
+                    });
+            }
+        });
+        
       }
   };
 
