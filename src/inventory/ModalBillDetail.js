@@ -13,7 +13,11 @@ import { Link } from 'react-router-dom';
 import BilledProductPanel from './BilledProductPanel';
 import ChangeItems from './ChangeItemsModal';
 import RSInput from './RsInput'
-import StatusMenu from './StatusMenu'
+import BillStatus from './BillStatus'
+import server from "../constants";
+import request from "superagent/superagent";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 const styles = {
   button: {
@@ -42,6 +46,11 @@ class ResponsiveDialog extends React.Component {
     open: false,
     shop: null,
     order: [],
+    customerName: null,
+    phoneNumber: null,
+    discount: null,
+    payment: null,
+    status: null,
   };
 
   componentWillMount(){
@@ -63,6 +72,53 @@ class ResponsiveDialog extends React.Component {
   handleRequestClose = () => {
     this.setState({ open: false });
   };
+  handleChange = (name, description) => event => {
+    this.setState({
+        [name]: event.target.value,
+        [description]: event.target.value,
+    });
+  };
+  updateBill() {
+    console.log(this.props);
+    let order = this.props.order;
+    let billProductQuantity = cookies.get('billProductQuantity');
+    let update= {}; 
+    update.oldProducts = order._products;
+    if(billProductQuantity !== undefined){
+      update.newProducts= billProductQuantity;
+    }
+    update.status = window.location.href.split('status=');
+    if(this.state.customerName !== this.props.order.customerName){
+      update.customerName = this.state.customerName;
+    }
+    if(this.state.phoneNumber !== this.props.order.phoneNumber){
+      update.phoneNumber = this.state.phoneNumber;
+    }
+    if(this.state.discount !== this.props.order.discount){
+      update.discount = this.state.discount;
+    }
+    if(this.state.payment !== this.props.order.payment){
+      update.payment = this.props.order.payment;
+    }
+    if(update.status === undefined){
+      alert('Please select status');
+    }
+    let accessToken = cookies.get('accessToken');
+    request.patch(`${server.path}/api/Bills?access_token=${accessToken}`)
+    .send(update)
+    .end((err, res) => {
+      if(res){
+          if(res.status === 200){
+            alert('Updated Successfully');
+            window.location.href = `/ManageOrders?shop=${this.state.shop}`
+          } else {
+            alert(res.body.error.message);
+          }
+      } else {
+        alert('Server Unreachable');
+      }
+    });
+  }
 
   render() {
     const { fullScreen } = this.props;
@@ -103,6 +159,7 @@ class ResponsiveDialog extends React.Component {
                 'aria-label': 'Description',
               }}
               fullWidth
+              onChange={this.handleChange('customerName')}
             />
             <Input
             style={{marginTop:15}}
@@ -111,6 +168,7 @@ class ResponsiveDialog extends React.Component {
                 'aria-label': 'Description',
               }}
               fullWidth
+              onChange={this.handleChange('phoneNumber')}
             />
             </div>
             <Paper style={{marginTop:15, maxHeight:200, overflow:'scroll'}}>
@@ -120,19 +178,19 @@ class ResponsiveDialog extends React.Component {
             <div style={{marginTop:15}}>
                 <RSInput
                 defaultValue={this.state.order.discount}
+                onChange={this.handleChange('discount')}
                 />
                 <RSInput
                 style={{marginTop:15}}
                 defaultValue={this.state.order.payment}
+                onChange={this.handleChange('payment')}
                 />
-                <StatusMenu style={{marginTop:15}} />
+                <BillStatus/>
             </div>
             <div style={{marginTop:5, display:'flex', justifyContent:'space-around'}}>
-                <Link to={`/Inventory?shop=${this.state.shop}`} style={styles.noUnderline}>
-                <Button raised style={styles.button}>
+                <Button raised style={styles.button} onClick={this.updateBill.bind(this)}>
                 update bill
                 </Button>
-                </Link>
                 <Button onClick={this.handleRequestClose} raised style={styles.button}>
                 ok
                 </Button>

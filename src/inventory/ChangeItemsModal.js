@@ -57,11 +57,9 @@ class ResponsiveDialog extends React.Component {
             <ProductSellingPanel />
           </DialogContent>
           <DialogActions>
-          <Link to="/Categories" style={{ textDecoration: 'none' }}>
           <Button onClick={this.handleRequestClose} color="primary">
               OK
         </Button>
-        </Link>
           </DialogActions>
           </div>
         </Dialog>
