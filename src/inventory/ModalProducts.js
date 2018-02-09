@@ -55,6 +55,11 @@ class ResponsiveDialog extends React.Component {
   handleClickOpen = () => {
       var id = window.location.href.split("cat=");
       if(this.props.addData.id) {
+        cloudinary.v2.uploader.upload(this.props.addData.img, 
+            (error, result) =>  {console.log(result)
+              if(error){
+                  alert("Error uploading image")
+              } else {
           var data = {
               shopId: this.props.addData.shop,
               category: this.props.addData.category,
@@ -75,9 +80,9 @@ class ResponsiveDialog extends React.Component {
                       this.setState({open: true, name: res.body.name, category: res.body.category});
                   }
               });
-
+            }
+        });
       } else {
-          console.log("image test");
           cloudinary.v2.uploader.upload(this.props.addData.img, 
           (error, result) =>  {console.log(result)
             if(error){

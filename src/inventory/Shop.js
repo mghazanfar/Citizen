@@ -42,7 +42,7 @@ class FullWidthGrid extends React.Component<props, {}> {
     shop: null
   };
   componentWillMount() {
-      if(cookies.get('accessToken').accessToken === undefined) {
+      if(cookies.get('accessToken') === undefined) {
           window.location.href = '/';
       }
       if(window.location.href.split('?')[1] === undefined) {
