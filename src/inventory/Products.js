@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
-import Menu from './Menu';
 import ProductPanel from './ProductPanel';
 import Logout from './Logout';
 
@@ -109,7 +108,6 @@ function FullWidthGrid(props) {
       <Hidden mdDown>
         <Grid item xs={12} lg={10} style={styles.right}>
             <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'99%' }}>
-                <Menu category/>
                 <Paper elevation={24} style={{maxHeight:600, overflow:'auto', width:'inherit'}}>
                   <ProductPanel/>
                 </Paper>
@@ -125,7 +123,6 @@ function FullWidthGrid(props) {
         <Hidden mdUp>
           <Grid item xs={12} lg={10} style={styles.right}>
               <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'99%' }}>
-                  <Menu category/>
                   <Paper elevation={24} style={{maxHeight:600, overflow:'auto', width:'inherit'}}>
                     <ProductPanel/>
                   </Paper>

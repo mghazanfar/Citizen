@@ -18,31 +18,8 @@ class SimpleMenu extends React.Component {
   };
 
   render() {
-    if(this.props.category) {
-      return (
-      <Paper elevation={12} style={{marginBottom:'1rem', alignSelf:'flex-end', width:'max-content'}} >
-        <Button
-          aria-owns={this.state.open ? 'simple-menu' : null}
-          aria-haspopup="true"
-          onClick={this.handleClick}
-        >
-          Categories
-        </Button>
-        <Menu
-          id="simple-menu"
-          anchorEl={this.state.anchorEl}
-          open={this.state.open}
-          onRequestClose={this.handleRequestClose}
-        >
-          <MenuItem onClick={this.handleRequestClose}>Chair</MenuItem>
-          <MenuItem onClick={this.handleRequestClose}>Table</MenuItem>
-          <MenuItem onClick={this.handleRequestClose}>Sofa</MenuItem>
-        </Menu>
-      </Paper>
-    );
-  }
   return (
-    <Paper elevation={12} style={{marginBottom:'1rem', alignSelf:'flex-end', width:'max-content', marginTop:'1rem'}} >
+    <Paper elevation={12} style={{ alignSelf:'flex-end', width:'max-content', marginTop:'1rem'}} >
       <Button
         aria-owns={this.state.open ? 'simple-menu' : null}
         aria-haspopup="true"
