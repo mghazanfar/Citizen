@@ -14,22 +14,27 @@ const data = [
     {
         company:'Citizen',
         amount: 120,
+        remaining: 300,
 },
     {
         company:'Citizen',
         amount: 120,
+        remaining: 300,
 },
     {
         company:'Citizen',
         amount: 120,
+        remaining: 300,
 },
     {
         company:'Citizen',
         amount: 120,
+        remaining: 300,
 },
     {
         company:'Citizen',
         amount: 120,
+        remaining: 300,
 }
 ];
 
@@ -158,30 +163,38 @@ class TextFields extends React.Component<props, {}> {
                   </Grid>
             <Hidden lgDown>
               <Grid item xs={12} lg={8} style={styles.right}>
-                  <div style={{width:'95%', display:'flex', flexWrap:'wrap', maxHeight:800, overflowY:'auto', justifyContent:'center'}}>
-                    {data.map(details => (
-                        <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:10, marginLeft:10, width: 'auto' }}>
-                            <Paper elevation={24} style={{maxHeight:700, overflow:'auto', width:'inherit', padding:20, height:'inherit'}}>
-                            <TextField
-                            id="search"
-                            label={details.company}
-                            type="search"
-                            margin="normal"
-                            style={{width:'100%'}}
-                            disabled
-                            />
-                            <TextField
-                            id="search"
-                            label={details.amount}
-                            type="search"
-                            margin="normal"
-                            style={{width:'100%'}}
-                            disabled
-                            />
-                        </Paper>
-                        </div> 
-                    ))}
-              </div>
+              <div style={{width:'95%', display:'flex', flexWrap:'wrap', maxHeight:800, overflowY:'auto', justifyContent:'center'}}>
+                {data.map(details => (
+                    <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:10, marginLeft:10, width: 'auto' }}>
+                        <Paper elevation={24} style={{maxHeight:500, overflow:'auto', width:'inherit', padding:20, height:'inherit'}}>
+                        <TextField
+                        id="search"
+                        label={details.company}
+                        type="search"
+                        margin="dense"
+                        style={{width:'100%'}}
+                        disabled
+                        />
+                        <TextField
+                        id="search"
+                        label={details.amount}
+                        type="search"
+                        margin="dense"
+                        style={{width:'100%'}}
+                        disabled
+                        />
+                        <TextField
+                        id="search"
+                        label={details.remaining}
+                        type="search"
+                        margin="dense"
+                        style={{width:'100%'}}
+                        disabled
+                        />
+                    </Paper>
+                    </div> 
+                ))}
+          </div>
               </Grid>
               </Hidden>
             
@@ -191,12 +204,12 @@ class TextFields extends React.Component<props, {}> {
                 <div style={{width:'95%', display:'flex', flexWrap:'wrap', maxHeight:800, overflowY:'auto', justifyContent:'center'}}>
                   {data.map(details => (
                       <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:10, marginLeft:10, width: 'auto' }}>
-                          <Paper elevation={24} style={{maxHeight:700, overflow:'auto', width:'inherit', padding:20, height:'inherit'}}>
+                          <Paper elevation={24} style={{maxHeight:500, overflow:'auto', width:'inherit', padding:20, height:'inherit'}}>
                           <TextField
                           id="search"
                           label={details.company}
                           type="search"
-                          margin="normal"
+                          margin="dense"
                           style={{width:'100%'}}
                           disabled
                           />
@@ -204,7 +217,15 @@ class TextFields extends React.Component<props, {}> {
                           id="search"
                           label={details.amount}
                           type="search"
-                          margin="normal"
+                          margin="dense"
+                          style={{width:'100%'}}
+                          disabled
+                          />
+                          <TextField
+                          id="search"
+                          label={details.remaining}
+                          type="search"
+                          margin="dense"
                           style={{width:'100%'}}
                           disabled
                           />
