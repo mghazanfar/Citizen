@@ -26,7 +26,7 @@ const data = [
 ];
 
 function BasicTable(props) {
-  const { classes } = props;
+  const { classes, print } = props;
 
   return (
       <Table className={classes.table}>
@@ -36,9 +36,11 @@ function BasicTable(props) {
             <TableCell numeric style={{fontWeight:700}}>Brand</TableCell>
             <TableCell numeric style={{fontWeight:700}}>Model</TableCell>
             <TableCell numeric style={{fontWeight:700}}>Name</TableCell>
-            <TableCell numeric style={{fontWeight:700}}>Color</TableCell>
+            <TableCell numeric style={{fontWeight:700}}>Color</TableCell>{
+              print? <div style={{display: 'none'}} /> :
+              <div>
             <TableCell numeric style={{fontWeight:700}}>Picture</TableCell>
-            <TableCell numeric style={{fontWeight:700}}>Category</TableCell>
+            <TableCell numeric style={{fontWeight:700}}>Category</TableCell></div>}
             <TableCell numeric style={{fontWeight:700}}>Quantity</TableCell>
           </TableRow>
         </TableHead>
@@ -51,8 +53,11 @@ function BasicTable(props) {
                 <TableCell numeric>{n.model}</TableCell>
                 <TableCell numeric>{n.name}</TableCell>
                 <TableCell numeric>{n.color}</TableCell>
+                {print?
+                <div style={{display: 'none'}}/> :<div>
                 <TableCell><Avatar src={n.picture} style={{width:70, height:70}} /></TableCell>
-                <TableCell numeric>{n.category}</TableCell>
+                
+                <TableCell numeric>{n.category}</TableCell></div>}
                 <TableCell numeric>{n.quantity}</TableCell>
               </TableRow>
             );
