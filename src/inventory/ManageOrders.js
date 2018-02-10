@@ -5,9 +5,11 @@ import Background from '../img/level.jpg';
 import Grid from 'material-ui/Grid';
 import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
+import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
 import ManageDates from './ManageDates';
 import Logout from './Logout';
+import { DatePicker, DateTimePicker } from 'material-ui-pickers'
 
 const styles = {
   left: {
@@ -69,6 +71,10 @@ function FullWidthGrid(props) {
       <Hidden lgDown>
         <Grid item xs={12} lg={8} style={styles.right}>
           <div style={{maxHeight:700, overflow:'auto'}}>
+            <Paper elevation={20} style={{padding: 20, display: 'inline-flex', alignItems:'center'}}>
+            Select Date:
+              <DatePicker style={{marginLeft: 10}}/>
+              </Paper>
         {[0, 1, 2, 3, 4].map(value => (
               <ManageDates key={value}  data={[0,1,2,3]}/>
             ))}
