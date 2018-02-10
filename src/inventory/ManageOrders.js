@@ -9,7 +9,7 @@ import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
 import ManageDates from './ManageDates';
 import Logout from './Logout';
-import { DatePicker } from 'material-ui-pickers'
+import { DatePicker } from 'material-ui-pickers';
 
 const styles = {
   left: {
