@@ -64,22 +64,22 @@ class FullWidthGrid extends React.Component<props, {}> {
                     Let's Start!
                   </Typography>
                   <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                    <Link to={`/ManageShop?${this.state.shop}`} style={styles.headline}>Shop management</Link>
+                    <Link to={`/ManageShop?${this.state.shop}`} className='underline'>Shop management</Link>
                   </Typography>
                   <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                    <Link to={`/Inventory?${this.state.shop}`} style={styles.headline}>Inventory</Link>
+                    <Link to={`/Inventory?${this.state.shop}`}  className='underline'>Inventory</Link>
                   </Typography>
                   <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                    <Link to={`/ProfitReports?${this.state.shop}`} style={styles.headline}>Profit handling</Link>
+                    <Link to={`/ProfitReports?${this.state.shop}`}  className='underline'>Profit handling</Link>
                   </Typography>
                   <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                    <Link to={`/HandleExpenses?${this.state.shop}`} style={styles.headline}>Expense handling</Link>
+                    <Link to={`/HandleExpenses?${this.state.shop}`} className='underline'>Expense handling</Link>
                   </Typography>
                   <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                    <Link to={`/ManageClaimStock?${this.state.shop}`} style={styles.headline}>Stock Claim Management</Link>
+                    <Link to={`/ManageClaimStock?${this.state.shop}`} className='underline'>Stock Claim Management</Link>
                   </Typography>
                   <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                    <Link to={`/ManageCompaniesBills?${this.state.shop}`} style={styles.headline}>Bills to companies record</Link>
+                    <Link to={`/ManageCompaniesBills?${this.state.shop}`} className='underline'>Bills to companies record</Link>
                   </Typography>
                 </div>
               </Grid>

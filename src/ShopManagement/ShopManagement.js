@@ -83,18 +83,18 @@ class FullWidthGrid extends React.Component<props, {}> {
                     Go to:
                   </Typography>
                   <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                    <Link to={`/AddAccount?${this.state.shop}`} style={styles.headline}><img src={Add} alt="" style={styles.svg}/>Add Account</Link>
+                    <Link to={`/AddAccount?${this.state.shop}`} className='underline'><img src={Add} alt="" style={styles.svg}/>Add Account</Link>
                   </Typography>
                   <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                    <Link to={`/DeleteAccount?${this.state.shop}`} style={styles.headline}><img src={Remove} alt="" style={styles.svg}/>Delete
+                    <Link to={`/DeleteAccount?${this.state.shop}`} className='underline'><img src={Remove} alt="" style={styles.svg}/>Delete
                       Account</Link>
                   </Typography>
                   <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                    <Link to={`/MyAccount?${this.state.shop}`} style={styles.headline}><img src={Profile} alt="" style={styles.svg}/>My
+                    <Link to={`/MyAccount?${this.state.shop}`} className='underline'><img src={Profile} alt="" style={styles.svg}/>My
                       Account</Link>
                   </Typography>
                   <div style={{display: 'flex', justifyContent: 'center', marginTop: '3rem'}}>
-                    <Link to={`/Shop?${this.state.shop}`} style={styles.noUnderline}>
+                    <Link to={`/Shop?${this.state.shop}`} className='underline'>
                       <Button raised style={styles.button}>
                         BACK
                       </Button>

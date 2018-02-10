@@ -87,25 +87,25 @@ class FullWidthGrid extends React.Component<props, {}> {
                     Go to:
                   </Typography>
                   <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                    <Link to={`/Categories?${this.state.shop}`} style={styles.headline}><img src={Categories} alt="" style={styles.svg}/>Categories</Link>
+                    <Link to={`/Categories?${this.state.shop}`} className='underline'><img src={Categories} alt="" style={styles.svg}/>Categories</Link>
                   </Typography>
                   <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                    <Link to={`/Products?${this.state.shop}`} style={styles.headline}><img src={Products} alt="" style={styles.svg}/>Products</Link>
+                    <Link to={`/Products?${this.state.shop}`} className='underline'><img src={Products} alt="" style={styles.svg}/>Products</Link>
                   </Typography>
                   <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                    <Link to={`/AddProducts?${this.state.shop}`} style={styles.headline}><img src={Add} alt="" style={styles.svg}/>Add
+                    <Link to={`/AddProducts?${this.state.shop}`} className='underline'><img src={Add} alt="" style={styles.svg}/>Add
                       Products</Link>
                   </Typography>
                   <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                    <Link to={`/CreateBills?${this.state.shop}`} style={styles.headline}><img src={Bills} alt="" style={styles.svg}/>Create
+                    <Link to={`/CreateBills?${this.state.shop}`} className='underline'><img src={Bills} alt="" style={styles.svg}/>Create
                       Bills</Link>
                   </Typography>
                   <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                    <Link to={`/ManageOrders?${this.state.shop}`} style={styles.headline}><img src={Orders} alt="" style={styles.svg}/>Manage
+                    <Link to={`/ManageOrders?${this.state.shop}`} className='underline'><img src={Orders} alt="" style={styles.svg}/>Manage
                       Orders</Link>
                   </Typography>
                   <div style={{display: 'flex', justifyContent: 'center', marginTop: '3rem'}}>
-                    <Link to={`/Shop?${this.state.shop}`} style={styles.noUnderline}>
+                    <Link to={`/Shop?${this.state.shop}`} className='underline'>
                       <Button raised style={styles.button}>
                         BACK
                       </Button>
