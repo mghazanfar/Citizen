@@ -4,6 +4,7 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import Owner from './login/Owner';
 import Loginn from './login/login';
+import LoginEmployee from './login/LoginEmployee';
 import Employee from './login/Employee';
 import Shop from './inventory/Shop';
 import ManageOrders from './inventory/ManageOrders';
@@ -23,6 +24,7 @@ import HandleExpenses from './HandleExpenses/HandleExpense';
 import HandleProfit from './ProfitHandling/ProfitHandling';
 import ManageClaimStock from './ManageClaimStock/ManageClaimStock';
 import BillsToCompanies from './BillsToCompanies/BillsToCompanies';
+import AddAmounts from './Employee/AddAmounts';
 import './App.css';
 
 import {
@@ -85,12 +87,14 @@ const ModalGallery = () => (
       <Route path='/Employee' component={Employee} />
       <Route path='/Owner' component={Owner} />
       <Route path='/Login'  component={Loginn}/>
+      <Route path='/LoginEmployee'  component={LoginEmployee}/>
       <Route path='/Shop'  component={Shop}/>
       <Route path='/Inventory'  component={Inventory}/>
       <Route path='/ProfitReports'  component={HandleProfit}/>
       <Route path='/HandleExpenses'  component={HandleExpenses}/>
       <Route path='/ManageClaimStock'  component={ManageClaimStock}/>
       <Route path='/ManageCompaniesBills'  component={BillsToCompanies}/>
+      <Route path='/AddAmounts'  component={AddAmounts}/>
       <Route path='/Categories'  component={Categories}/>
       <Route path='/Products'  component={Products}/>
       <Route path='/AddProducts'  component={AddProducts}/>
