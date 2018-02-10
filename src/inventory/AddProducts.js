@@ -9,7 +9,6 @@ import Avatar from 'material-ui/Avatar';
 import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
 import Hidden from 'material-ui/Hidden';
-import Table from '../img/table2.JPG';
 import TextField from 'material-ui/TextField';
 import ModalProducts from './ModalProducts';
 import Logout from './Logout';
@@ -92,9 +91,9 @@ class TextFields extends React.Component<props, {}> {
       basePrice: 'Write Base price',
       salePrice: 'Write Sale price',
       quantity: 'Write Quantity',
-      img: Table,
+      img: 'http://res.cloudinary.com/my-furniture-shop/image/upload/v1518260739/541.jpg',
       file: '',
-      imagePreviewUrl: Table,
+      imagePreviewUrl: 'http://res.cloudinary.com/my-furniture-shop/image/upload/v1518260739/541.jpg',
     };
   
     _handleSubmit(e) {
@@ -112,9 +111,10 @@ class TextFields extends React.Component<props, {}> {
       reader.onloadend = () => {
         this.setState({
           file: file,
-          img: reader.result
+          img: reader.result,
+          imagePreviewUrl: reader.result
         });
-      }
+      };
   
       reader.readAsDataURL(file)
     }

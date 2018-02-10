@@ -13,6 +13,8 @@ import { Link } from 'react-router-dom';
 import request from "../../node_modules/superagent/superagent";
 import server from "../constants";
 import Cookies from 'universal-cookie';
+import cloudinary from 'cloudinary';
+
 const cookies = new Cookies();
 
 class ResponsiveDialog extends React.Component <props, {}>{
@@ -21,9 +23,13 @@ class ResponsiveDialog extends React.Component <props, {}>{
     open: false,
     name: null,
     description: null,
+    disabled: false
   };
 
   handleClickOpen = () => {
+      this.setState({
+          disabled: true
+      });
     if(this.props.category==="modify"){
         console.log('modify');
         var data = {
@@ -46,24 +52,32 @@ class ResponsiveDialog extends React.Component <props, {}>{
             }
             });
     } else {
-        var data = {
-            shopId: this.props.addData.shopId,
-            name: this.props.addData.name,
-            description: this.props.addData.description,
-            image: this.props.addData.image,
-        };
-        console.log('add', data);
-        request.post(`${server.path}/api/Categories?access_token=${cookies.get('accessToken').accessToken}`)
-            .send(data)
-            .end((err, res) => {
-                if(res) {
-                    if (res.statusCode === 200) {
-                        this.setState({open: true});
-                    } else {
-                        alert(res.body.error.message);
-                    }
+        cloudinary.v2.uploader.upload(this.props.addData.img,
+            (error, result) => {
+                console.log(result)
+                if (error) {
+                    alert("Error uploading image")
                 } else {
-                    alert('Service Unreachable');
+                    var data = {
+                        shopId: this.props.addData.shopId,
+                        name: this.props.addData.name,
+                        description: this.props.addData.description,
+                        image: result.secure_url,
+                    };
+                    console.log('add', data);
+                    request.post(`${server.path}/api/Categories?access_token=${cookies.get('accessToken').accessToken}`)
+                        .send(data)
+                        .end((err, res) => {
+                            if (res) {
+                                if (res.statusCode === 200) {
+                                    this.setState({open: true});
+                                } else {
+                                    alert(res.body.error.message);
+                                }
+                            } else {
+                                alert('Service Unreachable');
+                            }
+                        });
                 }
             });
     }
@@ -78,7 +92,7 @@ class ResponsiveDialog extends React.Component <props, {}>{
     if(category==='modify'){
       return (
         <div style={{display:'flex', justifyContent:'center'}}>
-          <Button type='submit' raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
+          <Button disabled={this.state.disabled} type='submit' raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
           MODIFY CATEGORY
           </Button>
           <Dialog
@@ -107,7 +121,7 @@ class ResponsiveDialog extends React.Component <props, {}>{
     }
     return (
       <div style={{display:'flex', justifyContent:'center'}}>
-        <Button raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
+        <Button disabled={this.state.disabled} raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
         ADD CATEGORY
         </Button>
         <Dialog

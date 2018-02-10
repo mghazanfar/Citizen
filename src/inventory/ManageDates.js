@@ -30,14 +30,14 @@ class ManageDates extends React.Component {
         let day =today.getDate();
         let month = today.getMonth()+1;
         let year = today.getFullYear();
-        request.get(`${server.path}/api/Bills?filter=%7B%22shopId%22%3A%22${url}%22%2C%20%22day%22%3A%22${day}%22%2C%22month%22%3A%22${month}%22%2C%22year%22%3A%22${year}%22%7D&access_token=${accessToken}`)
+        request.get(`${server.path}/api/Bills/bills?shopId=${this.state.shop}&day=${day}&month=${month}&year=${year}&access_token=${accessToken}`)
         .end((err, bills) => {
             if(bills) {
                 if (bills.statusCode !== 200) {
                     alert(bills.body.error.message);
                 } else {
                     this.setState({
-                        orders: bills.body
+                        orders: bills.body.bills
                     });
                 }
             } else {

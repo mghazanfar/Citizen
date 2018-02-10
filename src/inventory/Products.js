@@ -77,13 +77,14 @@ class FullWidthGrid  extends React.Component {
         if(cookies.get('accessToken') === undefined) {
             window.location.href = '/';
         }
-        if(window.location.href.split('?')[1] === undefined){
+        if(window.location.href.split('shop=')[1] === undefined){
             window.location.href = '/Login';
+        } else {
+            let url = window.location.href.split('shop=')[1].split('&')[0];
+            this.setState({
+                shop: url
+            });
         }
-        let url = window.location.href.split('?')[1].split('&')[0];
-        this.setState({
-            shop: url.split('=')[1]
-        });
     }
 
   render () {

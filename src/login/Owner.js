@@ -74,7 +74,8 @@ login = () => {
         if(!res){
             this.setState({
                 loginFailed: 'Server is Unreachable',
-                visible: 'block'
+                visible: 'block',
+                disabled: false
             });
         } else {
             if (res.status === 200) {

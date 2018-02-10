@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { GridListTile, GridListTileBar } from 'material-ui/GridList';
-import tileData from './tileData';
 import { Link } from 'react-router-dom';
 import Grid from 'material-ui/Grid';
+import shop1 from '../img/shop1.jpg';
 
 import Cookies from 'universal-cookie';
 import server from "../constants";
 import request from "superagent/superagent";
 const cookies = new Cookies();
+var tileData = [];
 const styles = theme => ({
   container: {
     display: 'flex',
@@ -30,15 +31,12 @@ class TitlebarGridList extends React.Component<props, {}>{
   }
   componentWillMount(){
     let accessToken = cookies.get('accessToken').accessToken;
-    request.get(`${server.path}/api/Shops?access_token=${accessToken}`)
+    request.get(`${server.path}/api/Shops/shop?access_token=${accessToken}`)
         .end((err, res) => {
-        console.log(res);
-          tileData.map((element, index) => {
-            element.id = res.body[index].id;
-            element.title = res.body[index].name;
-            element.address = res.body[index].address;
-          });
-
+            tileData = res.body;
+            tileData.map((value, index) => {
+                value.img = shop1;
+            });
           this.setState({
               shops: tileData
           });

@@ -44,6 +44,7 @@ class BasicTable extends React.Component<props, {}> {
               if(product) {
                   if (product.status === 401) {
                       //window.location.href = '/';
+                      alert(product.body.error.message);
                   }
                   if (product.body.length === 0) {
                       alert('No Products Available. Please add a few');
@@ -59,19 +60,19 @@ class BasicTable extends React.Component<props, {}> {
               });
 
       }else {
-          request.get(`${server.path}/api/Products?filter=%7B%22shopId%22%3A%22${url}%22%7D&access_token=${accessToken}`).end(
-              (err, product) => {
+          request.get(`${server.path}/api/Products/products?shopId=${url}&access_token=${accessToken}`).
+          end((err, product) => {
                   console.log(product);
                   if(product) {
                       if (product.status === 401) {
-                          window.location.href = '/';
+                          alert(product.body.error.message);
                       }
                       if (product.body.length === 0) {
                           alert('No Products Available. Please add a few');
                           //window.location.href = '/AddProducts'
                       } else{
                           this.setState({
-                              products: product.body
+                              products: product.body.products
 
                           });
                       }

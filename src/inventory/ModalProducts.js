@@ -28,7 +28,8 @@ class ResponsiveDialog extends React.Component {
     buttonText: 'ADD PRODUCT',
     open: false,
     name: null,
-    category: null
+    category: null,
+    disabled: false
   };
   componentWillMount() {
       if(cookies.get('accessToken').accessToken === undefined) {
@@ -53,6 +54,9 @@ class ResponsiveDialog extends React.Component {
       }
   }
   handleClickOpen = () => {
+      this.setState({
+          disabled: true
+      });
       var id = window.location.href.split("cat=");
       if(this.props.addData.id) {
         cloudinary.v2.uploader.upload(this.props.addData.img, 
@@ -75,9 +79,14 @@ class ResponsiveDialog extends React.Component {
           request.patch(server.path + '/api/Products/'+this.props.addData.id+'?access_token=' + (cookies.get('accessToken').accessToken),
               data,
               (err, res) => {
-                  console.log(res)
+                  console.log(res);
                   if (res.status === 200) {
-                      this.setState({open: true, name: res.body.name, category: res.body.category});
+                      this.setState({open: true, name: res.body.name, category: res.body.category, disabled: false});
+                  } else {
+                      alert(res.body.error.message);
+                      this.setState({
+                          disabled: false
+                      });
                   }
               });
             }
@@ -106,11 +115,17 @@ class ResponsiveDialog extends React.Component {
                     .end((err, res) => {
                         if(res){
                             if (res.status === 200) {
-                                this.setState({open: true, name: res.body.name, category: res.body.category});
+                                this.setState({disabled: false, open: true, name: res.body.name, category: res.body.category});
                             } else {
                                 alert(res.body.error.message);
+                                this.setState({
+                                    disabled: false
+                                });
                             }
                         } else {
+                            this.setState({
+                                disabled: false
+                            });
                             alert('Service Unreachable');
                         }
                     });
@@ -130,7 +145,7 @@ class ResponsiveDialog extends React.Component {
 
     return (
       <div style={{display:'flex', justifyContent:'center'}}>
-        <Button raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
+        <Button disabled={this.state.disabled} raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
             {this.state.buttonText}
         </Button>
         <Dialog

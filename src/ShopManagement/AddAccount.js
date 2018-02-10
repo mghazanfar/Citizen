@@ -141,6 +141,7 @@ class TextFields extends React.Component<props, {}> {
             } else {
                 let accessToken = cookies.get('accessToken').accessToken;
                 let date = {
+                    shopId: this.state.shop,
                     username: this.state.username,
                     password: this.state.password,
                     role : role
