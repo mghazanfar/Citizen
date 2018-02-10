@@ -1,28 +1,23 @@
-.App {
+.selectShop {
+  background-image: url("./img/garden.jpg");
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.selectShopGradient {
+  background: -webkit-linear-gradient(black, #00F8FF);
+  opacity: 0.8;
+  min-height: inherit;
   text-align: center;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
+::-webkit-scrollbar-track {
+  background-color: white;
+} /* the new scrollbar will have a flat appearance with the set background color */
 
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+::-webkit-scrollbar-thumb {
+  background-color: black; 
 }
