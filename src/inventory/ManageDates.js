@@ -32,6 +32,7 @@ class ManageDates extends React.Component {
         let year = today.getFullYear();
         request.get(`${server.path}/api/Bills/bills?shopId=${this.state.shop}&day=${day}&month=${month}&year=${year}&access_token=${accessToken}`)
         .end((err, bills) => {
+          console.log(bills);
             if(bills) {
                 if (bills.statusCode !== 200) {
                     alert(bills.body.error.message);
