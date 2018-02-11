@@ -4,6 +4,7 @@ import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
 import Button from 'material-ui/Button';
 import Modal from './ModalBillDetail';
+import { DatePicker } from 'material-ui-pickers';
 
 
 const styles = {
@@ -19,6 +20,10 @@ class ManageDates extends React.Component {
       return (
         <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
             <Typography type="title" gutterBottom style={{alignSelf:'flex-start', color:'white', marginTop:10}} >January 12, 2018</Typography>
+            <Paper elevation={20} style={{padding: 20, alignSelf: 'flex-start', marginBottom: 16 }}>
+                Select Date:
+                <DatePicker style={{marginLeft: 10}}/>
+            </Paper>
             <div style={{display:'flex', width:'inherit'}}>
                 <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'70%'}}>
                 <List>

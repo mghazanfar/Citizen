@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import Background from '../img/receipt.jpg';
-import Citizen from '../img/logo.png';
+import Citizen from '../img/logo.jpeg';
 import Grid from 'material-ui/Grid';
 import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
@@ -192,7 +192,7 @@ function FullWidthGrid(props) {
       </div>
           <div className='print-only'>
             <div style={{width: '100%',height: '100vh', background: '-webkit-linear-gradient(-125deg, #D000F0, #E60080, #FF0000)', display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
-              <img src={Citizen} height={100} width={250} alt="Citizen"/>
+              <img src={Citizen} height={150} width={150} alt="Citizen"/>
               <Paper elevation={24} style={{maxHeight:700, overflow:'auto', width:'96%', padding:10, height:'inherit'}}>
                 <TextField
                 id="search"
@@ -231,7 +231,6 @@ function FullWidthGrid(props) {
                   <b>Phone:</b> 0324-4417414 , 0323-9999333 <br />
                   <b>Email:</b> nabeelsameer950@gmail.com
                 </div>
-                <img src={Citizen} width={200} height={70} style={{alignSelf:'center'}} alt="Citizen"/>
                 <div style={{width: '25%', fontSize:13, marginTop:'auto', marginBottom:'auto'}}>
                   <b>NOTE:</b> <br />
                   Booked furniture will not be handed over without showing bill. Original reciept is required in order to recieve furniture.
