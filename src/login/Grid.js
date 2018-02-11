@@ -33,6 +33,7 @@ class TitlebarGridList extends React.Component<props, {}>{
     let accessToken = cookies.get('accessToken').accessToken;
     request.get(`${server.path}/api/Shops/shop?access_token=${accessToken}`)
         .end((err, res) => {
+      console.log(res);
             tileData = res.body;
             tileData.map((value, index) => {
                 value.img = shop1;
