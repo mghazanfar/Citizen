@@ -21,7 +21,7 @@ class ManageDates extends React.Component {
         orders: []
     }
     componentWillMount(){
-        let url = window.location.href.split('?shop=')[1].split[0];
+        let url = window.location.href.split('?shop=')[1];
         let accessToken = cookies.get('accessToken').accessToken;
         this.setState({
             shop: url
