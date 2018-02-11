@@ -91,7 +91,7 @@ handleClickShowPasssword = () => {
             Sorry, Authentication failed. Please provide correct credentials.
           </Typography>
         </Paper>
-        <Button to='/LoginEmployee' raised component={Link} style={{backgroundColor:'rgba(0,150,136,1)', marginTop: '3rem', color: 'white'}}>
+        <Button to='/Login' raised component={Link} style={{backgroundColor:'rgba(0,150,136,1)', marginTop: '3rem', color: 'white'}}>
         LOGIN
         </Button>
           </div>

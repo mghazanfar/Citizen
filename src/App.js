@@ -4,7 +4,6 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import Owner from './login/Owner';
 import Loginn from './login/login';
-import LoginEmployee from './login/LoginEmployee';
 import Employee from './login/Employee';
 import Shop from './inventory/Shop';
 import ManageOrders from './inventory/ManageOrders';
@@ -87,7 +86,6 @@ const ModalGallery = () => (
       <Route path='/Employee' component={Employee} />
       <Route path='/Owner' component={Owner} />
       <Route path='/Login'  component={Loginn}/>
-      <Route path='/LoginEmployee'  component={LoginEmployee}/>
       <Route path='/Shop'  component={Shop}/>
       <Route path='/Inventory'  component={Inventory}/>
       <Route path='/ProfitReports'  component={HandleProfit}/>
