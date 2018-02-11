@@ -54,10 +54,10 @@ class ManageDates extends React.Component {
             <div style={{display:'flex', width:'inherit'}}>
                 <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'70%'}}>
                 <List>
-                    {this.state.orders.map(value => (
+                    {this.state.orders.map((value, index) => (
                     <ListItem key={value} dense style={styles.listItem} divider button={false} >
                     <Typography type="title" gutterBottom>
-                        {value.id}
+                        {++index}
                     </Typography>
                         <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>{value.customerName}</Typography>} secondary={<span>{value.phoneNumber}
                         <Typography type="caption">
