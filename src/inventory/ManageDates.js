@@ -23,11 +23,12 @@ class ManageDates extends React.Component {
         shop: null,
     };
     componentWillMount(){
-        let url = window.location.href.split('?shop=')[1];
+        let url = window.location.href.split('shop=')[1];
         let accessToken = cookies.get('accessToken').accessToken;
         this.setState({
             shop: url
         });
+        console.log(url);
         let today = new Date();
         let day =today.getDate();
         let month = today.getMonth()+1;

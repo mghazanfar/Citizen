@@ -95,6 +95,12 @@ class FullWidthGrid extends React.Component<props, {}>{
      this.setState({ shop: shop});
     }
   }
+    componentDidMount(){
+        this.setState({
+            shop: window.location.href.split('shop=')[1]
+        });
+    }
+
     handleChange = (name, description) => event => {
         this.setState({
             [name]: event.target.value,

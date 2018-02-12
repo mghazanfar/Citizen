@@ -39,7 +39,8 @@ headline: {
 
 class FullWidthGrid extends React.Component<props, {}> {
   state = {
-    shop: null
+    shop: window.location.href.split('?')[1],
+    role: null,
   };
   componentWillMount() {
       if(cookies.get('accessToken') === undefined) {
@@ -52,53 +53,115 @@ class FullWidthGrid extends React.Component<props, {}> {
     this.setState({
         shop: url
     });
+    let accessToke = cookies.get('accessToken').accessToken;
+    request.get(`${server.path}/api/Accounts/role?access_token=${accessToke}`)
+        .end((err, role) => {
+            console.log(role);
+            if(role){
+                if(role.status === 200){
+                   this.setState({
+                       role : role.body.role.name
+                   });
+                } else {
+                    alert(role.body.error.message);
+                }
+            } else {
+                alert('Server Unreachable');
+            }
+        });
+  }
+  componentDidMount(){
+      this.setState({
+          shop: window.location.href.split('shop=')[1]
+      });
   }
 
-  render() {
-      return (
+  adminMenu =
           <div>
-            <Grid container spacing={0}>
-              <Grid item xs={12} md={6} lg={4} style={styles.left}>
-                <div>
-                  <Typography type="display3" gutterBottom style={{color: 'white'}}>
-                    Let's Start!
-                  </Typography>
-                  <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                    <Link to={`/ManageShop?${this.state.shop}`} style={styles.headline}>Shop management</Link>
-                  </Typography>
-                  <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                    <Link to={`/Inventory?${this.state.shop}`} style={styles.headline}>Inventory</Link>
-                  </Typography>
-                  <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                    <Link to={`/ProfitReports?${this.state.shop}`} style={styles.headline}>Profit handling</Link>
-                  </Typography>
-                  <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                    <Link to={`/HandleExpenses?${this.state.shop}`} style={styles.headline}>Expense handling</Link>
-                  </Typography>
-                  <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                    <Link to={`/ManageClaimStock?${this.state.shop}`} style={styles.headline}>Stock Claim Management</Link>
-                  </Typography>
-                  <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                    <Link to={`/ManageCompaniesBills?${this.state.shop}`} style={styles.headline}>Bills to companies record</Link>
-                  </Typography>
-                </div>
-              </Grid>
+              <Grid container spacing={0}>
+                  <Grid item xs={12} md={6} lg={4} style={styles.left}>
+                      <div>
+                          <Typography type="display3" gutterBottom style={{color: 'white'}}>
+                              Let's Start!
+                          </Typography>
+                          <Typography type="headline" gutterBottom style={{color: 'white'}}>
+                              <Link to={`/ManageShop?${this.state.shop}`} style={styles.headline}>Shop management</Link>
+                          </Typography>
+                          <Typography type="headline" gutterBottom style={{color: 'white'}}>
+                              <Link to={`/Inventory?${this.state.shop}`} style={styles.headline}>Inventory</Link>
+                          </Typography>
+                          <Typography type="headline" gutterBottom style={{color: 'white'}}>
+                              <Link to={`/ProfitReports?${this.state.shop}`} style={styles.headline}>Profit handling</Link>
+                          </Typography>
+                          <Typography type="headline" gutterBottom style={{color: 'white'}}>
+                              <Link to={`/HandleExpenses?${this.state.shop}`} style={styles.headline}>Expense handling</Link>
+                          </Typography>
+                          <Typography type="headline" gutterBottom style={{color: 'white'}}>
+                              <Link to={`/ManageClaimStock?${this.state.shop}`} style={styles.headline}>Stock Claim Management</Link>
+                          </Typography>
+                          <Typography type="headline" gutterBottom style={{color: 'white'}}>
+                              <Link to={`/ManageCompaniesBills?${this.state.shop}`} style={styles.headline}>Bills to companies record</Link>
+                          </Typography>
+                      </div>
+                  </Grid>
 
-              <Grid item xs={12} md={6} lg={8} style={styles.right}>
-                <div style={styles.rightInner}>
-                  <div style={{marginTop: '4rem', marginLeft: '4rem'}}>
-                    <Typography type="display4" gutterBottom style={{color: 'white'}}>
-                      Citizen
-                    </Typography>
-                    <Typography type="display1" paragraph style={{color: 'white', width: '45%'}}>This portal is helpful
-                      for your shop. You can manage
-                      your products,salaries, expenses, Stock claimming, profit, and much more.</Typography>
-                  </div>
-                </div>
+                  <Grid item xs={12} md={6} lg={8} style={styles.right}>
+                      <div style={styles.rightInner}>
+                          <div style={{marginTop: '4rem', marginLeft: '4rem'}}>
+                              <Typography type="display4" gutterBottom style={{color: 'white'}}>
+                                  Citizen
+                              </Typography>
+                              <Typography type="display1" paragraph style={{color: 'white', width: '45%'}}>This portal is helpful
+                                  for your shop. You can manage
+                                  your products,salaries, expenses, Stock claimming, profit, and much more.</Typography>
+                          </div>
+                      </div>
+                  </Grid>
               </Grid>
-            </Grid>
           </div>
-      );
+
+    employeeMenu = <div>
+        <Grid container spacing={0}>
+            <Grid item xs={12} md={6} lg={4} style={styles.left}>
+                <div>
+                    <Typography type="display3" gutterBottom style={{color:'white'}}>
+                        Let's Start!
+                    </Typography>
+                    <Typography type="headline" gutterBottom style={{color:'white'}}>
+                        <Link to={`/AddAmounts?shop=${this.state.shop}`} className='underline'>Add Daily Amounts</Link>
+                    </Typography>
+                    <Typography type="headline" gutterBottom style={{color:'white'}}>
+                        <Link to={`/ManageOrders?shop=${this.state.shop}`} className='underline'>See Bills</Link>
+                    </Typography>
+                    <Typography type="headline" gutterBottom style={{color:'white'}}>
+                        <Link to={`/Products?shop=${this.state.shop}`} className='underline'>Products</Link>
+                    </Typography>
+                    <Typography type="headline" gutterBottom style={{color:'white'}}>
+                        <Link to={`/CreateBills?shop=${this.state.shop}`} className='underline'>Create Bill</Link>
+                    </Typography>
+                </div>
+            </Grid>
+
+            <Grid item xs={12} md={6} lg={8} style={styles.right}>
+                <div style={styles.rightInner}>
+                    <div style={{ marginTop:'4rem', marginLeft:'4rem' }}>
+                        <Typography type="display4" gutterBottom style={{color:'white'}}>
+                            Citizen
+                        </Typography>
+                        <Typography type="display1" paragraph style={{color:'white', width:'45%'}}>This portal lets you add daily expenses of shop to manage your expenses.</Typography>
+                    </div>
+                </div>
+            </Grid>
+        </Grid>
+    </div>
+  render() {
+      if(this.state.role === null) {
+        return (<div> loading</div>);
+      } else if(this.state.role === 'superAdmin'){
+          return (this.adminMenu);
+      } else {
+          return (this.employeeMenu);
+      }
   }
 }
 
