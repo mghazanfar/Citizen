@@ -54,7 +54,6 @@ class ResponsiveDialog extends React.Component {
   };
 
   componentWillMount(){
-      //console.log(this.props);
       let shop = window.location.href.split('shop=')[1].split('&')[0];
       if (shop === undefined){
           window.location.href = '/';
