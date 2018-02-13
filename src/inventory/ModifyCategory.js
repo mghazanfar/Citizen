@@ -18,6 +18,12 @@ import request from "superagent/superagent";
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
+cloudinary.config({
+    cloud_name: 'my-furniture-shop',
+    api_key: '842684991763488',
+    api_secret: 'JTWKG9czuqaFywMA3xCkrZuA-ls'
+});
+
 const styles = {
   left: {
       backgroundColor: 'rgba(255,255,255,0.2)',
