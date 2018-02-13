@@ -277,7 +277,7 @@ class TextFields extends React.Component<props, {}> {
                         Profit Reports
                         </Typography>
                         <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here you can view your daily, monthly and yearly profit reports.</Typography>
-                        <Link to={`/Shop?shop=${this.state.shop}`} style={styles.noUnderline}>
+                        <Link to={`/Shop?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                         <Button raised style={styles.button}>
                         back
                         </Button>
@@ -289,7 +289,7 @@ class TextFields extends React.Component<props, {}> {
                         Profit Reports
                         </Typography>
                         <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here you can view your daily, monthly and yearly profit reports.</Typography>
-                        <Link to={`/Shop?shop=${this.state.shop}`} style={styles.noUnderline}>
+                        <Link to={`/Shop?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                         <Button raised style={styles.button}>
                         back
                         </Button>

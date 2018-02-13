@@ -83,7 +83,7 @@ const Home = () => (
 const ModalGallery = () => (
   <Router>
     <Switch>
-      <Route exact path='/' component={Home} />
+      <Route exact path='/' component={Owner} />
       <Route path='/Employee' component={Employee} />
       <Route path='/Owner' component={Owner} />
       <Route path='/Login'  component={Loginn}/>

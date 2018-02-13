@@ -40,16 +40,16 @@ function FullWidthGrid(props) {
             Let's Start!
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/AddAmounts' className='underline'>Add Daily Amounts</Link>
+            <Link to={`/AddAmounts?shop=${window.location.href.split('shop=')[1]}`} className='underline'>Add Daily Amounts</Link>
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/ManageOrders' className='underline'>See Bills</Link>
+            <Link to={`/ManageOrders?shop=${window.location.href.split('shop=')[1]}`} className='underline'>See Bills</Link>
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/Products' className='underline'>Products</Link>
+            <Link to={`/Products?shop=${window.location.href.split('shop=')[1]}`} className='underline'>Products</Link>
           </Typography>
             <Typography type="headline" gutterBottom style={{color:'white'}}>
-            <Link to='/CreateBills' className='underline'>Create Bill</Link>
+            <Link to={`/CreateBills?shop=${window.location.href.split('shop=')[1]}`} className='underline'>Create Bill</Link>
           </Typography>
         </div>
       </Grid>

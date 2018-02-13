@@ -152,7 +152,7 @@ class TextFields extends React.Component<props, {}> {
                       ADD PRODUCTS
                       </Typography>
                       <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the products of all/specific categories.</Typography>
-                      <Link to='/Inventory' style={styles.noUnderline}>
+                      <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                       <Button raised style={styles.button}>
                       GO TO INVENTORY
                       </Button>
@@ -164,7 +164,7 @@ class TextFields extends React.Component<props, {}> {
                       ADD PRODUCTS
                       </Typography>
                       <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the products of all/specific categories.</Typography>
-                      <Link to='/Inventory' style={styles.noUnderline}>
+                      <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1]}`}  style={styles.noUnderline}>
                       <Button raised style={styles.button}>
                       GO TO INVENTORY
                       </Button>
@@ -262,7 +262,7 @@ class TextFields extends React.Component<props, {}> {
       quantity: this.state.quantity,
       img: this.state.img,
       file: this.state.file,}} />
-                                  <Link to={`/Products?shop=${this.state.shop}`} style={styles.noUnderline}>
+                                  <Link to={`/Products?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                                       <Button raised style={styles.button}>
                                           CANCEL
                                       </Button>
@@ -364,7 +364,7 @@ class TextFields extends React.Component<props, {}> {
                     img: this.state.img,
                     file: this.state.file,}}
                     />
-                      <Link to={`/Products?shop=${this.state.shop}`} style={styles.noUnderline}>
+                      <Link to={`/Products?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                           <Button raised style={styles.button}>
                               CANCEL
                           </Button>

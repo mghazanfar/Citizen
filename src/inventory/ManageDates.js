@@ -4,6 +4,7 @@ import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
 import Button from 'material-ui/Button';
 import Modal from './ModalBillDetail';
+import {DatePicker} from 'material-ui-pickers';
 
 import server from "../constants";
 import request from "superagent/superagent";
@@ -18,24 +19,30 @@ const styles = {
 
 class ManageDates extends React.Component {
     state = {
-        orders: []
-    }
+        orders: [],
+        shop: null,
+    };
     componentWillMount(){
-        let url = window.location.href.split('?shop=')[1].split[0];
+        let url = window.location.href.split('shop=')[1];
         let accessToken = cookies.get('accessToken').accessToken;
         this.setState({
             shop: url
         });
+        console.log(url);
         let today = new Date();
         let day =today.getDate();
         let month = today.getMonth()+1;
         let year = today.getFullYear();
-        request.get(`${server.path}/api/Bills/bills?shopId=${this.state.shop}&day=${day}&month=${month}&year=${year}&access_token=${accessToken}`)
+        request.get(`${server.path}/api/Bills/bills?shopId=${url}&day=${day}&month=${month}&year=${year}&access_token=${accessToken}`)
         .end((err, bills) => {
+          console.log(bills);
             if(bills) {
                 if (bills.statusCode !== 200) {
                     alert(bills.body.error.message);
                 } else {
+                    if(bills.body.bills.length <1) {
+                        alert('No Record Found');
+                    }
                     this.setState({
                         orders: bills.body.bills
                     });
@@ -45,18 +52,47 @@ class ManageDates extends React.Component {
             }
         });
     }
-    render() {
 
+    setDate = event => {
+        let date = event._d.toLocaleDateString().split('/');
+        console.log(date);
+        let accessToken = cookies.get('accessToken');
+        if(accessToken === undefined){
+            window.location.href = '/';
+        } else {
+            request.get(`${server.path}/api/Bills/bills?shopId=${this.state.shop}&day=${date[1]}&month=${date[0]}&year=${date[2]}&access_token=${accessToken.accessToken}`)
+                .end((err, bills) => {
+                    console.log(bills);
+                    if (bills) {
+                        if (bills.statusCode !== 200) {
+                            alert(bills.body.error.message);
+                        } else {
+                            if (bills.body.bills.length < 1) {
+                                alert('No Record Found');
+                            }
+                            this.setState({
+                                orders: bills.body.bills
+                            });
+                        }
+                    } else {
+                        alert('Could not reach service');
+                    }
+                });
+        }
+    };
+
+
+    render() {
       return (
         <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
-            <Typography type="title" gutterBottom style={{alignSelf:'flex-start', color:'white', marginTop:10}} >{this.props.date.toString()}</Typography>
+            <Typography type="title" gutterBottom style={{alignSelf:'flex-start', color:'white', marginTop:10}} >{<DatePicker onChange={this.setDate} style={{marginLeft: 0}}/>}</Typography>
             <div style={{display:'flex', width:'inherit'}}>
                 <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'70%'}}>
                 <List>
-                    {this.state.orders.map(value => (
+                    {this.state.orders.map((value, index) => (
                     <ListItem key={value} dense style={styles.listItem} divider button={false} >
                     <Typography type="title" gutterBottom>
-                        {value.id}
+                        {++index}
                     </Typography>
                         <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>{value.customerName}</Typography>} secondary={<span>{value.phoneNumber}
                         <Typography type="caption">

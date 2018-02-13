@@ -121,12 +121,12 @@ class FullWidthGrid extends React.Component<props, {}> {
                   </Typography>
                   <Typography type="headline" paragraph style={{color: 'white', textAlign: 'center', width: '60%',}}>Manage
                     your orders here and keep track of their status.</Typography>
-                  <Link to={`/Inventory?shop=${this.state.shop}`} style={styles.noUnderline}>
+                  <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                     <Button raised style={styles.button}>
                       GO TO INVENTORY
                     </Button>
                   </Link>
-                  <Link to={`/CreateBills?shop=${this.state.shop}`} style={styles.noUnderline}>
+                  <Link to={`/CreateBills?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                     <Button raised style={styles.button}>
                       Create a bill
                     </Button>

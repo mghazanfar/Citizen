@@ -31,7 +31,7 @@ class ResponsiveDialog extends React.Component<props, {}> {
                     alert(res.body.error.message);
                 } else {
                     this.setState({ open: true });
-                    window.location.href = '/Products';
+                    // window.location.href = '/Products';
                 }
             });
     };

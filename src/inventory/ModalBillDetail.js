@@ -54,13 +54,17 @@ class ResponsiveDialog extends React.Component {
   };
 
   componentWillMount(){
-      //console.log(this.props);
       let shop = window.location.href.split('shop=')[1].split('&')[0];
       if (shop === undefined){
           window.location.href = '/';
       } else {
           this.setState({
-              shop: shop
+              shop: shop,
+              customerName: this.props.order.customerName,
+              customerNumber: this.props.order.customerNumber,
+              discount: this.props.order.discount,
+              payment: this.props.order.payment,
+              status: this.props.order.status
           });
       }
   }
@@ -103,14 +107,15 @@ class ResponsiveDialog extends React.Component {
     if(update.status === undefined){
       alert('Please select status');
     }
-    let accessToken = cookies.get('accessToken');
-    request.patch(`${server.path}/api/Bills?access_token=${accessToken}`)
+    let accessToken = cookies.get('accessToken').accessToken;
+    request.patch(`${server.path}/api/Bills/${this.props.order.id}?access_token=${accessToken}`)
     .send(update)
     .end((err, res) => {
       if(res){
           if(res.status === 200){
             alert('Updated Successfully');
-            window.location.href = `/ManageOrders?shop=${this.state.shop}`
+            window.location.href = `/ManageOrders?shop=${this.state.shop}`;
+            cookies.remove('billProductQuantity');
           } else {
             alert(res.body.error.message);
           }

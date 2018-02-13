@@ -18,6 +18,12 @@ import request from "superagent/superagent";
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
+cloudinary.config({
+    cloud_name: 'my-furniture-shop',
+    api_key: '842684991763488',
+    api_secret: 'JTWKG9czuqaFywMA3xCkrZuA-ls'
+});
+
 const styles = {
   left: {
       backgroundColor: 'rgba(255,255,255,0.2)',
@@ -224,7 +230,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                               </Typography>
                               <Typography type="headline" paragraph style={{color: 'white', width: '60%',}}
                                           align="center">Here, You can add a category from here.</Typography>
-                              <Link to={`/Inventory?shop=${this.state.shop}`} style={styles.noUnderline}>
+                              <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                                   <Button raised style={styles.button}>
                                       GO TO INVENTORY
                                   </Button>
@@ -237,7 +243,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                               </Typography>
                               <Typography type="headline" paragraph style={{color: 'white', width: '60%',}}
                                           align="center">Here, You can add a category from here.</Typography>
-                              <Link to={`/Inventory?shop=${this.state.shop}`} style={styles.noUnderline}>
+                              <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                                   <Button raised style={styles.button}>
                                       GO TO INVENTORY
                                   </Button>

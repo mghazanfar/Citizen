@@ -143,7 +143,7 @@ class TextFields extends React.Component<props, {}> {
                         Add Amounts
                       </Typography>
                       <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can add daily shop expenses.</Typography>
-                      <Link to='/Shop' style={styles.noUnderline}>
+                      <Link to={`/Shop?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                       <Button raised style={styles.button}>
                       back
                       </Button>
@@ -155,7 +155,7 @@ class TextFields extends React.Component<props, {}> {
                       Add Amounts
                       </Typography>
                       <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can add daily shop expenses.</Typography>
-                      <Link to='/Shop' style={styles.noUnderline}>
+                      <Link to={`/Shop?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                       <Button raised style={styles.button}>
                       back
                       </Button>
@@ -214,7 +214,7 @@ class TextFields extends React.Component<props, {}> {
                                   drinks: this.state.drinks,
                                   shopExpenses: this.state.shopExpenses,
                                   expenses: this.state.expenses}} />
-                                  <Link to='/Products' style={styles.noUnderline}>
+                                  <Link to={`/Shop?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                                       <Button raised style={styles.button}>
                                           CANCEL
                                       </Button>
@@ -276,7 +276,7 @@ class TextFields extends React.Component<props, {}> {
                         drinks: this.state.drinks,
                         shopExpenses: this.state.shopExpenses,
                         expenses: this.state.expenses}} />
-                          <Link to='/Products' style={styles.noUnderline}>
+                          <Link to={`/Shop?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                               <Button raised style={styles.button}>
                                   CANCEL
                               </Button>
