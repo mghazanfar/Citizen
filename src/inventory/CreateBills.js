@@ -2,6 +2,7 @@ import React from 'react';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import Background from '../img/receipt.jpg';
+import Citizen from '../img/logo.png';
 import Grid from 'material-ui/Grid';
 import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
@@ -9,7 +10,10 @@ import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
 import TextField from 'material-ui/TextField';
 import ModalBills from './ModalBills';
+import BilledProductPanel from './BilledProductPanel';
 import BillStatus from './BillStatus';
+import Menu from './Menu';
+import './clickables.css';
 import Logout from './Logout';
 import Table, {
     TableBody,
@@ -322,12 +326,77 @@ class FullWidthGrid extends React.Component<props, {}>{
                           Cancel
                         </Button>
                         </Link>
+                        <div className='print-only'>
+                            <div style={{
+                                width: '100%',
+                                height: '100vh',
+                                background: '-webkit-linear-gradient(-125deg, #D000F0, #E60080, #FF0000)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                flexDirection: 'column'
+                            }}>
+                                <img src={Citizen} height={150} width={150} alt="Citizen"/>
+                                <Paper elevation={24}
+                                       style={{maxHeight: 700, overflow: 'auto', width: '96%', padding: 10, height: 'inherit'}}>
+                                    <TextField
+                                        id="search"
+                                        label="Customer name"
+                                        type="search"
+                                        margin="normal"
+                                        style={{width: '100%'}}
+                                    />
+                                    <TextField
+                                        id="search"
+                                        label="Phone number"
+                                        type="search"
+                                        margin="normal"
+                                        style={{width: '100%'}}
+                                    />
+                                    <BilledProductPanel print={true} data={'DataofSelectedItems'}/>
+                                    <TextField
+                                        id="search"
+                                        label="Add discounts"
+                                        type="search"
+                                        margin="normal"
+                                        style={{width: '100%'}}
+                                    />
+                                    <TextField
+                                        id="search"
+                                        label="Total Payment"
+                                        type="search"
+                                        margin="normal"
+                                        style={{width: '100%'}}
+                                    />
+                                    <BillStatus/>
+                                </Paper>
+                                <div style={{
+                                    backgroundColor: 'rgba(255,255,255,0.65)',
+                                    display: 'flex',
+                                    width: '100%',
+                                    height: 100,
+                                    marginTop: 'auto',
+                                    justifyContent: 'space-between'
+                                }}>
+                                    <div style={{width: '30%', fontSize: 13, marginTop: 'auto', marginBottom: 'auto'}}>
+                                        <b>Address:</b> Main G.T. Road, Ravi Toll Plaza, Lahore. <br/>
+                                        <b>Phone:</b> 0324-4417414 , 0323-9999333 <br/>
+                                        <b>Email:</b> nabeelsameer950@gmail.com
+                                    </div>
+                                    <div style={{width: '25%', fontSize: 13, marginTop: 'auto', marginBottom: 'auto'}}>
+                                        <b>NOTE:</b> <br/>
+                                        Booked furniture will not be handed over without showing bill. Original reciept is required
+                                        in order to recieve furniture.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                   </div>
                 </Grid>
               </Hidden>
             </Grid>
           </div>
+
       );
   }
 }
