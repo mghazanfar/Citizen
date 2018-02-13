@@ -12,6 +12,7 @@ import Divider from 'material-ui/Divider';
 import Hidden from 'material-ui/Hidden';
 import ModalCategory from './ModalCategory';
 import Logout from './Logout';
+import cloudinary from 'cloudinary';
 
 import server from "../constants";
 import request from "superagent/superagent";
