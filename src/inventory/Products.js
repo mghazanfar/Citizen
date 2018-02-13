@@ -108,7 +108,7 @@ class FullWidthGrid  extends React.Component {
                                             style={{color: 'white', textAlign: 'center', width: '60%',}}>Here, you can see
                                     all the products of all/specific categories.</Typography>
                             </Hidden>
-                            <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
+                            <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1].split('&')[0]}`} style={styles.noUnderline}>
                                 <Button raised style={styles.button}>
                                     GO TO INVENTORY
                                 </Button>
@@ -132,7 +132,7 @@ class FullWidthGrid  extends React.Component {
                                             style={{color: 'white', textAlign: 'center', width: '60%',}}>Here, you can see
                                     all the products of all/specific categories.</Typography>
                             </Hidden>
-                            <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
+                            <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1].split('&')[0]}`} style={styles.noUnderline}>
                                 <Button raised style={styles.button}>
                                     GO TO INVENTORY
                                 </Button>
@@ -148,7 +148,7 @@ class FullWidthGrid  extends React.Component {
                             <Paper elevation={24} style={{maxHeight: 600, overflow: 'auto', width: 'inherit'}}>
                                 <ProductPanel/>
                             </Paper>
-                            <Link to={`/AddProducts?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
+                            <Link to={`/AddProducts?shop=${window.location.href.split('shop=')[1].split('&')[0]}`} style={styles.noUnderline}>
                                 <Button raised style={styles.button}>
                                     ADD PRODUCT
                                 </Button>
@@ -164,7 +164,7 @@ class FullWidthGrid  extends React.Component {
                             <Paper elevation={24} style={{maxHeight: 600, overflow: 'auto', width: 'inherit'}}>
                                 <ProductPanel/>
                             </Paper>
-                            <Link to={`/AddProducts?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
+                            <Link to={`/AddProducts?shop=${window.location.href.split('shop=')[1].split('&')[0]}`} style={styles.noUnderline}>
                                 <Button raised style={styles.button}>
                                     ADD PRODUCT
                                 </Button>
