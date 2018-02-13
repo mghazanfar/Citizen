@@ -203,11 +203,11 @@ class EnhancedTable extends React.Component {
       if(cookies.get('accessToken').accessToken){
         let accessToken = cookies.get('accessToken').accessToken;
         let shop = window.location.href.split('?')[1].split('=')[1].split('&')[0];
-        request.get(`${server.path}/api/Products?filter=%7B%22shopId%22%3A%22${shop}%22%7D&access_token=${accessToken}`).
+        request.get(`${server.path}/api/Products/products?shopId=${shop}&access_token=${accessToken}`).
         end((err, products) => {
           if(products.statusCode === 200){
             this.setState({
-                data : products.body
+                data : products.body.products
             });
             if(products.body.length < this.state.rowsPerPage) {
               this.setState({
