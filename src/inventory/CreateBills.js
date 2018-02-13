@@ -234,7 +234,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                         <Button onClick={this.createBill.bind(this)} raised style={styles.button}>
                           Create Bill
                         </Button>
-                        <Link to={`/Inventory?shop=${this.state.shop}`} style={styles.noUnderline}>
+                        <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                         <Button raised style={styles.button}>
                           Cancel
                         </Button>
@@ -258,7 +258,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                   </Typography>
                   <Typography type="headline" paragraph style={{color: 'white', textAlign: 'center', width: '60%',}}>Create
                     bills for your customers here.</Typography>
-                  <Link to={`/Inventory?shop=${this.state.shop}`} style={styles.noUnderline}>
+                  <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                     <Button raised style={styles.button}>
                       GO TO INVENTORY
                     </Button>
@@ -317,7 +317,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                         <Button onClick={this.createBill.bind(this)} raised style={styles.button}>
                           Create Bill
                         </Button>
-                        <Link to={`/Inventory?shop=${this.state.shop}`} style={styles.noUnderline}>
+                        <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                         <Button raised style={styles.button}>
                           Cancel
                         </Button>

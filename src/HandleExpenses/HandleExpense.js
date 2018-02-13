@@ -211,7 +211,7 @@ class TextFields extends React.Component<props, {}> {
                       Handle Expenses
                       </Typography>
                       <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can handle your expenses.</Typography>
-                      <Link to={`/Shop?shop=${this.state.shop}`} style={styles.noUnderline}>
+                      <Link to={`/Shop?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                       <Button raised style={styles.button}>
                       back
                       </Button>
@@ -223,7 +223,7 @@ class TextFields extends React.Component<props, {}> {
                       Handle Expenses
                       </Typography>
                       <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the products of all/specific categories.</Typography>
-                      <Link to={`/Shop?shop=${this.state.shop}`} style={styles.noUnderline}>
+                      <Link to={`/Shop?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                       <Button raised style={styles.button}>
                       back
                       </Button>
@@ -323,7 +323,7 @@ class TextFields extends React.Component<props, {}> {
                                   <Button onClick={this.saveExpense.bind(this)} raised style={styles.button}>
                                       ADD EXPENSES
                                   </Button>
-                                  <Link to={`/Shop?shop=${this.state.shop}`} style={styles.noUnderline}>
+                                  <Link to={`/Shop?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                                       <Button raised style={styles.button}>
                                           CANCEL
                                       </Button>

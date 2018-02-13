@@ -137,7 +137,7 @@ class ResponsiveDialog extends React.Component {
 
   handleRequestClose = () => {
     this.setState({ open: false });
-      window.location.href = `/Products?shop=${this.state.shop}`;
+      window.location.href = `/Products?shop=${window.location.href.split('shop=')[1]}`;
   };
 
   render() {

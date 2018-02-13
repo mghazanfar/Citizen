@@ -160,7 +160,7 @@ class TextFields extends React.Component<props, {}> {
                         Companies' Bills
                         </Typography>
                         <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here you can see bills, you have to pay.</Typography>
-                        <Link to={`/Shop?shop=${this.state.shop}`} style={styles.noUnderline}>
+                        <Link to={`/Shop?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                         <Button raised style={styles.button}>
                         back
                         </Button>
@@ -172,7 +172,7 @@ class TextFields extends React.Component<props, {}> {
                         Companies' Bills
                         </Typography>
                         <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here you can see bills, you have to pay.</Typography>
-                        <Link to={`/Shop?shop=${this.state.shop}`} style={styles.noUnderline}>
+                        <Link to={`/Shop?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                         <Button raised style={styles.button}>
                         back
                         </Button>

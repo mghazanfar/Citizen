@@ -85,22 +85,22 @@ class FullWidthGrid extends React.Component<props, {}> {
                               Let's Start!
                           </Typography>
                           <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                              <Link to={`/ManageShop?${this.state.shop}`} style={styles.headline}>Shop management</Link>
+                              <Link to={`/ManageShop?shop=${window.location.href.split('shop=')[1]}`} style={styles.headline}>Shop management</Link>
                           </Typography>
                           <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                              <Link to={`/Inventory?${this.state.shop}`} style={styles.headline}>Inventory</Link>
+                              <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1]}`} style={styles.headline}>Inventory</Link>
                           </Typography>
                           <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                              <Link to={`/ProfitReports?${this.state.shop}`} style={styles.headline}>Profit handling</Link>
+                              <Link to={`/ProfitReports?shop=${window.location.href.split('shop=')[1]}`} style={styles.headline}>Profit handling</Link>
                           </Typography>
                           <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                              <Link to={`/HandleExpenses?${this.state.shop}`} style={styles.headline}>Expense handling</Link>
+                              <Link to={`/HandleExpenses?shop=${window.location.href.split('shop=')[1]}`} style={styles.headline}>Expense handling</Link>
                           </Typography>
                           <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                              <Link to={`/ManageClaimStock?${this.state.shop}`} style={styles.headline}>Stock Claim Management</Link>
+                              <Link to={`/ManageClaimStock?shop=${window.location.href.split('shop=')[1]}`} style={styles.headline}>Stock Claim Management</Link>
                           </Typography>
                           <Typography type="headline" gutterBottom style={{color: 'white'}}>
-                              <Link to={`/ManageCompaniesBills?${this.state.shop}`} style={styles.headline}>Bills to companies record</Link>
+                              <Link to={`/ManageCompaniesBills?shop=${window.location.href.split('shop=')[1]}`} style={styles.headline}>Bills to companies record</Link>
                           </Typography>
                       </div>
                   </Grid>
@@ -128,16 +128,16 @@ class FullWidthGrid extends React.Component<props, {}> {
                         Let's Start!
                     </Typography>
                     <Typography type="headline" gutterBottom style={{color:'white'}}>
-                        <Link to={`/AddAmounts?shop=${this.state.shop}`} className='underline'>Add Daily Amounts</Link>
+                        <Link to={`/AddAmounts?shop=${window.location.href.split('shop=')[1]}`} className='underline'>Add Daily Amounts</Link>
                     </Typography>
                     <Typography type="headline" gutterBottom style={{color:'white'}}>
-                        <Link to={`/ManageOrders?shop=${this.state.shop}`} className='underline'>See Bills</Link>
+                        <Link to={`/ManageOrders?shop=${window.location.href.split('shop=')[1]}`} className='underline'>See Bills</Link>
                     </Typography>
                     <Typography type="headline" gutterBottom style={{color:'white'}}>
-                        <Link to={`/Products?shop=${this.state.shop}`} className='underline'>Products</Link>
+                        <Link to={`/Products?shop=${window.location.href.split('shop=')[1]}`} className='underline'>Products</Link>
                     </Typography>
                     <Typography type="headline" gutterBottom style={{color:'white'}}>
-                        <Link to={`/CreateBills?shop=${this.state.shop}`} className='underline'>Create Bill</Link>
+                        <Link to={`/CreateBills?shop=${window.location.href.split('shop=')[1]}`} className='underline'>Create Bill</Link>
                     </Typography>
                 </div>
             </Grid>

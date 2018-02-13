@@ -201,7 +201,7 @@ class FullWidthGrid extends React.Component{
                               </Typography>
                               <Typography type="headline" paragraph style={{color: 'white', width: '60%',}}
                                           align="center">Here, You can add a category from here.</Typography>
-                              <Link to={`/Inventory?shop=${this.state.shop}`} style={styles.noUnderline}>
+                              <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                                   <Button raised style={styles.button}>
                                       GO TO INVENTORY
                                   </Button>
@@ -214,7 +214,7 @@ class FullWidthGrid extends React.Component{
                               </Typography>
                               <Typography type="headline" paragraph style={{color: 'white', width: '60%',}}
                                           align="center">Here, You can add a category from here.</Typography>
-                              <Link to={`/Inventory?shop=${this.state.shop}`} style={styles.noUnderline}>
+                              <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                                   <Button raised style={styles.button}>
                                       GO TO INVENTORY
                                   </Button>

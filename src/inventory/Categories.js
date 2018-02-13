@@ -126,7 +126,7 @@ class FullWidthGrid extends React.Component<props, {}> {
           <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'inherit'}}>
           <List>
             {this.state.categories.map(value => (
-                <Link to={`/Products?shop=${this.state.shop}&cat=${value.id}`} style={styles.noUnderline}>
+                <Link to={`/Products?shop=${window.location.href.split('shop=')[1].split('&')[0]}&cat=${value.id}`} style={styles.noUnderline}>
                 <ListItem key={value.name} dense button style={styles.listItem} divider>
                 <Avatar src={value.image} style={styles.avatar}/>
                 <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>{value.name}</Typography>} secondary={value.description}/>
@@ -144,7 +144,7 @@ class FullWidthGrid extends React.Component<props, {}> {
             ))}
           </List>
           </Paper>
-         <Link to={`/AddCategory?shop=${this.state.shop}`} style={styles.noUnderline}>
+         <Link to={`/AddCategory?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
          <Button raised style={styles.button}>
           ADD CATEGORY
           </Button>
@@ -159,7 +159,7 @@ class FullWidthGrid extends React.Component<props, {}> {
             CATEGORIES
             </Typography>
             <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can see all the categories of your furniture. You can also add/remove/modify a category from here.</Typography>
-            <Link to={`/Inventory?shop=${this.state.shop}`} style={styles.noUnderline}>
+            <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
             <Button raised style={styles.button}>
             GO TO INVENTORY
             </Button>
@@ -178,7 +178,7 @@ class FullWidthGrid extends React.Component<props, {}> {
                   <Avatar src={value.image} style={styles.avatar}/>
                   <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>{value.name}</Typography>} secondary={value.description}/>
                   <ListItemSecondaryAction />
-                  <Link to={`/ModifyCategory?shop=${this.state.shop}&id=${value.id}`} style={styles.noUnderline}>
+                  <Link to={`/ModifyCategory?shop=${window.location.href.split('shop=')[1]}&id=${value.id}`} style={styles.noUnderline}>
                     <Button color="primary">
                       MODIFY
                     </Button>
@@ -191,7 +191,7 @@ class FullWidthGrid extends React.Component<props, {}> {
               ))}
             </List>
             </Paper>
-          <Link to={`/AddCategory?shop=${this.state.shop}`} style={styles.noUnderline}>
+          <Link to={`/AddCategory?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
           <Button raised style={styles.button}>
             ADD CATEGORY
             </Button>
