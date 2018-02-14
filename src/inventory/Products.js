@@ -144,7 +144,6 @@ class FullWidthGrid  extends React.Component {
                 <Hidden mdDown>
                     <Grid item xs={12} lg={10} style={styles.right}>
                         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '99%'}}>
-                            <Menu category/>
                             <Paper elevation={24} style={{maxHeight: 600, overflow: 'auto', width: 'inherit'}}>
                                 <ProductPanel/>
                             </Paper>

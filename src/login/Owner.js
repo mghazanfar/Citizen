@@ -8,7 +8,7 @@ import { FormControl  } from 'material-ui/Form';
 import IconButton from 'material-ui/IconButton';
 import Visibility from 'material-ui-icons/Visibility';
 import VisibilityOff from 'material-ui-icons/VisibilityOff';
-import LinearProgress from 'material-ui/Progress/LinearProgress';
+import { CircularProgress } from 'material-ui/Progress';
 
 import request from "../../node_modules/superagent/superagent";
 import server from "../constants";
@@ -37,7 +37,6 @@ const styles = {
     }
 }
 
-
 class App extends Component {
   state = {
     loginFailed: '',
@@ -47,6 +46,8 @@ class App extends Component {
     showPassword: false,
     visible: 'none',
     disabled: false,
+    loading: false,
+    buttonText: <div> LOGIN </div>
 };
 
 handleChange = prop => event => {
@@ -63,7 +64,9 @@ login = () => {
     password: this.state.password
     };
   this.setState({
-      disabled: true
+      disabled: true,
+      loading: true,
+      buttonText: <CircularProgress  color="secondary"  />
   });
 
     request
@@ -88,7 +91,8 @@ login = () => {
                 this.setState({
                     loginFailed: res.body.error.message,
                     visible: 'block',
-                    disabled: false
+                    disabled: false,
+                    buttonText: <div>LOGIN</div>
                 });
             }
         }
@@ -131,8 +135,8 @@ handleClickShowPasssword = () => {
             }
           />
         </FormControl>
-        <Button disabled={this.state.disabled} type='submit' onClick={this.login.bind(this)} raised component="span" style={{backgroundColor:'rgba(0,150,136,1)', marginTop: '3rem', color: 'white'}}>
-        LOGIN
+        <Button disabled={this.state.loading} type='submit' onClick={this.login.bind(this)} raised component="span" style={{backgroundColor:'rgba(0,150,136,1)', marginTop: '3rem', color: 'white'}}>
+        {this.state.buttonText}
         </Button>
         <div style={{display: this.state.visible}}>
             <Paper elevation={20} style={{padding:20, marginTop:30}}>
