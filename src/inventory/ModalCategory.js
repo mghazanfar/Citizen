@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
+import { CircularProgress } from 'material-ui/Progress';
 import Dialog, {
   DialogActions,
   DialogContent,
@@ -29,7 +30,9 @@ class ResponsiveDialog extends React.Component <props, {}>{
     open: false,
     name: null,
     description: null,
-    disabled: false
+    disabled: false,
+    addCategory: 'ADD CATEGORY',
+    modifyCategory: 'MODIFY CATEGORY'
   };
 
   handleClickOpen = () => {
@@ -38,6 +41,9 @@ class ResponsiveDialog extends React.Component <props, {}>{
       });
     if(this.props.category==="modify"){
         console.log('modify');
+        this.setState({
+            modifyCategory: <CircularProgress />
+        });
         var data = {
             shopId: this.props.addData.shopId,
             name: this.props.addData.name,
@@ -55,9 +61,15 @@ class ResponsiveDialog extends React.Component <props, {}>{
                 }
             } else {
                 alert('Service Unreachable');
+                this.setState({
+                    modifyCategory: 'MODIFY CATEGODY'
+                });
             }
             });
     } else {
+        this.setState({
+            addCategory: <CircularProgress />
+        });
         cloudinary.v2.uploader.upload(this.props.addData.img,
             (error, result) => {
                 console.log(result)
@@ -82,6 +94,9 @@ class ResponsiveDialog extends React.Component <props, {}>{
                                 }
                             } else {
                                 alert('Service Unreachable');
+                                this.setState({
+                                    modifyCategory: 'ADD CATEGORY'
+                                });
                             }
                         });
                 }
@@ -99,7 +114,7 @@ class ResponsiveDialog extends React.Component <props, {}>{
       return (
         <div style={{display:'flex', justifyContent:'center'}}>
           <Button disabled={this.state.disabled} type='submit' raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
-          MODIFY CATEGORY
+          {this.state.modifyCategory}
           </Button>
           <Dialog
             fullScreen={fullScreen}
@@ -128,7 +143,7 @@ class ResponsiveDialog extends React.Component <props, {}>{
     return (
       <div style={{display:'flex', justifyContent:'center'}}>
         <Button disabled={this.state.disabled} raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
-        ADD CATEGORY
+        {this.state.addCategory}
         </Button>
         <Dialog
           fullScreen={fullScreen}

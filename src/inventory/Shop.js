@@ -5,6 +5,7 @@ import Background from '../img/img2.jpg';
 import Grid from 'material-ui/Grid';
 import { Link } from 'react-router-dom';
 import './clickables.css';
+import { LinearProgress } from 'material-ui/Progress';
 
 import Cookies from 'universal-cookie';
 import server from "../constants";
@@ -156,7 +157,7 @@ class FullWidthGrid extends React.Component<props, {}> {
     </div>
   render() {
       if(this.state.role === null) {
-        return (<div> loading</div>);
+        return ( <LinearProgress/> );
       } else if(this.state.role === 'superAdmin'){
           return (this.adminMenu);
       } else {

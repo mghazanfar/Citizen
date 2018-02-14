@@ -352,7 +352,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                                         margin="normal"
                                         style={{width: '100%'}}
                                     />
-                                    <BilledProductPanel print={true} data={'DataofSelectedItems'}/>
+                                    <ModalBills/>
                                     <TextField
                                         id="search"
                                         label="Add discounts"
