@@ -21,6 +21,10 @@ class ManageDates extends React.Component {
     state = {
         orders: [],
         shop: null,
+        drinks: 0,
+        shopExp: 0,
+        others: [],
+        amountReceivedToday: 0,
     };
     componentWillMount(){
         let url = window.location.href.split('shop=')[1];
@@ -28,7 +32,6 @@ class ManageDates extends React.Component {
         this.setState({
             shop: url
         });
-        console.log(url);
         let today = new Date();
         let day =today.getDate();
         let month = today.getMonth()+1;
@@ -46,11 +49,39 @@ class ManageDates extends React.Component {
                     this.setState({
                         orders: bills.body.bills
                     });
+                    if(bills.body.bills.length > 0){
+                        let amount = 0;
+                        bills.body.bills.map(value => {
+                            amount += parseInt(value.payment);
+                        });
+                        this.setState({
+                            amountReceivedToday: amount
+                        });
+                    }
                 }
             } else {
                 alert('Could not reach service');
             }
         });
+        request.get(`${server.path}/api/DailyExpenses?filter=%7B%22where%22%3A%7B%22shopId%22%3A%22${url}%22%2C%22day%22%3A%22${day}%22%2C%22month%22%3A%22${month}%22%2C%22year%22%3A%22${year}%22%7D%7D&access_token=${accessToken}`)
+            .end((err, res) => {
+                if(res) {
+                    console.log(res);
+                    if(res.statusCode === 200){
+                        if(res.body.length > 0) {
+                            this.setState({
+                                drinks: res.body[0].drinks,
+                                shopExp: res.body[0].shopExp,
+                                others: res.body[0].others,
+                            });
+                        }
+                    } else {
+                        alert(res.body.error.message);
+                    }
+                } else {
+                    alert('Service Unreachable');
+                }
+            });
     }
 
     setDate = event => {
@@ -73,19 +104,48 @@ class ManageDates extends React.Component {
                             this.setState({
                                 orders: bills.body.bills
                             });
+                            if(bills.body.bills.length > 0){
+                                let amount = 0;
+                                bills.body.bills.map(value => {
+                                    amount += value.payment;
+                                });
+                                this.setState({
+                                    amountReceivedToday: amount
+                                });
+                            }
                         }
                     } else {
                         alert('Could not reach service');
                     }
                 });
         }
+        request.get(`${server.path}/api/DailyExpenses?filter=%7B%22where%22%3A%7B%22shopId%22%3A%22${this.state.shop}%22%2C%22day%22%3A%22${date[1]}%22%2C%22month%22%3A%22${date[0]}%22%2C%22year%22%3A%22${date[2]}%22%7D%7D&access_token=${accessToken.accessToken}`)
+            .end((err, res) => {
+                if(res) {
+                    console.log(res);
+                    if(res.statusCode === 200){
+                        if(res.body.length > 0) {
+                            this.setState({
+                                drinks: res.body[0].drinks,
+                                shopExp: res.body[0].shopExp,
+                                others: res.body[0].others,
+                            });
+                        }
+                    } else {
+                        alert(res.body.error.message);
+                    }
+                } else {
+                    alert('Service Unreachable');
+                }
+            });
     };
 
 
     render() {
       return (
         <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
-            <Typography type="title" gutterBottom style={{alignSelf:'flex-start', color:'white', marginTop:10}} >{<DatePicker onChange={this.setDate} style={{marginLeft: 0}}/>}</Typography>
+            <Typography type="title" gutterBottom style={{alignSelf:'flex-start', color:'white', marginTop:10}} >
+                {<DatePicker onChange={this.setDate} style={{marginLeft: 0}}/>}</Typography>
             <div style={{display:'flex', width:'inherit'}}>
                 <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'70%'}}>
                 <List>
@@ -111,10 +171,10 @@ class ManageDates extends React.Component {
                 <List subheader={<ListSubheader>Today's Expenses:</ListSubheader>}>
                     <ListItem key={'today'} dense style={styles.listItem} button={false} >
                     <Typography type="body 2" gutterBottom>
-                        OnShop for customers Expenses: On drinks: 200 <br/> onDrinks: 200
+                        OnShop for customers Expenses: On drinks: {this.state.drinks} <br/> Shop: ${this.state.shopExp}
                     </Typography>
                     <Typography type="body 2" gutterBottom>
-                        Amount recieved: 20000
+                        Amount recieved: {this.state.amountReceivedToday}
                     </Typography>
                         <ListItemSecondaryAction />
                     </ListItem>

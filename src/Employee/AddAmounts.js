@@ -78,14 +78,14 @@ noUnderline: {
   textDecoration: 'none',
 }
 };
-
+const today = new Date();
 
 class TextFields extends React.Component<props, {}> {
     state = {
         drinks: ' ',
         shopExpenses: ' ',
         expenses: [{ name: '' }],
-        date: ''
+        date: null
     };
 
     componentWillMount(){
@@ -95,6 +95,12 @@ class TextFields extends React.Component<props, {}> {
         if(!window.location.href.split('shop=')[1]){
             window.location.href = '/Shop'
         }
+        let date = `${today.getMonth()+1}&${today.getDate()}&${today.getFullYear()}`;
+        date = date.split('&');
+        this.setState({
+            date: date
+        });
+        console.log(date);
     }
 
     setDate = event => {
@@ -102,8 +108,7 @@ class TextFields extends React.Component<props, {}> {
         this.setState({
             date: date
         });
-
-    }
+    };
 
     handleShareholderNameChange = (idx) => (evt) => {
       const newExpenses = this.state.expenses.map((expense, sidx) => {
