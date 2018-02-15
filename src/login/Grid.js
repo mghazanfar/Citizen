@@ -34,13 +34,17 @@ class TitlebarGridList extends React.Component<props, {}>{
     request.get(`${server.path}/api/Shops/shop?access_token=${accessToken}`)
         .end((err, res) => {
       console.log(res);
-            tileData = res.body;
-            tileData.map((value, index) => {
-                value.img = shop1;
-            });
-          this.setState({
-              shops: tileData
-          });
+            if(res){
+                tileData = res.body;
+                tileData.map((value, index) => {
+                    value.img = shop1;
+                });
+                this.setState({
+                    shops: tileData
+                });
+            } else {
+                alert('Service Unreachable');
+            }
         });
   }
   render() {

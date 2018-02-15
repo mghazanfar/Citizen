@@ -9,14 +9,49 @@ import Dialog, {
   withMobileDialog,
 } from 'material-ui/Dialog';
 import { Link } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+import server from "../constants";
+import request from "superagent/superagent";
+const cookies = new Cookies();
 
 class ResponsiveDialog extends React.Component {
   state = {
     open: false,
+    buttonText: 'ADD AMOUNTS'
   };
 
   handleClickOpen = () => {
-    this.setState({ open: true });
+    console.log(this.props.addData);
+    if(!window.location.href.split('shop')){
+      window.location.href = '/Shop'
+    }
+    let data = {
+      type: 'daily',
+      shopId: window.location.href.split('shop=')[1].split('&')[0],
+      drinks: this.props.addData.drinks,
+      shopExp: this.props.addData.shopExpenses,
+      others: this.props.expenses,
+      day: this.props.addData.date[1],
+      month: this.props.addData.date[0],
+      year: this.props.addData.date[2]
+    };
+    if(!cookies.get('accessToken')){
+      window.location.href = '/'
+    }
+    let token = cookies.get('accessToken').accessToken;
+    request.post(`${server.path}/api/DailyExpenses?access_token=${token}`)
+        .send(data)
+        .end((err, res) => {
+          if(res){
+            if(res.statusCode === 200){
+                this.setState({ open: true });
+            } else {
+              alert(res.body.error.message);
+            }
+          } else {
+            alert('Server Unreachable');
+          }
+        });
   };
 
   handleRequestClose = () => {
@@ -29,7 +64,7 @@ class ResponsiveDialog extends React.Component {
     return (
       <div style={{display:'flex', justifyContent:'center'}}>
         <Button raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
-          Add amounts
+            {this.state.buttonText}
         </Button>
         <Dialog
           fullScreen={fullScreen}
@@ -40,7 +75,7 @@ class ResponsiveDialog extends React.Component {
           <DialogTitle><span  style={{color:'white'}}>Confirmation!</span></DialogTitle>
           <DialogContent>
             <DialogContentText style={{color:'white'}}>
-            Your expenses with year '{addData.year}', month '{addData.month}', salaries '{addData.salary}', kameti '{addData.kameti}', Other Expenses '{addData.expenses[0].name}', and households '{addData.household}' has been added.
+            Your expenses with year '{addData.date[2]}', month '{addData.date[0]}', drinks '{addData.drinks}', shop expenses '{addData.shopExpenses}', and Other Expenses '{addData.expenses[0].name}' has been added.
             </DialogContentText>
           </DialogContent>
           <DialogActions>

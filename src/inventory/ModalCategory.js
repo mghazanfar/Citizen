@@ -40,31 +40,42 @@ class ResponsiveDialog extends React.Component <props, {}>{
           disabled: true
       });
     if(this.props.category==="modify"){
-        console.log('modify');
+        console.log('modify', this.props.addData);
         this.setState({
             modifyCategory: <CircularProgress />
         });
-        var data = {
-            shopId: this.props.addData.shopId,
-            name: this.props.addData.name,
-            description: this.props.addData.description,
-            image: this.props.addData.image,
-        }
-        request.patch(`${server.path}/api/Categories/${this.props.addData.id}?access_token=${cookies.get('accessToken').accessToken}`,
-            data,(err, res) => {
-            console.log(res);
-            if(res) {
-                if (res.statusCode === 200) {
-                    this.setState({open: true});
+        cloudinary.v2.uploader.upload(this.props.addData.image,
+            (error, result) => {
+                console.log(result)
+                if (error) {
+                    alert("Error uploading image")
                 } else {
-                    alert(res.body.error.message);
+                    var data = {
+                        shopId: this.props.addData.shopId,
+                        name: this.props.addData.name,
+                        description: this.props.addData.description,
+                        image: result.secure_url,
+                    }
+                    request.patch(`${server.path}/api/Categories/${this.props.addData.id}?access_token=${cookies.get('accessToken').accessToken}`,
+                        data, (err, res) => {
+                            console.log(res);
+                            if (res) {
+                                if (res.statusCode === 200) {
+                                    this.setState({open: true});
+                                } else {
+                                    alert(res.body.error.message);
+                                    this.setState({
+                                        modifyCategory: 'MODIFY CATEGODY'
+                                    });
+                                }
+                            } else {
+                                alert('Service Unreachable');
+                                this.setState({
+                                    modifyCategory: 'MODIFY CATEGODY'
+                                });
+                            }
+                        });
                 }
-            } else {
-                alert('Service Unreachable');
-                this.setState({
-                    modifyCategory: 'MODIFY CATEGODY'
-                });
-            }
             });
     } else {
         this.setState({

@@ -2,9 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33d49f79-8531-4b4a-94b8-936517c03689" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/inventory/print.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/api.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/inventory/DatePicker.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/citizen.ico" afterPath="$PROJECT_DIR$/public/citizen.ico" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inventory/CreateBills.js" afterPath="$PROJECT_DIR$/src/inventory/CreateBills.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Employee/AddAmounts.js" afterPath="$PROJECT_DIR$/src/Employee/AddAmounts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Employee/ModalAmounts.js" afterPath="$PROJECT_DIR$/src/Employee/ModalAmounts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/HandleExpenses/HandleExpense.js" afterPath="$PROJECT_DIR$/src/HandleExpenses/HandleExpense.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inventory/ModalCategory.js" afterPath="$PROJECT_DIR$/src/inventory/ModalCategory.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inventory/ModalModify.js" afterPath="$PROJECT_DIR$/src/inventory/ModalModify.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inventory/ModifyCategory.js" afterPath="$PROJECT_DIR$/src/inventory/ModifyCategory.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/login/Grid.js" afterPath="$PROJECT_DIR$/src/login/Grid.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,105 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ProductPanel.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/inventory/ProductPanel.js">
+      <file leaf-file-name="ModalAmounts.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Employee/ModalAmounts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-              <folding>
-                <marker date="1518542427412" expanded="true" signature="4884:4927" ph="{&quot;classes&quot;: PropTypes.object.isRequired...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateBills.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/inventory/CreateBills.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="326" column="14" lean-forward="false" selection-start-line="326" selection-start-column="14" selection-end-line="326" selection-end-column="14" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="print.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/inventory/print.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="466">
-              <caret line="126" column="18" lean-forward="true" selection-start-line="63" selection-start-column="12" selection-end-line="126" selection-end-column="18" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddCategory.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/inventory/AddCategory.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2040">
-              <caret line="291" column="16" lean-forward="false" selection-start-line="291" selection-start-column="16" selection-end-line="291" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModalCategory.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/inventory/ModalCategory.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="795">
-              <caret line="89" column="4" lean-forward="false" selection-start-line="89" selection-start-column="4" selection-end-line="89" selection-end-column="4" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-                <marker date="1518542427320" expanded="true" signature="5279:5462" ph="&lt;DialogActions/&gt;" />
-                <marker date="1518542427320" expanded="true" signature="5279:5479" ph="&lt;div/&gt;" />
-                <marker date="1518542427320" expanded="true" signature="5279:5497" ph="&lt;Dialog/&gt;" />
-                <marker date="1518542427320" expanded="true" signature="5279:5510" ph="&lt;div/&gt;" />
-                <marker date="1518542427320" expanded="true" signature="5279:5521" ph="{...}" />
-                <marker date="1518542427320" expanded="true" signature="5326:5419" ph="&lt;Button/&gt;" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddProducts.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/inventory/AddProducts.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="659">
-              <caret line="275" column="6" lean-forward="false" selection-start-line="275" selection-start-column="6" selection-end-line="275" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModalProducts.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/inventory/ModalProducts.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="7" lean-forward="false" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-                <marker date="1518542427364" expanded="true" signature="6059:6060" ph="&lt;Button/&gt;" />
-                <marker date="1518542427364" expanded="true" signature="6059:6087" ph="&lt;DialogActions/&gt;" />
-                <marker date="1518542427364" expanded="true" signature="6059:6104" ph="&lt;div/&gt;" />
-                <marker date="1518542427364" expanded="true" signature="6059:6122" ph="&lt;Dialog/&gt;" />
-                <marker date="1518542427364" expanded="true" signature="6059:6135" ph="&lt;div/&gt;" />
-                <marker date="1518542427364" expanded="true" signature="6059:6146" ph="{...}" />
-                <marker date="1518542427364" expanded="true" signature="6059:6148" ph="{...}" />
-                <marker date="1518542427364" expanded="true" signature="6179:6223" ph="{&quot;fullScreen&quot;: PropTypes.bool.isRequired...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Products.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/inventory/Products.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="94" column="29" lean-forward="false" selection-start-line="94" selection-start-column="29" selection-end-line="94" selection-end-column="29" />
+            <state relative-caret-position="255">
+              <caret line="69" column="33" lean-forward="true" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -153,17 +67,22 @@
         <option value="$PROJECT_DIR$/src/login/LoginEmployee.js" />
         <option value="$PROJECT_DIR$/src/inventory/ManageOrders.js" />
         <option value="$PROJECT_DIR$/src/inventory/ModalBillDetail.js" />
-        <option value="$PROJECT_DIR$/src/login/Grid.js" />
         <option value="$PROJECT_DIR$/src/inventory/ModalProducts.js" />
         <option value="$PROJECT_DIR$/src/constants.js" />
         <option value="$PROJECT_DIR$/src/inventory/Shop.js" />
         <option value="$PROJECT_DIR$/src/inventory/ManageDates.js" />
         <option value="$PROJECT_DIR$/src/inventory/clickables.css" />
-        <option value="$PROJECT_DIR$/src/inventory/ModalCategory.js" />
-        <option value="$PROJECT_DIR$/src/inventory/ModifyCategory.js" />
         <option value="$PROJECT_DIR$/src/inventory/Products.js" />
         <option value="$PROJECT_DIR$/src/inventory/print.js" />
         <option value="$PROJECT_DIR$/src/inventory/CreateBills.js" />
+        <option value="$PROJECT_DIR$/src/inventory/ModalModify.js" />
+        <option value="$PROJECT_DIR$/src/inventory/DatePicker.js" />
+        <option value="$PROJECT_DIR$/src/inventory/ModalCategory.js" />
+        <option value="$PROJECT_DIR$/src/inventory/ModifyCategory.js" />
+        <option value="$PROJECT_DIR$/src/login/Grid.js" />
+        <option value="$PROJECT_DIR$/src/HandleExpenses/HandleExpense.js" />
+        <option value="$PROJECT_DIR$/src/Employee/AddAmounts.js" />
+        <option value="$PROJECT_DIR$/src/Employee/ModalAmounts.js" />
       </list>
     </option>
   </component>
@@ -188,9 +107,9 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds" extendedState="4">
-    <option name="x" value="428" />
+    <option name="x" value="470" />
     <option name="y" value="24" />
-    <option name="width" value="922" />
+    <option name="width" value="896" />
     <option name="height" value="744" />
   </component>
   <component name="ProjectView">
@@ -224,7 +143,19 @@
               <item name="Citizen" type="b2602c69:ProjectViewProjectNode" />
               <item name="Citizen" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Employee" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Citizen" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Citizen" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="inventory" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Citizen" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Citizen" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="login" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -272,7 +203,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37635000" />
+    <option name="totallyTimeSpent" value="46233000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -284,19 +215,20 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="500" y="24" width="850" height="744" extended-state="4" />
+    <frame x="470" y="24" width="896" height="744" extended-state="4" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2490931" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20274915" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.57096773" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26451612" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -330,87 +262,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/inventory/ModalBills.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-start-column="28" selection-end-line="10" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/CreateBills.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4620">
-          <caret line="335" column="45" lean-forward="true" selection-start-line="335" selection-start-column="45" selection-end-line="335" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/ManageOrders.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="84" column="49" lean-forward="false" selection-start-line="84" selection-start-column="49" selection-end-line="84" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/ManageDates.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="66" column="27" lean-forward="false" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/ModalBillDetail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1785">
-          <caret line="138" column="0" lean-forward="false" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/ModalProducts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2310">
-          <caret line="168" column="13" lean-forward="true" selection-start-line="168" selection-start-column="13" selection-end-line="168" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <marker date="1518542427364" expanded="true" signature="6059:6060" ph="&lt;Button/&gt;" />
-            <marker date="1518542427364" expanded="true" signature="6059:6087" ph="&lt;DialogActions/&gt;" />
-            <marker date="1518542427364" expanded="true" signature="6059:6104" ph="&lt;div/&gt;" />
-            <marker date="1518542427364" expanded="true" signature="6059:6122" ph="&lt;Dialog/&gt;" />
-            <marker date="1518542427364" expanded="true" signature="6059:6135" ph="&lt;div/&gt;" />
-            <marker date="1518542427364" expanded="true" signature="6059:6146" ph="{...}" />
-            <marker date="1518542427364" expanded="true" signature="6059:6148" ph="{...}" />
-            <marker date="1518542427364" expanded="true" signature="6179:6223" ph="{&quot;fullScreen&quot;: PropTypes.bool.isRequired...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/login/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="14" column="12" lean-forward="true" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/CreateBills.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="11" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/login/Grid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="40" column="25" lean-forward="true" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/ManageOrders.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1065">
-          <caret line="84" column="49" lean-forward="false" selection-start-line="84" selection-start-column="49" selection-end-line="84" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/inventory/ModalBillDetail.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2070">
@@ -439,13 +290,6 @@
           <folding>
             <element signature="e#0#26#0" expanded="true" />
             <marker date="1518542427364" expanded="true" signature="6059:6060" ph="&lt;Button/&gt;" />
-            <marker date="1518542427364" expanded="true" signature="6059:6087" ph="&lt;DialogActions/&gt;" />
-            <marker date="1518542427364" expanded="true" signature="6059:6104" ph="&lt;div/&gt;" />
-            <marker date="1518542427364" expanded="true" signature="6059:6122" ph="&lt;Dialog/&gt;" />
-            <marker date="1518542427364" expanded="true" signature="6059:6135" ph="&lt;div/&gt;" />
-            <marker date="1518542427364" expanded="true" signature="6059:6146" ph="{...}" />
-            <marker date="1518542427364" expanded="true" signature="6059:6148" ph="{...}" />
-            <marker date="1518542427364" expanded="true" signature="6179:6223" ph="{&quot;fullScreen&quot;: PropTypes.bool.isRequired...}" />
           </folding>
         </state>
       </provider>
@@ -503,13 +347,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1695">
           <caret line="113" column="67" lean-forward="true" selection-start-line="113" selection-start-column="67" selection-end-line="113" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/login/tileData.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="15" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -576,38 +413,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/login/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="12" lean-forward="true" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/inventory/ModalBillDetail.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
           <caret line="121" column="0" lean-forward="false" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/login/Grid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="53" column="42" lean-forward="false" selection-start-line="53" selection-start-column="42" selection-end-line="53" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/ManageDates.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-655">
-          <caret line="25" column="50" lean-forward="true" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/Shop.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -639,18 +448,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/ModifyCategory.js">
+    <entry file="file://$PROJECT_DIR$/src/inventory/ProductPanel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/AddCategory.js">
+    <entry file="file://$PROJECT_DIR$/src/inventory/CreateBills.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2040">
-          <caret line="291" column="16" lean-forward="false" selection-start-line="291" selection-start-column="16" selection-end-line="291" selection-end-column="16" />
+        <state relative-caret-position="105">
+          <caret line="84" column="22" lean-forward="true" selection-start-line="84" selection-start-column="22" selection-end-line="84" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inventory/print.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="126" column="18" lean-forward="false" selection-start-line="63" selection-start-column="12" selection-end-line="126" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inventory/AddProducts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="275" column="6" lean-forward="false" selection-start-line="275" selection-start-column="6" selection-end-line="275" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -662,37 +491,6 @@
           <folding>
             <element signature="e#0#26#0" expanded="true" />
             <marker date="1518542427364" expanded="true" signature="6059:6060" ph="&lt;Button/&gt;" />
-            <marker date="1518542427364" expanded="true" signature="6059:6087" ph="&lt;DialogActions/&gt;" />
-            <marker date="1518542427364" expanded="true" signature="6059:6104" ph="&lt;div/&gt;" />
-            <marker date="1518542427364" expanded="true" signature="6059:6122" ph="&lt;Dialog/&gt;" />
-            <marker date="1518542427364" expanded="true" signature="6059:6135" ph="&lt;div/&gt;" />
-            <marker date="1518542427364" expanded="true" signature="6059:6146" ph="{...}" />
-            <marker date="1518542427364" expanded="true" signature="6059:6148" ph="{...}" />
-            <marker date="1518542427364" expanded="true" signature="6179:6223" ph="{&quot;fullScreen&quot;: PropTypes.bool.isRequired...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/AddProducts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="659">
-          <caret line="275" column="6" lean-forward="false" selection-start-line="275" selection-start-column="6" selection-end-line="275" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/ModalCategory.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="89" column="4" lean-forward="false" selection-start-line="89" selection-start-column="4" selection-end-line="89" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <marker date="1518542427320" expanded="true" signature="5279:5462" ph="&lt;DialogActions/&gt;" />
-            <marker date="1518542427320" expanded="true" signature="5279:5479" ph="&lt;div/&gt;" />
-            <marker date="1518542427320" expanded="true" signature="5279:5497" ph="&lt;Dialog/&gt;" />
-            <marker date="1518542427320" expanded="true" signature="5279:5510" ph="&lt;div/&gt;" />
-            <marker date="1518542427320" expanded="true" signature="5279:5521" ph="{...}" />
-            <marker date="1518542427320" expanded="true" signature="5326:5419" ph="&lt;Button/&gt;" />
           </folding>
         </state>
       </provider>
@@ -705,33 +503,155 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/ProductPanel.js">
+    <entry file="file://$PROJECT_DIR$/src/inventory/Shop.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding>
-            <marker date="1518542427412" expanded="true" signature="4884:4927" ph="{&quot;classes&quot;: PropTypes.object.isRequired...}" />
-          </folding>
+        <state relative-caret-position="-252">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/print.js">
+    <entry file="file://$PROJECT_DIR$/src/inventory/DatePicker.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="126" column="18" lean-forward="true" selection-start-line="63" selection-start-column="12" selection-end-line="126" selection-end-column="18" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/citizen.ico">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/logo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inventory/AddCategory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2552">
+          <caret line="277" column="43" lean-forward="true" selection-start-line="277" selection-start-column="43" selection-end-line="277" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inventory/ModalCategory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="45" column="11" lean-forward="true" selection-start-line="45" selection-start-column="11" selection-end-line="45" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inventory/ModalModify.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="30" column="71" lean-forward="false" selection-start-line="30" selection-start-column="71" selection-end-line="30" selection-end-column="71" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/CreateBills.js">
+    <entry file="file://$PROJECT_DIR$/src/inventory/Categories.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="326" column="14" lean-forward="false" selection-start-line="326" selection-start-column="14" selection-end-line="326" selection-end-column="14" />
+        <state relative-caret-position="990">
+          <caret line="99" column="23" lean-forward="true" selection-start-line="99" selection-start-column="23" selection-end-line="99" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inventory/ModifyProduct.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="141" column="0" lean-forward="false" selection-start-line="141" selection-start-column="0" selection-end-line="155" selection-end-column="5" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/login/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="14" column="12" lean-forward="true" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/login/tileData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="15" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inventory/ModifyCategory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="134" column="38" lean-forward="true" selection-start-line="134" selection-start-column="38" selection-end-line="134" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/login/Grid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="11" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inventory/ManageDates.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="38" column="23" lean-forward="true" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HandleExpenses/HandleExpense.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1755">
+          <caret line="204" column="37" lean-forward="true" selection-start-line="204" selection-start-column="37" selection-end-line="204" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HandleExpenses/ModalExpenses.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Employee/AddAmounts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="202" column="78" lean-forward="false" selection-start-line="202" selection-start-column="78" selection-end-line="202" selection-end-column="78" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Employee/ModalAmounts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="69" column="33" lean-forward="true" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -89,6 +89,7 @@ class FullWidthGrid extends React.Component<props, {}>{
       name: null,
       description: null,
       image: null,
+      file: null
     };
 
   componentWillMount() {
@@ -133,14 +134,14 @@ class FullWidthGrid extends React.Component<props, {}>{
 
         let reader = new FileReader();
         let file = e.target.files[0];
-
         reader.onloadend = () => {
             this.setState({
                 file: file,
-                img: reader.result
+                image: reader.result
             });
         }
-
+        console.log(reader.result, this.state);
+        debugger;
         reader.readAsDataURL(file)
     }
 

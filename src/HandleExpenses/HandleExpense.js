@@ -86,6 +86,7 @@ noUnderline: {
 
 class TextFields extends React.Component<props, {}> {
     state = {
+      type: 'monthly',
       month: ' ',
       year: '2018',
       salary: ' ',
@@ -166,6 +167,7 @@ class TextFields extends React.Component<props, {}> {
     saveExpense(){
         let data = {
             "shopId": window.location.href.split('shop=')[1].split('&')[0],
+            "type": this.state.type,
             "salaries": this.state.salary,
             "committee": this.state.kameti,
             "extra": this.state.expenses,

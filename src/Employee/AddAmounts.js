@@ -13,6 +13,11 @@ import { FormControl } from 'material-ui/Form';
 import Logout from '../inventory/Logout';
 import { DatePicker } from 'material-ui-pickers';
 
+import Cookies from 'universal-cookie';
+import server from "../constants";
+import request from "superagent/superagent";
+const cookies = new Cookies();
+
 const styles = {
 left: {
   backgroundColor: 'rgba(0,0,0,0.4)',
@@ -80,7 +85,25 @@ class TextFields extends React.Component<props, {}> {
         drinks: ' ',
         shopExpenses: ' ',
         expenses: [{ name: '' }],
+        date: ''
     };
+
+    componentWillMount(){
+        if(!cookies.get('accessToken')){
+            window.location.href = '/'
+        }
+        if(!window.location.href.split('shop=')[1]){
+            window.location.href = '/Shop'
+        }
+    }
+
+    setDate = event => {
+        let date = event._d.toLocaleDateString().split('/');
+        this.setState({
+            date: date
+        });
+
+    }
 
     handleShareholderNameChange = (idx) => (evt) => {
       const newExpenses = this.state.expenses.map((expense, sidx) => {
@@ -143,7 +166,7 @@ class TextFields extends React.Component<props, {}> {
                         Add Amounts
                       </Typography>
                       <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can add daily shop expenses.</Typography>
-                      <Link to={`/Shop?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
+                      <Link to={`/Shop?shop=${window.location.href.split('shop=')[1].split('&')[0]}`} style={styles.noUnderline}>
                       <Button raised style={styles.button}>
                       back
                       </Button>
@@ -155,7 +178,7 @@ class TextFields extends React.Component<props, {}> {
                       Add Amounts
                       </Typography>
                       <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here, you can add daily shop expenses.</Typography>
-                      <Link to={`/Shop?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
+                      <Link to={`/Shop?shop=${window.location.href.split('shop=')[1].split('&')[0]}`} style={styles.noUnderline}>
                       <Button raised style={styles.button}>
                       back
                       </Button>
@@ -169,7 +192,7 @@ class TextFields extends React.Component<props, {}> {
                   <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
                       <Paper elevation={24} style={{maxHeight:600, overflow:'auto', width:'inherit', padding: 20}}>
                         <div style={{display:'flex', justifyContent:'space-around'}}>
-                        <DatePicker />  
+                        <DatePicker onChange={this.setDate}/>
                         </div>    
                         <FormControl fullWidth style={{marginTop:14}}>
                             <InputLabel htmlFor="amount">Drinks for customers</InputLabel>
@@ -213,8 +236,9 @@ class TextFields extends React.Component<props, {}> {
                               <ModalAmounts addData={{
                                   drinks: this.state.drinks,
                                   shopExpenses: this.state.shopExpenses,
-                                  expenses: this.state.expenses}} />
-                                  <Link to={`/Shop?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
+                                  expenses: this.state.expenses,
+                                  date: this.state.date}}/>
+                                  <Link to={`/Shop?shop=${window.location.href.split('shop=')[1].split('&')[0]}`} style={styles.noUnderline}>
                                       <Button raised style={styles.button}>
                                           CANCEL
                                       </Button>
@@ -275,8 +299,9 @@ class TextFields extends React.Component<props, {}> {
                       <ModalAmounts addData={{
                         drinks: this.state.drinks,
                         shopExpenses: this.state.shopExpenses,
-                        expenses: this.state.expenses}} />
-                          <Link to={`/Shop?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
+                        expenses: this.state.expenses,
+                        date: this.state.date}} />
+                          <Link to={`/Shop?shop=${window.location.href.split('shop=')[1].split('&')[0]}`} style={styles.noUnderline}>
                               <Button raised style={styles.button}>
                                   CANCEL
                               </Button>
