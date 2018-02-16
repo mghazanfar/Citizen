@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import Background from '../img/receipt.jpg';
-import Citizen from '../img/logo.png';
+import Citizen from '../img/logo.jpeg';
 import Grid from 'material-ui/Grid';
 import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
@@ -87,6 +87,7 @@ class FullWidthGrid extends React.Component<props, {}>{
     discount: null,
     payment: null,
     status: null,
+    back: null,
   };
 
   componentWillMount() {
@@ -97,6 +98,16 @@ class FullWidthGrid extends React.Component<props, {}>{
       let shop = window.location.href.split('shop=')[1];
       shop = shop.split('&')[0];
      this.setState({ shop: shop});
+    }
+    let role = cookies.get('role');
+    if(role === 'Employee'){
+        this.setState({
+            back: `/Shop?shop=${window.location.href.split('shop=')[1].split('&')[0]}`
+        })
+    } else {
+        this.setState({
+            back: `/Inventory?shop=${window.location.href.split('shop=')[1].split('&')[0]}`
+        })
     }
   }
     componentDidMount(){
@@ -187,7 +198,8 @@ class FullWidthGrid extends React.Component<props, {}>{
   render() {
       return (
           <div style={styles.root}>
-            <Grid container spacing={0} style={styles.container}>
+              <div className="no-print">
+                  <Grid container spacing={0} style={styles.container}>
               <Hidden lgDown>
                 <Grid item xs={12} lg={8} style={styles.right}>
                   <div style={{
@@ -216,6 +228,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                           style={{width: '100%'}}
                       />
                       <ModalBills/>
+                        <BilledProductPanel print={true} data={'DataofSelectedItems'}/>
                       <TextField
                           id="search"
                           label="Add discounts"
@@ -238,7 +251,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                         <Button onClick={this.createBill.bind(this)} raised style={styles.button}>
                           Create Bill
                         </Button>
-                        <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
+                        <Link to={this.state.back} style={styles.noUnderline}>
                         <Button raised style={styles.button}>
                           Cancel
                         </Button>
@@ -262,7 +275,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                   </Typography>
                   <Typography type="headline" paragraph style={{color: 'white', textAlign: 'center', width: '60%',}}>Create
                     bills for your customers here.</Typography>
-                  <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
+                  <Link to={this.state.back} style={styles.noUnderline}>
                     <Button raised style={styles.button}>
                       GO TO INVENTORY
                     </Button>
@@ -299,6 +312,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                           style={{width: '100%'}}
                       />
                       <ModalBills/>
+                        <BilledProductPanel print={true} data={'DataofSelectedItems'}/>
                       <TextField
                           id="search"
                           label="Add discounts"
@@ -321,80 +335,115 @@ class FullWidthGrid extends React.Component<props, {}>{
                         <Button onClick={this.createBill.bind(this)} raised style={styles.button}>
                           Create Bill
                         </Button>
-                        <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
+                        <Link to={this.state.back} style={styles.noUnderline}>
                         <Button raised style={styles.button}>
                           Cancel
                         </Button>
                         </Link>
-                        <div className='print-only'>
-                            <div style={{
-                                width: '100%',
-                                height: '100vh',
-                                background: '-webkit-linear-gradient(-125deg, #D000F0, #E60080, #FF0000)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                flexDirection: 'column'
-                            }}>
-                                <img src={Citizen} height={150} width={150} alt="Citizen"/>
-                                <Paper elevation={24}
-                                       style={{maxHeight: 700, overflow: 'auto', width: '96%', padding: 10, height: 'inherit'}}>
-                                    <TextField
-                                        id="search"
-                                        label="Customer name"
-                                        type="search"
-                                        margin="normal"
-                                        style={{width: '100%'}}
-                                    />
-                                    <TextField
-                                        id="search"
-                                        label="Phone number"
-                                        type="search"
-                                        margin="normal"
-                                        style={{width: '100%'}}
-                                    />
-                                    <ModalBills/>
-                                    <TextField
-                                        id="search"
-                                        label="Add discounts"
-                                        type="search"
-                                        margin="normal"
-                                        style={{width: '100%'}}
-                                    />
-                                    <TextField
-                                        id="search"
-                                        label="Total Payment"
-                                        type="search"
-                                        margin="normal"
-                                        style={{width: '100%'}}
-                                    />
-                                    <BillStatus/>
-                                </Paper>
-                                <div style={{
-                                    backgroundColor: 'rgba(255,255,255,0.65)',
-                                    display: 'flex',
-                                    width: '100%',
-                                    height: 100,
-                                    marginTop: 'auto',
-                                    justifyContent: 'space-between'
-                                }}>
-                                    <div style={{width: '30%', fontSize: 13, marginTop: 'auto', marginBottom: 'auto'}}>
-                                        <b>Address:</b> Main G.T. Road, Ravi Toll Plaza, Lahore. <br/>
-                                        <b>Phone:</b> 0324-4417414 , 0323-9999333 <br/>
-                                        <b>Email:</b> nabeelsameer950@gmail.com
-                                    </div>
-                                    <div style={{width: '25%', fontSize: 13, marginTop: 'auto', marginBottom: 'auto'}}>
-                                        <b>NOTE:</b> <br/>
-                                        Booked furniture will not be handed over without showing bill. Original reciept is required
-                                        in order to recieve furniture.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                   </div>
                 </Grid>
               </Hidden>
             </Grid>
+              </div>
+              <div className='print-only'>
+                  <div style={{
+                      width: '100%',
+                      height: '100vh',
+                      background: '-webkit-linear-gradient(-125deg, #D000F0, #E60080, #FF0000)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      flexDirection: 'column'
+                  }}>
+                      <img src={Citizen} height={150} width={150} alt="Citizen"/>
+                      <Paper elevation={24}
+                             style={{maxHeight: 700, overflow: 'auto', width: '96%', padding: 10, height: 'inherit'}}>
+                          <TextField
+                              value={this.state.customerName}
+                              id="search"
+                              label="Customer name"
+                              type="search"
+                              margin="normal"
+                              style={{width: '100%'}}
+                          />
+                          <TextField
+                              value={this.state.phoneNumber}
+                              id="search"
+                              label="Phone number"
+                              type="search"
+                              margin="normal"
+                              style={{width: '100%'}}
+                          />
+                          <Table>
+                              <TableHead>
+                                  <TableRow style={{fontSize: '1rem', fontWeight: 700, color: 'black'}}>
+                                      {/*<TableCell style={{fontWeight: 700}}>id</TableCell>
+              <TableCell numeric style={{fontWeight: 700}}>quantity</TableCell>
+              <TableCell numeric style={{fontWeight: 700}}>salePrice</TableCell>
+              <TableCell numeric style={{fontWeight: 700}}>Name</TableCell>
+              <TableCell numeric style={{fontWeight: 700}}>Color</TableCell>*/}
+                                      <TableCell numeric style={{fontWeight: 700}}>Name</TableCell>
+                                      <TableCell numeric style={{fontWeight: 700}}>Sale Price</TableCell>
+                                      <TableCell numeric style={{fontWeight: 700}}>Quantity</TableCell>
+                                  </TableRow>
+                              </TableHead>
+                              <TableBody>
+                                  {this.setState({ products:cookies.get('billProductQuantity')})}
+                                  {this.state.products.map(n => {
+                                      return (
+                                          <TableRow key={n.productId}>
+                                              <TableCell>{n.productId}</TableCell>
+                                              <TableCell numeric>{n.quantity}</TableCell>
+                                              <TableCell numeric>{n.salePrice}</TableCell>
+                                              <TableCell numeric>{n.name}</TableCell>
+                                              {/*<TableCell numeric>{n.color}</TableCell>
+                        <TableCell><Avatar src={n.image} style={{width: 70, height: 70}}/></TableCell>
+                        <TableCell numeric>{n.category}</TableCell>
+                        <TableCell numeric>{n.quantity}</TableCell>*/}
+                                          </TableRow>
+                                      );
+                                  })}
+                              </TableBody>
+                          </Table>
+                          <TextField
+                              value={this.state.discount}
+                              id="search"
+                              label="Add discounts"
+                              type="search"
+                              margin="normal"
+                              style={{width: '100%'}}
+                          />
+                          <TextField
+                              value={this.state.payment}
+                              id="search"
+                              label="Total Payment"
+                              type="search"
+                              margin="normal"
+                              style={{width: '100%'}}
+                          />
+                          {window.location.href.split('status=')[1]}
+                      </Paper>
+                      <div style={{
+                          backgroundColor: 'rgba(255,255,255,0.65)',
+                          display: 'flex',
+                          width: '100%',
+                          height: 100,
+                          marginTop: 'auto',
+                          justifyContent: 'space-between'
+                      }}>
+                          <div style={{width: '30%', fontSize: 13, marginTop: 'auto', marginBottom: 'auto'}}>
+                              <b>Address:</b> Main G.T. Road, Ravi Toll Plaza, Lahore. <br/>
+                              <b>Phone:</b> 0324-4417414 , 0323-9999333 <br/>
+                              <b>Email:</b> nabeelsameer950@gmail.com
+                          </div>
+                          <div style={{width: '25%', fontSize: 13, marginTop: 'auto', marginBottom: 'auto'}}>
+                              <b>NOTE:</b> <br/>
+                              Booked furniture will not be handed over without showing bill. Original reciept is required
+                              in order to recieve furniture.
+                          </div>
+                      </div>
+                  </div>
+              </div>
           </div>
 
       );

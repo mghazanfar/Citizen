@@ -71,6 +71,7 @@ class FullWidthGrid extends React.Component<props, {}> {
     orders: [],
     date: new Date(),
     shop: null,
+    back: null,
   };
     onChange = date => this.setState({ date })
 
@@ -87,6 +88,16 @@ class FullWidthGrid extends React.Component<props, {}> {
         this.setState({
             shop: url
         });
+        let role = cookies.get('role');
+        if(role === 'Employee'){
+            this.setState({
+                back: `/Shop?shop=${window.location.href.split('shop=')[1]}`
+            });
+        } else {
+            this.setState({
+                back: `/Inventory?shop=${window.location.href.split('shop=')[1]}`
+            })
+        }
   }
 
   render() {
@@ -121,7 +132,7 @@ class FullWidthGrid extends React.Component<props, {}> {
                   </Typography>
                   <Typography type="headline" paragraph style={{color: 'white', textAlign: 'center', width: '60%',}}>Manage
                     your orders here and keep track of their status.</Typography>
-                  <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
+                  <Link to={this.state.back} style={styles.noUnderline}>
                     <Button raised style={styles.button}>
                       GO TO INVENTORY
                     </Button>

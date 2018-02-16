@@ -140,8 +140,6 @@ class FullWidthGrid extends React.Component<props, {}>{
                 image: reader.result
             });
         }
-        console.log(reader.result, this.state);
-        debugger;
         reader.readAsDataURL(file)
     }
 

@@ -5,6 +5,7 @@ import Paper from 'material-ui/Paper';
 import Button from 'material-ui/Button';
 import Modal from './ModalBillDetail';
 import {DatePicker} from 'material-ui-pickers';
+import { CircularProgress } from 'material-ui/Progress';
 
 import server from "../constants";
 import request from "superagent/superagent";
@@ -25,6 +26,7 @@ class ManageDates extends React.Component {
         shopExp: 0,
         others: [],
         amountReceivedToday: 0,
+        loading: true,
     };
     componentWillMount(){
         let url = window.location.href.split('shop=')[1];
@@ -40,6 +42,7 @@ class ManageDates extends React.Component {
         .end((err, bills) => {
           console.log(bills);
             if(bills) {
+                this.setState({ loading: false});
                 if (bills.statusCode !== 200) {
                     alert(bills.body.error.message);
                 } else {
@@ -85,6 +88,7 @@ class ManageDates extends React.Component {
     }
 
     setDate = event => {
+        this.setState({ loading: true});
         let date = event._d.toLocaleDateString().split('/');
         console.log(date);
         let accessToken = cookies.get('accessToken');
@@ -95,6 +99,7 @@ class ManageDates extends React.Component {
                 .end((err, bills) => {
                     console.log(bills);
                     if (bills) {
+                        this.setState({ loading: false});
                         if (bills.statusCode !== 200) {
                             alert(bills.body.error.message);
                         } else {
@@ -142,47 +147,51 @@ class ManageDates extends React.Component {
 
 
     render() {
-      return (
-        <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
-            <Typography type="title" gutterBottom style={{alignSelf:'flex-start', color:'white', marginTop:10}} >
-                {<DatePicker onChange={this.setDate} style={{marginLeft: 0}}/>}</Typography>
-            <div style={{display:'flex', width:'inherit'}}>
-                <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'70%'}}>
-                <List>
-                    {this.state.orders.map((value, index) => (
-                    <ListItem key={value} dense style={styles.listItem} divider button={false} >
-                    <Typography type="title" gutterBottom>
-                        {++index}
-                    </Typography>
-                        <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>{value.customerName}</Typography>} secondary={<span>{value.phoneNumber}
-                        <Typography type="caption">
+        if(this.state.loading === true){
+            return (<CircularProgress/>);
+        } else {
+            return (
+                <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
+                    <Typography type="title" gutterBottom style={{alignSelf:'flex-start', color:'white', marginTop:10}} >
+                        {<DatePicker onChange={this.setDate} style={{marginLeft: 0}}/>}</Typography>
+                    <div style={{display:'flex', width:'inherit'}}>
+                        <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'70%'}}>
+                            <List>
+                                {this.state.orders.map((value, index) => (
+                                    <ListItem key={value} dense style={styles.listItem} divider button={false} >
+                                        <Typography type="title" gutterBottom>
+                                            {++index}
+                                        </Typography>
+                                        <ListItemText primary={<Typography type="title" gutterBottom style={{color:'black'}}>{value.customerName}</Typography>} secondary={<span>{value.phoneNumber}
+                                            <Typography type="caption">
                             Rs. {value.payment}
                         </Typography></span>}/>
-                        <ListItemSecondaryAction />
-                        <Modal order={value} />
-                        {/*<Button color="accent">
+                                        <ListItemSecondaryAction />
+                                        <Modal order={value} />
+                                        {/*<Button color="accent">
                         DELETE
                         </Button>*/}
-                    </ListItem>
-                    ))}
-                </List>
-                </Paper>
-                <Paper elevation={24} style={{ maxHeight: 400, height:'100%', overflow:'auto', width:'30%', marginLeft:'2rem'}}>
-                <List subheader={<ListSubheader>Today's Expenses:</ListSubheader>}>
-                    <ListItem key={'today'} dense style={styles.listItem} button={false} >
-                    <Typography type="body 2" gutterBottom>
-                        OnShop for customers Expenses: On drinks: {this.state.drinks} <br/> Shop: ${this.state.shopExp}
-                    </Typography>
-                    <Typography type="body 2" gutterBottom>
-                        Amount recieved: {this.state.amountReceivedToday}
-                    </Typography>
-                        <ListItemSecondaryAction />
-                    </ListItem>
-                </List>
-                </Paper>
-            </div>
-        </div>
-      );
+                                    </ListItem>
+                                ))}
+                            </List>
+                        </Paper>
+                        <Paper elevation={24} style={{ maxHeight: 400, height:'100%', overflow:'auto', width:'30%', marginLeft:'2rem'}}>
+                            <List subheader={<ListSubheader>Today's Expenses:</ListSubheader>}>
+                                <ListItem key={'today'} dense style={styles.listItem} button={false} >
+                                    <Typography type="body 2" gutterBottom>
+                                        OnShop for customers Expenses: On drinks: {this.state.drinks} <br/> Shop: ${this.state.shopExp}
+                                    </Typography>
+                                    <Typography type="body 2" gutterBottom>
+                                        Amount recieved: {this.state.amountReceivedToday}
+                                    </Typography>
+                                    <ListItemSecondaryAction />
+                                </ListItem>
+                            </List>
+                        </Paper>
+                    </div>
+                </div>
+            );
+        }
     }
   }
           

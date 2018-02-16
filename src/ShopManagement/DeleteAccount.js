@@ -9,7 +9,7 @@ import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
 import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
 import Logout from '../inventory/Logout';
-
+import {LinearProgress} from 'material-ui/Progress';
 import server from "../constants";
 import request from "superagent/superagent";
 import Cookies from 'universal-cookie';
@@ -71,6 +71,7 @@ class FullWidthGrid extends React.Component <props, {}>{
   state = {
     users: [],
     shop: null,
+    loading: true
   };
 
   componentWillMount(){
@@ -85,29 +86,48 @@ class FullWidthGrid extends React.Component <props, {}>{
             shop: url
         });
     }
+      if(cookies.get('role') === 'Employee'){
+          window.location.href =    `/Shop?shop=${url}`;
+      }
     request.get(`${server.path}/api/Accounts?access_token=${cookies.get('accessToken').accessToken}`)
         .end((err, res) => {
-          if(res.status === 200){
-            this.setState({
-                users: res.body
-            });
+          if(res){
+              this.setState({
+                  loading: false
+              })
+              if(res.status === 200){
+                  this.setState({
+                      users: res.body
+                  });
+              } else {
+                  alert(res.body.error.message);
+              }
           } else {
-              alert(res.body.error.message);
+              alert('Service Unreachable');
           }
         });
   }
 
   delete(id, username){
-
+      this.setState({
+          loading: true
+      })
     if(username === 'superadmin') {
       alert('Authorization Required');
     } else {
         request.delete(`${server.path}/api/Accounts/${id}?access_token=${cookies.get('accessToken').accessToken}`)
             .end((err, res) => {
-                if(res.statusCode === 200) {
-                    window.location.href = '/DeleteAccount'
+                if(res){
+                    this.setState({
+                        loading: false
+                    })
+                    if(res.statusCode === 200) {
+                        window.location.href = '/DeleteAccount?shop' + window.location.href.split('shop=')[1]
+                    } else {
+                        alert(res.body.error.message);
+                    }
                 } else {
-                    alert(res.body.error.message);
+                    alert('Service Unreachable');
                 }
             });
     }
@@ -115,73 +135,90 @@ class FullWidthGrid extends React.Component <props, {}>{
   }
 
   render() {
-      return (
-          <div style={styles.root}>
-            <Grid container spacing={0} style={styles.container}>
-              <Hidden lgDown>
-                <Grid item xs={12} lg={8} style={styles.right}>
-                  <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '95%'}}>
-                    <Paper elevation={24} style={{maxHeight: 400, overflow: 'auto', width: 'inherit'}}>
-                      <List>
-                          {this.state.users.map(value => (
-                              <ListItem key={value.username} button style={styles.listItem} divider>
-                                <ListItemText primary={<Typography type="title" gutterBottom style={{color: 'black'}}>{value.username}</Typography>}/>
-                                <ListItemSecondaryAction/>
-                                <Button color="accent" onClick={this.delete.bind(null, value.id)}>
-                                  DELETE
-                                </Button>
-                              </ListItem>
-                          ))}
-                      </List>
-                    </Paper>
-                  </div>
-                </Grid>
-              </Hidden>
+      if(this.state.loading === true){
+          return <LinearProgress/>
+      }
+          return (
+              <div style={styles.root}>
+                  <Grid container spacing={0} style={styles.container}>
+                      <Hidden lgDown>
+                          <Grid item xs={12} lg={8} style={styles.right}>
+                              <div style={{
+                                  display: 'flex',
+                                  flexDirection: 'column',
+                                  alignItems: 'center',
+                                  width: '95%'
+                              }}>
+                                  <Paper elevation={24} style={{maxHeight: 400, overflow: 'auto', width: 'inherit'}}>
+                                      <List>
+                                          {this.state.users.map(value => (
+                                              <ListItem key={value.username} button style={styles.listItem} divider>
+                                                  <ListItemText primary={<Typography type="title" gutterBottom
+                                                                                     style={{color: 'black'}}>{value.username}</Typography>}/>
+                                                  <ListItemSecondaryAction/>
+                                                  <Button color="accent" onClick={this.delete.bind(null, value.id)}>
+                                                      DELETE
+                                                  </Button>
+                                              </ListItem>
+                                          ))}
+                                      </List>
+                                  </Paper>
+                              </div>
+                          </Grid>
+                      </Hidden>
 
-              <Grid item xs={12} lg={4} style={styles.left}>
-                <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    marginTop: '4rem',
-                    marginBottom: '4rem',
-                }}>
-                  <Typography type="display3" gutterBottom style={{color: 'white', textAlign: 'center'}}>
-                    DELETE ACCOUNT
-                  </Typography>
-                  <Typography type="headline" paragraph style={{color: 'white', textAlign: 'center', width: '60%',}}>Here,
-                    you can delete a user.</Typography>
-                  <Link to={`/ManageShop?shop=${this.state.shop}`} style={styles.noUnderline}>
-                    <Button raised style={styles.button}>
-                      GO TO SHOP MANAGEMENT
-                    </Button>
-                  </Link>
-                  <Logout/>
-                </div>
-              </Grid>
+                      <Grid item xs={12} lg={4} style={styles.left}>
+                          <div style={{
+                              display: 'flex',
+                              flexDirection: 'column',
+                              alignItems: 'center',
+                              marginTop: '4rem',
+                              marginBottom: '4rem',
+                          }}>
+                              <Typography type="display3" gutterBottom style={{color: 'white', textAlign: 'center'}}>
+                                  DELETE ACCOUNT
+                              </Typography>
+                              <Typography type="headline" paragraph
+                                          style={{color: 'white', textAlign: 'center', width: '60%',}}>Here,
+                                  you can delete a user.</Typography>
+                              <Link to={`/ManageShop?shop=${this.state.shop}`} style={styles.noUnderline}>
+                                  <Button raised style={styles.button}>
+                                      GO TO SHOP MANAGEMENT
+                                  </Button>
+                              </Link>
+                              <Logout/>
+                          </div>
+                      </Grid>
 
-              <Hidden lgUp>
-                <Grid item xs={12} lg={8} style={styles.right}>
-                  <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '95%'}}>
-                    <Paper elevation={24} style={{maxHeight: 400, overflow: 'auto', width: 'inherit'}}>
-                      <List>
-                          {this.state.users.map(value => (
-                              <ListItem key={value.username} button style={styles.listItem} divider>
-                                <ListItemText primary={<Typography type="title" gutterBottom style={{color: 'black'}}>{value.username}</Typography>}/>
-                                <ListItemSecondaryAction/>
-                                <Button color="accent" onClick={this.delete.bind(null, value.id, value.username)}>
-                                  DELETE
-                                </Button>
-                              </ListItem>
-                          ))}
-                      </List>
-                    </Paper>
-                  </div>
-                </Grid>
-              </Hidden>
-            </Grid>
-          </div>
-      );
+                      <Hidden lgUp>
+                          <Grid item xs={12} lg={8} style={styles.right}>
+                              <div style={{
+                                  display: 'flex',
+                                  flexDirection: 'column',
+                                  alignItems: 'center',
+                                  width: '95%'
+                              }}>
+                                  <Paper elevation={24} style={{maxHeight: 400, overflow: 'auto', width: 'inherit'}}>
+                                      <List>
+                                          {this.state.users.map(value => (
+                                              <ListItem key={value.username} button style={styles.listItem} divider>
+                                                  <ListItemText primary={<Typography type="title" gutterBottom
+                                                                                     style={{color: 'black'}}>{value.username}</Typography>}/>
+                                                  <ListItemSecondaryAction/>
+                                                  <Button color="accent"
+                                                          onClick={this.delete.bind(null, value.id, value.username)}>
+                                                      DELETE
+                                                  </Button>
+                                              </ListItem>
+                                          ))}
+                                      </List>
+                                  </Paper>
+                              </div>
+                          </Grid>
+                      </Hidden>
+                  </Grid>
+              </div>
+          );
   }
 }
 

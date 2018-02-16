@@ -5,6 +5,7 @@ import { GridListTile, GridListTileBar } from 'material-ui/GridList';
 import { Link } from 'react-router-dom';
 import Grid from 'material-ui/Grid';
 import shop1 from '../img/shop1.jpg';
+import {CircularProgress} from 'material-ui/Progress';
 
 import Cookies from 'universal-cookie';
 import server from "../constants";
@@ -27,8 +28,9 @@ const styles = theme => ({
 
 class TitlebarGridList extends React.Component<props, {}>{
   state = {
-    shops: []
-  }
+    shops: [],
+    loading: true
+  };
   componentWillMount(){
     let accessToken = cookies.get('accessToken').accessToken;
     request.get(`${server.path}/api/Shops/shop?access_token=${accessToken}`)
@@ -40,7 +42,8 @@ class TitlebarGridList extends React.Component<props, {}>{
                     value.img = shop1;
                 });
                 this.setState({
-                    shops: tileData
+                    shops: tileData,
+                    loading: false
                 });
             } else {
                 alert('Service Unreachable');
@@ -48,24 +51,29 @@ class TitlebarGridList extends React.Component<props, {}>{
         });
   }
   render() {
-      return (
-          <div>
-            <Grid spacing='40' container justify="center" style={{width: '100%', margin: 0}}>
-                {this.state.shops.map(tile => (
-                    <Grid item xs={10} sm={8} lg={5}>
-                      <GridListTile key={tile.img} cols={3} rows={1.5} style={{listStyle: 'none'}}>
-                        <Link to={`/Shop?shop=${tile.id}`}><img src={tile.img} alt={tile.title} width="100%" height="100%"/>
-                          <GridListTileBar
-                              title={tile.title}
-                              subtitle={<span>{tile.address}</span>}
-                              style={{textAlign: 'left'}}
-                          /></Link>
-                      </GridListTile>
-                    </Grid>
-                ))}
-            </Grid>
-          </div>
-      );
+      if (this.state.loading === true){
+          return <CircularProgress/>
+      } else {
+          return (
+              <div>
+                  <Grid spacing='40' container justify="center" style={{width: '100%', margin: 0}}>
+                      {this.state.shops.map(tile => (
+                          <Grid item xs={10} sm={8} lg={5}>
+                              <GridListTile key={tile.img} cols={3} rows={1.5} style={{listStyle: 'none'}}>
+                                  <Link to={`/Shop?shop=${tile.id}`}><img src={tile.img} alt={tile.title} width="100%"
+                                                                          height="100%"/>
+                                      <GridListTileBar
+                                          title={tile.title}
+                                          subtitle={<span>{tile.address}</span>}
+                                          style={{textAlign: 'left'}}
+                                      /></Link>
+                              </GridListTile>
+                          </Grid>
+                      ))}
+                  </Grid>
+              </div>
+          );
+      }
   }
 }
 

@@ -78,7 +78,7 @@ class FullWidthGrid extends React.Component{
     shop: null,
     name: null,
     description: null,
-    img: Sofa,
+    img: null,
     file: null,
   };
 
@@ -89,14 +89,14 @@ class FullWidthGrid extends React.Component{
       if(window.location.href.split('?')[1] === undefined){
           window.location.href = '/Login';
       }
-      let url = window.location.href.split('?')[1];
+      let url = window.location.href.split('shop=')[1];
       this.setState({
-          shop: url.split('=')[1].split('&')[0]
+          shop: url.split('&')[0]
       });
   }
 
     _handleImageChange(e) {
-;        e.preventDefault();
+      e.preventDefault();
 
         let reader = new FileReader();
         let file = e.target.files[0];
@@ -106,8 +106,7 @@ class FullWidthGrid extends React.Component{
                 file: file,
                 img: reader.result
             });
-        }
-
+        };
         reader.readAsDataURL(file)
     }
     handleChange = (name, description) => event => {
@@ -156,7 +155,7 @@ class FullWidthGrid extends React.Component{
                                       onChange={this.handleChange('description')}
                                   />
                                   <div style={{display: 'flex'}}>
-                                      <Avatar src={this.state.image} style={styles.avatar}/>
+                                      <Avatar src={this.state.img} style={styles.avatar}/>
                                       <input
                                           accept="image/*"
                                           style={{display: 'none'}}
@@ -201,7 +200,7 @@ class FullWidthGrid extends React.Component{
                               </Typography>
                               <Typography type="headline" paragraph style={{color: 'white', width: '60%',}}
                                           align="center">Here, You can add a category from here.</Typography>
-                              <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
+                              <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1].split('&')[0]}`} style={styles.noUnderline}>
                                   <Button raised style={styles.button}>
                                       GO TO INVENTORY
                                   </Button>
@@ -214,7 +213,7 @@ class FullWidthGrid extends React.Component{
                               </Typography>
                               <Typography type="headline" paragraph style={{color: 'white', width: '60%',}}
                                           align="center">Here, You can add a category from here.</Typography>
-                              <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
+                              <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1].split('&')[0]}`} style={styles.noUnderline}>
                                   <Button raised style={styles.button}>
                                       GO TO INVENTORY
                                   </Button>

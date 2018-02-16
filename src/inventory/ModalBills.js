@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import {LinearProgress} from 'material-ui/Progress';
 import Dialog, {
   DialogActions,
   DialogContent,
@@ -30,7 +31,8 @@ const theme = createMuiTheme({
 class ResponsiveDialog extends React.Component<props, {}> {
   state = {
     open: false,
-    products: []
+    products: [],
+    loading: true
   };
   componentWillMount() {
       if(cookies.get('accessToken').accessToken){
@@ -39,6 +41,9 @@ class ResponsiveDialog extends React.Component<props, {}> {
           request.get(`${server.path}/api/Shops/${shop}?access_token=${accessToken}`)
           .end((err, res) => {
               if (res) {
+                  this.setState({
+                      loading: false
+                  });
                   if (res.statusCode === 200) {
                       this.setState({
                           products: res.body
@@ -63,34 +68,37 @@ class ResponsiveDialog extends React.Component<props, {}> {
 
   render() {
     const { fullScreen, stock } = this.props;
+    if (this.state.loading === true){
+        return <LinearProgress/>
+    } else {
+        return (
+            <div style={{display: 'flex', marginTop: '1rem'}}>
+                <Button raised style={{color: 'white', backgroundColor: 'black'}} onClick={this.handleClickOpen}>
+                    {stock ? 'Claim return items' : 'ADD ITEMS'}
+                </Button>
 
-    return (
-      <div style={{display:'flex', marginTop:'1rem'}}>
-        <Button raised style={{ color:'white', backgroundColor:'black'}} onClick={this.handleClickOpen}>
-        {stock?  'Claim return items' : 'ADD ITEMS' }
-        </Button>
-        
-    <MuiThemeProvider theme={theme}>
-        <Dialog
-          fullScreen={fullScreen}
-          open={this.state.open}
-          onRequestClose={this.handleRequestClose}
-        >
-        <div style={{backgroundColor:'#424242'}}>
-          <DialogTitle><span  style={{color:'white'}}>Add Items!</span></DialogTitle>
-          <DialogContent>
-            <ProductSellingPanel />
-          </DialogContent>
-          <DialogActions>
-          <Button onClick={this.handleRequestClose} color="primary">
-              OK
-        </Button>
-          </DialogActions>
-          </div>
-        </Dialog>
-    </MuiThemeProvider>
-      </div>
-    );
+                <MuiThemeProvider theme={theme}>
+                    <Dialog
+                        fullScreen={fullScreen}
+                        open={this.state.open}
+                        onRequestClose={this.handleRequestClose}
+                    >
+                        <div style={{backgroundColor: '#424242'}}>
+                            <DialogTitle><span style={{color: 'white'}}>Add Items!</span></DialogTitle>
+                            <DialogContent>
+                                <ProductSellingPanel/>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={this.handleRequestClose} color="primary">
+                                    OK
+                                </Button>
+                            </DialogActions>
+                        </div>
+                    </Dialog>
+                </MuiThemeProvider>
+            </div>
+        );
+    }
   }
 }
 

@@ -9,7 +9,7 @@ import setting from '../img/settings.svg';
 import { withStyles } from 'material-ui/styles';
 import { Manager, Target, Popper } from 'react-popper';
 import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
-import { Link } from 'react-router-dom';
+import { CircularProgress } from 'material-ui/Progress';
 
 import server from "../constants";
 import request from "superagent/superagent";
@@ -34,6 +34,7 @@ const styles = {
 class MenuListComposition extends React.Component {
   state = {
     open: false,
+    buttonText: 'Logout'
   };
 
   handleClick = () => {
@@ -45,16 +46,28 @@ class MenuListComposition extends React.Component {
   };
 
   logout = () => {
+    this.setState({
+        buttonText: <CircularProgress/>
+    })
     var accessToken = cookies.get('accessToken').accessToken;
     if(accessToken === undefined ){
       window.location.href = '/';
     }
     request.post(server.path+'/api/Accounts/logout?access_token='+accessToken)
         .end((err, res) => {
-          if(res.status === 204) {
-            cookies.remove('accessToken');
-            window.location.href = '/'
+      if(res) {
+          if (res.status === 204) {
+              cookies.remove('accessToken');
+              window.location.href = '/'
+          } else {
+              alert(res.body.error.message);
+              this.setState({
+                  buttonText: 'Logout'
+              })
           }
+      } else {
+        alert('Service Unrachable');
+      }
         });
   }
 
@@ -84,9 +97,7 @@ class MenuListComposition extends React.Component {
               <Grow in={open} id="menu-list" style={{ transformOrigin: '0 0 0' }}>
                 <Paper>
                   <MenuList role="menu">
-                    <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                    <MenuItem onClick={this.logout.bind(this)}>Logout</MenuItem>
+                    <MenuItem onClick={this.logout.bind(this)}>{this.state.buttonText}</MenuItem>
                   </MenuList>
                 </Paper>
               </Grow>

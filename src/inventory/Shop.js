@@ -63,6 +63,7 @@ class FullWidthGrid extends React.Component<props, {}> {
                    this.setState({
                        role : role.body.role.name
                    });
+                   cookies.set('role', role.body.role.name);
                 } else {
                     alert(role.body.error.message);
                 }

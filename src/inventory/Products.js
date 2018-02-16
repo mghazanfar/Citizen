@@ -71,7 +71,8 @@ noUnderline: {
 class FullWidthGrid  extends React.Component {
     state = {
         shop: null,
-        products : []
+        products : [],
+        back: null,
     };
     componentWillMount(){
         if(cookies.get('accessToken') === undefined) {
@@ -83,6 +84,17 @@ class FullWidthGrid  extends React.Component {
             let url = window.location.href.split('shop=')[1].split('&')[0];
             this.setState({
                 shop: url
+            });
+        }
+        console.log(cookies.get('role'));
+        let role = cookies.get('role');
+        if(role === 'Employee'){
+            this.setState({
+                back: `/Shop?shop=${window.location.href.split('shop=')[1].split('&')[0]}`
+            });
+        } else {
+            this.setState({
+                back: `/Inventory?shop=${window.location.href.split('shop=')[1].split('&')[0]}`
             });
         }
     }
@@ -108,7 +120,7 @@ class FullWidthGrid  extends React.Component {
                                             style={{color: 'white', textAlign: 'center', width: '60%',}}>Here, you can see
                                     all the products of all/specific categories.</Typography>
                             </Hidden>
-                            <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1].split('&')[0]}`} style={styles.noUnderline}>
+                            <Link to={this.state.back} style={styles.noUnderline}>
                                 <Button raised style={styles.button}>
                                     GO TO INVENTORY
                                 </Button>
@@ -132,7 +144,7 @@ class FullWidthGrid  extends React.Component {
                                             style={{color: 'white', textAlign: 'center', width: '60%',}}>Here, you can see
                                     all the products of all/specific categories.</Typography>
                             </Hidden>
-                            <Link to={`/Inventory?shop=${window.location.href.split('shop=')[1].split('&')[0]}`} style={styles.noUnderline}>
+                            <Link to={this.state.back} style={styles.noUnderline}>
                                 <Button raised style={styles.button}>
                                     GO TO INVENTORY
                                 </Button>

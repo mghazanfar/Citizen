@@ -60,6 +60,9 @@ class ResponsiveDialog extends React.Component <props, {}>{
                         data, (err, res) => {
                             console.log(res);
                             if (res) {
+                                this.setState({
+                                    modifyCategory: 'MODIFY CATEGODY'
+                                });
                                 if (res.statusCode === 200) {
                                     this.setState({open: true});
                                 } else {
@@ -81,9 +84,9 @@ class ResponsiveDialog extends React.Component <props, {}>{
         this.setState({
             addCategory: <CircularProgress />
         });
-        cloudinary.v2.uploader.upload(this.props.addData.img,
+        cloudinary.v2.uploader.upload(this.props.addData.image,
             (error, result) => {
-                console.log(result)
+                console.log(error, result)
                 if (error) {
                     alert("Error uploading image")
                 } else {
@@ -98,6 +101,9 @@ class ResponsiveDialog extends React.Component <props, {}>{
                         .send(data)
                         .end((err, res) => {
                             if (res) {
+                                this.setState({
+                                    addCategory: 'ADD CATEGORY'
+                                });
                                 if (res.statusCode === 200) {
                                     this.setState({open: true});
                                 } else {
@@ -106,7 +112,7 @@ class ResponsiveDialog extends React.Component <props, {}>{
                             } else {
                                 alert('Service Unreachable');
                                 this.setState({
-                                    modifyCategory: 'ADD CATEGORY'
+                                    addCategory: 'ADD CATEGORY'
                                 });
                             }
                         });

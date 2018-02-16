@@ -75,6 +75,10 @@ class FullWidthGrid extends React.Component<props, {}> {
         this.setState({
             shop: url
         });
+        let role = cookies.get('role');
+        if(role === 'Employee'){
+          window.location.href = `/Shop?shop=${window.location.href.split('shop=')[1]}`
+        }
     }
 
   render() {
