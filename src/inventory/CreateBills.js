@@ -112,9 +112,11 @@ class FullWidthGrid extends React.Component<props, {}>{
     }
   }
     componentDidMount(){
-        this.setState({
-            shop: window.location.href.split('shop=')[1]
-        });
+        this.repeat();
+        let billProducts = cookies.get('billProductQuantity');
+        if(billProducts){
+            cookies.remove('billProductQuantity');
+        }
     }
 
     handleChange = (name, description) => event => {
@@ -195,6 +197,16 @@ class FullWidthGrid extends React.Component<props, {}>{
         }
     }
   }
+  repeat = () => {
+      setInterval(() => {
+          let billProducts = cookies.get('billProductQuantity');
+          if(billProducts){
+              this.setState({
+                  billProducts: billProducts
+              })
+          }
+      }, 5000)
+  };
 
   render() {
       return (
@@ -229,7 +241,28 @@ class FullWidthGrid extends React.Component<props, {}>{
                           style={{width: '100%'}}
                       />
                       <ModalBills/>
-                        <BilledProductPanel print={true} data={'DataofSelectedItems'}/>
+                        <Table>
+                            <TableHead>
+                                <TableRow style={{fontSize: '1rem', fontWeight: 700, color: 'black'}}>
+                                    <TableCell numeric style={{fontWeight: 700}}>ID</TableCell>
+                                    <TableCell numeric style={{fontWeight: 700}}>Name</TableCell>
+                                    <TableCell numeric style={{fontWeight: 700}}>Quantity</TableCell>
+                                    <TableCell numeric style={{fontWeight: 700}}>Sale Price</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {this.state.billProducts.map(n => {
+                                    return (
+                                        <TableRow key={n.productId}>
+                                            <TableCell>{n.productId}</TableCell>
+                                            <TableCell numeric>{n.name}</TableCell>
+                                            <TableCell numeric>{n.quantity}</TableCell>
+                                            <TableCell numeric>{n.salePrice}</TableCell>
+                                        </TableRow>
+                                    );
+                                })}
+                            </TableBody>
+                        </Table>
                       <TextField
                           id="search"
                           label="Add discounts"
@@ -378,18 +411,23 @@ class FullWidthGrid extends React.Component<props, {}>{
                           <Table>
                               <TableHead>
                                   <TableRow style={{fontSize: '1rem', fontWeight: 700, color: 'black'}}>
-                                      {/*<TableCell style={{fontWeight: 700}}>id</TableCell>
-              <TableCell numeric style={{fontWeight: 700}}>quantity</TableCell>
-              <TableCell numeric style={{fontWeight: 700}}>salePrice</TableCell>
-              <TableCell numeric style={{fontWeight: 700}}>Name</TableCell>
-              <TableCell numeric style={{fontWeight: 700}}>Color</TableCell>*/}
-                                      <TableCell numeric style={{fontWeight: 700}}>Product ID</TableCell>
+                                      <TableCell numeric style={{fontWeight: 700}}>ID</TableCell>
+                                      <TableCell numeric style={{fontWeight: 700}}>Name</TableCell>
                                       <TableCell numeric style={{fontWeight: 700}}>Quantity</TableCell>
                                       <TableCell numeric style={{fontWeight: 700}}>Sale Price</TableCell>
-                                      <TableCell numeric style={{fontWeight: 700}}>Name</TableCell>
                                   </TableRow>
                               </TableHead>
                               <TableBody>
+                                  {this.state.billProducts.map(n => {
+                                      return (
+                                          <TableRow key={n.productId}>
+                                              <TableCell>{n.productId}</TableCell>
+                                              <TableCell numeric>{n.name}</TableCell>
+                                              <TableCell numeric>{n.quantity}</TableCell>
+                                              <TableCell numeric>{n.salePrice}</TableCell>
+                                          </TableRow>
+                                      );
+                                  })}
                               </TableBody>
                           </Table>
                           <TextField
