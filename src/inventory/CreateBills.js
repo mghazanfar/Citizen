@@ -15,6 +15,7 @@ import BillStatus from './BillStatus';
 import Menu from './Menu';
 import './clickables.css';
 import Logout from './Logout';
+import { CircularProgress } from 'material-ui/Progress';
 import Table, {
     TableBody,
     TableCell,
@@ -88,7 +89,8 @@ class FullWidthGrid extends React.Component<props, {}>{
     payment: null,
     status: null,
     back: null,
-    billProducts: []
+    billProducts: [],
+    buttonText: 'Create Bill'
   };
 
   componentWillMount() {
@@ -178,8 +180,14 @@ class FullWidthGrid extends React.Component<props, {}>{
                 else if (data.status === null || data.status === undefined) {
                     alert('Please select bill status');
                 } else {
+                    this.setState({
+                        buttonText: <CircularProgress />
+                    })
                     let accessToken = cookies.get('accessToken').accessToken;
                     request.post(`${server.path}/api/Bills?access_token=${accessToken}`).send(data).end((err, res) => {
+                        this.setState({
+                            buttonText:'Create Bill'
+                        })
                         if(res) {
                             console.log(res);
                             if (res.statusCode !== 200) {
@@ -283,7 +291,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                     </Paper>
                     <div style={{display: 'flex', justifyContent: 'space-around', width: 'inherit'}}>
                         <Button onClick={this.createBill.bind(this)} raised style={styles.button}>
-                          Create Bill
+                            {this.state.buttonText}
                         </Button>
                         <Link to={this.state.back} style={styles.noUnderline}>
                         <Button raised style={styles.button}>

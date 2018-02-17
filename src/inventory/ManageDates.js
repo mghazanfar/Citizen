@@ -153,9 +153,10 @@ class ManageDates extends React.Component {
             return (
                 <div style={{ display:'flex', flexDirection:'column', alignItems:'center', width:'95%' }}>
                     <Typography type="title" gutterBottom style={{alignSelf:'flex-start', color:'white', marginTop:10}} >
-                        {<DatePicker onChange={this.setDate} style={{marginLeft: 0}}/>}</Typography>
+                        </Typography>
                     <div style={{display:'flex', width:'inherit'}}>
                         <Paper elevation={24} style={{maxHeight:400, overflow:'auto', width:'70%'}}>
+                            {<DatePicker onChange={this.setDate} style={{color: 'white'}}/>}
                             <List>
                                 {this.state.orders.map((value, index) => (
                                     <ListItem key={value} dense style={styles.listItem} divider button={false} >
