@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="33d49f79-8531-4b4a-94b8-936517c03689" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inventory/CreateBills.js" afterPath="$PROJECT_DIR$/src/inventory/CreateBills.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inventory/ManageDates.js" afterPath="$PROJECT_DIR$/src/inventory/ManageDates.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inventory/Categories.js" afterPath="$PROJECT_DIR$/src/inventory/Categories.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,16 +17,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CreateBills.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CreateBills.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/inventory/CreateBills.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="184" column="22" lean-forward="false" selection-start-line="184" selection-start-column="22" selection-end-line="184" selection-end-column="22" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-                <element signature="e#6689#6932#0" expanded="false" />
-                <element signature="e#8381#9781#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="180">
+              <caret line="194" column="36" lean-forward="true" selection-start-line="194" selection-start-column="36" selection-end-line="194" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Categories.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/inventory/Categories.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="329">
+              <caret line="101" column="53" lean-forward="true" selection-start-line="101" selection-start-column="53" selection-end-line="101" selection-end-column="53" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -36,23 +41,8 @@
         <entry file="file://$PROJECT_DIR$/src/inventory/ManageDates.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="7" column="34" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding>
-                <marker date="1518873900112" expanded="true" signature="658:8849" ph="{...}" />
-                <marker date="1518873900112" expanded="true" signature="5927:8845" ph="{...}" />
-                <marker date="1518873900112" expanded="true" signature="6027:8839" ph="{...}" />
-                <marker date="1518873900112" expanded="true" signature="6066:8814" ph="&lt;div/&gt;" />
-                <marker date="1518873900112" expanded="true" signature="6337:8791" ph="&lt;div/&gt;" />
-                <marker date="1518873900112" expanded="true" signature="6409:7773" ph="&lt;Paper/&gt;" />
-                <marker date="1518873900112" expanded="true" signature="6607:7740" ph="&lt;List/&gt;" />
-                <marker date="1518873900112" expanded="true" signature="6725:7668" ph="&lt;ListItem/&gt;" />
-                <marker date="1518873900112" expanded="true" signature="7527:7619" ph="/*...*/" />
-                <marker date="1518873900112" expanded="true" signature="7798:8764" ph="&lt;Paper/&gt;" />
-                <marker date="1518873900112" expanded="true" signature="7939:8731" ph="&lt;List/&gt;" />
-                <marker date="1518873900112" expanded="true" signature="8039:8695" ph="&lt;ListItem/&gt;" />
-                <marker date="1518873900112" expanded="true" signature="8146:8371" ph="&lt;Typography/&gt;" />
-                <marker date="1518873900112" expanded="true" signature="8408:8587" ph="&lt;Typography/&gt;" />
-              </folding>
+              <caret line="7" column="34" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -83,7 +73,7 @@
         <entry file="file://$PROJECT_DIR$/src/inventory/BilledProductPanel.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="945">
-              <caret line="71" column="79" lean-forward="true" selection-start-line="71" selection-start-column="79" selection-end-line="71" selection-end-column="79" />
+              <caret line="71" column="79" lean-forward="false" selection-start-line="71" selection-start-column="79" selection-end-line="71" selection-end-column="79" />
               <folding />
             </state>
           </provider>
@@ -136,7 +126,6 @@
         <option value="$PROJECT_DIR$/src/login/Grid.js" />
         <option value="$PROJECT_DIR$/src/ShopManagement/DeleteAccount.js" />
         <option value="$PROJECT_DIR$/src/ShopManagement/ShopManagement.js" />
-        <option value="$PROJECT_DIR$/src/inventory/Categories.js" />
         <option value="$PROJECT_DIR$/src/inventory/AddCategory.js" />
         <option value="$PROJECT_DIR$/src/inventory/ModalCategory.js" />
         <option value="$PROJECT_DIR$/src/inventory/ModifyCategory.js" />
@@ -145,6 +134,7 @@
         <option value="$PROJECT_DIR$/src/inventory/BilledProductPanel.js" />
         <option value="$PROJECT_DIR$/src/inventory/ManageDates.js" />
         <option value="$PROJECT_DIR$/src/inventory/CreateBills.js" />
+        <option value="$PROJECT_DIR$/src/inventory/Categories.js" />
       </list>
     </option>
   </component>
@@ -189,7 +179,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -213,6 +202,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -275,12 +265,13 @@
       <workItem from="1518842722008" duration="525000" />
       <workItem from="1518843748947" duration="131000" />
       <workItem from="1518844161638" duration="3498000" />
-      <workItem from="1518873157573" duration="1077000" />
+      <workItem from="1518873157573" duration="1173000" />
+      <workItem from="1518879995231" duration="741000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67425000" />
+    <option name="totallyTimeSpent" value="68262000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -293,7 +284,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="258" y="24" width="1108" height="744" extended-state="4" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16682027" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -303,7 +293,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.57096773" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.57096773" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -536,13 +526,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/Categories.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="916">
-          <caret line="114" column="67" lean-forward="true" selection-start-line="114" selection-start-column="67" selection-end-line="114" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/inventory/ModalCategory.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -642,7 +625,7 @@
     <entry file="file://$PROJECT_DIR$/src/inventory/BilledProductPanel.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="945">
-          <caret line="71" column="79" lean-forward="true" selection-start-line="71" selection-start-column="79" selection-end-line="71" selection-end-column="79" />
+          <caret line="71" column="79" lean-forward="false" selection-start-line="71" selection-start-column="79" selection-end-line="71" selection-end-column="79" />
           <folding />
         </state>
       </provider>
@@ -660,35 +643,24 @@
     <entry file="file://$PROJECT_DIR$/src/inventory/ManageDates.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="7" column="34" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <marker date="1518873900112" expanded="true" signature="658:8849" ph="{...}" />
-            <marker date="1518873900112" expanded="true" signature="5927:8845" ph="{...}" />
-            <marker date="1518873900112" expanded="true" signature="6027:8839" ph="{...}" />
-            <marker date="1518873900112" expanded="true" signature="6066:8814" ph="&lt;div/&gt;" />
-            <marker date="1518873900112" expanded="true" signature="6337:8791" ph="&lt;div/&gt;" />
-            <marker date="1518873900112" expanded="true" signature="6409:7773" ph="&lt;Paper/&gt;" />
-            <marker date="1518873900112" expanded="true" signature="6607:7740" ph="&lt;List/&gt;" />
-            <marker date="1518873900112" expanded="true" signature="6725:7668" ph="&lt;ListItem/&gt;" />
-            <marker date="1518873900112" expanded="true" signature="7527:7619" ph="/*...*/" />
-            <marker date="1518873900112" expanded="true" signature="7798:8764" ph="&lt;Paper/&gt;" />
-            <marker date="1518873900112" expanded="true" signature="7939:8731" ph="&lt;List/&gt;" />
-            <marker date="1518873900112" expanded="true" signature="8039:8695" ph="&lt;ListItem/&gt;" />
-            <marker date="1518873900112" expanded="true" signature="8146:8371" ph="&lt;Typography/&gt;" />
-            <marker date="1518873900112" expanded="true" signature="8408:8587" ph="&lt;Typography/&gt;" />
-          </folding>
+          <caret line="7" column="34" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/inventory/CreateBills.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="184" column="22" lean-forward="false" selection-start-line="184" selection-start-column="22" selection-end-line="184" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <element signature="e#6689#6932#0" expanded="false" />
-            <element signature="e#8381#9781#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="180">
+          <caret line="194" column="36" lean-forward="true" selection-start-line="194" selection-start-column="36" selection-end-line="194" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inventory/Categories.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="101" column="53" lean-forward="true" selection-start-line="101" selection-start-column="53" selection-end-line="101" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>

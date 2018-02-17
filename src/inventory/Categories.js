@@ -90,7 +90,7 @@ class FullWidthGrid extends React.Component<props, {}> {
         if(cookies.get('role') ===  'Employee'){
             window.location.href = `/Shop?shop=${this.state.shop}`
         }
-        request.get(server.path + '/api/Categories?filter=%7B%22shopId%22%3A%22'+url.split('=')[1]+'%22%7D&access_token=' + cookies.get('accessToken').accessToken).
+        request.get(server.path + '/api/Categories/categories?shopId='+url.split('=')[1]+'&access_token=' + cookies.get('accessToken').accessToken).
         end((err, category) => {
           console.log(category);
                 if(category) {
