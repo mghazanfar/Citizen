@@ -88,6 +88,7 @@ class FullWidthGrid extends React.Component<props, {}>{
     payment: null,
     status: null,
     back: null,
+    billProducts: []
   };
 
   componentWillMount() {
@@ -382,27 +383,13 @@ class FullWidthGrid extends React.Component<props, {}>{
               <TableCell numeric style={{fontWeight: 700}}>salePrice</TableCell>
               <TableCell numeric style={{fontWeight: 700}}>Name</TableCell>
               <TableCell numeric style={{fontWeight: 700}}>Color</TableCell>*/}
-                                      <TableCell numeric style={{fontWeight: 700}}>Name</TableCell>
-                                      <TableCell numeric style={{fontWeight: 700}}>Sale Price</TableCell>
+                                      <TableCell numeric style={{fontWeight: 700}}>Product ID</TableCell>
                                       <TableCell numeric style={{fontWeight: 700}}>Quantity</TableCell>
+                                      <TableCell numeric style={{fontWeight: 700}}>Sale Price</TableCell>
+                                      <TableCell numeric style={{fontWeight: 700}}>Name</TableCell>
                                   </TableRow>
                               </TableHead>
                               <TableBody>
-                                  {this.setState({ products:cookies.get('billProductQuantity')})}
-                                  {this.state.products.map(n => {
-                                      return (
-                                          <TableRow key={n.productId}>
-                                              <TableCell>{n.productId}</TableCell>
-                                              <TableCell numeric>{n.quantity}</TableCell>
-                                              <TableCell numeric>{n.salePrice}</TableCell>
-                                              <TableCell numeric>{n.name}</TableCell>
-                                              {/*<TableCell numeric>{n.color}</TableCell>
-                        <TableCell><Avatar src={n.image} style={{width: 70, height: 70}}/></TableCell>
-                        <TableCell numeric>{n.category}</TableCell>
-                        <TableCell numeric>{n.quantity}</TableCell>*/}
-                                          </TableRow>
-                                      );
-                                  })}
                               </TableBody>
                           </Table>
                           <TextField
