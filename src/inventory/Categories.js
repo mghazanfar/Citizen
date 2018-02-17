@@ -97,9 +97,9 @@ class FullWidthGrid extends React.Component<props, {}> {
                     this.setState({
                        loading: false
                     });
-                    if (category.body.length > 0) {
+                    if (category.body.categories.length > 0) {
                         this.setState({
-                            categories: category.body
+                            categories: category.body.categories
                         });
                     } else {
                         alert(category.body.error.message);
