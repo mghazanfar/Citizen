@@ -56,7 +56,6 @@ class StatusMenu extends React.Component<props, {}> {
                 >
                     <MenuItem onClick={event => this.handleRequestClose(event, 'Paid')}>Paid</MenuItem>
                     <MenuItem onClick={event => this.handleRequestClose(event, 'Unpaid')}>Unpaid</MenuItem>
-                    <MenuItem onClick={event => this.handleRequestClose(event, 'Partial')}>Partial</MenuItem>
                 </Menu>
             </Paper>
         )

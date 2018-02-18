@@ -87,7 +87,7 @@ class FullWidthGrid extends React.Component<props, {}>{
     products: [],
     discount: null,
     payment: null,
-    status: null,
+    status: 'Status',
     back: null,
     billProducts: [],
     buttonText: 'Create Bill'
@@ -289,7 +289,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                           onChange={this.handleChange('payment')}
                           style={{width: '100%'}}
                       />
-                      <BillStatus/>
+                      <BillStatus status={this.state.status}/>
                     </Paper>
                     <div style={{display: 'flex', justifyContent: 'space-around', width: 'inherit'}}>
                         <Button onClick={this.createBill.bind(this)} raised style={styles.button}>
@@ -373,7 +373,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                           onChange={this.handleChange('payment')}
                           style={{width: '100%'}}
                       />
-                      <BillStatus/>
+                      <BillStatus status={this.state.status} />
                     </Paper>
                     <div style={{display: 'flex', justifyContent: 'space-around', width: 'inherit'}}>
                         <Button onClick={this.createBill.bind(this)} raised style={styles.button}>
