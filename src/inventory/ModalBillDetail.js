@@ -182,6 +182,10 @@ class ResponsiveDialog extends React.Component {
                 <BilledProductPanel products={this.state.order._products} />
             </Paper>
             <ChangeItems />
+                <Paper>
+                    {'Items Detail (In case od claims):'}
+                    {this.props.order.items}
+                </Paper>
             <div style={{marginTop:15}}>
                 <RSInput
                 defaultValue={this.state.order.discount}
