@@ -83,10 +83,10 @@ class FullWidthGrid extends React.Component<props, {}>{
   state = {
     shop: null,
     customerName: null,
-    phoneNumber: null,
+    phoneNumber: 0,
     products: [],
-    discount: null,
-    payment: null,
+    discount: 0,
+    payment: 0,
     status: 'Status',
     back: null,
     billProducts: [],
@@ -189,7 +189,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                         .end((err, res) => {
                         this.setState({
                             buttonText:'Create Bill'
-                        })
+                        });
                         if(res) {
                             console.log(res);
                             if (res.statusCode !== 200) {
@@ -211,9 +211,17 @@ class FullWidthGrid extends React.Component<props, {}>{
       setInterval(() => {
           let billProducts = cookies.get('billProductQuantity');
           if(billProducts){
-              this.setState({
-                  billProducts: billProducts
-              })
+              let payment = billProducts.map(product => {
+                  payment += (parseInt(product.quantity)*parseInt(product.salePrice))
+              });
+              console.log(payment);
+              let discount = parseInt(this.state.discount);
+              if(billProducts){
+                  this.setState({
+                      billProducts: billProducts,
+                      payment: payment-discount
+                  })
+              }
           }
       }, 5000)
   };
@@ -279,6 +287,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                           type="search"
                           margin="normal"
                           onChange={this.handleChange('discount')}
+                          value={this.state.discount}
                           style={{width: '100%'}}
                       />
                       <TextField
@@ -286,7 +295,8 @@ class FullWidthGrid extends React.Component<props, {}>{
                           label="Total Payment"
                           type="search"
                           margin="normal"
-                          onChange={this.handleChange('payment')}
+                          value={this.state.payment}
+                          // onChange={this.handleChange('payment')}
                           style={{width: '100%'}}
                       />
                       <BillStatus status={this.state.status}/>
@@ -363,6 +373,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                           type="search"
                           margin="normal"
                           onChange={this.handleChange('discount')}
+                          value={this.state.discount}
                           style={{width: '100%'}}
                       />
                       <TextField
@@ -370,7 +381,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                           label="Total Payment"
                           type="search"
                           margin="normal"
-                          onChange={this.handleChange('payment')}
+                         /* onChange={this.handleChange('payment')}*/
                           style={{width: '100%'}}
                       />
                       <BillStatus status={this.state.status} />

@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33d49f79-8531-4b4a-94b8-936517c03689" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inventory/ModalBillDetail.js" afterPath="$PROJECT_DIR$/src/inventory/ModalBillDetail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inventory/CreateBills.js" afterPath="$PROJECT_DIR$/src/inventory/CreateBills.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,34 +16,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ManageDates.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/inventory/ManageDates.js">
+      <file leaf-file-name="CreateBills.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/inventory/CreateBills.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="170" column="43" lean-forward="true" selection-start-line="170" selection-start-column="43" selection-end-line="170" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModalBillDetail.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/inventory/ModalBillDetail.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="185" column="50" lean-forward="true" selection-start-line="185" selection-start-column="50" selection-end-line="185" selection-end-column="50" />
+            <state relative-caret-position="388">
+              <caret line="216" column="35" lean-forward="false" selection-start-line="216" selection-start-column="35" selection-end-line="216" selection-end-column="35" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
-                <marker date="1518946081245" expanded="false" signature="6178:6194" ph="..." />
-                <marker date="1518946081245" expanded="true" signature="6194:6623" ph="..." />
-                <marker date="1518946081245" expanded="true" signature="6220:6352" ph="..." />
-                <marker date="1518946081245" expanded="true" signature="6378:6547" ph="..." />
-                <marker date="1518946081245" expanded="false" signature="6401:6417" ph="..." />
-                <marker date="1518946081245" expanded="true" signature="6604:6617" ph="..." />
-                <marker date="1518946081245" expanded="false" signature="6648:6662" ph="..." />
-                <marker date="1518946081245" expanded="false" signature="6780:6795" ph="..." />
-                <marker date="1518946081245" expanded="true" signature="6832:6902" ph="..." />
-                <marker date="1518946081245" expanded="false" signature="6975:6990" ph="..." />
-                <marker date="1518946081245" expanded="true" signature="6990:7035" ph="..." />
+                <element signature="n#!!block;n#createBill#0;n#FullWidthGrid#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -107,9 +86,9 @@
         <option value="$PROJECT_DIR$/src/inventory/AddProducts.js" />
         <option value="$PROJECT_DIR$/src/inventory/ModalProducts.js" />
         <option value="$PROJECT_DIR$/src/ManageClaimStock/ManageClaimStock.js" />
-        <option value="$PROJECT_DIR$/src/inventory/CreateBills.js" />
         <option value="$PROJECT_DIR$/src/inventory/BillStatus.js" />
         <option value="$PROJECT_DIR$/src/inventory/ModalBillDetail.js" />
+        <option value="$PROJECT_DIR$/src/inventory/CreateBills.js" />
       </list>
     </option>
   </component>
@@ -254,12 +233,12 @@
       <workItem from="1518873157573" duration="1173000" />
       <workItem from="1518879995231" duration="1251000" />
       <workItem from="1518930824471" duration="3911000" />
-      <workItem from="1518945306889" duration="760000" />
+      <workItem from="1518945306889" duration="2200000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73443000" />
+    <option name="totallyTimeSpent" value="74883000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -618,7 +597,7 @@
         <state relative-caret-position="257">
           <caret line="204" column="41" lean-forward="false" selection-start-line="204" selection-start-column="41" selection-end-line="204" selection-end-column="41" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -631,29 +610,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/CreateBills.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="375" column="30" lean-forward="true" selection-start-line="375" selection-start-column="30" selection-end-line="375" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <element signature="e#6744#6987#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/ManageDates.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="170" column="43" lean-forward="true" selection-start-line="170" selection-start-column="43" selection-end-line="170" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/inventory/ModalBillDetail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="185" column="50" lean-forward="true" selection-start-line="185" selection-start-column="50" selection-end-line="185" selection-end-column="50" />
+        <state relative-caret-position="362">
+          <caret line="211" column="17" lean-forward="true" selection-start-line="211" selection-start-column="17" selection-end-line="211" selection-end-column="17" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
             <marker date="1518946081245" expanded="false" signature="6178:6194" ph="..." />
@@ -667,6 +627,25 @@
             <marker date="1518946081245" expanded="true" signature="6832:6902" ph="..." />
             <marker date="1518946081245" expanded="false" signature="6975:6990" ph="..." />
             <marker date="1518946081245" expanded="true" signature="6990:7035" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inventory/ManageDates.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="170" column="43" lean-forward="true" selection-start-line="170" selection-start-column="43" selection-end-line="170" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inventory/CreateBills.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="216" column="35" lean-forward="false" selection-start-line="216" selection-start-column="35" selection-end-line="216" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <element signature="n#!!block;n#createBill#0;n#FullWidthGrid#0" expanded="false" />
           </folding>
         </state>
       </provider>
