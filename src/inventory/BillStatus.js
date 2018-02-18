@@ -12,7 +12,7 @@ class StatusMenu extends React.Component<props, {}> {
 
     state = {
         open: false,
-        status: 'Status'
+        status: this.props.status
     };
     handleClick = event => {
         this.setState({ open: true, anchorEl: event.currentTarget });

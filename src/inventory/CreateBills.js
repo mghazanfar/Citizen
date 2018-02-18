@@ -182,9 +182,11 @@ class FullWidthGrid extends React.Component<props, {}>{
                 } else {
                     this.setState({
                         buttonText: <CircularProgress />
-                    })
+                    });
                     let accessToken = cookies.get('accessToken').accessToken;
-                    request.post(`${server.path}/api/Bills?access_token=${accessToken}`).send(data).end((err, res) => {
+                    request.post(`${server.path}/api/Bills?access_token=${accessToken}`)
+                        .send(data)
+                        .end((err, res) => {
                         this.setState({
                             buttonText:'Create Bill'
                         })
@@ -313,7 +315,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                     textAlign: 'center'
                 }}>
                   <Typography type="display3" gutterBottom style={{color: 'white'}}>
-                    CREATE BILL
+                      {this.state.buttonText}
                   </Typography>
                   <Typography type="headline" paragraph style={{color: 'white', textAlign: 'center', width: '60%',}}>Create
                     bills for your customers here.</Typography>
@@ -375,7 +377,7 @@ class FullWidthGrid extends React.Component<props, {}>{
                     </Paper>
                     <div style={{display: 'flex', justifyContent: 'space-around', width: 'inherit'}}>
                         <Button onClick={this.createBill.bind(this)} raised style={styles.button}>
-                          Create Bill
+                            {this.state.buttonText}
                         </Button>
                         <Link to={this.state.back} style={styles.noUnderline}>
                         <Button raised style={styles.button}>

@@ -8,7 +8,7 @@ import Dialog, {
   DialogTitle,
   withMobileDialog,
 } from 'material-ui/Dialog';
-import { Link } from 'react-router-dom';
+import { CircularProgress } from 'material-ui/Progress';
 import request from "../../node_modules/superagent/superagent";
 import server from "../constants";
 import Cookies from 'universal-cookie'
@@ -55,7 +55,8 @@ class ResponsiveDialog extends React.Component {
   }
   handleClickOpen = () => {
       this.setState({
-          disabled: true
+          disabled: true,
+          buttonText: <CircularProgress/>
       });
       var id = window.location.href.split("cat=");
       if(this.props.addData.id) {
@@ -80,12 +81,21 @@ class ResponsiveDialog extends React.Component {
               data,
               (err, res) => {
                   console.log(res);
-                  if (res.status === 200) {
-                      this.setState({open: true, name: res.body.name, category: res.body.category, disabled: false});
+                  if(res){
+                      if (res.status === 200) {
+                          this.setState({open: true, name: res.body.name, category: res.body.category, disabled: false});
+                      } else {
+                          alert(res.body.error.message);
+                          this.setState({
+                              disabled: false,
+                              buttonText: 'Modify Product'
+                          });
+                      }
                   } else {
-                      alert(res.body.error.message);
+                      alert('Service Unreachable');
                       this.setState({
-                          disabled: false
+                          disabled: false,
+                          buttonText: 'Modify Product'
                       });
                   }
               });
@@ -119,12 +129,14 @@ class ResponsiveDialog extends React.Component {
                             } else {
                                 alert(res.body.error.message);
                                 this.setState({
-                                    disabled: false
+                                    disabled: false,
+                                    buttonText: 'ADD PRODUCT'
                                 });
                             }
                         } else {
                             this.setState({
-                                disabled: false
+                                disabled: false,
+                                buttonText: 'ADD PRODUCT'
                             });
                             alert('Service Unreachable');
                         }

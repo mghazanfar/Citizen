@@ -9,7 +9,7 @@ import Dialog, {
   DialogContent,
   withMobileDialog,
 } from 'material-ui/Dialog';
-import { Link } from 'react-router-dom';
+import { CircularProgress } from 'material-ui/Progress';
 import BilledProductPanel from './BilledProductPanel';
 import ChangeItems from './ChangeItemsModal';
 import RSInput from './RsInput'
@@ -43,6 +43,8 @@ const theme = createMuiTheme({
 
 class ResponsiveDialog extends React.Component {
   state = {
+    buttonText: 'UPDATE BILL',
+    disabled: false,
     open: false,
     shop: null,
     order: [],
@@ -190,11 +192,11 @@ class ResponsiveDialog extends React.Component {
                 defaultValue={this.state.order.payment}
                 onChange={this.handleChange('payment')}
                 />
-                <BillStatus/>
+                <BillStatus status={this.state.status}/>
             </div>
             <div style={{marginTop:5, display:'flex', justifyContent:'space-around'}}>
-                <Button raised style={styles.button} onClick={this.updateBill.bind(this)}>
-                update bill
+                <Button disabled={this.state.disabled} raised style={styles.button} onClick={this.updateBill.bind(this)}>
+                    {this.state.buttonText}
                 </Button>
                 <Button onClick={this.handleRequestClose} raised style={styles.button}>
                 ok

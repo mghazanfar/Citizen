@@ -10,6 +10,7 @@ import Hidden from 'material-ui/Hidden';
 import TextField from 'material-ui/TextField';
 import Logout from '../inventory/Logout';
 import ModalBills from '../inventory/ModalBills';
+import { CircularProgress } from 'material-ui/Progress';
 import server from "../constants";
 import request from "superagent/superagent";
 import Cookies from 'universal-cookie';
@@ -78,11 +79,20 @@ noUnderline: {
 
 class TextFields extends React.Component<props, {}> {
     state = {
+      disabled: false,
       shop: null,
       month: ' ',
       year: '2018',
       open: false,
       monthSelected: false,
+      customerName: null,
+      phoneNumber: null,
+      items: null,
+      claimPrice: null,
+      discount: null,
+      payment: null,
+      status: 'Paid',
+      buttonText: 'ADD Claim'
     };
 
     componentWillMount(){
@@ -92,7 +102,7 @@ class TextFields extends React.Component<props, {}> {
         if(window.location.href.split('shop=')[1] === undefined){
           window.location.href = '/Login'
         } else {
-          let shop = window.location.href.split('shop=')[1].split('&');
+          let shop = window.location.href.split('shop=')[1].split('&')[0];
           this.setState({
               shop: shop
           });
@@ -111,8 +121,7 @@ class TextFields extends React.Component<props, {}> {
         open: true,
         [year]: event.target.value,
       });
-    }
-  
+    };
   
     handleChange = ( month, monthSelected ) => event => {
       this.setState({
@@ -120,6 +129,96 @@ class TextFields extends React.Component<props, {}> {
         monthSelected: true,
       });
     };
+
+    addClaim(){
+        console.log(this.state);
+        let url = window.location.href.split('&')[1];
+        if(url === undefined){
+            alert('No product selected');
+        } else {
+            let products = url.split('&')[0].split(',');
+            if (cookies.get('accessToken').accessToken === undefined) {
+                window.location.href = '/';
+            }
+            if (cookies.get('billProductQuantity') === undefined) {
+                alert('Please set product quantities');
+            } else {
+                var productsWithQuantities = cookies.get('billProductQuantity');
+                productsWithQuantities.forEach((value, index) => {
+                    productsWithQuantities[index].basePrice = 0;
+                    productsWithQuantities[index].salePrice = 0;
+                });
+                if (products.length < 1) {
+                    alert('No product selected');
+                } else {
+                    let today = new Date();
+                    let data = {
+                        customerName: this.state.customerName,
+                        phoneNumber: this.state.phoneNumber,
+                        discount: this.state.discount,
+                        payment: this.state.payment,
+                        shopId: this.state.shop,
+                        items: this.state.items,
+                        claimPrice: this.state.claimPrice,
+                        status: this.state.status,
+                        day: today.getDate(),
+                        month: today.getMonth() + 1,
+                        year: today.getFullYear(),
+                        _products: productsWithQuantities
+                    };
+                    if(data.discount === null){
+                        data.discount = 0;
+                    }
+                    if (data.customerName === null || data.customerName === undefined) {
+                        alert('Please provide name');
+                    }
+                    else if (data.phoneNumber === null || data.phoneNumber === undefined) {
+                        alert('Please provide phone number');
+                    }
+                    else if (data._products.length === 0) {
+                        alert('Please select some products');
+                    }
+                    else if (data.payment === null) {
+                        alert('Please provide total payment');
+                    }
+                    else if(data.items === null){
+                      alert('Please provide claim items description');
+                    }
+                    else if(data.claimPrice === null){
+                      alert('Please provide items price')
+                    }
+                    else if (data.status === null || data.status === undefined) {
+                        alert('Please select bill status');
+                    } else {
+                        this.setState({
+                            disabled: true,
+                            buttonText: <CircularProgress />
+                        });
+                        let accessToken = cookies.get('accessToken').accessToken;
+                        request.post(`${server.path}/api/Bills?access_token=${accessToken}`)
+                            .send(data)
+                            .end((err, res) => {
+                                this.setState({
+                                    disabled: false,
+                                    buttonText:'ADD CLAIM'
+                                });
+                                if(res) {
+                                    console.log(res);
+                                    if (res.statusCode !== 200) {
+                                        alert(res.body.error.message);
+                                    } else {
+                                        cookies.remove('billProductQuantity');
+                                        window.location.href = `/Inventory?shop=${this.state.shop}`;
+                                    }
+                                } else {
+                                    alert('Service Unreachable');
+                                }
+                            });
+                    }
+                }
+            }
+        }
+    }
   
     render() {
       return (
@@ -163,6 +262,7 @@ class TextFields extends React.Component<props, {}> {
                       type="search"
                       margin="normal"
                       style={{width:'100%'}}
+                      onChange={this.handleChange('customerName')}
                       />
                       <TextField
                       id="search"
@@ -170,8 +270,16 @@ class TextFields extends React.Component<props, {}> {
                       type="search"
                       margin="normal"
                       style={{width:'100%'}}
+                      onChange={this.handleChange('phoneNumber')}
                       />
-                      <ModalBills stock={true} />
+                      <TextField
+                          id="search"
+                          label="Items Taken"
+                          type="search"
+                          margin="normal"
+                          style={{width:'100%'}}
+                          onChange={this.handleChange('items')}
+                      />
                       <ModalBills />
                       <TextField
                       id="search"
@@ -179,6 +287,7 @@ class TextFields extends React.Component<props, {}> {
                       type="search"
                       margin="normal"
                       style={{width:'100%'}}
+                      onChange={this.handleChange('claimPrice')}
                       />
                       <TextField
                       id="search"
@@ -186,6 +295,7 @@ class TextFields extends React.Component<props, {}> {
                       type="search"
                       margin="normal"
                       style={{width:'100%'}}
+                      onChange={this.handleChange('discount')}
                       />
                       <TextField
                       id="search"
@@ -193,7 +303,11 @@ class TextFields extends React.Component<props, {}> {
                       type="search"
                       margin="normal"
                       style={{width:'100%'}}
+                      onChange={this.handleChange('payment')}
                       />
+                      <Button disabled={this.state.disabled} onClick={this.addClaim.bind(this)} raised style={styles.button}>
+                          {this.state.buttonText}
+                      </Button>
                   </Paper>
                   </div>
               </Grid>
@@ -210,6 +324,7 @@ class TextFields extends React.Component<props, {}> {
                   type="search"
                   margin="normal"
                   style={{width:'100%'}}
+                  onChange={this.handleChange('customerName')}
                   />
                   <TextField
                   id="search"
@@ -217,6 +332,15 @@ class TextFields extends React.Component<props, {}> {
                   type="search"
                   margin="normal"
                   style={{width:'100%'}}
+                  onChange={this.handleChange('phoneNumber')}
+                  />
+                  <TextField
+                     id="search"
+                     label="Items Taken"
+                     type="search"
+                     margin="normal"
+                     style={{width:'100%'}}
+                     onChange={this.handleChange('items')}
                   />
                   <ModalBills />
                   <TextField
@@ -225,6 +349,7 @@ class TextFields extends React.Component<props, {}> {
                   type="search"
                   margin="normal"
                   style={{width:'100%'}}
+                  onChange={this.handleChange('claimPrice')}
                   />
                   <TextField
                   id="search"
@@ -232,6 +357,7 @@ class TextFields extends React.Component<props, {}> {
                   type="search"
                   margin="normal"
                   style={{width:'100%'}}
+                  onChange={this.handleChange('discount')}
                   />
                   <TextField
                   id="search"
@@ -239,7 +365,11 @@ class TextFields extends React.Component<props, {}> {
                   type="search"
                   margin="normal"
                   style={{width:'100%'}}
+                  onChange={this.handleChange('payment')}
                   />
+                    <Button disabled={this.state.disabled} onClick={this.addClaim.bind(this)} raised style={styles.button}>
+                        {this.state.buttonText}
+                    </Button>
               </Paper>
               </div>
             </Grid>
