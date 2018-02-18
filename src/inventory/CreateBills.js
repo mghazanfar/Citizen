@@ -211,10 +211,10 @@ class FullWidthGrid extends React.Component<props, {}>{
       setInterval(() => {
           let billProducts = cookies.get('billProductQuantity');
           if(billProducts){
-              let payment = billProducts.map(product => {
+              let payment = 0;
+                  billProducts.map(product => {
                   payment += (parseInt(product.quantity)*parseInt(product.salePrice))
               });
-              console.log(payment);
               let discount = parseInt(this.state.discount);
               if(billProducts){
                   this.setState({
