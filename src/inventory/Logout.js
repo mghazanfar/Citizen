@@ -34,6 +34,7 @@ const styles = {
 class MenuListComposition extends React.Component {
   state = {
     open: false,
+    disabled: false,
     buttonText: 'Logout'
   };
 
@@ -47,8 +48,9 @@ class MenuListComposition extends React.Component {
 
   logout = () => {
     this.setState({
+        disabled: true,
         buttonText: <CircularProgress/>
-    })
+    });
     var accessToken = cookies.get('accessToken').accessToken;
     if(accessToken === undefined ){
       window.location.href = '/';
@@ -62,6 +64,7 @@ class MenuListComposition extends React.Component {
           } else {
               alert(res.body.error.message);
               this.setState({
+                  disabled: false,
                   buttonText: 'Logout'
               })
           }
@@ -97,7 +100,7 @@ class MenuListComposition extends React.Component {
               <Grow in={open} id="menu-list" style={{ transformOrigin: '0 0 0' }}>
                 <Paper>
                   <MenuList role="menu">
-                    <MenuItem onClick={this.logout.bind(this)}>{this.state.buttonText}</MenuItem>
+                    <MenuItem disabled={this.state.disabled} onClick={this.logout.bind(this)}>{this.state.buttonText}</MenuItem>
                   </MenuList>
                 </Paper>
               </Grow>

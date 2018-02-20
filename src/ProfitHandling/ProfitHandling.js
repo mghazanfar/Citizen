@@ -97,13 +97,13 @@ class TextFields extends React.Component<props, {}> {
       date: `${(new Date).getFullYear()}-${(new Date).getMonth()+1}-${(new Date).getDate()}`,
       open: false,
       monthSelected: false,
-      shop: null,
+      shop: 0,
       amountReceivedToday: 'No Record Found',
-      shopExpenses: null,
-      basePrices: null,
-      totalProfitToday: null,
-      totalProfitMonthly: null,
-      totalProfitYearly: null,
+      shopExpenses: 0,
+      basePrices: 0,
+      totalProfitToday: 0,
+      totalProfitMonthly: 0,
+      totalProfitYearly: 0,
       months : ['January','February','March','April','May','June','July','August','September','October','November','December']
     };
 
@@ -111,14 +111,14 @@ class TextFields extends React.Component<props, {}> {
       this.setState ({
         open: false,
       });
-    }
+    };
     
     handleRequestOpen = (year) => event => {
       this.setState ({
         open: true,
         [year]: event.target.value,
       });
-    }
+    };
 
     componentWillMount(){
         if(cookies.get('accessToken') === undefined){
@@ -140,14 +140,15 @@ class TextFields extends React.Component<props, {}> {
                     if(!res){
                         alert('Service Unreachable');
                     } else {
+                        console.log(res.body);
                         if(res.statusCode === 200){
                             this.setState({
                                 amountReceivedToday: res.body.Report.payment,
-                                shopExpenses: null,
+                                shopExpenses: res.body.Report.expense,
                                 basePrices: res.body.Report.basePrices,
-                                totalProfitToday: res.body.Report.salePrices-res.body.Report.basePrices,
-                                totalProfitMonthly: null,
-                                totalProfitYearly: null,
+                                totalProfitToday: res.body.Report.salePrices-res.body.Report.basePrices-res.body.Report.expense,
+                                totalProfitMonthly: res.body.Report.monthlyExp,
+                                totalProfitYearly: 0,
                             });
                             let ex = 0;
                             if(res.body.Report.expense.length > 0){
@@ -185,6 +186,7 @@ class TextFields extends React.Component<props, {}> {
             let mon = months.indexOf(event.target.value) + 1;
             request.get(`${server.path}/api/Shops/getMonthlyReport?shopId=${this.state.shop}&month=${mon}&year=${this.state.year}&access_token=${cookies.get('accessToken').accessToken}`)
                 .end((err, res) => {
+                console.log(res.body);
                     if (!res) {
                         alert('Service Unreachable');
                     } else {
@@ -369,7 +371,7 @@ class TextFields extends React.Component<props, {}> {
                                 id="adornment-amount"
                                 value={this.state.kameti}
                                 onChange={this.handleChange('kameti')}
-                                startAdornment={<InputAdornment position="start">Rs. {this.state.basePrice}  </InputAdornment>}
+                                startAdornment={<InputAdornment position="start">Rs. {this.state.basePrices}  </InputAdornment>}
                                 type="number"
                                 disabled
                             />

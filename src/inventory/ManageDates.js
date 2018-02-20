@@ -24,7 +24,7 @@ class ManageDates extends React.Component {
         shop: null,
         drinks: 0,
         shopExp: 0,
-        others: [],
+        others: 0,
         amountReceivedToday: 0,
         loading: true,
     };
@@ -69,17 +69,24 @@ class ManageDates extends React.Component {
         request.get(`${server.path}/api/DailyExpenses?filter=%7B%22where%22%3A%7B%22shopId%22%3A%22${url}%22%2C%22day%22%3A%22${day}%22%2C%22month%22%3A%22${month}%22%2C%22year%22%3A%22${year}%22%7D%7D&access_token=${accessToken}`)
             .end((err, res) => {
                 if(res) {
-                    console.log(res);
-                    if(res.statusCode === 200){
-                        if(res.body.length > 0) {
-                            this.setState({
-                                drinks: res.body[0].drinks,
-                                shopExp: res.body[0].shopExp,
-                                others: res.body[0].others,
-                            });
+                    if(res.body.length > 0){
+                        if(res.statusCode === 200){
+                            if(res.body.length > 0) {
+                                this.setState({
+                                    drinks: res.body[0].drinks,
+                                    shopExp: res.body[0].shopExp,
+                                    others: res.body[0].others
+                                });
+                            }
+                        } else {
+                            alert(res.body.error.message);
                         }
                     } else {
-                        alert(res.body.error.message);
+                        this.setState({
+                            drink: 0,
+                            shopExp: 0,
+                            others: 0
+                        })
                     }
                 } else {
                     alert('Service Unreachable');
@@ -98,6 +105,9 @@ class ManageDates extends React.Component {
             request.get(`${server.path}/api/Bills/bills?shopId=${this.state.shop}&day=${date[1]}&month=${date[0]}&year=${date[2]}&access_token=${accessToken.accessToken}`)
                 .end((err, bills) => {
                     console.log(bills);
+                    this.setState({
+                        amountReceivedToday: 0
+                    });
                     if (bills) {
                         this.setState({ loading: false});
                         if (bills.statusCode !== 200) {
@@ -112,7 +122,7 @@ class ManageDates extends React.Component {
                             if(bills.body.bills.length > 0){
                                 let amount = 0;
                                 bills.body.bills.map(value => {
-                                    amount += value.payment;
+                                    amount += parseInt(value.payment);
                                 });
                                 this.setState({
                                     amountReceivedToday: amount
@@ -127,7 +137,6 @@ class ManageDates extends React.Component {
         request.get(`${server.path}/api/DailyExpenses?filter=%7B%22where%22%3A%7B%22shopId%22%3A%22${this.state.shop}%22%2C%22day%22%3A%22${date[1]}%22%2C%22month%22%3A%22${date[0]}%22%2C%22year%22%3A%22${date[2]}%22%7D%7D&access_token=${accessToken.accessToken}`)
             .end((err, res) => {
                 if(res) {
-                    console.log(res);
                     if(res.statusCode === 200){
                         if(res.body.length > 0) {
                             this.setState({
@@ -180,8 +189,7 @@ class ManageDates extends React.Component {
                             <List subheader={<ListSubheader>Today's Expenses:</ListSubheader>}>
                                 <ListItem key={'today'} dense style={styles.listItem} button={false} >
                                     <Typography type="body 2" gutterBottom>
-                                        OnShop for customers Expenses: On drinks: {this.state.drinks} <br/> Shop: ${this.state.shopExp}
-                                    </Typography>
+                                        OnShop for customers Expenses: On drinks: {this.state.drinks} <br/> Shop: {this.state.shopExp} <br/> Others: {this.state.others}                                    </Typography>
                                     <Typography type="body 2" gutterBottom>
                                         Amount recieved: {this.state.amountReceivedToday}
                                     </Typography>

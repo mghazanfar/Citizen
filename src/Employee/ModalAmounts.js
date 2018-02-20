@@ -12,25 +12,30 @@ import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import server from "../constants";
 import request from "superagent/superagent";
+import {CircularProgress} from 'material-ui/Progress';
 const cookies = new Cookies();
 
 class ResponsiveDialog extends React.Component {
   state = {
     open: false,
-    buttonText: 'ADD AMOUNTS'
+    buttonText: 'ADD AMOUNTS',
+    disabled: false,
   };
 
   handleClickOpen = () => {
-    console.log(this.props.addData);
     if(!window.location.href.split('shop')){
       window.location.href = '/Shop'
     }
+    this.setState({
+        buttonText: <CircularProgress/>,
+        disabled: true
+    });
     let data = {
       type: 'daily',
       shopId: window.location.href.split('shop=')[1].split('&')[0],
       drinks: this.props.addData.drinks,
       shopExp: this.props.addData.shopExpenses,
-      others: this.props.expenses,
+      others: this.props.addData.expenses[0].name,
       day: this.props.addData.date[1],
       month: this.props.addData.date[0],
       year: this.props.addData.date[2]
@@ -38,10 +43,15 @@ class ResponsiveDialog extends React.Component {
     if(!cookies.get('accessToken')){
       window.location.href = '/'
     }
+    console.log(data);
     let token = cookies.get('accessToken').accessToken;
     request.post(`${server.path}/api/DailyExpenses?access_token=${token}`)
         .send(data)
         .end((err, res) => {
+          this.setState({
+              buttonText: 'ADD AMOUNTS',
+              disabled: false,
+          });
           if(res){
             if(res.statusCode === 200){
                 this.setState({ open: true });
@@ -63,7 +73,7 @@ class ResponsiveDialog extends React.Component {
 
     return (
       <div style={{display:'flex', justifyContent:'center'}}>
-        <Button raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
+        <Button disabled={this.state.disabled} raised style={{ color:'white', backgroundColor:'black', marginTop:'4rem',}} onClick={this.handleClickOpen}>
             {this.state.buttonText}
         </Button>
         <Dialog

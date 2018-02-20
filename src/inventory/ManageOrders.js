@@ -134,7 +134,7 @@ class FullWidthGrid extends React.Component<props, {}> {
                     your orders here and keep track of their status.</Typography>
                   <Link to={this.state.back} style={styles.noUnderline}>
                     <Button raised style={styles.button}>
-                      GO TO INVENTORY
+                      GO BACK
                     </Button>
                   </Link>
                   <Link to={`/CreateBills?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>

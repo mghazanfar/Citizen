@@ -82,9 +82,9 @@ const today = new Date();
 
 class TextFields extends React.Component<props, {}> {
     state = {
-        drinks: ' ',
-        shopExpenses: ' ',
-        expenses: [{ name: '' }],
+        drinks: 0,
+        shopExpenses: 0,
+        expenses: [{ name: 0 }],
         date: null
     };
 
@@ -135,22 +135,6 @@ class TextFields extends React.Component<props, {}> {
       e.preventDefault();
       // TODO: do something with -> this.state.file
       console.log('handle uploading-', this.state.file);
-    }
-  
-    _handleImageChange(e) {
-      e.preventDefault();
-  
-      let reader = new FileReader();
-      let file = e.target.files[0];
-  
-      reader.onloadend = () => {
-        this.setState({
-          file: file,
-          img: reader.result
-        });
-      }
-  
-      reader.readAsDataURL(file)
     }
   
     handleChange = ( drinks, shopExpenses) => event => {
@@ -231,12 +215,12 @@ class TextFields extends React.Component<props, {}> {
                                   type="number"
                               />
                           </FormControl>
-                          <Button type="button" onClick={this.handleRemoveShareholder(idx)} style={{ color:'white', backgroundColor:'black', marginTop:12}} dense>-</Button>
+                          {/*<Button type="button" onClick={this.handleRemoveShareholder(idx)} style={{ color:'white', backgroundColor:'black', marginTop:12}} dense>-</Button>*/}
                           </div>
                       ))}
-                        <Button raised style={{ color:'white', backgroundColor:'black', fontSize:'1.5rem', marginTop:12}} fab mini onClick={this.handleAddShareholder}>
+                        {/*<Button raised style={{ color:'white', backgroundColor:'black', fontSize:'1.5rem', marginTop:12}} fab mini onClick={this.handleAddShareholder}>
                             +
-                        </Button>
+                        </Button>*/}
                               <div style={{display:'flex',  justifyContent:'space-around'}}>
                               <ModalAmounts addData={{
                                   drinks: this.state.drinks,
@@ -294,12 +278,12 @@ class TextFields extends React.Component<props, {}> {
                           type="number"
                       />
                   </FormControl>
-                  <Button type="button" onClick={this.handleRemoveShareholder(idx)} style={{ color:'white', backgroundColor:'black', marginTop:12}} dense>-</Button>
+                  {/*<Button type="button" onClick={this.handleRemoveShareholder(idx)} style={{ color:'white', backgroundColor:'black', marginTop:12}} dense>-</Button>*/}
                   </div>
               ))}
-                <Button raised style={{ color:'white', backgroundColor:'black', fontSize:'1.5rem', marginTop:12}} fab mini onClick={this.handleAddShareholder}>
+                {/*<Button raised style={{ color:'white', backgroundColor:'black', fontSize:'1.5rem', marginTop:12}} fab mini onClick={this.handleAddShareholder}>
                     +
-                </Button>
+                </Button>*/}
                       <div style={{display:'flex',  justifyContent:'space-around'}}>
                       <ModalAmounts addData={{
                         drinks: this.state.drinks,
