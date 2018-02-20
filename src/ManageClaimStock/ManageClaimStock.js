@@ -88,9 +88,9 @@ class TextFields extends React.Component<props, {}> {
       customerName: null,
       phoneNumber: null,
       items: null,
-      claimPrice: null,
-      discount: null,
-      payment: null,
+      claimPrice: 0,
+      discount: 0,
+      payment: 0,
       status: 'Paid',
       buttonText: 'ADD Claim'
     };
@@ -219,6 +219,32 @@ class TextFields extends React.Component<props, {}> {
             }
         }
     }
+
+    repeat = () => {
+      setInterval(() => {
+          let billProducts = cookies.get('billProductQuantity');
+          if(billProducts){
+              let payment = 0;
+                  billProducts.map(product => {
+                  payment += (parseInt(product.quantity)*parseInt(product.salePrice))
+              });
+              let discount = parseInt(this.state.discount);
+              let claimPrice = parseInt(this.state.claimPrice);
+              if(billProducts){
+                  this.setState({
+                      payment: payment-discount-claimPrice
+                  })
+              }
+          }
+      }, 5000)
+  };
+  componentDidMount(){
+    this.repeat();
+    let billProducts = cookies.get('billProductQuantity');
+    if(billProducts){
+        cookies.remove('billProductQuantity');
+    }
+  }
   
     render() {
       return (
@@ -303,7 +329,7 @@ class TextFields extends React.Component<props, {}> {
                       type="search"
                       margin="normal"
                       style={{width:'100%'}}
-                      onChange={this.handleChange('payment')}
+                      value={this.state.payment}
                       />
                       <Button disabled={this.state.disabled} onClick={this.addClaim.bind(this)} raised style={styles.button}>
                           {this.state.buttonText}
@@ -365,7 +391,7 @@ class TextFields extends React.Component<props, {}> {
                   type="search"
                   margin="normal"
                   style={{width:'100%'}}
-                  onChange={this.handleChange('payment')}
+                  value = {this.state.payment}
                   />
                     <Button disabled={this.state.disabled} onClick={this.addClaim.bind(this)} raised style={styles.button}>
                         {this.state.buttonText}
