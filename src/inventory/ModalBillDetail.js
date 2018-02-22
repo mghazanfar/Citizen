@@ -9,6 +9,7 @@ import Dialog, {
   DialogContent,
   withMobileDialog,
 } from 'material-ui/Dialog';
+import TextField from 'material-ui/TextField';
 import { CircularProgress } from 'material-ui/Progress';
 import BilledProductPanel from './BilledProductPanel';
 import ChangeItems from './ChangeItemsModal';
@@ -49,10 +50,10 @@ class ResponsiveDialog extends React.Component {
     shop: null,
     order: [],
     customerName: null,
-    phoneNumber: null,
-    discount: null,
-    payment: null,
-    status: null,
+    phoneNumber: 0,
+    discount: 0,
+    payment: 0,
+    status: null
   };
 
   componentWillMount(){
@@ -70,6 +71,30 @@ class ResponsiveDialog extends React.Component {
           });
       }
   }
+    componentDidMount(){
+        this.repeat();
+        let billProducts = cookies.get('billProductQuantity');
+        if(billProducts){
+            cookies.remove('billProductQuantity');
+        }
+    }
+    repeat = () => {
+        setInterval(() => {
+            let billProducts = cookies.get('billProductQuantity');
+            if(billProducts){
+                let payment = 0;
+                billProducts.map(product => {
+                    payment += (parseInt(product.quantity)*parseInt(product.salePrice))
+                });
+                let discount = parseInt(this.state.discount);
+                if(billProducts){
+                    this.setState({
+                        payment: payment-discount
+                    })
+                }
+            }
+        }, 5000)
+    };
 
   handleClickOpen = (order) => {
     this.setState({ open: true, order: order });
@@ -85,7 +110,10 @@ class ResponsiveDialog extends React.Component {
     });
   };
   updateBill() {
-    console.log(this.props);
+    this.setState({
+       buttonText: <CircularProgress/>,
+        disabled: true
+    });
     let order = this.props.order;
     let billProductQuantity = cookies.get('billProductQuantity');
     let update= {}; 
@@ -104,7 +132,7 @@ class ResponsiveDialog extends React.Component {
       update.discount = this.state.discount;
     }
     if(this.state.payment !== this.props.order.payment){
-      update.payment = this.props.order.payment;
+      update.payment = this.state.payment;
     }
     if(update.status === undefined){
       alert('Please select status');
@@ -113,6 +141,10 @@ class ResponsiveDialog extends React.Component {
     request.patch(`${server.path}/api/Bills/${this.props.order.id}?access_token=${accessToken}`)
     .send(update)
     .end((err, res) => {
+        this.setState({
+       buttonText: 'UPDATE BILL',
+        disabled: false
+    });
       if(res){
           if(res.status === 200){
             alert('Updated Successfully');
@@ -170,7 +202,7 @@ class ResponsiveDialog extends React.Component {
             />
             <Input
             style={{marginTop:15}}
-              defaultValue={this.state.order.phoneNumber}
+              value={this.state.order.phoneNumber}
               inputProps={{
                 'aria-label': 'Description',
               }}
@@ -183,18 +215,27 @@ class ResponsiveDialog extends React.Component {
             </Paper>
             <ChangeItems />
                 <Paper>
-                    {'Items Detail (In case od claims):'}
+                    {'Items Detail (In case of claims):'}
                     {this.props.order.items}
                 </Paper>
             <div style={{marginTop:15}}>
-                <RSInput
-                defaultValue={this.state.order.discount}
-                onChange={this.handleChange('discount')}
+                <TextField
+                    id="search"
+                    label="Add discounts"
+                    type="search"
+                    margin="normal"
+                    onChange={this.handleChange('discount')}
+                    value={this.state.discount}
+                    style={{width: '100%'}}
                 />
-                <RSInput
-                style={{marginTop:15}}
-                defaultValue={this.state.order.payment}
-                onChange={this.handleChange('payment')}
+                <TextField
+                    id="search"
+                    label="Total Payment"
+                    type="search"
+                    margin="normal"
+                    value={this.state.payment}
+                    // onChange={this.handleChange('payment')}
+                    style={{width: '100%'}}
                 />
                 <BillStatus status={this.state.status}/>
             </div>

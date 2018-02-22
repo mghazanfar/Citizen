@@ -76,10 +76,10 @@ class BasicTable extends React.Component<props, {}> {
                 </TableRow>
             </TableHead>
             <TableBody>
-                {this.state.product.map(n => {
+                {this.state.product.map((n, index) => {
                     return (
                         <TableRow key={n.productId}>
-                            <TableCell>{n.productId}</TableCell>
+                            <TableCell>{++index}</TableCell>
                             <TableCell numeric>{n.name}</TableCell>
                             <TableCell numeric>{n.quantity}</TableCell>
                             <TableCell numeric>{n.salePrice}</TableCell>
