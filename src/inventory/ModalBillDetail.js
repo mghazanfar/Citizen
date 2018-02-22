@@ -82,6 +82,7 @@ class ResponsiveDialog extends React.Component {
         setInterval(() => {
             let billProducts = cookies.get('billProductQuantity');
             if(billProducts){
+                console.log(billProducts);
                 let payment = 0;
                 billProducts.map(product => {
                     payment += (parseInt(product.quantity)*parseInt(product.salePrice))

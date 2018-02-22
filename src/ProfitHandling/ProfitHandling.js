@@ -204,21 +204,10 @@ class TextFields extends React.Component<props, {}> {
                             });
                             let ex = 0;
                             if (res.body.Report.expense.length > 0) {
-                                if (res.body.Report.expense[0].extra.length > 0) {
-                                    res.body.Report.expense[0].extra.map(val => {
-                                        if (parseInt(val.name) !== NaN) {
-                                            res.body.Report.expense[0].salaries += parseInt(val.name);
-                                        }
-                                    });
-                                    this.setState({
-                                        shopExpenses: parseInt(res.body.Report.expense[0].salaries) + parseInt(res.body.Report.expense[0].committee) + parseInt(res.body.Report.expense[0].housholds)
-                                    });
-                                } else {
-                                    this.setState({
-                                        shopExpenses: parseInt(res.body.Report.expense[0].salaries) + parseInt(res.body.Report.expense[0].committee) + parseInt(res.body.Report.expense[0].households)
-                                    });
+                                this.setState({
+                                  shopExpenses: parseInt(res.body.Report.expense[0].salaries) + parseInt(res.body.Report.expense[0].committee) + parseInt(res.body.Report.expense[0].households)
+                                })
                                 }
-                            }
 
                         } else {
                             alert(res.body.error.message);

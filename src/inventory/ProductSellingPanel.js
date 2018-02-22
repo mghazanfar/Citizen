@@ -281,11 +281,11 @@ class EnhancedTable extends React.Component {
         }
         window.history.pushState('page2', 'Title', url);
     };
-    saveProductCokkies = (id, name, salePrice, description) => event => {
+    saveProductCokkies = (id, name, basePrice, salePrice, description) => event => {
         let product = this.state.product;
         console.log(name, salePrice);
         if(product.length < 1) {
-            product.push({productId: id, quantity: event.target.value, name: name, salePrice: salePrice});
+            product.push({productId: id, quantity: event.target.value, name: name, basePrice: basePrice, salePrice: salePrice});
             this.setState({
                 product: product
             });
@@ -298,7 +298,7 @@ class EnhancedTable extends React.Component {
                 }
             });
             if(found.indexOf(true) === -1){
-                product.push({productId: id, quantity: event.target.value, name: name, salePrice: salePrice});
+                product.push({productId: id, quantity: event.target.value, name: name, basePrice: basePrice, salePrice: salePrice});
             }
             this.setState({
                 product: product
@@ -367,7 +367,7 @@ class EnhancedTable extends React.Component {
                                       label="Quantity"
                                       type="text"
                                       margin="normal"
-                                      onChange={this.saveProductCokkies(n.id,n.name,n.salePrice)}
+                                      onChange={this.saveProductCokkies(n.id,n.name,n.basePrice, n.salePrice)}
                                       style={{width: '100%'}}
                                   />
                               </TableRow>

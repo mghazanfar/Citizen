@@ -271,8 +271,8 @@ class FullWidthGrid extends React.Component<props, {}>{
                             <TableBody>
                                 {this.state.billProducts.map((n, ind) => {
                                     return (
-                                        <TableRow key={++ind}>
-                                            <TableCell>{}</TableCell>
+                                        <TableRow key={n.productId}>
+                                            <TableCell>{++ind}</TableCell>
                                             <TableCell numeric>{n.name}</TableCell>
                                             <TableCell numeric>{n.quantity}</TableCell>
                                             <TableCell numeric>{n.salePrice}</TableCell>

@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="33d49f79-8531-4b4a-94b8-936517c03689" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inventory/BilledProductPanel.js" afterPath="$PROJECT_DIR$/src/inventory/BilledProductPanel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ProfitHandling/ProfitHandling.js" afterPath="$PROJECT_DIR$/src/ProfitHandling/ProfitHandling.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inventory/CreateBills.js" afterPath="$PROJECT_DIR$/src/inventory/CreateBills.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inventory/ModalBillDetail.js" afterPath="$PROJECT_DIR$/src/inventory/ModalBillDetail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inventory/ProductSellingPanel.js" afterPath="$PROJECT_DIR$/src/inventory/ProductSellingPanel.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,51 +20,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ManageDates.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/inventory/ManageDates.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="179" column="43" lean-forward="false" selection-start-line="179" selection-start-column="43" selection-end-line="179" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModalBillDetail.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/inventory/ModalBillDetail.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="139" column="0" lean-forward="false" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-                <element signature="e#4820#4938#0" expanded="false" />
-                <element signature="e#5268#6158#0" expanded="false" />
-                <element signature="e#6212#6465#0" expanded="false" />
-                <element signature="e#6478#6757#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BilledProductPanel.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/inventory/BilledProductPanel.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="826">
-              <caret line="65" column="3" lean-forward="false" selection-start-line="65" selection-start-column="3" selection-end-line="65" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="CreateBills.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/inventory/CreateBills.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="12" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="300">
+              <caret line="131" column="43" lean-forward="false" selection-start-line="131" selection-start-column="43" selection-end-line="131" selection-end-column="43" />
               <folding>
-                <element signature="n#!!block;n#createBill#0;n#FullWidthGrid#0" expanded="false" />
+                <element signature="e#0#26#0" expanded="true" />
                 <element signature="e#6736#7331#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProfitHandling.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ProfitHandling/ProfitHandling.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="265">
+              <caret line="207" column="34" lean-forward="false" selection-start-line="207" selection-start-column="34" selection-end-line="207" selection-end-column="34" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -95,7 +71,6 @@
         <option value="$PROJECT_DIR$/src/login/Owner.js" />
         <option value="$PROJECT_DIR$/src/login/Employee.js" />
         <option value="$PROJECT_DIR$/src/login/LoginEmployee.js" />
-        <option value="$PROJECT_DIR$/src/constants.js" />
         <option value="$PROJECT_DIR$/src/inventory/clickables.css" />
         <option value="$PROJECT_DIR$/src/inventory/print.js" />
         <option value="$PROJECT_DIR$/src/inventory/ModalModify.js" />
@@ -113,22 +88,23 @@
         <option value="$PROJECT_DIR$/src/inventory/ModalCategory.js" />
         <option value="$PROJECT_DIR$/src/inventory/ModifyCategory.js" />
         <option value="$PROJECT_DIR$/src/inventory/ModalBills.js" />
-        <option value="$PROJECT_DIR$/src/inventory/ProductSellingPanel.js" />
         <option value="$PROJECT_DIR$/src/inventory/Categories.js" />
         <option value="$PROJECT_DIR$/src/inventory/AddProducts.js" />
         <option value="$PROJECT_DIR$/src/inventory/ModalProducts.js" />
         <option value="$PROJECT_DIR$/src/ManageClaimStock/ManageClaimStock.js" />
         <option value="$PROJECT_DIR$/src/inventory/BillStatus.js" />
-        <option value="$PROJECT_DIR$/src/inventory/CreateBills.js" />
         <option value="$PROJECT_DIR$/src/inventory/ManageOrders.js" />
         <option value="$PROJECT_DIR$/src/Employee/AddAmounts.js" />
         <option value="$PROJECT_DIR$/src/Employee/ModalAmounts.js" />
         <option value="$PROJECT_DIR$/src/inventory/ManageDates.js" />
         <option value="$PROJECT_DIR$/src/inventory/Logout.js" />
-        <option value="$PROJECT_DIR$/src/ProfitHandling/ProfitHandling.js" />
         <option value="$PROJECT_DIR$/src/inventory/BilledProductPanel.js" />
         <option value="$PROJECT_DIR$/src/inventory/RsInput.js" />
+        <option value="$PROJECT_DIR$/src/inventory/CreateBills.js" />
         <option value="$PROJECT_DIR$/src/inventory/ModalBillDetail.js" />
+        <option value="$PROJECT_DIR$/src/inventory/ProductSellingPanel.js" />
+        <option value="$PROJECT_DIR$/src/ProfitHandling/ProfitHandling.js" />
+        <option value="$PROJECT_DIR$/src/constants.js" />
       </list>
     </option>
   </component>
@@ -189,7 +165,7 @@
               <item name="Citizen" type="b2602c69:ProjectViewProjectNode" />
               <item name="Citizen" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="inventory" type="462c0819:PsiDirectoryNode" />
+              <item name="ProfitHandling" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -277,7 +253,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92955000" />
+    <option name="totallyTimeSpent" value="96193000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -290,9 +266,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="258" y="24" width="1108" height="744" extended-state="4" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16682027" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16682027" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -300,7 +275,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.57096773" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.57096773" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -353,18 +328,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/login/Employee.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="89" column="35" lean-forward="true" selection-start-line="89" selection-start-column="35" selection-end-line="89" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/login/Owner.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -413,13 +381,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -554,13 +515,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/ProductSellingPanel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="300" column="107" lean-forward="false" selection-start-line="300" selection-start-column="107" selection-end-line="300" selection-end-column="107" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/inventory/ModifyProduct.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="735">
@@ -635,13 +589,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="563">
           <caret line="108" column="15" lean-forward="false" selection-start-line="108" selection-start-column="15" selection-end-line="108" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ProfitHandling/ProfitHandling.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="307" column="96" lean-forward="false" selection-start-line="307" selection-start-column="96" selection-end-line="307" selection-end-column="96" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -649,14 +597,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="421">
           <caret line="179" column="43" lean-forward="false" selection-start-line="179" selection-start-column="43" selection-end-line="179" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/BilledProductPanel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="826">
-          <caret line="65" column="3" lean-forward="false" selection-start-line="65" selection-start-column="3" selection-end-line="65" selection-end-column="3" />
           <folding />
         </state>
       </provider>
@@ -669,28 +609,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/CreateBills.js">
+    <entry file="file://$PROJECT_DIR$/src/inventory/BilledProductPanel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="12" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!block;n#createBill#0;n#FullWidthGrid#0" expanded="false" />
-            <element signature="e#6736#7331#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="481">
+          <caret line="98" column="15" lean-forward="false" selection-start-line="98" selection-start-column="15" selection-end-line="98" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/inventory/ModalBillDetail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="139" column="0" lean-forward="false" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+        <state relative-caret-position="211">
+          <caret line="216" column="18" lean-forward="false" selection-start-line="216" selection-start-column="18" selection-end-line="216" selection-end-column="18" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
-            <element signature="e#4820#4938#0" expanded="false" />
-            <element signature="e#5268#6158#0" expanded="false" />
-            <element signature="e#6212#6465#0" expanded="false" />
-            <element signature="e#6478#6757#0" expanded="false" />
+            <element signature="e#4863#4981#0" expanded="false" />
+            <element signature="e#5311#6201#0" expanded="false" />
+            <element signature="e#6255#6508#0" expanded="false" />
+            <element signature="e#6521#6800#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inventory/ChangeItemsModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="56" column="23" lean-forward="false" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inventory/ProductSellingPanel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="737">
+          <caret line="391" column="32" lean-forward="true" selection-start-line="391" selection-start-column="32" selection-end-line="391" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inventory/CreateBills.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="131" column="43" lean-forward="false" selection-start-line="131" selection-start-column="43" selection-end-line="131" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#6736#7331#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="12" lean-forward="false" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ProfitHandling/ProfitHandling.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="207" column="34" lean-forward="false" selection-start-line="207" selection-start-column="34" selection-end-line="207" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
