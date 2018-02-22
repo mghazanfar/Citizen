@@ -118,6 +118,9 @@ class TextFields extends React.Component<props, {}> {
         open: true,
         [year]: event.target.value,
       });
+      for(let i = 1; i < 13; i++ ){
+
+      }
     };
 
     componentWillMount(){

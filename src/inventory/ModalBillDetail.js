@@ -93,7 +93,7 @@ class ResponsiveDialog extends React.Component {
     if(billProductQuantity !== undefined){
       update.newProducts= billProductQuantity;
     }
-    update.status = window.location.href.split('status=');
+    update.status = window.location.href.split('status=')[1];
     if(this.state.customerName !== this.props.order.customerName){
       update.customerName = this.state.customerName;
     }
