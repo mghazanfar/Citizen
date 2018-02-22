@@ -149,7 +149,7 @@ class TextFields extends React.Component<props, {}> {
                                 amountReceivedToday: res.body.Report.payment,
                                 shopExpenses: res.body.Report.expense,
                                 basePrices: res.body.Report.basePrices,
-                                totalProfitToday: res.body.Report.salePrices-res.body.Report.basePrices-res.body.Report.expense,
+                                totalProfitToday: res.body.Report.payment-res.body.Report.basePrices-res.body.Report.expense,
                                 totalProfitMonthly: res.body.Report.monthlyExp,
                                 totalProfitYearly: 0,
                             });
@@ -198,7 +198,7 @@ class TextFields extends React.Component<props, {}> {
                                 amountReceivedToday: res.body.Report.payment,
                                 shopExpenses: null,
                                 basePrices: res.body.Report.basePrices,
-                                totalProfitToday: res.body.Report.salePrices - res.body.Report.basePrices,
+                                totalProfitToday: res.body.Report.payment - res.body.Report.basePrices,
                                 totalProfitMonthly: null,
                                 totalProfitYearly: null,
                             });
