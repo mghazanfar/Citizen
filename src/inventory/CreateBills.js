@@ -262,18 +262,22 @@ class FullWidthGrid extends React.Component<props, {}>{
                         <Table>
                             <TableHead>
                                 <TableRow style={{fontSize: '1rem', fontWeight: 700, color: 'black'}}>
-                                    <TableCell numeric style={{fontWeight: 700}}>ID</TableCell>
+                                    <TableCell numeric style={{fontWeight: 700}}>Brand</TableCell>
                                     <TableCell numeric style={{fontWeight: 700}}>Name</TableCell>
+                                    <TableCell numeric style={{fontWeight: 700}}>Model</TableCell>
+                                    <TableCell numeric style={{fontWeight: 700}}>Color</TableCell>
                                     <TableCell numeric style={{fontWeight: 700}}>Quantity</TableCell>
                                     <TableCell numeric style={{fontWeight: 700}}>Sale Price</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {this.state.billProducts.map((n, ind) => {
+                                {this.state.billProducts.map(n => {
                                     return (
                                         <TableRow key={n.productId}>
                                             <TableCell>{n.brand}</TableCell>
                                             <TableCell numeric>{n.name}</TableCell>
+                                            <TableCell numeric>{n.model}</TableCell>
+                                            <TableCell numeric>{n.color}</TableCell>
                                             <TableCell numeric>{n.quantity}</TableCell>
                                             <TableCell numeric>{n.salePrice}</TableCell>
                                         </TableRow>
@@ -432,8 +436,10 @@ class FullWidthGrid extends React.Component<props, {}>{
                           <Table>
                               <TableHead>
                                   <TableRow style={{fontSize: '1rem', fontWeight: 700, color: 'black'}}>
-                                      <TableCell numeric style={{fontWeight: 700}}>ID</TableCell>
+                                      <TableCell numeric style={{fontWeight: 700}}>Brand</TableCell>
                                       <TableCell numeric style={{fontWeight: 700}}>Name</TableCell>
+                                      <TableCell numeric style={{fontWeight: 700}}>Model</TableCell>
+                                      <TableCell numeric style={{fontWeight: 700}}>Color</TableCell>
                                       <TableCell numeric style={{fontWeight: 700}}>Quantity</TableCell>
                                       <TableCell numeric style={{fontWeight: 700}}>Sale Price</TableCell>
                                   </TableRow>
@@ -444,6 +450,8 @@ class FullWidthGrid extends React.Component<props, {}>{
                                           <TableRow key={n.productId}>
                                               <TableCell>{n.brand}</TableCell>
                                               <TableCell numeric>{n.name}</TableCell>
+                                              <TableCell numeric>{n.model}</TableCell>
+                                              <TableCell numeric>{n.color}</TableCell>
                                               <TableCell numeric>{n.quantity}</TableCell>
                                               <TableCell numeric>{n.salePrice}</TableCell>
                                           </TableRow>

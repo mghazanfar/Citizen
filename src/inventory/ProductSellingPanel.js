@@ -282,11 +282,14 @@ class EnhancedTable extends React.Component {
         }
         window.history.pushState('page2', 'Title', url);
     };
-    saveProductCokkies = (id, name, basePrice, salePrice, brand, description) => event => {
+    saveProductCokkies = (id, name, basePrice, salePrice, brand, model, color, description) => event => {
         let product = this.state.product;
         console.log(name, salePrice);
         if(product.length < 1) {
-            product.push({productId: id, quantity: event.target.value, name: name, basePrice: basePrice, salePrice: salePrice, brand: brand});
+            product.push({productId: id, quantity: event.target.value,
+                name: name, basePrice: basePrice,
+                salePrice: salePrice, brand: brand,
+                model: model, color: color});
             this.setState({
                 product: product
             });
@@ -299,7 +302,10 @@ class EnhancedTable extends React.Component {
                 }
             });
             if(found.indexOf(true) === -1){
-                product.push({productId: id, quantity: event.target.value, name: name, basePrice: basePrice, salePrice: salePrice, brand: brand});
+                product.push({productId: id, quantity: event.target.value,
+                    name: name, basePrice: basePrice,
+                    salePrice: salePrice, brand: brand,
+                    model: model, color: color});
             }
             this.setState({
                 product: product
@@ -368,7 +374,7 @@ class EnhancedTable extends React.Component {
                                       label="Quantity"
                                       type="text"
                                       margin="normal"
-                                      onChange={this.saveProductCokkies(n.id,n.name,n.basePrice, n.salePrice, n.brand)}
+                                      onChange={this.saveProductCokkies(n.id,n.name,n.basePrice, n.salePrice, n.brand, n.model, n.color)}
                                       style={{width: '100%'}}
                                   />
                               </TableRow>
