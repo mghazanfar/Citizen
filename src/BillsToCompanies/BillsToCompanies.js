@@ -8,6 +8,8 @@ import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
 import TextField from 'material-ui/TextField';
+import {DatePicker} from 'material-ui-pickers';
+
 import Logout from '../inventory/Logout';
 
 import server from "../constants";
@@ -108,10 +110,11 @@ noUnderline: {
 class TextFields extends React.Component<props, {}> {
     state = {
       shop: null,
-      month: ' ',
-      year: '2018',
+      month: 0,
+      year: 2018,
       open: false,
       monthSelected: false,
+      bills: []
     };
 
     componentWillMount(){
@@ -148,6 +151,32 @@ class TextFields extends React.Component<props, {}> {
         monthSelected: true,
       });
     };
+
+    setDate = event => {
+        let date = event._d.toLocaleDateString().split('/');
+        console.log(date[1]);
+        let accessToken;
+        if(cookies.get('accessToken')){
+            accessToken = cookies.get('accessToken').accessToken;
+        } else {
+            window.location.href = '/';
+        }
+        request.get(`${server.path}/api/BrandDues?filter=%7B%22where%22%3A%7B%22shopId%22%3A%22${this.state.shop}%22%2C%20%22month%22%3A%22${date[0]}%22%2C%20%22year%22%3A%22${date[2]}%22%7D%7D&access_token=${accessToken}`)
+            .end((err, res) => {
+                console.log(res)
+                if(res){
+                    if(res.statusCode === 200){
+                        this.setState({
+                            bills: res.body
+                        })
+                    } else {
+                        alert(res.body.error.message);
+                    }
+                } else {
+                    alert('Service Unreachable');
+                }
+            });
+    };
   
     render() {
       return (
@@ -158,8 +187,11 @@ class TextFields extends React.Component<props, {}> {
                       <Hidden smDown>
                         <Typography type="display3" gutterBottom style={{color:'white', width:'60%', textAlign:'center'}}>
                         Companies' Bills
-                        </Typography>
                         <Typography type="headline" paragraph style={{color:'white', textAlign:'center', width:'60%',}}>Here you can see bills, you have to pay.</Typography>
+                        </Typography>
+                          <Typography>
+                              {<DatePicker onChange={this.setDate} style={{color: 'white'}}/>}
+                          </Typography>
                         <Link to={`/Shop?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                         <Button raised style={styles.button}>
                         back
@@ -184,12 +216,12 @@ class TextFields extends React.Component<props, {}> {
             <Hidden lgDown>
               <Grid item xs={12} lg={8} style={styles.right}>
               <div style={{width:'95%', display:'flex', flexWrap:'wrap', maxHeight:800, overflowY:'auto', justifyContent:'center'}}>
-                {data.map(details => (
+                {this.state.bills.map(details => (
                     <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:10, marginLeft:10, width: 'auto' }}>
                         <Paper elevation={24} style={{maxHeight:500, overflow:'auto', width:'inherit', padding:20, height:'inherit'}}>
                         <TextField
                         id="search"
-                        label={details.company}
+                        label={details.brand}
                         type="search"
                         margin="dense"
                         style={{width:'100%'}}
@@ -222,12 +254,12 @@ class TextFields extends React.Component<props, {}> {
               <Hidden lgUp>
                 <Grid item xs={12} lg={8} style={styles.right}>
                 <div style={{width:'95%', display:'flex', flexWrap:'wrap', maxHeight:800, overflowY:'auto', justifyContent:'center'}}>
-                  {data.map(details => (
+                  {this.state.bills.map(details => (
                       <div style={{ display:'flex', flexDirection:'column', alignItems:'center', marginTop:10, marginLeft:10, width: 'auto' }}>
                           <Paper elevation={24} style={{maxHeight:500, overflow:'auto', width:'inherit', padding:20, height:'inherit'}}>
                           <TextField
                           id="search"
-                          label={details.company}
+                          label={details.brand}
                           type="search"
                           margin="dense"
                           style={{width:'100%'}}
