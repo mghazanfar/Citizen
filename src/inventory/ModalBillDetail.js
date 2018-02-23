@@ -117,6 +117,8 @@ class ResponsiveDialog extends React.Component {
     });
     let order = this.props.order;
     let billProductQuantity = cookies.get('billProductQuantity');
+
+    console.log(billProductQuantity);
     let update= {}; 
     update.oldProducts = order._products;
     if(billProductQuantity !== undefined){
