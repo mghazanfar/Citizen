@@ -189,17 +189,17 @@ class TextFields extends React.Component<props, {}> {
             let mon = months.indexOf(event.target.value) + 1;
             request.get(`${server.path}/api/Shops/getMonthlyReport?shopId=${this.state.shop}&month=${mon}&year=${this.state.year}&access_token=${cookies.get('accessToken').accessToken}`)
                 .end((err, res) => {
-                console.log(res.body);
+                console.log(res);
                     if (!res) {
                         alert('Service Unreachable');
                     } else {
                         if (res.statusCode === 200) {
                             this.setState({
                                 amountReceivedToday: res.body.Report.payment,
-                                shopExpenses: null,
+                                shopExpenses: res.body.Report.dailyExp + res.body.Report.expense,
                                 basePrices: res.body.Report.basePrices,
-                                totalProfitToday: res.body.Report.payment - res.body.Report.basePrices,
-                                totalProfitMonthly: null,
+                                totalProfitToday: 0,
+                                totalProfitMonthly: res.body.Report.payment - res.body.Report.basePrices -res.body.Report.dailyExp - res.body.Report.expense,
                                 totalProfitYearly: null,
                             });
                             let ex = 0;

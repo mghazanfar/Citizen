@@ -14,6 +14,8 @@ import ModalExpenses from './ModalExpenses';
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
 import Logout from '../inventory/Logout';
+import { CircularProgress } from 'material-ui/Progress';
+
 import request from "../../node_modules/superagent/superagent";
 import server from "../constants";
 import Cookies from 'universal-cookie';
@@ -87,13 +89,15 @@ noUnderline: {
 class TextFields extends React.Component<props, {}> {
     state = {
       type: 'monthly',
-      month: ' ',
+      month: 0,
       year: '2018',
-      salary: ' ',
-      kameti: ' ',
-      household: ' ',
-      expenses: [{ name: '' }],
+      salary: 0,
+      kameti: 0,
+      household: 0,
+      expenses: [{ name: 0 }],
       shop: null,
+      buttonText: 'ADD EXPENSE',
+      disabled: false
     };
 
     componentWillMount(){
@@ -170,7 +174,7 @@ class TextFields extends React.Component<props, {}> {
             "type": this.state.type,
             "salaries": this.state.salary,
             "committee": this.state.kameti,
-            "extra": this.state.expenses,
+            "extra": this.state.expenses[0].name,
             "housholds": this.state.household,
             "month": months.indexOf(this.state.month)+1,
             "year": this.state.year,
@@ -184,9 +188,17 @@ class TextFields extends React.Component<props, {}> {
         } else if(data.committee === ' ' || data.housholds === ' '){
             alert('Please enter missing data');
         } else {
+            this.setState({
+                disabled: true,
+                buttonText: <CircularProgress/>
+            });
             request.post(`${server.path}/api/Expenses?access_token=${accessToken}`)
                 .send(data)
                 .end((err, res) => {
+                    this.setState({
+                        disabled: true,
+                        buttonText: 'ADD EXPENSE'
+                    });
                     if(!res){
                         alert('Service Unreachable');
                     } else{
@@ -315,15 +327,15 @@ class TextFields extends React.Component<props, {}> {
                                   type="number"
                               />
                           </FormControl>
-                          <Button type="button" onClick={this.handleRemoveShareholder(idx)} style={{ color:'white', backgroundColor:'black', marginTop:12}} dense>-</Button>
+                          {/*<Button type="button" onClick={this.handleRemoveShareholder(idx)} style={{ color:'white', backgroundColor:'black', marginTop:12}} dense>-</Button>*/}
                           </div>
                       ))}
-                        <Button raised style={{ color:'white', backgroundColor:'black', fontSize:'1.5rem', marginTop:12}} fab mini onClick={this.handleAddShareholder}>
+                        {/*<Button raised style={{ color:'white', backgroundColor:'black', fontSize:'1.5rem', marginTop:12}} fab mini onClick={this.handleAddShareholder}>
                             +
-                        </Button>
+                        </Button>*/}
                               <div style={{display:'flex',  justifyContent:'space-around'}}>
-                                  <Button onClick={this.saveExpense.bind(this)} raised style={styles.button}>
-                                      ADD EXPENSES
+                                  <Button disabled={this.state.disabled} onClick={this.saveExpense.bind(this)} raised style={styles.button}>
+                                      {this.state.buttonText}
                                   </Button>
                                   <Link to={`/Shop?shop=${window.location.href.split('shop=')[1]}`} style={styles.noUnderline}>
                                       <Button raised style={styles.button}>
@@ -418,7 +430,7 @@ class TextFields extends React.Component<props, {}> {
                 </Button>
                       <div style={{display:'flex',  justifyContent:'space-around'}}>
                           <Button onClick={this.saveExpense.bind(this)} raised style={styles.button}>
-                              ADD EXPENSES
+
                           </Button>
                           <Link to={`/Shop?shop=${this.state.shop}`} style={styles.noUnderline}>
                               <Button raised style={styles.button}>
