@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="33d49f79-8531-4b4a-94b8-936517c03689" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BillsToCompanies/BillsToCompanies.js" afterPath="$PROJECT_DIR$/src/BillsToCompanies/BillsToCompanies.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inventory/CreateBills.js" afterPath="$PROJECT_DIR$/src/inventory/CreateBills.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inventory/ManageDates.js" afterPath="$PROJECT_DIR$/src/inventory/ManageDates.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,34 +18,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CreateBills.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CreateBills.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/inventory/CreateBills.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="17" column="18" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="422">
+              <caret line="100" column="12" lean-forward="false" selection-start-line="100" selection-start-column="6" selection-end-line="100" selection-end-column="12" />
               <folding>
-                <element signature="e#6736#7331#0" expanded="false" />
-                <marker date="1519397290985" expanded="true" signature="7412:9012" ph="&lt;div/&gt;" />
-                <marker date="1519397290985" expanded="true" signature="7457:9012" ph="&lt;Grid/&gt;" />
-                <marker date="1519397290985" expanded="true" signature="7525:9012" ph="&lt;Hidden/&gt;" />
-                <marker date="1519397290985" expanded="true" signature="7557:9012" ph="&lt;Grid/&gt;" />
-                <marker date="1519397290985" expanded="true" signature="7623:9012" ph="&lt;div/&gt;" />
-                <marker date="1519397290985" expanded="true" signature="7885:9012" ph="&lt;Paper/&gt;" />
-                <marker date="1519397290985" expanded="true" signature="8780:9012" ph="&lt;Table/&gt;" />
-                <marker date="1519397290985" expanded="true" signature="8816:9012" ph="&lt;TableHead/&gt;" />
-                <marker date="1519397290985" expanded="true" signature="8860:9012" ph="&lt;TableRow/&gt;" />
-                <marker date="1519397290985" expanded="true" signature="18716:18964" ph="&lt;TableRow/&gt;" />
-                <marker date="1519397290985" expanded="true" signature="18716:19041" ph="{...}" />
-                <marker date="1519397290985" expanded="true" signature="18716:19086" ph="&lt;TableBody/&gt;" />
-                <marker date="1519397290985" expanded="true" signature="18716:19121" ph="&lt;Table/&gt;" />
-                <marker date="1519397290985" expanded="true" signature="18716:19944" ph="&lt;Paper/&gt;" />
-                <marker date="1519397290985" expanded="true" signature="18716:21114" ph="&lt;div/&gt;" />
-                <marker date="1519397290985" expanded="true" signature="19148:19483" ph="&lt;TextField/&gt;" />
-                <marker date="1519397290985" expanded="true" signature="19510:19844" ph="&lt;TextField/&gt;" />
-                <marker date="1519397290985" expanded="true" signature="19967:21089" ph="&lt;div/&gt;" />
-                <marker date="1519397290985" expanded="true" signature="19979:20299" ph="{&quot;backgroundColor&quot;: 'rgba(255,255,255,0.65)'...}" />
-                <marker date="1519397290985" expanded="true" signature="20328:20685" ph="&lt;div/&gt;" />
-                <marker date="1519397290985" expanded="true" signature="20712:21060" ph="&lt;div/&gt;" />
+                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#7280#7875#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -54,7 +35,7 @@
         <entry file="file://$PROJECT_DIR$/src/ProfitHandling/ProfitHandling.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="7" lean-forward="true" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
+              <caret line="0" column="7" lean-forward="false" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -65,22 +46,12 @@
       <file leaf-file-name="ManageDates.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/inventory/ManageDates.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="98" column="60" lean-forward="true" selection-start-line="98" selection-start-column="8" selection-end-line="98" selection-end-column="60" />
+            <state relative-caret-position="197">
+              <caret line="96" column="0" lean-forward="true" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BillsToCompanies.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/BillsToCompanies/BillsToCompanies.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1892">
-              <caret line="274" column="28" lean-forward="true" selection-start-line="274" selection-start-column="28" selection-end-line="274" selection-end-column="28" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#1352#2316#0" expanded="false" />
+                <element signature="e#2582#3526#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -158,7 +129,6 @@
         <option value="$PROJECT_DIR$/src/inventory/ManageOrders.js" />
         <option value="$PROJECT_DIR$/src/Employee/AddAmounts.js" />
         <option value="$PROJECT_DIR$/src/Employee/ModalAmounts.js" />
-        <option value="$PROJECT_DIR$/src/inventory/ManageDates.js" />
         <option value="$PROJECT_DIR$/src/inventory/Logout.js" />
         <option value="$PROJECT_DIR$/src/inventory/BilledProductPanel.js" />
         <option value="$PROJECT_DIR$/src/inventory/RsInput.js" />
@@ -167,8 +137,9 @@
         <option value="$PROJECT_DIR$/src/constants.js" />
         <option value="$PROJECT_DIR$/src/inventory/ModalBillDetail.js" />
         <option value="$PROJECT_DIR$/src/inventory/ProductSellingPanel.js" />
-        <option value="$PROJECT_DIR$/src/inventory/CreateBills.js" />
         <option value="$PROJECT_DIR$/src/BillsToCompanies/BillsToCompanies.js" />
+        <option value="$PROJECT_DIR$/src/inventory/ManageDates.js" />
+        <option value="$PROJECT_DIR$/src/inventory/CreateBills.js" />
       </list>
     </option>
   </component>
@@ -213,7 +184,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -255,6 +225,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -332,11 +303,12 @@
       <workItem from="1519234358506" duration="453000" />
       <workItem from="1519265850416" duration="899000" />
       <workItem from="1519350823815" duration="4171000" />
+      <workItem from="1519529331919" duration="2320000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106560000" />
+    <option name="totallyTimeSpent" value="109589000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -351,7 +323,7 @@
     <frame x="258" y="24" width="1108" height="744" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17788018" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14009216" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -363,24 +335,13 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.57096773" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.140625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -706,41 +667,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/CreateBills.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="17" column="18" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="e#6736#7331#0" expanded="false" />
-            <marker date="1519397290985" expanded="true" signature="7412:9012" ph="&lt;div/&gt;" />
-            <marker date="1519397290985" expanded="true" signature="7457:9012" ph="&lt;Grid/&gt;" />
-            <marker date="1519397290985" expanded="true" signature="7525:9012" ph="&lt;Hidden/&gt;" />
-            <marker date="1519397290985" expanded="true" signature="7557:9012" ph="&lt;Grid/&gt;" />
-            <marker date="1519397290985" expanded="true" signature="7623:9012" ph="&lt;div/&gt;" />
-            <marker date="1519397290985" expanded="true" signature="7885:9012" ph="&lt;Paper/&gt;" />
-            <marker date="1519397290985" expanded="true" signature="8780:9012" ph="&lt;Table/&gt;" />
-            <marker date="1519397290985" expanded="true" signature="8816:9012" ph="&lt;TableHead/&gt;" />
-            <marker date="1519397290985" expanded="true" signature="8860:9012" ph="&lt;TableRow/&gt;" />
-            <marker date="1519397290985" expanded="true" signature="18716:18964" ph="&lt;TableRow/&gt;" />
-            <marker date="1519397290985" expanded="true" signature="18716:19041" ph="{...}" />
-            <marker date="1519397290985" expanded="true" signature="18716:19086" ph="&lt;TableBody/&gt;" />
-            <marker date="1519397290985" expanded="true" signature="18716:19121" ph="&lt;Table/&gt;" />
-            <marker date="1519397290985" expanded="true" signature="18716:19944" ph="&lt;Paper/&gt;" />
-            <marker date="1519397290985" expanded="true" signature="18716:21114" ph="&lt;div/&gt;" />
-            <marker date="1519397290985" expanded="true" signature="19148:19483" ph="&lt;TextField/&gt;" />
-            <marker date="1519397290985" expanded="true" signature="19510:19844" ph="&lt;TextField/&gt;" />
-            <marker date="1519397290985" expanded="true" signature="19967:21089" ph="&lt;div/&gt;" />
-            <marker date="1519397290985" expanded="true" signature="19979:20299" ph="{&quot;backgroundColor&quot;: 'rgba(255,255,255,0.65)'...}" />
-            <marker date="1519397290985" expanded="true" signature="20328:20685" ph="&lt;div/&gt;" />
-            <marker date="1519397290985" expanded="true" signature="20712:21060" ph="&lt;div/&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ProfitHandling/ProfitHandling.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="7" lean-forward="true" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
+          <caret line="0" column="7" lean-forward="false" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -751,26 +681,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
           <caret line="105" column="4" lean-forward="false" selection-start-line="105" selection-start-column="4" selection-end-line="105" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/inventory/ManageDates.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="98" column="60" lean-forward="true" selection-start-line="98" selection-start-column="8" selection-end-line="98" selection-end-column="60" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BillsToCompanies/BillsToCompanies.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1892">
-          <caret line="274" column="28" lean-forward="true" selection-start-line="274" selection-start-column="28" selection-end-line="274" selection-end-column="28" />
+        <state relative-caret-position="247">
+          <caret line="186" column="37" lean-forward="true" selection-start-line="186" selection-start-column="37" selection-end-line="186" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inventory/ManageDates.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="96" column="0" lean-forward="true" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#1352#2316#0" expanded="false" />
+            <element signature="e#2582#3526#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inventory/CreateBills.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="100" column="12" lean-forward="false" selection-start-line="100" selection-start-column="6" selection-end-line="100" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#7280#7875#0" expanded="false" />
           </folding>
         </state>
       </provider>

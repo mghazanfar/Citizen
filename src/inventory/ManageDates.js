@@ -92,6 +92,7 @@ class ManageDates extends React.Component {
                     alert('Service Unreachable');
                 }
             });
+
     }
 
     setDate = event => {

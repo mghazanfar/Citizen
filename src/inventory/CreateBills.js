@@ -90,15 +90,17 @@ class FullWidthGrid extends React.Component<props, {}>{
     status: 'Status',
     back: null,
     billProducts: [],
-    buttonText: 'Create Bill'
+    buttonText: 'Create Bill',
+    address: {},
   };
 
   componentWillMount() {
     let url = window.location.href.search('shop=');
+      let shop;
     if(url === -1){
       window.location.href = '/Login';
     }else{
-      let shop = window.location.href.split('shop=')[1];
+      shop = window.location.href.split('shop=')[1];
       shop = shop.split('&')[0];
      this.setState({ shop: shop});
     }
@@ -111,6 +113,20 @@ class FullWidthGrid extends React.Component<props, {}>{
         this.setState({
             back: `/Inventory?shop=${window.location.href.split('shop=')[1].split('&')[0]}`
         })
+    }
+    if(cookies.get('accessToken')){
+        request.get(`${server.path}/api/Shops/${shop}?access_token=${cookies.get('accessToken').accessToken}`)
+            .end((err, res) => {
+                if(res){
+                    if(res.statusCode === 200){
+                        this.setState({
+                            address: res.body
+                        })
+                    } else {
+                        alert(res.body.error.message);
+                    }
+                }
+            });
     }
   }
     componentDidMount(){
@@ -128,7 +144,7 @@ class FullWidthGrid extends React.Component<props, {}>{
         });
     };
 
-  createBill(){
+    createBill(){
     let url = window.location.href.split('&')[1];
     if(url === undefined){
         alert('No product selected');
@@ -486,9 +502,9 @@ class FullWidthGrid extends React.Component<props, {}>{
                           justifyContent: 'space-between'
                       }}>
                           <div style={{width: '30%', fontSize: 13, marginTop: 'auto', marginBottom: 'auto'}}>
-                              <b>Address:</b> Main G.T. Road, Ravi Toll Plaza, Lahore. <br/>
-                              <b>Phone:</b> 0324-4417414 , 0323-9999333 <br/>
-                              <b>Email:</b> nabeelsameer950@gmail.com
+                              <b>Address:</b> {this.state.address.address} <br/>
+                              <b>Phone:</b> {this.state.address.mobile} <br/>
+                              <b>Email:</b> {this.state.address.email}
                           </div>
                           <div style={{width: '25%', fontSize: 13, marginTop: 'auto', marginBottom: 'auto'}}>
                               <b>NOTE:</b> <br/>
