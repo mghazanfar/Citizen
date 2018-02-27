@@ -117,6 +117,7 @@ class FullWidthGrid extends React.Component<props, {}>{
     if(cookies.get('accessToken')){
         request.get(`${server.path}/api/Shops/${shop}?access_token=${cookies.get('accessToken').accessToken}`)
             .end((err, res) => {
+                console.log(res);
                 if(res){
                     if(res.statusCode === 200){
                         this.setState({

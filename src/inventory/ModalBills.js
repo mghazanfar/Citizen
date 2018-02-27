@@ -35,7 +35,7 @@ class ResponsiveDialog extends React.Component<props, {}> {
     loading: true
   };
   componentWillMount() {
-      if(cookies.get('accessToken').accessToken){
+      if(cookies.get('accessToken')){
           let accessToken = cookies.get('accessToken').accessToken;
           let shop = window.location.href.split('?')[1].split('=')[1].split('&')[0];
           request.get(`${server.path}/api/Shops/${shop}?access_token=${accessToken}`)
