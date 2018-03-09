@@ -141,6 +141,9 @@ class FullWidthGrid extends React.Component<props, {}> {
                     <Typography type="headline" gutterBottom style={{color:'white'}}>
                         <Link to={`/CreateBills?shop=${window.location.href.split('shop=')[1]}`} className='underline'>Create Bill</Link>
                     </Typography>
+                    <Typography type="headline" gutterBottom style={{color: 'white'}}>
+                        <Link to={`/ManageClaimStock?shop=${window.location.href.split('shop=')[1]}`} style={styles.headline}>Stock Claim Management</Link>
+                    </Typography>
                 </div>
             </Grid>
 
