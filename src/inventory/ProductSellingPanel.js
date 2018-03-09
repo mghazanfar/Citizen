@@ -14,6 +14,7 @@ import Table, {
     TableRow,
     TableSortLabel,
 } from 'material-ui/Table';
+import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
@@ -172,6 +173,10 @@ EnhancedTableToolbar.propTypes = {
 EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
 
 const styles = theme => ({
+    listFlex: {
+      display: 'flex',
+      listStyleType: 'none',
+    },
     root: {
         width: '100%',
         marginTop: theme.spacing.unit * 3,
@@ -189,6 +194,7 @@ class EnhancedTable extends React.Component {
         super(props, context);
 
         this.state = {
+            categories: [],
             order: 'asc',
             orderBy: 'calories',
             product: [],
@@ -196,13 +202,33 @@ class EnhancedTable extends React.Component {
             data : [].sort((a, b) => (a.calories < b.calories ? -1 : 1)),
             page: 0,
             rowsPerPage: 5,
-            display: 'block'
+            display: 'block',
+            token: null,
         };
     }
     componentWillMount(){
-      if(cookies.get('accessToken').accessToken){
+      if(cookies.get('accessToken')){
         let accessToken = cookies.get('accessToken').accessToken;
+        this.setState({
+            token: accessToken
+        });
+
         let shop = window.location.href.split('?')[1].split('=')[1].split('&')[0];
+          request.get(server.path + '/api/Categories/categories?shopId='+shop+'&access_token=' + accessToken).
+          end((err, categories) => {
+              console.log(categories);
+              if(categories) {
+                  if(categories.statusCode === 200) {
+                      this.setState({
+                          categories: categories.body.categories
+                      });
+                  }else {
+                      alert(`Categories: ${categories.body.error.message}`);
+                  }
+              } else {
+                  alert('Could not fetch Categories');
+              }
+          });
         request.get(`${server.path}/api/Products/products?shopId=${shop}&access_token=${accessToken}`).
         end((err, products) => {
             console.log(products);
@@ -326,6 +352,30 @@ class EnhancedTable extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
+    selectCategory = (id) => {
+        console.log(id);
+        request.get(`${server.path}/api/Products?filter=%7B%22where%22%3A%7B%22categoryId%22%3A%22${id}%22%7D%7D&access_token=${this.state.token}`)
+            .end((err, product) => {
+                console.log(product);
+                if(product) {
+                    if (product.status === 401) {
+                        //window.location.href = '/';
+                        alert(product.body.error.message);
+                    }
+                    if (product.body.length === 0) {
+                        alert('No Products Available. Please add a few');
+                        //window.location.href = '/AddProducts'
+                    }
+                    this.setState({
+                        data: product.body
+
+                    });
+                } else {
+                    alert('Service Unreachable');
+                }
+            });
+    };
+
     render() {
         const { classes } = this.props;
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
@@ -334,6 +384,9 @@ class EnhancedTable extends React.Component {
         return (
             <Paper className={classes.root}>
               <EnhancedTableToolbar numSelected={selected.length} />
+                <ul className={classes.listFlex}> {this.state.categories.map(category => {
+                    return(<li aria-label={category.id}> <Button onClick={this.selectCategory.bind(this, category.id)}>{category.name}</Button> </li>);
+                })}</ul>
               <div className={classes.tableWrapper}>
                 <Table className={classes.table}>
                   <EnhancedTableHead
