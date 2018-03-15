@@ -92,6 +92,7 @@ class FullWidthGrid extends React.Component<props, {}>{
     billProducts: [],
     buttonText: 'Create Bill',
     address: {},
+    discountPercentage: 0,
   };
 
   componentWillMount() {
@@ -130,7 +131,8 @@ class FullWidthGrid extends React.Component<props, {}>{
             });
     }
   }
-    componentDidMount(){
+
+  componentDidMount(){
         this.repeat();
         let billProducts = cookies.get('billProductQuantity');
         if(billProducts){
@@ -138,14 +140,14 @@ class FullWidthGrid extends React.Component<props, {}>{
         }
     }
 
-    handleChange = (name, description) => event => {
+  handleChange = (name, description) => event => {
         this.setState({
             [name]: event.target.value,
             [description]: event.target.value,
         });
-    };
+  };
 
-    createBill(){
+  createBill(){
     let url = window.location.href.split('&')[1];
     if(url === undefined){
         alert('No product selected');
@@ -224,6 +226,7 @@ class FullWidthGrid extends React.Component<props, {}>{
         }
     }
   }
+
   repeat = () => {
       setInterval(() => {
           let billProducts = cookies.get('billProductQuantity');
@@ -241,6 +244,14 @@ class FullWidthGrid extends React.Component<props, {}>{
               }
           }
       }, 5000)
+  };
+
+  discountPercentage = (discountPercentage) => event => {
+        let payment = this.state.payment;
+        this.setState({
+            discountPercentage: event.target.value,
+            discount: (event.target.value/100)*payment
+        });
   };
 
   render() {
@@ -311,6 +322,15 @@ class FullWidthGrid extends React.Component<props, {}>{
                           value={this.state.discount}
                           style={{width: '100%'}}
                       />
+                        <TextField
+                            id="search"
+                            label="Add discount in Percentage"
+                            type="search"
+                            margin="normal"
+                            onChange={this.discountPercentage('discountPercentage')}
+                            value={this.state.discountPercentage}
+                            style={{width: '100%'}}
+                        />
                       <TextField
                           id="search"
                           label="Total Payment"
@@ -397,6 +417,15 @@ class FullWidthGrid extends React.Component<props, {}>{
                           value={this.state.discount}
                           style={{width: '100%'}}
                       />
+                        <TextField
+                            id="search"
+                            label="Add discount in Percentage"
+                            type="search"
+                            margin="normal"
+                            onChange={this.discountPercentage('discountPercentage')}
+                            value={this.state.discountPercentage}
+                            style={{width: '100%'}}
+                        />
                       <TextField
                           id="search"
                           label="Total Payment"
