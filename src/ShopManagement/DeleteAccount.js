@@ -122,7 +122,7 @@ class FullWidthGrid extends React.Component <props, {}>{
                         loading: false
                     })
                     if(res.statusCode === 200) {
-                        window.location.href = '/DeleteAccount?shop' + window.location.href.split('shop=')[1]
+                        window.location.href = '/DeleteAccount?shop=' + window.location.href.split('shop=')[1]
                     } else {
                         alert(res.body.error.message);
                     }
@@ -156,7 +156,7 @@ class FullWidthGrid extends React.Component <props, {}>{
                                                   <ListItemText primary={<Typography type="title" gutterBottom
                                                                                      style={{color: 'black'}}>{value.username}</Typography>}/>
                                                   <ListItemSecondaryAction/>
-                                                  <Button color="accent" onClick={this.delete.bind(null, value.id)}>
+                                                  <Button color="accent" onClick={this.delete.bind(this, value.id)}>
                                                       DELETE
                                                   </Button>
                                               </ListItem>
